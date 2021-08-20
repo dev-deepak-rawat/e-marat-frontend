@@ -1,7 +1,3 @@
 export default function ManageUser() {
-    return (
-        <div>
-            ManageUser
-        </div>
-    )
+  return <div>ManageUser</div>;
 }

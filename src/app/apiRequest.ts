@@ -1,8 +1,6 @@
-type paramsTypes = {
-    options: any;
-    api: string;
-}
+type ParamsTypes = {
+  options: {};
+  api: string;
+};
 
-export const apiRequest = (params: paramsTypes) => {
-
-}
+export const apiRequest = (params: ParamsTypes) => {};

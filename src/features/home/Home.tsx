@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 
 const PageContainer = styled.div`
-    ${tw`
+  ${tw`
         flex
         flex-col
         w-full
@@ -13,9 +13,5 @@ const PageContainer = styled.div`
 `;
 
 export default function Home() {
-    return (
-        <PageContainer>
-            Home
-        </PageContainer>
-    )
+  return <PageContainer>Home</PageContainer>;
 }
