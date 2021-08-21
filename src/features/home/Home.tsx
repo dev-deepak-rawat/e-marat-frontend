@@ -7,6 +7,11 @@ import {
 	TwitterOutlined,
 	InstagramOutlined,
 } from '@ant-design/icons';
+import {
+	faBuilding,
+	faHandshake,
+	faSwimmer,
+} from '@fortawesome/free-solid-svg-icons';
 import logoImg from './assets/images/logo.svg';
 import apartmentGraphic from './assets/images/apartment.svg';
 import apartmentImg from './assets/images/society.jpg';
@@ -15,11 +20,6 @@ import Feature from './components/Feature';
 import adityaImg from './assets/images/aditya.jpg';
 import harisImg from './assets/images/haris.jpeg';
 import deepakImg from './assets/images/deepak.jpg';
-import {
-	faBuilding,
-	faHandshake,
-	faSwimmer,
-} from '@fortawesome/free-solid-svg-icons';
 
 export default function Home() {
 	return (
@@ -71,7 +71,10 @@ export default function Home() {
 											className="block mt-6 border py-3 px-4 border-gray-200 rounded-lg w-full outline-none"
 											placeholder="Mobile Number"
 										/>
-										<button className="inline-block mt-6 py-3 px-10 bg-emarat-accent text-white font-bold rounded-full">
+										<button
+											type="button"
+											className="inline-block mt-6 py-3 px-10 bg-emarat-accent text-white font-bold rounded-full"
+										>
 											Send OTP
 										</button>
 									</div>
