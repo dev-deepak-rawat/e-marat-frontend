@@ -1,20 +1,19 @@
-import { getAuth, getIdTokenResult, signInWithCustomToken, signOut } from "firebase/auth";
+import { getAuth, getIdTokenResult, signInWithCustomToken, signOut, setPersistence, browserLocalPersistence } from "firebase/auth";
 
 export const signIn = async (token: string) => {
+    try {
+        await setAuthPersistence();
     const auth = getAuth();
-    signInWithCustomToken(auth, token)
-        .then((userCredential) => {
-            // Signed in
-            const user = userCredential.user;
-            console.log({ user })
-            // ...
-        })
-        .catch((error) => {
+        const { user } = await signInWithCustomToken(auth, token);
+        console.log({ user })
+        const idToken = await getIdToken();
+        console.log({ idToken });
+    } catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
             console.log({ errorCode, errorMessage })
             // ...
-        });
+    }
 }
 
 export const signOutUtil = () => {
@@ -26,14 +25,23 @@ export const signOutUtil = () => {
     });
 }
 
-export const getIdToken = () => {
+export const getIdToken = async () => {
     const auth = getAuth();
     const { currentUser } = auth;
     try {
         if (currentUser) {
-            const idToken = getIdTokenResult(currentUser, true);
+            const idToken = await getIdTokenResult(currentUser, true);
             return idToken;
         }
+    } catch (err) {
+        console.log(err);
+    }
+}
+
+export const setAuthPersistence = async () => {
+    try {
+        const auth = getAuth();
+        setPersistence(auth, browserLocalPersistence);
     } catch (err) {
         console.log(err);
     }
