@@ -1,22 +1,22 @@
-import React, { useState } from "react";
-import { Layout } from "antd";
-import MainMenu from "../common/MainMenu";
-import Table from "../common/Table"
-import NavBar from "../common/NavBar/NavBar";
-import SideBar from "../common/SideBar/SideBar";
+import React, { useState } from 'react';
+import { Layout } from 'antd';
+import MainMenu from '../common/MainMenu';
+import Table from '../common/Table';
+import NavBar from '../common/NavBar/NavBar';
+import SideBar from '../common/SideBar/SideBar';
 
 function ManageUser() {
     const menuItems = [
-        "Home",
-        "Amenities",
-        "Feeds",
-        "Broadcast",
-        "Complaints",
-        "Users",
-        "Payments",
+        'Home',
+        'Amenities',
+        'Feeds',
+        'Broadcast',
+        'Complaints',
+        'Users',
+        'Payments',
     ];
     const [contentIndex, setContentIndex] = useState(0);
-    const [selectedKey, setSelectedKey] = useState("0");
+    const [selectedKey, setSelectedKey] = useState('0');
     const changeSelectedKey = (event: any) => {
         const key = event.key;
         setSelectedKey(key);

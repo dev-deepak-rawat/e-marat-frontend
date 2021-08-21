@@ -1,24 +1,22 @@
 .navbar {
-  background-color: #F1F1F1;
-  padding-left: 2rem;
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+    background-color: #f1f1f1;
+    padding-left: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 .logo {
-  height: 32px;
-  margin-left: 1rem;
-  display:inline-block;
+    height: 32px;
+    margin-left: 1rem;
+    display: inline-block;
 }
 @media (min-width: 992px) {
-  .menu {
-    display: none;
-  }
+    .menu {
+        display: none;
+    }
 }
 @media (max-width: 992px) {
-  .logo {
-    margin-left: 7rem;
-
-  }
+    .logo {
+        margin-left: 7rem;
+    }
 }
-
