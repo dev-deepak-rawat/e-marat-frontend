@@ -17,6 +17,7 @@ import apartmentGraphic from './assets/images/apartment.svg';
 import apartmentImg from './assets/images/society.jpg';
 import TeamMember from './components/TeamMember';
 import Feature from './components/Feature';
+import LoginForm from './components/LoginForm';
 import adityaImg from './assets/images/aditya.jpg';
 import harisImg from './assets/images/haris.jpeg';
 import deepakImg from './assets/images/deepak.jpg';
@@ -58,27 +59,7 @@ export default function Home() {
 								order={1}
 								className="flex items-center"
 							>
-								<div className="shadow-around px-7 py-10 rounded-3xl w-full">
-									<div>
-										<h3 className="text-4xl font-regular">
-											Login
-										</h3>
-										<p className="mt-2 text-gray-400">
-											Login to your Emarat account
-										</p>
-										<input
-											type="text"
-											className="block mt-6 border py-3 px-4 border-gray-200 rounded-lg w-full outline-none"
-											placeholder="Mobile Number"
-										/>
-										<button
-											type="button"
-											className="inline-block mt-6 py-3 px-10 bg-emarat-accent text-white font-bold rounded-full"
-										>
-											Send OTP
-										</button>
-									</div>
-								</div>
+								<LoginForm />
 							</Col>
 						</Row>
 					</Container>
