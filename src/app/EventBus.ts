@@ -1,5 +1,7 @@
 class EventBusClass {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     subscriptions: any = {};
+
     lastId: number = 0;
 
     get getNextUniqueId(): number {
@@ -7,6 +9,7 @@ class EventBusClass {
         return this.lastId;
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     subscribe(event: string, callback: Function): any {
         const id = this.getNextUniqueId;
         if (!this.subscriptions[event]) {
