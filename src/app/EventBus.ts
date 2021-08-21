@@ -16,16 +16,19 @@ class EventBusClass {
         return {
             unsubscribe: () => {
                 delete this.subscriptions[event][id];
-                if (Object.keys(this.subscriptions[event]).length === 0) delete this.subscriptions[event];
-            }
-        }
+                if (Object.keys(this.subscriptions[event]).length === 0)
+                    delete this.subscriptions[event];
+            },
+        };
     }
 
     publish(event: string) {
         if (!this.subscriptions[event]) {
             return;
         }
-        Object.keys(this.subscriptions[event]).forEach(key => this.subscriptions[event][key]());
+        Object.keys(this.subscriptions[event]).forEach((key) =>
+            this.subscriptions[event][key]()
+        );
     }
 }
 

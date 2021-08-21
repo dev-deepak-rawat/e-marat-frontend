@@ -2,7 +2,29 @@ module.exports = {
     purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
     darkMode: false, // or 'media' or 'class'
     theme: {
-        extend: {},
+        extend: {
+            colors: {
+                emarat: {
+                    primary: "#DDDDDD",
+                    secondary: "#125D98",
+                    tertiary: "#3C8DAD",
+                    accent: "#F5A962"
+                },
+                brands: {
+                    facebook: "#1877F2",
+                    instagram: "#DC2743",
+                    twitter: "#1C9CEA",
+                    linkedin: "#0A66C2"
+                },
+            },
+            boxShadow: {
+                around: "0px 2px 10px rgba(0, 0, 0, 0.25)"
+
+            },
+            borderRadius : {
+                "5xl": "3rem"
+            },
+        },
         screens: {
             sm: "640px",
             // => @media (min-width: 640px) { ... }
@@ -15,10 +37,7 @@ module.exports = {
 
             xl: "1280px",
             // => @media (min-width: 1280px) { ... }
-
-            "2xl": "1536px",
-            // => @media (min-width: 1536px) { ... }
-        },
+        }
     },
     variants: {
         extend: {},
