@@ -4,6 +4,9 @@
     "private": true,
     "dependencies": {
         "@craco/craco": "^6.2.0",
+        "@fortawesome/fontawesome-svg-core": "^1.2.36",
+        "@fortawesome/free-solid-svg-icons": "^5.15.4",
+        "@fortawesome/react-fontawesome": "^0.1.15",
         "@reduxjs/toolkit": "^1.6.1",
         "@sentry/react": "^6.11.0",
         "@sentry/tracing": "^6.11.0",
