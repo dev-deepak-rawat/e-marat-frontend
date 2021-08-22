@@ -1,23 +1,55 @@
 import React, { useState, FormEvent } from 'react';
 import { stripNonNumbers } from '../../../helpers/stringHelpers';
-import { sendOtp } from '../../../lib/firebaseAuth';
+import { sendOtp, confirmOtp } from '../../../lib/firebaseAuth';
+import { ConfirmationResult } from 'firebase/auth';
 
 export default function LoginForm() {
 	const [mobile, setMobile] = useState<string>('');
-	const [mobileHelpText, setMobileHelpText] = useState<string>('');
+	const [feedbackText, setfeedbackText] = useState<string>('');
+	const [otpSentResult, setotpSentResult] = useState<ConfirmationResult>();
+
+	const [otp, setOtp] = useState<string>('');
 
 	const mobileHandler = (e: FormEvent<HTMLInputElement>) => {
 		setMobile(stripNonNumbers(e.currentTarget.value));
 	};
 
-	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+	const otpHandler = (e: FormEvent<HTMLInputElement>) => {
+		setOtp(stripNonNumbers(e.currentTarget.value));
+	};
+
+	const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
+		setfeedbackText('');
+
 		if (mobile.length !== 10) {
-			setMobileHelpText('Mobile number must be 10 digits long.');
+			setfeedbackText('Mobile number must be 10 digits long.');
 			return;
 		}
-		setMobileHelpText('');
-		sendOtp(e.currentTarget, `+91${mobile}`);
+
+		if (otpSentResult) {
+			const jwt = await confirmOtp(otpSentResult, otp);
+
+			console.log(jwt);
+
+			if (jwt) {
+				// Make api call
+			} else {
+				setOtp('');
+				setfeedbackText('Inavlid OTP entered.');
+			}
+		} else {
+			const otpSentResultResult = await sendOtp(
+				e.currentTarget,
+				`+91${mobile}`
+			);
+
+			if (otpSentResultResult) {
+				setotpSentResult(otpSentResultResult);
+			} else {
+				setfeedbackText('Could not send OTP.');
+			}
+		}
 	};
 
 	return (
@@ -28,17 +60,29 @@ export default function LoginForm() {
 					Login to your Emarat account
 				</p>
 				<form onSubmit={handleSubmit}>
-					<input
-						type="text"
-						className="block mt-6 border py-3 px-4 border-gray-200 rounded-lg w-full outline-none"
-						placeholder="Mobile Number"
-						onInput={mobileHandler}
-						value={mobile}
-						maxLength={10}
-					/>
+					{otpSentResult ? (
+						<input
+							type="text"
+							className="block mt-6 border py-3 px-4 border-gray-200 rounded-lg w-full outline-none"
+							placeholder="OTP"
+							onInput={otpHandler}
+							value={otp}
+							maxLength={6}
+						/>
+					) : (
+						<input
+							type="text"
+							className="block mt-6 border py-3 px-4 border-gray-200 rounded-lg w-full outline-none"
+							placeholder="Mobile Number"
+							onInput={mobileHandler}
+							value={mobile}
+							maxLength={10}
+						/>
+					)}
 					<div className="mt-1 pl-1 text-xs text-red-500">
-						{mobileHelpText}
+						{feedbackText}
 					</div>
+
 					<button
 						type="submit"
 						className="inline-block mt-6 py-3 px-10 bg-emarat-accent text-white font-bold rounded-full"
