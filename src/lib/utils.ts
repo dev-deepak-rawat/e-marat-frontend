@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import {
     getAuth,
     getIdTokenResult,
@@ -45,6 +46,7 @@ export const getIdToken = async () => {
     } catch (err) {
         console.log(err);
     }
+    return '';
 };
 
 export const setAuthPersistence = async () => {

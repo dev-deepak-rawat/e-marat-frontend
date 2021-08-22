@@ -29,7 +29,6 @@ class ErrorBoundary extends Component<Props, State> {
     }
 
     public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-        console.error('Uncaught error:', error, errorInfo);
         // Sentry.withScope((scope) => {
         //     scope.setExtra('errorInfo', errorInfo);
         //     const eventId = Sentry.captureException(error);
@@ -39,7 +38,7 @@ class ErrorBoundary extends Component<Props, State> {
     }
 
     public render() {
-        const { hasError, errorInfo } = this.state;
+        const { hasError, errorInfo, error } = this.state;
         if (hasError) {
             return (
                 <div className="card my-5">
@@ -60,6 +59,7 @@ class ErrorBoundary extends Component<Props, State> {
                     <div className="card-body">
                         <details className="error-details">
                             <summary>Click for error details</summary>
+                            {error && error.message}
                             {errorInfo && errorInfo.componentStack.toString()}
                         </details>
                     </div>
