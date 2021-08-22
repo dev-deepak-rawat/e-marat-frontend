@@ -3,11 +3,13 @@ import {
 	RecaptchaVerifier,
 	signInWithPhoneNumber,
 	ConfirmationResult,
+	User,
 } from 'firebase/auth';
 import firebaseApp from '../config/firebase';
 
 const auth = getAuth(firebaseApp);
 
+// https://firebase.google.com/docs/auth/web/phone-auth#use-invisible-recaptcha
 const invisibeRecaptcha = (el: HTMLElement) => {
 	return new RecaptchaVerifier(
 		'recaptcha-container',
@@ -22,6 +24,7 @@ const invisibeRecaptcha = (el: HTMLElement) => {
 	);
 };
 
+// https://firebase.google.com/docs/auth/web/phone-auth#send-a-verification-code-to-the-users-phone
 export const sendOtp = async (
 	el: HTMLElement,
 	phoneNumber: string
@@ -39,6 +42,7 @@ export const sendOtp = async (
 	}
 };
 
+// https://firebase.google.com/docs/auth/web/phone-auth#sign-in-the-user-with-the-verification-code
 export const confirmOtp = async (
 	confirmationResult: ConfirmationResult,
 	otp: string
@@ -55,3 +59,6 @@ export const confirmOtp = async (
 		return false;
 	}
 };
+
+// https://firebase.google.com/docs/auth/admin/custom-claims#propagate_custom_claims_to_the_client
+export const refreshToken = async (user: User) => await user.getIdToken(true);
