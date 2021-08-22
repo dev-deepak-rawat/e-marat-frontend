@@ -61,4 +61,5 @@ export const confirmOtp = async (
 };
 
 // https://firebase.google.com/docs/auth/admin/custom-claims#propagate_custom_claims_to_the_client
-export const refreshToken = async (user: User) => await user.getIdToken(true);
+export const refreshToken = async (user: User) =>
+	await auth.currentUser?.getIdToken(true);
