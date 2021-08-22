@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { ToastContainer } from 'react-toastify';
-import * as Sentry from '@sentry/react';
-import { Integrations } from '@sentry/tracing';
 import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -13,16 +11,11 @@ import ErrorBoundary from 'app/ErrorBoundary';
 import ManageUser from 'features/manageUser/ManageUser';
 import Home from 'features/home/Home';
 import ManageAmenities from 'features/manageAmenities/ManageAmenities';
+import { listenUserAuthState } from 'app/initFirebaseApp';
+import initSentry from 'app/initSentry';
 
-Sentry.init({
-	dsn: 'https://1ef6e7d163ff41eeb401880603c323da@o960298.ingest.sentry.io/5912682',
-	integrations: [new Integrations.BrowserTracing()],
-
-	// Set tracesSampleRate to 1.0 to capture 100%
-	// of transactions for performance monitoring.
-	// We recommend adjusting this value in production
-	tracesSampleRate: 1.0,
-});
+initSentry();
+listenUserAuthState();
 
 ReactDOM.render(
 	<React.StrictMode>

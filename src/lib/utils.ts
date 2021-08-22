@@ -1,58 +1,44 @@
 import {
 	getAuth,
-	getIdTokenResult,
 	signInWithCustomToken,
-	signOut,
-	setPersistence,
-	browserLocalPersistence,
+	signOut as firebaseSignOut,
 } from 'firebase/auth';
-import firebaseApp from '../config/firebase';
 
 export const signIn = async (token: string) => {
 	try {
-		await setAuthPersistence();
-		const auth = getAuth(firebaseApp);
-		const { user } = await signInWithCustomToken(auth, token);
-		console.log({ user });
-		const idToken = await getIdToken();
-		console.log({ idToken });
-	} catch (error) {
-		const errorCode = error.code;
-		const errorMessage = error.message;
-		console.log({ errorCode, errorMessage });
-		// ...
-	}
-};
-
-export const signOutUtil = () => {
-	const auth = getAuth(firebaseApp);
-	signOut(auth)
-		.then(() => {
-			// Sign-out successful.
-		})
-		.catch((error) => {
-			// An error happened.
-		});
-};
-
-export const getIdToken = async () => {
-	const auth = getAuth(firebaseApp);
-	const { currentUser } = auth;
-	try {
-		if (currentUser) {
-			const idToken = await getIdTokenResult(currentUser, true);
-			return idToken;
-		}
+		const auth = getAuth();
+		await signInWithCustomToken(auth, token);
+		return true;
 	} catch (err) {
-		console.log(err);
+		console.log({ err: err.message });
 	}
+	return false;
 };
 
-export const setAuthPersistence = async () => {
+export const signOut = async () => {
+	const auth = getAuth();
 	try {
-		const auth = getAuth(firebaseApp);
-		setPersistence(auth, browserLocalPersistence);
+		await firebaseSignOut(auth);
+		return true;
 	} catch (err) {
-		console.log(err);
+		console.log({ err: err.message });
 	}
+	return false;
+};
+
+export const isLoggedIn = () => Boolean(localStorage.getItem('authUser'));
+
+export const getAuthUserInfo = () => {
+	const authUser = localStorage.getItem('authUser');
+	const parsedAuthUser = authUser ? JSON.parse(authUser) : {};
+	return parsedAuthUser;
+};
+export const isAdmin = () => {
+	const { claims = {} } = getAuthUserInfo();
+	const { isAdmin: isAdminRole = false } = claims;
+	return isAdminRole;
+};
+export const getAuthToken = () => {
+	const { token = '' } = getAuthUserInfo();
+	return token;
 };
