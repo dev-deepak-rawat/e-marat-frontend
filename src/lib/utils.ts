@@ -6,11 +6,12 @@ import {
 	setPersistence,
 	browserLocalPersistence,
 } from 'firebase/auth';
+import firebaseApp from '../config/firebase';
 
 export const signIn = async (token: string) => {
 	try {
 		await setAuthPersistence();
-		const auth = getAuth();
+		const auth = getAuth(firebaseApp);
 		const { user } = await signInWithCustomToken(auth, token);
 		console.log({ user });
 		const idToken = await getIdToken();
@@ -24,7 +25,7 @@ export const signIn = async (token: string) => {
 };
 
 export const signOutUtil = () => {
-	const auth = getAuth();
+	const auth = getAuth(firebaseApp);
 	signOut(auth)
 		.then(() => {
 			// Sign-out successful.
@@ -35,7 +36,7 @@ export const signOutUtil = () => {
 };
 
 export const getIdToken = async () => {
-	const auth = getAuth();
+	const auth = getAuth(firebaseApp);
 	const { currentUser } = auth;
 	try {
 		if (currentUser) {
@@ -49,7 +50,7 @@ export const getIdToken = async () => {
 
 export const setAuthPersistence = async () => {
 	try {
-		const auth = getAuth();
+		const auth = getAuth(firebaseApp);
 		setPersistence(auth, browserLocalPersistence);
 	} catch (err) {
 		console.log(err);

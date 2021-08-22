@@ -1,5 +1,6 @@
 import React, { useState, FormEvent } from 'react';
 import { stripNonNumbers } from '../../../helpers/stringHelpers';
+import { sendOtp } from '../../../lib/firebaseAuth';
 
 export default function LoginForm() {
 	const [mobile, setMobile] = useState<string>('');
@@ -16,6 +17,7 @@ export default function LoginForm() {
 			return;
 		}
 		setMobileHelpText('');
+		sendOtp(e.currentTarget, `+91${mobile}`);
 	};
 
 	return (
