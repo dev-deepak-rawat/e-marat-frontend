@@ -13,18 +13,17 @@ const initFirebaseApp = () => {
     };
 
     initializeApp(firebaseConfig);
-}
+};
 
 export const listenUserAuthState = () => {
-    getAuth().onAuthStateChanged(authUser => {
+    getAuth().onAuthStateChanged((authUser) => {
         if (!authUser) {
             localStorage.removeItem('authUser');
         }
-        authUser?.getIdTokenResult()
-            .then(idToken => {
-                localStorage.setItem('authUser', JSON.stringify(idToken))
-            });
-    })
-}
+        authUser?.getIdTokenResult().then((idToken) => {
+            localStorage.setItem('authUser', JSON.stringify(idToken));
+        });
+    });
+};
 
 export default initFirebaseApp;

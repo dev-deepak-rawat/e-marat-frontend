@@ -22,7 +22,7 @@ export const signOut = async () => {
         await firebaseSignOut(auth);
         return true;
     } catch (err) {
-        console.log({ err: err.message })
+        console.log({ err: err.message });
     }
     return false;
 };
@@ -33,13 +33,13 @@ export const getAuthUserInfo = () => {
     const authUser = localStorage.getItem('authUser');
     const parsedAuthUser = authUser ? JSON.parse(authUser) : {};
     return parsedAuthUser;
-}
+};
 export const isAdmin = () => {
     const { claims = {} } = getAuthUserInfo();
     const { isAdmin: isAdminRole = false } = claims;
     return isAdminRole;
-}
+};
 export const getAuthToken = () => {
     const { token = '' } = getAuthUserInfo();
     return token;
-}
+};
