@@ -11,8 +11,8 @@ import ErrorBoundary from 'app/ErrorBoundary';
 import ManageUser from 'features/manageUser/ManageUser';
 import Home from 'features/home/Home';
 import ManageAmenities from 'features/manageAmenities/ManageAmenities';
-import { listenUserAuthState } from 'app/initFirebaseApp';
 import initSentry from 'app/initSentry';
+import { listenUserAuthState } from 'lib/firebaseAuth';
 
 initSentry();
 listenUserAuthState();
@@ -22,7 +22,7 @@ ReactDOM.render(
 		<Provider store={store}>
 			<ErrorBoundary>
 				<ToastContainer />
-				<div id="recaptcha-container"></div>
+                <div id="recaptcha-container" />
 				<BrowserRouter>
 					<Switch>
 						<Route path="/user">

@@ -1,7 +1,8 @@
 import React, { useState, FormEvent } from 'react';
+import { ConfirmationResult } from 'firebase/auth';
+import { apiRequest } from 'app/apiRequest';
 import { stripNonNumbers } from '../../../helpers/stringHelpers';
 import { sendOtp, confirmOtp } from '../../../lib/firebaseAuth';
-import { ConfirmationResult } from 'firebase/auth';
 
 export default function LoginForm() {
 	const [mobile, setMobile] = useState<string>('');
@@ -30,10 +31,8 @@ export default function LoginForm() {
 		if (otpSentResult) {
 			const jwt = await confirmOtp(otpSentResult, otp);
 
-			console.log(jwt);
-
 			if (jwt) {
-				// Make api call
+                await apiRequest({ apiUrl: 'login', data: { token: jwt } });
 			} else {
 				setOtp('');
 				setfeedbackText('Inavlid OTP entered.');
