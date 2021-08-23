@@ -100,16 +100,3 @@ export const signOut = async () => {
 	}
 	return false;
 };
-
-export const isLoggedIn = () => Boolean(localStorage.getItem('authUser'));
-
-export const getAuthUserInfo = () => {
-	const authUser = localStorage.getItem('authUser');
-	const parsedAuthUser = authUser ? JSON.parse(authUser) : {};
-	return parsedAuthUser;
-};
-export const isAdmin = () => {
-	const { claims = {} } = getAuthUserInfo();
-	const { isAdmin: isAdminRole = false } = claims;
-	return isAdminRole;
-};
