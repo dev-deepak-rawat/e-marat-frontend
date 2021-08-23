@@ -13,6 +13,7 @@ import Home from 'features/home/Home';
 import ManageAmenities from 'features/manageAmenities/ManageAmenities';
 import initSentry from 'app/initSentry';
 import { listenUserAuthState } from 'lib/firebaseAuth';
+import CreateUser from 'features/manageUser/CreateUser';
 
 initSentry();
 listenUserAuthState();
@@ -27,6 +28,9 @@ ReactDOM.render(
 					<Switch>
 						<Route path="/user">
 							<ManageUser />
+						</Route>
+						<Route path="/create-user">
+							<CreateUser />
 						</Route>
 						<Route path="/amenity">
 							<ManageAmenities />
