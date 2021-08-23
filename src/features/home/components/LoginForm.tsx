@@ -32,7 +32,7 @@ export default function LoginForm() {
 			const jwt = await confirmOtp(otpSentResult, otp);
 
 			if (jwt) {
-                await apiRequest({ apiUrl: 'login', data: { token: jwt } });
+				await apiRequest({ apiUrl: 'login', data: { token: jwt } });
 			} else {
 				setOtp('');
 				setfeedbackText('Inavlid OTP entered.');

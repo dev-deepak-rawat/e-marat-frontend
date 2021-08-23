@@ -30,33 +30,33 @@ const buildRequestData = (options: BuildRequestDataType) => {
 };
 
 type HandleAuthorizationParams = {
-    meta: {
-        code: string;
-    };
-    data?: { authorizationToken: string };
-}
+	meta: {
+		code: string;
+	};
+	data?: { authorizationToken: string };
+};
 
 const handleAuthorization = async (response: HandleAuthorizationParams) => {
-    const { meta } = response;
-    const { code } = meta;
-    if (code === '3001') {
-        const { data } = response;
-        const { authorizationToken = '' } = data || {};
-        const success = await signIn(authorizationToken);
-        if (success) {
-            toast.success('Logged In successfully');
-        } else {
-            toast.error('Error while Loggin In');
-        }
-    }
-}
+	const { meta } = response;
+	const { code } = meta;
+	if (code === '3001') {
+		const { data } = response;
+		const { authorizationToken = '' } = data || {};
+		const success = await signIn(authorizationToken);
+		if (success) {
+			toast.success('Logged In successfully');
+		} else {
+			toast.error('Error while Loggin In');
+		}
+	}
+};
 
 export const apiRequest = async (options: BuildRequestDataType) => {
 	const reqData = buildRequestData(options);
 	try {
 		const response = await axios(reqData);
 		const jsonResponse = await response.data;
-        await handleAuthorization(jsonResponse);
+		await handleAuthorization(jsonResponse);
 		return jsonResponse;
 	} catch (err) {
 		if (err.response) {

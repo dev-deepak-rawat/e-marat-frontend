@@ -9,8 +9,8 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/users/',
 		method: 'POST',
 	},
-    login: {
-        url: '/login/',
-        method: 'POST',
-    }
+	login: {
+		url: '/login/',
+		method: 'POST',
+	},
 };

@@ -22,7 +22,7 @@ ReactDOM.render(
 		<Provider store={store}>
 			<ErrorBoundary>
 				<ToastContainer />
-                <div id="recaptcha-container" />
+				<div id="recaptcha-container" />
 				<BrowserRouter>
 					<Switch>
 						<Route path="/user">
