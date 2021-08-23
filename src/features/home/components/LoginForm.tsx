@@ -82,7 +82,9 @@ export default function LoginForm() {
 					<div className="mt-1 pl-1 text-xs text-red-500">
 						{feedbackText}
 					</div>
-					<Button></Button>
+					<Button type="submit" color="emarat-accent">
+						Send OTP
+					</Button>
 				</form>
 			</div>
 		</div>
