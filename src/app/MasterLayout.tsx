@@ -8,7 +8,7 @@ import ErrorBoundary from 'app/ErrorBoundary';
 import ManageUser from 'features/manageUser/ManageUser';
 import Home from 'features/home/Home';
 import ManageAmenities from 'features/manageAmenities/ManageAmenities';
-// import CreateUser from 'features/manageUser/CreateUser';
+import CreateUser from 'features/manageUser/CreateUser';
 
 export default function MasterLayout() {
 	return (
@@ -21,9 +21,9 @@ export default function MasterLayout() {
 						<Route path="/user">
 							<ManageUser />
 						</Route>
-						{/* <Route path="/create-user">
-                            <CreateUser />
-                        </Route> */}
+						<Route path="/create-user">
+							<CreateUser />
+						</Route>
 						<Route path="/amenity">
 							<ManageAmenities />
 						</Route>

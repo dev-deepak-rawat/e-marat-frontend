@@ -57,6 +57,11 @@ export const apiRequest = async (options: BuildRequestDataType) => {
 		const response = await axios(reqData);
 		const jsonResponse = await response.data;
 		await handleAuthorization(jsonResponse);
+		const { meta = {} } = jsonResponse;
+		const { success = false, msg = '' } = meta;
+		if (success && msg) {
+			toast.success(msg);
+		}
 		return jsonResponse;
 	} catch (err) {
 		if (err.response) {
