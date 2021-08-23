@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
+import { store } from 'app/store';
+import { removeAuthUser, saveAuthUser } from 'features/home/authSlice';
 import {
 	getAuth,
 	RecaptchaVerifier,
 	signInWithPhoneNumber,
 	ConfirmationResult,
-	User,
 	signInWithCustomToken,
 	signOut as firebaseSignOut,
 } from 'firebase/auth';
@@ -15,15 +16,22 @@ const auth = getAuth(firebaseApp);
 export const listenUserAuthState = () => {
 	auth.onAuthStateChanged((authUser) => {
 		if (!authUser) {
-			localStorage.removeItem('authUser');
+			store.dispatch(removeAuthUser());
 		}
-		authUser?.getIdTokenResult().then((idToken) => {
-			localStorage.setItem('authUser', JSON.stringify(idToken));
+		authUser?.getIdTokenResult().then((authUserInfo) => {
+			const { claims = {} } = authUserInfo;
+			const { isAdmin } = claims;
+			store.dispatch(
+				saveAuthUser({
+					isLoggedIn: true,
+					isAdmin: Boolean(isAdmin),
+					userInfo: authUserInfo,
+				})
+			);
 		});
 	});
 };
 
-// https://firebase.google.com/docs/auth/web/phone-auth#use-invisible-recaptcha
 const invisibeRecaptcha = (el: HTMLElement) =>
 	new RecaptchaVerifier(
 		'recaptcha-container',
@@ -37,7 +45,6 @@ const invisibeRecaptcha = (el: HTMLElement) =>
 		auth
 	);
 
-// https://firebase.google.com/docs/auth/web/phone-auth#send-a-verification-code-to-the-users-phone
 export const sendOtp = async (
 	el: HTMLElement,
 	phoneNumber: string
@@ -55,7 +62,6 @@ export const sendOtp = async (
 	}
 };
 
-// https://firebase.google.com/docs/auth/web/phone-auth#sign-in-the-user-with-the-verification-code
 export const confirmOtp = async (
 	confirmationResult: ConfirmationResult,
 	otp: string
@@ -73,9 +79,7 @@ export const confirmOtp = async (
 	}
 };
 
-// https://firebase.google.com/docs/auth/admin/custom-claims#propagate_custom_claims_to_the_client
-export const refreshToken = async (user: User) =>
-	auth.currentUser?.getIdToken(true);
+export const getAuthToken = async () => auth.currentUser?.getIdToken(true);
 
 export const signIn = async (token: string) => {
 	try {
@@ -108,8 +112,4 @@ export const isAdmin = () => {
 	const { claims = {} } = getAuthUserInfo();
 	const { isAdmin: isAdminRole = false } = claims;
 	return isAdminRole;
-};
-export const getAuthToken = () => {
-	const { token = '' } = getAuthUserInfo();
-	return token;
 };
