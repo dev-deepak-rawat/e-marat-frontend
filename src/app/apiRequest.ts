@@ -26,8 +26,8 @@ const buildRequestData = (options: BuildRequestDataType) => {
         headers: reqHeaders,
         data: JSON.stringify(data),
         method,
-    }
-}
+    };
+};
 
 export const apiRequest = async (options: BuildRequestDataType) => {
     const reqData = buildRequestData(options);
