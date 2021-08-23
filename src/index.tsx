@@ -11,35 +11,35 @@ import ErrorBoundary from 'app/ErrorBoundary';
 import ManageUser from 'features/manageUser/ManageUser';
 import Home from 'features/home/Home';
 import ManageAmenities from 'features/manageAmenities/ManageAmenities';
-import initFirebaseApp, { listenUserAuthState } from 'app/initFirebaseApp';
+import { listenUserAuthState } from 'app/initFirebaseApp';
 import initSentry from 'app/initSentry';
 
-initFirebaseApp();
 initSentry();
 listenUserAuthState();
 
 ReactDOM.render(
-    <React.StrictMode>
-        <Provider store={store}>
-            <ErrorBoundary>
-                <ToastContainer />
-                <BrowserRouter>
-                    <Switch>
-                        <Route path="/user">
-                            <ManageUser />
-                        </Route>
-                        <Route path="/amenity">
-                            <ManageAmenities />
-                        </Route>
-                        <Route path="/" exact>
-                            <Home />
-                        </Route>
-                    </Switch>
-                </BrowserRouter>
-            </ErrorBoundary>
-        </Provider>
-    </React.StrictMode>,
-    document.getElementById('root')
+	<React.StrictMode>
+		<Provider store={store}>
+			<ErrorBoundary>
+				<ToastContainer />
+				<div id="recaptcha-container"></div>
+				<BrowserRouter>
+					<Switch>
+						<Route path="/user">
+							<ManageUser />
+						</Route>
+						<Route path="/amenity">
+							<ManageAmenities />
+						</Route>
+						<Route path="/" exact>
+							<Home />
+						</Route>
+					</Switch>
+				</BrowserRouter>
+			</ErrorBoundary>
+		</Provider>
+	</React.StrictMode>,
+	document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
