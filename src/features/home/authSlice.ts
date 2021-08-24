@@ -6,12 +6,14 @@ export interface AuthState {
 	isLoggedIn: boolean;
 	isAdmin: boolean;
 	userInfo: IdTokenResult | null;
+	isLoaded: boolean;
 }
 
 const initialState: AuthState = {
 	isLoggedIn: false,
 	isAdmin: false,
 	userInfo: null,
+	isLoaded: false,
 };
 
 export const authSlice = createSlice({
@@ -21,7 +23,7 @@ export const authSlice = createSlice({
 		saveAuthUser: (state, action: PayloadAction<AuthState>) => ({
 			...action.payload,
 		}),
-		removeAuthUser: (state) => ({ ...initialState }),
+		removeAuthUser: (state) => ({ ...initialState, isLoaded: true }),
 	},
 });
 

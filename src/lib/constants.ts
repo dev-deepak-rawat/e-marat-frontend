@@ -14,3 +14,16 @@ export const API_CONFIG: ApiConfigType = {
 		method: 'POST',
 	},
 };
+
+export const PATTERNS = {
+	NAME: /^[a-zA-Z]+$/,
+	PHONE: /^\d{10}$/,
+	DIGITS: /^\d+$/,
+};
+
+export const FORM_TYPES = {
+	TEXT: 'text',
+	TEL: 'tel',
+	SELECT: 'select',
+	CHECKBOX: 'checkbox',
+};

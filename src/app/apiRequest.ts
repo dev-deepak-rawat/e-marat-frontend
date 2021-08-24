@@ -70,6 +70,7 @@ export const apiRequest = async (options: BuildRequestDataType) => {
 			const { msg = '' } = meta;
 			toast.error(msg || 'Something Went Wrong');
 		}
+		toast.error('Something went wrong');
 	}
 	return {};
 };

@@ -13,7 +13,26 @@ import firebaseApp from '../config/firebase';
 
 const auth = getAuth(firebaseApp);
 
+const saveAuthStateOnLocalStorage = () => {
+	store.subscribe(() => {
+		localStorage.setItem(
+			'authState',
+			JSON.stringify(store.getState().auth)
+		);
+	});
+};
+
+const loadAuthStateFromLocalStorage = () => {
+	const persistedState = localStorage.getItem('authState');
+	if (persistedState) {
+		const authState = JSON.parse(persistedState);
+		store.dispatch(saveAuthUser(authState));
+	}
+};
+
 export const listenUserAuthState = () => {
+	saveAuthStateOnLocalStorage();
+	loadAuthStateFromLocalStorage();
 	auth.onAuthStateChanged((authUser) => {
 		if (!authUser) {
 			store.dispatch(removeAuthUser());
@@ -26,6 +45,7 @@ export const listenUserAuthState = () => {
 					isLoggedIn: true,
 					isAdmin: Boolean(isAdmin),
 					userInfo: authUserInfo,
+					isLoaded: true,
 				})
 			);
 		});
@@ -37,6 +57,7 @@ const invisibeRecaptcha = (el: HTMLElement) =>
 		'recaptcha-container',
 		{
 			size: 'invisible',
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			callback: (response: any) => {
 				console.log(response);
 				// reCAPTCHA solved, allow signInWithPhoneNumber.
@@ -79,7 +100,7 @@ export const confirmOtp = async (
 	}
 };
 
-export const getAuthToken = async () => auth.currentUser?.getIdToken(true);
+export const getAuthToken = async () => auth.currentUser?.getIdToken();
 
 export const signIn = async (token: string) => {
 	try {
