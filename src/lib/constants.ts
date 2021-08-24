@@ -27,3 +27,8 @@ export const FORM_TYPES = {
 	SELECT: 'select',
 	CHECKBOX: 'checkbox',
 };
+
+export const ROLES = {
+	ADMIN: 'admin',
+	RESIDENT: 'resident',
+};

@@ -3,7 +3,7 @@
 import { apiRequest } from 'app/apiRequest';
 import { useState } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { FORM_TYPES } from 'lib/constants';
+import { FORM_TYPES, ROLES } from 'lib/constants';
 import { FieldType, FormMetaType } from 'app/declarations';
 import { useAuth } from 'app/hooks';
 
@@ -57,8 +57,8 @@ export default function GenericForm(props: PropsType) {
 				} = field;
 
 				if (role) {
-					if (isAdmin && role !== 'admin') return;
-					if (!isAdmin && role === 'admin') return;
+					if (isAdmin && role !== ROLES.ADMIN) return;
+					if (!isAdmin && role === ROLES.ADMIN) return;
 				}
 
 				switch (type) {

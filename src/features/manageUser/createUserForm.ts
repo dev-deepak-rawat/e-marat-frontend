@@ -1,5 +1,5 @@
 import { FieldType, FormMetaType } from 'app/declarations';
-import { PATTERNS } from 'lib/constants';
+import { PATTERNS, ROLES } from 'lib/constants';
 
 const fieldsData: FieldType[] = [
 	{
@@ -39,7 +39,7 @@ const fieldsData: FieldType[] = [
 		type: 'checkbox',
 		defaultValue: false,
 		label: 'Is Admin',
-		role: 'admin',
+		role: ROLES.ADMIN,
 	},
 	{
 		name: 'role',
@@ -55,15 +55,15 @@ const fieldsData: FieldType[] = [
 		},
 		options: [
 			{
-				value: 'admin',
+				value: ROLES.ADMIN,
 				label: 'Admin',
 			},
 			{
-				value: 'resident',
+				value: ROLES.RESIDENT,
 				label: 'Resident',
 			},
 		],
-		role: 'admin',
+		role: ROLES.ADMIN,
 	},
 
 	{
@@ -81,7 +81,7 @@ const fieldsData: FieldType[] = [
 				message: 'Please enter valid mobile no.',
 			},
 		},
-		role: 'admin',
+		role: ROLES.ADMIN,
 	},
 	{
 		name: 'flat',
@@ -94,7 +94,7 @@ const fieldsData: FieldType[] = [
 				message: 'Flat no. is required',
 			},
 		},
-		role: 'admin',
+		role: ROLES.ADMIN,
 	},
 ];
 

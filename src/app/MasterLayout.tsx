@@ -9,6 +9,11 @@ import ManageUser from 'features/manageUser/ManageUser';
 import Home from 'features/home/Home';
 import ManageAmenities from 'features/manageAmenities/ManageAmenities';
 import CreateUser from 'features/manageUser/CreateUser';
+import ProtectedRoute from 'app/ProtectedRoute';
+import { ROLES } from 'lib/constants';
+import PageNotFound from 'features/PageNotFound';
+import MyPayments from 'features/myPayments/MyPayments';
+import Dashboard from 'features/dashboard/Dashboard';
 
 export default function MasterLayout() {
 	return (
@@ -18,17 +23,44 @@ export default function MasterLayout() {
 				<div id="recaptcha-container" />
 				<BrowserRouter>
 					<Switch>
-						<Route path="/user">
-							<ManageUser />
-						</Route>
-						<Route path="/create-user">
-							<CreateUser />
-						</Route>
-						<Route path="/amenity">
-							<ManageAmenities />
-						</Route>
+						<ProtectedRoute
+							path="/user"
+							role={ROLES.ADMIN}
+							component={ManageUser}
+							exact
+						/>
+						<ProtectedRoute
+							path="/create-user"
+							role={ROLES.ADMIN}
+							component={CreateUser}
+							exact
+						/>
+						<ProtectedRoute
+							path="/amenity"
+							role={ROLES.ADMIN}
+							component={ManageAmenities}
+							exact
+						/>
+						<ProtectedRoute
+							path="/payments"
+							role={ROLES.RESIDENT}
+							component={MyPayments}
+							exact
+						/>
+						<ProtectedRoute
+							path="/dashboard"
+							role={ROLES.ADMIN}
+							component={Dashboard}
+							exact
+						/>
 						<Route path="/" exact>
 							<Home />
+						</Route>
+						<Route path="/404" exact>
+							<PageNotFound />
+						</Route>
+						<Route>
+							<PageNotFound />
 						</Route>
 					</Switch>
 				</BrowserRouter>
