@@ -78,7 +78,7 @@ export default function Home() {
 					</Container>
 				</section>
 
-				<section className="bg-emarat-tertiary">
+				<section className="bg-emarat-tertiary-default">
 					<Container className="py-32">
 						<div className="mt-0 md:-mt-52 mb-16">
 							<Row className="justify-center md:justify-between">

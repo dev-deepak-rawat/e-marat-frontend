@@ -50,8 +50,9 @@ module.exports = {
 	},
 	variants: {
 		extend: {
-			backgroundColor: ['active'],
-			textColor: ['active'],
+			backgroundColor: ['active', 'disabled'],
+			textColor: ['active', 'disabled'],
+			cursor: ['disabled'],
 		},
 	},
 	plugins: [],

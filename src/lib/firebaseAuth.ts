@@ -52,9 +52,9 @@ export const listenUserAuthState = () => {
 	});
 };
 
-const invisibeRecaptcha = (el: HTMLElement) =>
+const invisibeRecaptcha = (elId: string) =>
 	new RecaptchaVerifier(
-		'recaptcha-container',
+		elId,
 		{
 			size: 'invisible',
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -67,10 +67,10 @@ const invisibeRecaptcha = (el: HTMLElement) =>
 	);
 
 export const sendOtp = async (
-	el: HTMLElement,
+	captchaElId: string,
 	phoneNumber: string
 ): Promise<ConfirmationResult | false> => {
-	const appVerifier = invisibeRecaptcha(el);
+	const appVerifier = invisibeRecaptcha(captchaElId);
 
 	try {
 		// SMS sent. Prompt user to type the code from the message, then sign the
