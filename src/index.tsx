@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import initSentry from 'app/initSentry';
 import * as serviceWorker from 'serviceWorker';
-import MasterLayout from 'app/MasterLayout';
+import App from 'app/App';
 import { listenUserAuthState } from 'lib/firebaseAuth';
 
 initSentry();
@@ -10,7 +10,7 @@ listenUserAuthState();
 
 ReactDOM.render(
 	<React.StrictMode>
-		<MasterLayout />
+		<App />
 	</React.StrictMode>,
 	document.getElementById('root')
 );
