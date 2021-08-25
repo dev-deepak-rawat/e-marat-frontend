@@ -12,17 +12,30 @@ import {
 	faHandshake,
 	faSwimmer,
 } from '@fortawesome/free-solid-svg-icons';
-import logoImg from './assets/images/logo.svg';
-import apartmentGraphic from './assets/images/apartment.svg';
-import apartmentImg from './assets/images/society.jpg';
-import TeamMember from './components/TeamMember';
-import Feature from './components/Feature';
-import LoginForm from './components/LoginForm';
-import adityaImg from './assets/images/aditya.jpg';
-import harisImg from './assets/images/haris.jpeg';
-import deepakImg from './assets/images/deepak.jpg';
+import logoImg from 'features/home/assets/images/logo.svg';
+import apartmentGraphic from 'features/home/assets/images/apartment.svg';
+import apartmentImg from 'features/home/assets/images/society.jpg';
+import TeamMember from 'features/home/components/TeamMember';
+import Feature from 'features/home/components/Feature';
+import LoginForm from 'features/home/components/LoginForm';
+import adityaImg from 'features/home/assets/images/aditya.jpg';
+import harisImg from 'features/home/assets/images/haris.jpeg';
+import deepakImg from 'features/home/assets/images/deepak.jpg';
+import { useAuth } from 'app/hooks';
+import { useHistory } from 'react-router-dom';
 
 export default function Home() {
+	const { isLoggedIn, isAdmin } = useAuth();
+	const history = useHistory();
+	if (isAdmin) {
+		history.push('/dashboard');
+		return null;
+	}
+	if (isLoggedIn) {
+		history.push('/payments');
+		return null;
+	}
+
 	return (
 		<>
 			<main>

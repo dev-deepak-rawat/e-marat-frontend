@@ -10,11 +10,11 @@ type BuildRequestDataType = {
 	data?: AnyMapObj;
 };
 
-const buildRequestData = (options: BuildRequestDataType) => {
+const buildRequestData = async (options: BuildRequestDataType) => {
 	const { apiUrl, headers = {}, data } = options;
 	const { url, method } = API_CONFIG[apiUrl];
 	const reqUrl = `${SERVICE_URL}${url}`;
-	const token = getAuthToken();
+	const token = await getAuthToken();
 	const reqHeaders = {
 		'Content-Type': 'application/json',
 		Authorizatoin: token ? `Bearer ${token}` : undefined,
@@ -52,11 +52,16 @@ const handleAuthorization = async (response: HandleAuthorizationParams) => {
 };
 
 export const apiRequest = async (options: BuildRequestDataType) => {
-	const reqData = buildRequestData(options);
+	const reqData = await buildRequestData(options);
 	try {
 		const response = await axios(reqData);
 		const jsonResponse = await response.data;
 		await handleAuthorization(jsonResponse);
+		const { meta = {} } = jsonResponse;
+		const { success = false, msg = '' } = meta;
+		if (success && msg) {
+			toast.success(msg);
+		}
 		return jsonResponse;
 	} catch (err) {
 		if (err.response) {
@@ -65,6 +70,7 @@ export const apiRequest = async (options: BuildRequestDataType) => {
 			const { msg = '' } = meta;
 			toast.error(msg || 'Something Went Wrong');
 		}
+		toast.error('Something went wrong');
 	}
 	return {};
 };

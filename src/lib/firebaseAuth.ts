@@ -1,10 +1,11 @@
 /* eslint-disable no-console */
+import { store } from 'app/store';
+import { removeAuthUser, saveAuthUser } from 'features/home/authSlice';
 import {
 	getAuth,
 	RecaptchaVerifier,
 	signInWithPhoneNumber,
 	ConfirmationResult,
-	User,
 	signInWithCustomToken,
 	signOut as firebaseSignOut,
 } from 'firebase/auth';
@@ -12,23 +13,51 @@ import firebaseApp from '../config/firebase';
 
 const auth = getAuth(firebaseApp);
 
+const saveAuthStateOnLocalStorage = () => {
+	store.subscribe(() => {
+		localStorage.setItem(
+			'authState',
+			JSON.stringify(store.getState().auth)
+		);
+	});
+};
+
+const loadAuthStateFromLocalStorage = () => {
+	const persistedState = localStorage.getItem('authState');
+	if (persistedState) {
+		const authState = JSON.parse(persistedState);
+		store.dispatch(saveAuthUser(authState));
+	}
+};
+
 export const listenUserAuthState = () => {
+	saveAuthStateOnLocalStorage();
+	loadAuthStateFromLocalStorage();
 	auth.onAuthStateChanged((authUser) => {
 		if (!authUser) {
-			localStorage.removeItem('authUser');
+			store.dispatch(removeAuthUser());
 		}
-		authUser?.getIdTokenResult().then((idToken) => {
-			localStorage.setItem('authUser', JSON.stringify(idToken));
+		authUser?.getIdTokenResult().then((authUserInfo) => {
+			const { claims = {} } = authUserInfo;
+			const { isAdmin } = claims;
+			store.dispatch(
+				saveAuthUser({
+					isLoggedIn: true,
+					isAdmin: Boolean(isAdmin),
+					userInfo: authUserInfo,
+					isLoaded: true,
+				})
+			);
 		});
 	});
 };
 
-// https://firebase.google.com/docs/auth/web/phone-auth#use-invisible-recaptcha
 const invisibeRecaptcha = (el: HTMLElement) =>
 	new RecaptchaVerifier(
 		'recaptcha-container',
 		{
 			size: 'invisible',
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 			callback: (response: any) => {
 				console.log(response);
 				// reCAPTCHA solved, allow signInWithPhoneNumber.
@@ -37,7 +66,6 @@ const invisibeRecaptcha = (el: HTMLElement) =>
 		auth
 	);
 
-// https://firebase.google.com/docs/auth/web/phone-auth#send-a-verification-code-to-the-users-phone
 export const sendOtp = async (
 	el: HTMLElement,
 	phoneNumber: string
@@ -55,7 +83,6 @@ export const sendOtp = async (
 	}
 };
 
-// https://firebase.google.com/docs/auth/web/phone-auth#sign-in-the-user-with-the-verification-code
 export const confirmOtp = async (
 	confirmationResult: ConfirmationResult,
 	otp: string
@@ -73,9 +100,7 @@ export const confirmOtp = async (
 	}
 };
 
-// https://firebase.google.com/docs/auth/admin/custom-claims#propagate_custom_claims_to_the_client
-export const refreshToken = async (user: User) =>
-	auth.currentUser?.getIdToken(true);
+export const getAuthToken = async () => auth.currentUser?.getIdToken();
 
 export const signIn = async (token: string) => {
 	try {
@@ -95,21 +120,4 @@ export const signOut = async () => {
 		console.log({ err: err.message });
 	}
 	return false;
-};
-
-export const isLoggedIn = () => Boolean(localStorage.getItem('authUser'));
-
-export const getAuthUserInfo = () => {
-	const authUser = localStorage.getItem('authUser');
-	const parsedAuthUser = authUser ? JSON.parse(authUser) : {};
-	return parsedAuthUser;
-};
-export const isAdmin = () => {
-	const { claims = {} } = getAuthUserInfo();
-	const { isAdmin: isAdminRole = false } = claims;
-	return isAdminRole;
-};
-export const getAuthToken = () => {
-	const { token = '' } = getAuthUserInfo();
-	return token;
 };
