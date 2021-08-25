@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 import { store } from 'app/store';
 import { removeAuthUser, saveAuthUser } from 'features/home/authSlice';
 import {
@@ -57,11 +56,6 @@ const invisibeRecaptcha = (elId: string) =>
 		elId,
 		{
 			size: 'invisible',
-			// eslint-disable-next-line @typescript-eslint/no-explicit-any
-			callback: (response: any) => {
-				console.log(response);
-				// reCAPTCHA solved, allow signInWithPhoneNumber.
-			},
 		},
 		auth
 	);
@@ -107,7 +101,7 @@ export const signIn = async (token: string) => {
 		await signInWithCustomToken(auth, token);
 		return true;
 	} catch (err) {
-		console.log({ err: err.message });
+		console.error(err.message);
 	}
 	return false;
 };
@@ -117,7 +111,7 @@ export const signOut = async () => {
 		await firebaseSignOut(auth);
 		return true;
 	} catch (err) {
-		console.log({ err: err.message });
+		console.error(err.message);
 	}
 	return false;
 };

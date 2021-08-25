@@ -82,6 +82,7 @@
         "react/jsx-wrap-multilines": "off",
         "react/destructuring-assignment": "off",
         "react/react-in-jsx-scope": "off",
+		"react/require-default-props": "off", // deprecated for functional components
         "@typescript-eslint/comma-dangle": [
             "error",
             {
