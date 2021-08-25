@@ -21,6 +21,7 @@ export default function Button({
 	disabled = false,
 	loading = false,
 	children,
+	onClick,
 }: PropsType) {
 	const colors: ColorMap = {
 		primary:
@@ -41,6 +42,7 @@ export default function Button({
 				pilled ? 'rounded-full' : 'rounded-lg'
 			}`}
 			disabled={disabled || loading}
+			onClick={onClick}
 		>
 			{children}
 			{loading && <Loading3QuartersOutlined className="ml-3" spin />}
