@@ -19,6 +19,7 @@ const Logo = styled.div`
         pt-3
         font-bold
         text-emarat-secondary-default
+        cursor-pointer
     `}
 `;
 
@@ -44,8 +45,11 @@ export default function Sidebar() {
 				width: 50,
 			}}
 		>
-			{/* <div className="logo">xx-Logo Here-xx</div> */}
-			{!isMobile && <Logo>{collapsed ? 'E' : 'E-marat'}</Logo>}
+			{!isMobile && (
+				<Logo onClick={() => onCollapse(!collapsed)}>
+					{collapsed ? 'E' : 'E-marat'}
+				</Logo>
+			)}
 			<Menu
 				theme="dark"
 				defaultSelectedKeys={defaultSelectedKeys}
