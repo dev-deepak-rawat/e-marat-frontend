@@ -32,3 +32,20 @@ export const ROLES = {
 	ADMIN: 'admin',
 	RESIDENT: 'resident',
 };
+
+export const STYLE_COMPONENT_THEME = {
+	colors: {
+		emarat: {
+			primary: '#DDDDDD',
+			secondary: '#125D98',
+			tertiary: '#3C8DAD',
+			accent: '#F5A962',
+		},
+		brands: {
+			facebook: '#1877F2',
+			instagram: '#DC2743',
+			twitter: '#1C9CEA',
+			linkedin: '#0A66C2',
+		},
+	},
+};

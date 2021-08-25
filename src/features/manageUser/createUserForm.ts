@@ -41,30 +41,6 @@ const fieldsData: FieldType[] = [
 		label: 'Is Admin',
 		role: ROLES.ADMIN,
 	},
-	{
-		name: 'role',
-		type: 'select',
-		defaultValue: '',
-		label: 'Role',
-		placeholder: '--Select Role--',
-		validations: {
-			required: {
-				value: true,
-				message: 'Role is required',
-			},
-		},
-		options: [
-			{
-				value: ROLES.ADMIN,
-				label: 'Admin',
-			},
-			{
-				value: ROLES.RESIDENT,
-				label: 'Resident',
-			},
-		],
-		role: ROLES.ADMIN,
-	},
 
 	{
 		name: 'phone',
