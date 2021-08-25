@@ -7,7 +7,7 @@ import {
 	TwitterOutlined,
 } from '@ant-design/icons';
 
-export type PropsType = {
+type PropsType = {
 	name: string;
 	img: string;
 	github: string;

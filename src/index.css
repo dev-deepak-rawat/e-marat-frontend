@@ -22,6 +22,6 @@ code {
 
 @layer base {
 	a:hover {
-		@apply text-emarat-accent;
+		@apply bg-emarat-accent-default;
 	}
 }
