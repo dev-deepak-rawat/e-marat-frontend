@@ -40,7 +40,7 @@ const fieldsData: FieldType[] = [
 		defaultValue: false,
 		label: 'Is Admin',
 		role: ROLES.ADMIN,
-    },
+	},
 	{
 		name: 'phone',
 		type: 'tel',
