@@ -8,7 +8,6 @@ interface Props {
 interface State {
 	hasError: boolean;
 	errorInfo?: ErrorInfo | null;
-	error: '' | Error;
 	eventId?: string;
 }
 
@@ -19,17 +18,15 @@ class ErrorBoundary extends Component<Props, State> {
 		this.state = {
 			hasError: false,
 			errorInfo: null,
-			error: '',
 		};
 	}
 
 	public static getDerivedStateFromError(_: Error): State {
 		// Update state so the next render will show the fallback UI.
-		return { hasError: true, error: _ };
+		return { hasError: true };
 	}
 
 	public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-		console.error('Uncaught error:', error, errorInfo);
 		// Sentry.withScope((scope) => {
 		//     scope.setExtra('errorInfo', errorInfo);
 		//     const eventId = Sentry.captureException(error);
