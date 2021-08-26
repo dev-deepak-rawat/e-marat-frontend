@@ -35,13 +35,6 @@ const fieldsData: FieldType[] = [
 		},
 	},
 	{
-		name: 'isAdmin',
-		type: 'checkbox',
-		defaultValue: false,
-		label: 'Is Admin',
-		role: ROLES.ADMIN,
-	},
-	{
 		name: 'phone',
 		type: 'tel',
 		defaultValue: '',
@@ -63,12 +56,13 @@ const fieldsData: FieldType[] = [
 		type: 'text',
 		defaultValue: '',
 		label: 'Flat No.',
-		validations: {
-			required: {
-				value: true,
-				message: 'Flat no. is required',
-			},
-		},
+		role: ROLES.ADMIN,
+	},
+	{
+		name: 'isAdmin',
+		type: 'checkbox',
+		defaultValue: false,
+		label: 'Is Admin',
 		role: ROLES.ADMIN,
 	},
 ];

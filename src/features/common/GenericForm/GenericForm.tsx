@@ -12,7 +12,17 @@ import tw from 'twin.macro';
 
 const { Option } = Select;
 
-export const Error = styled.div`
+const FormTitle = styled.p`
+	${tw`
+        text-xl
+        my-2
+        ml-20
+        mb-8
+
+    `}
+`;
+
+const Error = styled.div`
 	${tw`
         text-red-500
         font-semibold
@@ -59,9 +69,21 @@ export default function GenericForm(props: PropsType) {
 	return (
 		<Form
 			onFinish={handleSubmit(onSubmit)}
-			layout={isMobile ? 'horizontal' : 'inline'}
+			layout="horizontal"
 			size="large"
+			labelCol={{
+				span: 3,
+				offset: 1,
+			}}
+			wrapperCol={{
+				span: 12,
+			}}
+			requiredMark
+			style={{
+				marginLeft: '20%',
+			}}
 		>
+			<FormTitle>User Details</FormTitle>
 			{fieldsData.map((fieldData) => {
 				const {
 					type,
@@ -73,6 +95,8 @@ export default function GenericForm(props: PropsType) {
 					label,
 				} = fieldData;
 
+				const required = Boolean(validations.required?.value);
+
 				if (role) {
 					if (isAdmin && role !== ROLES.ADMIN) return;
 					if (!isAdmin && role === ROLES.ADMIN) return;
@@ -82,7 +106,11 @@ export default function GenericForm(props: PropsType) {
 					case FORM_TYPES.TEXT:
 					case FORM_TYPES.TEL:
 						return (
-							<Form.Item key={fieldName} label={label}>
+							<Form.Item
+								key={fieldName}
+								label={label}
+								required={required}
+							>
 								<Controller
 									name={fieldName}
 									control={control}
@@ -101,7 +129,11 @@ export default function GenericForm(props: PropsType) {
 
 					case FORM_TYPES.SELECT:
 						return (
-							<Form.Item key={fieldName} label={label}>
+							<Form.Item
+								key={fieldName}
+								label={label}
+								required={required}
+							>
 								<Controller
 									name={fieldName}
 									control={control}
@@ -132,7 +164,11 @@ export default function GenericForm(props: PropsType) {
 
 					case FORM_TYPES.CHECKBOX:
 						return (
-							<Form.Item key={fieldName}>
+							<Form.Item
+								key={fieldName}
+								label={label}
+								required={required}
+							>
 								<Controller
 									name={fieldName}
 									control={control}
@@ -141,9 +177,7 @@ export default function GenericForm(props: PropsType) {
 										<Checkbox
 											defaultChecked={defaultValue}
 											{...field}
-										>
-											{label}
-										</Checkbox>
+										/>
 									)}
 								/>
 
@@ -156,7 +190,10 @@ export default function GenericForm(props: PropsType) {
 				return null;
 			})}
 			<Button
-				style={{ textTransform: 'capitalize' }}
+				style={{
+					textTransform: 'capitalize',
+					marginLeft: isMobile ? 0 : '10%',
+				}}
 				type="primary"
 				loading={disable}
 				htmlType="submit"

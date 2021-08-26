@@ -11,7 +11,21 @@ const Header = styled.div`
     `}
 `;
 
+const Title = styled.p`
+	${tw`
+        text-2xl
+        pl-16
+        pt-2
+        font-medium
+        sm:pl-12
+    `}
+`;
+
 export default function Topbar() {
 	const title = getPageTitle(menuData);
-	return <Header>{title}</Header>;
+	return (
+		<Header>
+			<Title>{title}</Title>
+		</Header>
+	);
 }
