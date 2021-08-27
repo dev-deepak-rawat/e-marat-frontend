@@ -36,4 +36,13 @@ export type FormMetaType = {
 export type StringMapObj = { [key: string]: string };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type AnyMapObj = { [key: string]: any };
+export type GenericObject = { [key: string]: any };
+
+export type apiResponse = {
+	meta: {
+		success: booelan;
+		code: number;
+		msg: string;
+	};
+	data?: any;
+};

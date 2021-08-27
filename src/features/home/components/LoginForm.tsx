@@ -1,9 +1,9 @@
-import { useState, FormEvent } from 'react';
+import React, { useState, FormEvent } from 'react';
 import { ConfirmationResult } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { apiRequest } from 'config/apiRequest';
 import { stripNonNumbers } from 'lib/utils';
-import { confirmOtp, sendOtp } from 'lib/firebaseAuth';
+import { sendOtp, confirmOtp } from 'lib/firebaseAuth';
 import Button from 'features/shared/components/Button';
 
 export default function LoginForm() {
