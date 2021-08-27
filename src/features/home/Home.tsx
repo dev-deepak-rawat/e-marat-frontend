@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { Row, Col } from 'antd';
@@ -22,8 +24,6 @@ import adityaImg from 'features/home/assets/images/aditya.jpg';
 import harisImg from 'features/home/assets/images/haris.jpeg';
 import deepakImg from 'features/home/assets/images/deepak.jpg';
 import { useAuth } from 'config/hooks';
-import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
 
 export default function Home() {
 	const { isLoggedIn, isAdmin } = useAuth();
