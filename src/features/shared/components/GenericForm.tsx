@@ -30,183 +30,181 @@ const Error = styled.div`
 `;
 
 type PropsType = {
-    formData: {
-        fieldsData: FieldType[];
-        meta: FormMetaType;
-    };
-    submitHandler?: (data: any) => Promise<void>;
+	formData: {
+		fieldsData: FieldType[];
+		meta: FormMetaType;
+	};
+	submitHandler?: (data: any) => Promise<void>;
 };
 
 GenericForm.defaultProps = {
-    submitHandler: null,
+	submitHandler: null,
 };
 
 export default function GenericForm(props: PropsType) {
-    const { isAdmin } = useAuth();
-    const [disable, setDisable] = useState(false);
-    const { isMobile } = useOrientation();
-    const {
-        handleSubmit,
-        formState: { errors },
-        control,
-    } = useForm<any>();
+	const { isAdmin } = useAuth();
+	const [disable, setDisable] = useState(false);
+	const { isMobile } = useOrientation();
+	const {
+		handleSubmit,
+		formState: { errors },
+		control,
+	} = useForm<any>();
 
-    const { formData, submitHandler } = props;
-    const { fieldsData = [], meta = {} } = formData;
-    const { submitLabel = 'submit', apiUrl } = meta;
+	const { formData, submitHandler } = props;
+	const { fieldsData = [], meta = {} } = formData;
+	const { submitLabel = 'submit', apiUrl } = meta;
 
-    const onSubmit: SubmitHandler<any> = async (data) => {
-        setDisable(true);
-        if (submitHandler) {
-            await submitHandler(data);
-        } else if (apiUrl) {
-            await apiRequest({ apiUrl, data });
-        }
-        setDisable(false);
-    };
+	const onSubmit: SubmitHandler<any> = async (data) => {
+		setDisable(true);
+		if (submitHandler) {
+			await submitHandler(data);
+		} else if (apiUrl) {
+			await apiRequest({ apiUrl, data });
+		}
+		setDisable(false);
+	};
 
-    return (
-        <Form
-            onFinish={handleSubmit(onSubmit)}
-            layout="horizontal"
-            size="large"
-            labelCol={{
-                span: 3,
-                offset: 1,
-            }}
-            wrapperCol={{
-                span: 12,
-            }}
-            requiredMark
-            style={{
-                marginLeft: '20%',
-            }}
+	return (
+		<Form
+			onFinish={handleSubmit(onSubmit)}
+			layout="horizontal"
+			size="large"
+			labelCol={{
+				span: 3,
+				offset: 1,
+			}}
+			wrapperCol={{
+				span: 12,
+			}}
+			requiredMark
+			style={{
+				marginLeft: '20%',
+			}}
+			initialValues={{
+				firstName: 'ab',
+			}}
+		>
+			<FormTitle>User Details</FormTitle>
+			{fieldsData.map((fieldData) => {
+				const {
+					type,
+					name: fieldName,
+					defaultValue,
+					options = [],
+					validations = {},
+					role,
+					label,
+				} = fieldData;
 
-            initialValues={{
-                firstName: 'ab',
-            }}
-        >
-            <FormTitle>User Details</FormTitle>
-            {fieldsData.map((fieldData) => {
-                const {
-                    type,
-                    name: fieldName,
-                    defaultValue,
-                    options = [],
-                    validations = {},
-                    role,
-                    label,
-                } = fieldData;
+				const required = Boolean(validations.required?.value);
 
-                const required = Boolean(validations.required?.value);
+				if (role) {
+					if (isAdmin && role !== ROLES.ADMIN) return;
+					if (!isAdmin && role === ROLES.ADMIN) return;
+				}
 
-                if (role) {
-                    if (isAdmin && role !== ROLES.ADMIN) return;
-                    if (!isAdmin && role === ROLES.ADMIN) return;
-                }
+				switch (type) {
+					case FORM_TYPES.TEXT:
+						return (
+							<Form.Item
+								key={fieldName}
+								label={label}
+								required={required}
+							>
+								<Controller
+									name={fieldName}
+									control={control}
+									rules={validations}
+									render={({ field }) => (
+										<Input
+											placeholder={label}
+											defaultValue={defaultValue}
+											{...field}
+										/>
+									)}
+								/>
 
-                switch (type) {
-                    case FORM_TYPES.TEXT:
-                        return (
-                            <Form.Item
-                                key={fieldName}
-                                label={label}
-                                required={required}
-                            >
-                                <Controller
-                                    name={fieldName}
-                                    control={control}
-                                    rules={validations}
-                                    render={({ field }) => (
-                                        <Input
-                                            placeholder={label}
-                                            defaultValue={defaultValue}
-                                            {...field}
-                                        />
-                                    )}
-                                />
+								{errors[fieldName] && (
+									<Error>{errors[fieldName].message}</Error>
+								)}
+							</Form.Item>
+						);
 
-                                {errors[fieldName] && (
-                                    <Error>{errors[fieldName].message}</Error>
-                                )}
-                            </Form.Item>
-                        );
+					case FORM_TYPES.SELECT:
+						return (
+							<Form.Item
+								key={fieldName}
+								label={label}
+								required={required}
+							>
+								<Controller
+									name={fieldName}
+									control={control}
+									defaultValue={defaultValue}
+									rules={validations}
+									render={({ field }) => (
+										<Select
+											placeholder={label}
+											style={{ width: 200 }}
+											{...field}
+										>
+											{options.map((op) => (
+												<Option
+													key={op.value}
+													value={op.value}
+												>
+													{op.label}
+												</Option>
+											))}
+										</Select>
+									)}
+								/>
+								{errors[fieldName] && (
+									<Error>{errors[fieldName].message}</Error>
+								)}
+							</Form.Item>
+						);
 
-                    case FORM_TYPES.SELECT:
-                        return (
-                            <Form.Item
-                                key={fieldName}
-                                label={label}
-                                required={required}
-                            >
-                                <Controller
-                                    name={fieldName}
-                                    control={control}
-                                    defaultValue={defaultValue}
-                                    rules={validations}
-                                    render={({ field }) => (
-                                        <Select
-                                            placeholder={label}
-                                            style={{ width: 200 }}
-                                            {...field}
-                                        >
-                                            {options.map((op) => (
-                                                <Option
-                                                    key={op.value}
-                                                    value={op.value}
-                                                >
-                                                    {op.label}
-                                                </Option>
-                                            ))}
-                                        </Select>
-                                    )}
-                                />
-                                {errors[fieldName] && (
-                                    <Error>{errors[fieldName].message}</Error>
-                                )}
-                            </Form.Item>
-                        );
+					case FORM_TYPES.CHECKBOX:
+						return (
+							<Form.Item
+								key={fieldName}
+								label={label}
+								required={required}
+								valuePropName="checked"
+							>
+								<Controller
+									name={fieldName}
+									control={control}
+									rules={validations}
+									render={({ field }) => (
+										<Checkbox
+											defaultChecked={defaultValue}
+											{...field}
+										/>
+									)}
+								/>
 
-                    case FORM_TYPES.CHECKBOX:
-                        return (
-                            <Form.Item
-                                key={fieldName}
-                                label={label}
-                                required={required}
-                                valuePropName="checked"
-                            >
-                                <Controller
-                                    name={fieldName}
-                                    control={control}
-                                    rules={validations}
-
-                                    render={({ field }) => (
-                                        <Checkbox
-                                            defaultChecked={defaultValue}
-                                            {...field}
-                                        />
-                                    )}
-                                />
-
-                                {errors[fieldName] && (
-                                    <Error>{errors[fieldName].message}</Error>
-                                )}
-                            </Form.Item>
-                        );
-                }
-                return null;
-            })}
-            <Button
-                style={{
-                    textTransform: 'capitalize',
-                    marginLeft: isMobile ? 0 : '10%',
-                }}
-                type="primary"
-                loading={disable}
-                htmlType="submit"
-            >
-                {submitLabel}
-            </Button>
-        </Form>
-    );
+								{errors[fieldName] && (
+									<Error>{errors[fieldName].message}</Error>
+								)}
+							</Form.Item>
+						);
+				}
+				return null;
+			})}
+			<Button
+				style={{
+					textTransform: 'capitalize',
+					marginLeft: isMobile ? 0 : '10%',
+				}}
+				type="primary"
+				loading={disable}
+				htmlType="submit"
+			>
+				{submitLabel}
+			</Button>
+		</Form>
+	);
 }

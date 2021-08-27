@@ -8,19 +8,19 @@ export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const filterByRole = (isAdmin: boolean) => (option: { role?: string }) => {
-    const { role } = option;
-    if (!role) return true;
-    if (isAdmin && role === ROLES.ADMIN) return true;
-    if (!isAdmin && role === ROLES.RESIDENT) return true;
-    return false;
+	const { role } = option;
+	if (!role) return true;
+	if (isAdmin && role === ROLES.ADMIN) return true;
+	if (!isAdmin && role === ROLES.RESIDENT) return true;
+	return false;
 };
 
 export const useAuth = () => {
-    const authState = useAppSelector((state) => state.auth);
-    return { ...authState, filterByRole: filterByRole(authState.isAdmin) };
+	const authState = useAppSelector((state) => state.auth);
+	return { ...authState, filterByRole: filterByRole(authState.isAdmin) };
 };
 
 export const useOrientation = () => {
-    const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
-    return { isMobile };
+	const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
+	return { isMobile };
 };

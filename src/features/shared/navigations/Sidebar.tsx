@@ -23,40 +23,40 @@ const Logo = styled.div`
 `;
 
 export default function Sidebar() {
-    const { isMobile } = useOrientation();
-    const [collapsed, onCollapse] = useState(isMobile);
-    const { filterByRole } = useAuth();
-    const filteredMenuData = menuData.filter(filterByRole);
-    const { defaultOpenKeys, defaultSelectedKeys } =
-        getDefaultSelectedKeys(filteredMenuData);
+	const { isMobile } = useOrientation();
+	const [collapsed, onCollapse] = useState(isMobile);
+	const { filterByRole } = useAuth();
+	const filteredMenuData = menuData.filter(filterByRole);
+	const { defaultOpenKeys, defaultSelectedKeys } =
+		getDefaultSelectedKeys(filteredMenuData);
 
-    return (
-        <Sider
-            collapsible
-            collapsed={collapsed}
-            onCollapse={onCollapse}
-            collapsedWidth={isMobile ? 0 : 80}
-            theme="dark"
-            zeroWidthTriggerStyle={{
-                top: 0,
-                height: '3rem',
-                right: '-50px',
-                width: 50,
-            }}
-        >
-            {!isMobile && (
-                <Logo onClick={() => onCollapse(!collapsed)}>
-                    {collapsed ? 'E' : 'E-marat'}
-                </Logo>
-            )}
-            <Menu
-                theme="dark"
-                defaultSelectedKeys={defaultSelectedKeys}
-                mode="inline"
-                defaultOpenKeys={defaultOpenKeys}
-            >
-                {filteredMenuData.map(MenuItem)}
-            </Menu>
-        </Sider>
-    );
+	return (
+		<Sider
+			collapsible
+			collapsed={collapsed}
+			onCollapse={onCollapse}
+			collapsedWidth={isMobile ? 0 : 80}
+			theme="dark"
+			zeroWidthTriggerStyle={{
+				top: 0,
+				height: '3rem',
+				right: '-50px',
+				width: 50,
+			}}
+		>
+			{!isMobile && (
+				<Logo onClick={() => onCollapse(!collapsed)}>
+					{collapsed ? 'E' : 'E-marat'}
+				</Logo>
+			)}
+			<Menu
+				theme="dark"
+				defaultSelectedKeys={defaultSelectedKeys}
+				mode="inline"
+				defaultOpenKeys={defaultOpenKeys}
+			>
+				{filteredMenuData.map(MenuItem)}
+			</Menu>
+		</Sider>
+	);
 }

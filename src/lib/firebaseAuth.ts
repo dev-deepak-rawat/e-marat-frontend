@@ -1,5 +1,8 @@
 import { store } from 'config/store';
-import { removeAuthUser, saveAuthUser } from 'features/shared/reducers/authSlice';
+import {
+	removeAuthUser,
+	saveAuthUser,
+} from 'features/shared/reducers/authSlice';
 import {
 	getAuth,
 	RecaptchaVerifier,
@@ -39,16 +42,16 @@ export const listenUserAuthState = () => {
 		}
 		authUser?.getIdTokenResult().then((authUserInfo) => {
 			const { claims = {} } = authUserInfo;
-            if ('isAdmin' in claims) {
-                store.dispatch(
-                    saveAuthUser({
-                        isLoggedIn: true,
-                        isAdmin: Boolean(claims.isAdmin),
-                        userInfo: authUserInfo,
-                        isLoaded: true,
-                    })
-                );
-            }
+			if ('isAdmin' in claims) {
+				store.dispatch(
+					saveAuthUser({
+						isLoggedIn: true,
+						isAdmin: Boolean(claims.isAdmin),
+						userInfo: authUserInfo,
+						isLoaded: true,
+					})
+				);
+			}
 		});
 	});
 };
@@ -74,7 +77,7 @@ export const sendOtp = async (
 		return await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
 	} catch (error) {
 		// Error; SMS not sent
-        errorLogger(error);
+		errorLogger(error);
 		return false;
 	}
 };
@@ -91,7 +94,7 @@ export const confirmOtp = async (
 		return await credentials.user.getIdToken();
 	} catch (error) {
 		// User couldn't sign in (bad verification code?)
-        errorLogger(error);
+		errorLogger(error);
 		return false;
 	}
 };
@@ -103,7 +106,7 @@ export const signIn = async (token: string) => {
 		await signInWithCustomToken(auth, token);
 		return true;
 	} catch (err) {
-        errorLogger(err);
+		errorLogger(err);
 	}
 	return false;
 };
@@ -113,7 +116,7 @@ export const signOut = async () => {
 		await firebaseSignOut(auth);
 		return true;
 	} catch (err) {
-        errorLogger(err);
+		errorLogger(err);
 	}
 	return false;
 };

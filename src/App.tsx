@@ -12,18 +12,18 @@ import Routes from 'config/Routes';
 
 export default function App() {
 	return (
-        <Provider store={store}>
-            <ThemeProvider theme={STYLE_COMPONENT_THEME}>
-                <ErrorBoundary>
-                    <ToastContainer autoClose={3000} />
-                    <div id="recaptcha-container" />
-                    <BrowserRouter>
-                        <MasterLayout>
-                            <Routes />
-                        </MasterLayout>
-                    </BrowserRouter>
-                </ErrorBoundary>
-            </ThemeProvider>
-        </Provider>
+		<Provider store={store}>
+			<ThemeProvider theme={STYLE_COMPONENT_THEME}>
+				<ErrorBoundary>
+					<ToastContainer autoClose={3000} />
+					<div id="recaptcha-container" />
+					<BrowserRouter>
+						<MasterLayout>
+							<Routes />
+						</MasterLayout>
+					</BrowserRouter>
+				</ErrorBoundary>
+			</ThemeProvider>
+		</Provider>
 	);
 }

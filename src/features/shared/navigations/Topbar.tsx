@@ -23,11 +23,13 @@ const Title = styled.p`
 `;
 
 export default function Topbar() {
-    const title = getPageTitle(menuData);
-    return (
-        <Header>
-            <Title>{title}</Title>
-            <button type="button" onClick={() => signOut()}>Logout</button>
-        </Header>
-    );
+	const title = getPageTitle(menuData);
+	return (
+		<Header>
+			<Title>{title}</Title>
+			<button type="button" onClick={() => signOut()}>
+				Logout
+			</button>
+		</Header>
+	);
 }
