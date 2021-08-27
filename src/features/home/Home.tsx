@@ -21,20 +21,22 @@ import LoginForm from 'features/home/components/LoginForm';
 import adityaImg from 'features/home/assets/images/aditya.jpg';
 import harisImg from 'features/home/assets/images/haris.jpeg';
 import deepakImg from 'features/home/assets/images/deepak.jpg';
-import { useAuth } from 'app/hooks';
+import { useAuth } from 'config/hooks';
 import { useHistory } from 'react-router-dom';
+import { useEffect } from 'react';
 
 export default function Home() {
 	const { isLoggedIn, isAdmin } = useAuth();
 	const history = useHistory();
-	if (isAdmin) {
-		history.push('/dashboard');
-		return null;
-	}
-	if (isLoggedIn) {
-		history.push('/payments');
-		return null;
-	}
+
+    useEffect(() => {
+        if (isAdmin) {
+            history.push('/dashboard');
+        }
+        if (isLoggedIn && (!isAdmin)) {
+            history.push('/social-feeds');
+        }
+    }, [isLoggedIn, isAdmin, history])
 
 	return (
 		<>
@@ -203,35 +205,35 @@ export default function Home() {
 					<div>© e-Marat. All Rights Reserved</div>
 
 					<div>
-						<a href="#" className="pr-4">
+                        <a href="https://www.google.com/" className="pr-4">
 							Contact
 						</a>
-						<a href="#" className="pr-4">
+                        <a href="https://www.google.com/" className="pr-4">
 							About
 						</a>
-						<a href="#" className="pr-4">
+                        <a href="https://www.google.com/" className="pr-4">
 							Terms Of Use
 						</a>
-						<a href="#">Privacy Policy</a>
+                        <a href="https://www.google.com/">Privacy Policy</a>
 					</div>
 
 					<div>
-						<a href="#" className="pr-3 text-xl">
+                        <a href="https://www.google.com/" className="pr-3 text-xl">
 							<FacebookFilled
 								className={`text-brands-facebook ${iconScale}`}
 							/>
 						</a>
-						<a href="#" className="pr-3 text-xl">
+                        <a href="https://www.google.com/" className="pr-3 text-xl">
 							<InstagramOutlined
 								className={`text-brands-instagram ${iconScale}`}
 							/>
 						</a>
-						<a href="#" className="pr-3 text-xl">
+                        <a href="https://www.google.com/" className="pr-3 text-xl">
 							<TwitterOutlined
 								className={`text-brands-twitter ${iconScale}`}
 							/>
 						</a>
-						<a href="#" className="text-xl">
+                        <a href="https://www.google.com/" className="text-xl">
 							<LinkedinFilled
 								className={`text-brands-linkedin ${iconScale}`}
 							/>

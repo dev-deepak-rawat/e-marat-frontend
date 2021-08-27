@@ -22,8 +22,7 @@ export const PATTERNS = {
 };
 
 export const FORM_TYPES = {
-	TEXT: 'text',
-	TEL: 'tel',
+    TEXT: 'text',
 	SELECT: 'select',
 	CHECKBOX: 'checkbox',
 };

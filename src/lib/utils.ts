@@ -7,7 +7,10 @@ export const errorLogger = (error: Error) => {
 			Sentry.captureException(error);
 		});
 	} catch (err) {
-		// eslint-disable-next-line no-console
-		console.log(err);
+        // eslint-disable-next-line no-console
+        console.error(err);
 	}
 };
+
+export const stripNonNumbers = (val: string) =>
+    val.length > 0 ? val.replace(/[^0-9]+/g, '') : val;

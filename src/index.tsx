@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import initSentry from 'app/initSentry';
+import initSentry from 'config/initSentry';
 import * as serviceWorker from 'serviceWorker';
-import App from 'app/App';
+import App from 'App';
 import { listenUserAuthState } from 'lib/firebaseAuth';
 
 initSentry();

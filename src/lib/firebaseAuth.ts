@@ -1,5 +1,5 @@
-import { store } from 'app/store';
-import { removeAuthUser, saveAuthUser } from 'features/home/authSlice';
+import { store } from 'config/store';
+import { removeAuthUser, saveAuthUser } from 'features/shared/reducers/authSlice';
 import {
 	getAuth,
 	RecaptchaVerifier,
@@ -8,7 +8,8 @@ import {
 	signInWithCustomToken,
 	signOut as firebaseSignOut,
 } from 'firebase/auth';
-import firebaseApp from '../config/firebase';
+import firebaseApp from 'config/firebase';
+import { errorLogger } from 'lib/utils';
 
 const auth = getAuth(firebaseApp);
 
@@ -38,15 +39,16 @@ export const listenUserAuthState = () => {
 		}
 		authUser?.getIdTokenResult().then((authUserInfo) => {
 			const { claims = {} } = authUserInfo;
-			const { isAdmin } = claims;
-			store.dispatch(
-				saveAuthUser({
-					isLoggedIn: true,
-					isAdmin: Boolean(isAdmin),
-					userInfo: authUserInfo,
-					isLoaded: true,
-				})
-			);
+            if ('isAdmin' in claims) {
+                store.dispatch(
+                    saveAuthUser({
+                        isLoggedIn: true,
+                        isAdmin: Boolean(claims.isAdmin),
+                        userInfo: authUserInfo,
+                        isLoaded: true,
+                    })
+                );
+            }
 		});
 	});
 };
@@ -72,7 +74,7 @@ export const sendOtp = async (
 		return await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
 	} catch (error) {
 		// Error; SMS not sent
-		console.error(error);
+        errorLogger(error);
 		return false;
 	}
 };
@@ -89,7 +91,7 @@ export const confirmOtp = async (
 		return await credentials.user.getIdToken();
 	} catch (error) {
 		// User couldn't sign in (bad verification code?)
-		console.error(error);
+        errorLogger(error);
 		return false;
 	}
 };
@@ -101,7 +103,7 @@ export const signIn = async (token: string) => {
 		await signInWithCustomToken(auth, token);
 		return true;
 	} catch (err) {
-		console.error(err.message);
+        errorLogger(err);
 	}
 	return false;
 };
@@ -111,7 +113,7 @@ export const signOut = async () => {
 		await firebaseSignOut(auth);
 		return true;
 	} catch (err) {
-		console.error(err.message);
+        errorLogger(err);
 	}
 	return false;
 };
