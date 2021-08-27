@@ -2,18 +2,19 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_CONFIG } from 'lib/constants';
 import { getAuthToken, signIn } from 'lib/firebaseAuth';
-import { AnyMapObj, StringMapObj } from 'lib/types';
+import { GenericObject, StringMapObj, apiResponse } from 'lib/types';
 
 type BuildRequestDataType = {
 	apiUrl: keyof typeof API_CONFIG;
 	headers?: StringMapObj;
-	data?: AnyMapObj;
+	data?: GenericObject;
+	appendToUrl?: string;
 };
 
 const buildRequestData = async (options: BuildRequestDataType) => {
-	const { apiUrl, headers = {}, data } = options;
+	const { apiUrl, headers = {}, data, appendToUrl } = options;
 	const { url, method } = API_CONFIG[apiUrl];
-	const reqUrl = `${process.env.REACT_APP_PROXY}${url}`;
+	const reqUrl = `${process.env.REACT_APP_PROXY}${url}${appendToUrl || ''}`;
 	const token = await getAuthToken();
 	const reqHeaders = {
 		'Content-Type': 'application/json',
@@ -29,17 +30,10 @@ const buildRequestData = async (options: BuildRequestDataType) => {
 	};
 };
 
-type HandleAuthorizationParams = {
-	meta: {
-		code: string;
-	};
-	data?: { authorizationToken: string };
-};
-
-const handleAuthorization = async (response: HandleAuthorizationParams) => {
+const handleAuthorization = async (response: apiResponse) => {
 	const { meta } = response;
 	const { code } = meta;
-	if (code === '3001') {
+	if (code === 3001) {
 		const { data } = response;
 		const { authorizationToken = '' } = data || {};
 		const success = await signIn(authorizationToken);

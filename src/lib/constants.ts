@@ -11,6 +11,14 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/login/',
 		method: 'POST',
 	},
+	amenities: {
+		url: '/api/amenities/',
+		method: 'GET',
+	},
+	amenitiesDel: {
+		url: '/api/amenities/',
+		method: 'DELETE',
+	},
 };
 
 export const PATTERNS = {

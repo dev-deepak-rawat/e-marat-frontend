@@ -73,8 +73,9 @@
                 ]
             }
         ],
-        "react/jsx-props-no-spreading": "off",
         "import/prefer-default-export": "off",
+		"no-underscore-dangle": ["error", { "allow": ["_id"] }],
+        "react/jsx-props-no-spreading": "off",
         "react/jsx-boolean-value": "off",
         "react/prop-types": "off",
         "react/no-unescaped-entities": "off",
