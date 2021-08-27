@@ -1,7 +1,7 @@
 import { ROLES } from 'lib/constants';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
-import type { RootState, AppDispatch } from './store';
+import type { RootState, AppDispatch } from 'config/store';
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = () => useDispatch<AppDispatch>();

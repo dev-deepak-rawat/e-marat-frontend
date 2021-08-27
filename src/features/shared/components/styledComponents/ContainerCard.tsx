@@ -11,4 +11,5 @@ export default styled.div`
 		p-7
 		h-full
 	`}
+	width: ${(props: { width?: string }) => props.width || ''};
 `;

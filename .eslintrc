@@ -84,6 +84,7 @@
         "react/destructuring-assignment": "off",
         "react/react-in-jsx-scope": "off",
 		"react/require-default-props": "off", // deprecated for functional components
+        "react-hooks/rules-of-hooks": "off",
         "@typescript-eslint/comma-dangle": [
             "error",
             {
