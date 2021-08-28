@@ -3,6 +3,7 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components';
 import { BrowserRouter } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
+import 'index.less';
 import 'index.css';
 import { store } from 'config/store';
 import ErrorBoundary from 'config/ErrorBoundary';
