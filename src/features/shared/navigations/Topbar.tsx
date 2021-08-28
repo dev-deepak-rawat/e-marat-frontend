@@ -23,48 +23,50 @@ const Title = styled.p`
 `;
 
 const menu = (
-    <Menu>
-        <Menu.Item>
-            <Link to="/profile">My Profile</Link>
-        </Menu.Item>
-        <Menu.Item>
-            <button type="button" onClick={() => signOut()}>
-                Signout
-            </button>
-        </Menu.Item>
-    </Menu>
+	<Menu>
+		<Menu.Item>
+			<Link to="/profile">My Profile</Link>
+		</Menu.Item>
+		<Menu.Item>
+			<button type="button" onClick={() => signOut()}>
+				Signout
+			</button>
+		</Menu.Item>
+	</Menu>
 );
 
 export default function Topbar() {
-    const { userInfo } = useAuth();
-    const location = useLocation();
-    const { title, setUrlTitle } = useTopbar();
-    const urlPathName = location.pathname;
-    const { claims = {} } = userInfo || {};
-    const { firstName = '', lastName = '' } = claims;
-    const intialTitle = getPageTitle(menuData, urlPathName);
+	const { userInfo } = useAuth();
+	const location = useLocation();
+	const { title, setUrlTitle } = useTopbar();
+	const urlPathName = location.pathname;
+	const { claims = {} } = userInfo || {};
+	const { firstName = '', lastName = '' } = claims;
+	const intialTitle = getPageTitle(menuData, urlPathName);
 
-    useEffect(() => {
-        setUrlTitle(intialTitle);
-        return () => {
-            setUrlTitle('');
-        }
-    }, [urlPathName]);
-    return (
-        <div className="flex justify-between">
-            <Title>{title}</Title>
-            <Dropdown overlay={menu} className="mr-8 mt-2">
-                <Space>
-                    <Avatar
-                        size={45}
-                        className="p-2"
-                        icon={<AiOutlineUser size="30px" />}
-                        shape="circle"
-                    />
-                    <Text>{firstName ? `${firstName} ${lastName}` : 'User'}</Text>
-                    <FaChevronDown />
-                </Space>
-            </Dropdown>
-        </div>
-    );
+	useEffect(() => {
+		setUrlTitle(intialTitle);
+		return () => {
+			setUrlTitle('');
+		};
+	}, [urlPathName]);
+	return (
+		<div className="flex justify-between">
+			<Title>{title}</Title>
+			<Dropdown overlay={menu} className="mr-8 mt-2">
+				<Space>
+					<Avatar
+						size={45}
+						className="p-2"
+						icon={<AiOutlineUser size="30px" />}
+						shape="circle"
+					/>
+					<Text>
+						{firstName ? `${firstName} ${lastName}` : 'User'}
+					</Text>
+					<FaChevronDown />
+				</Space>
+			</Dropdown>
+		</div>
+	);
 }

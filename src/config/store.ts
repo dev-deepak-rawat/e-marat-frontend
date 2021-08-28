@@ -7,7 +7,7 @@ export const store = configureStore({
 	reducer: {
 		auth: authReducer,
 		image: imageReducer,
-        topbar: topbarReducer,
+		topbar: topbarReducer,
 	},
 });
 

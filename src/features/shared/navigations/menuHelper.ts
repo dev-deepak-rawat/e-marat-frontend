@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 const getCurrentUrl = (pathname?: string) => {
-    const urlPathanme = pathname || window.location.pathname;
-    return `/${urlPathanme.split('/')[1]}`;
-}
+	const urlPathanme = pathname || window.location.pathname;
+	return `/${urlPathanme.split('/')[1]}`;
+};
 
 export const getDefaultSelectedKeys = (filteredMenuData: any) => {
 	const defaultOpenKeys = [];
@@ -25,8 +25,7 @@ export const getDefaultSelectedKeys = (filteredMenuData: any) => {
 };
 
 export const getPageTitle = (filteredMenuData: any, urlPathanme?: string) => {
-
-    const url = getCurrentUrl(urlPathanme);
+	const url = getCurrentUrl(urlPathanme);
 
 	for (const filteredMenu of filteredMenuData) {
 		const { options = [], link, label } = filteredMenu;

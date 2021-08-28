@@ -26,10 +26,9 @@ export const useOrientation = () => {
 	return { isMobile };
 };
 
-
 export const useTopbar = () => {
-    const { title } = useAppSelector(state => state.topbar);
-    const dispatch = useAppDispatch();
-    const setUrlTitle = (ti: string) => dispatch(setTitle(ti));
-    return { title, setUrlTitle };
-}
+	const { title } = useAppSelector((state) => state.topbar);
+	const dispatch = useAppDispatch();
+	const setUrlTitle = (ti: string) => dispatch(setTitle(ti));
+	return { title, setUrlTitle };
+};
