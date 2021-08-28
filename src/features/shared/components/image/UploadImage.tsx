@@ -18,7 +18,7 @@ export default function UploadImage() {
 				action={`${SERVICE_URL}/upload`}
 				beforeUpload={beforeUpload}
 				onChange={handleImageChange}
-				// accept=".jpg, .jpeg, .png"
+				accept=".jpg, .jpeg, .png"
 				multiple={false}
 			>
 				<ImageTemplate />

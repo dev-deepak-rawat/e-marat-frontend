@@ -5,24 +5,13 @@ import { Form, Input, Checkbox, Select, Button } from 'antd';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { FORM_TYPES, ROLES } from 'lib/constants';
 import { apiRequest } from 'config/apiRequest';
-import { useAuth, useOrientation } from 'config/hooks';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import { useAuth } from 'config/hooks';
 import { FieldType, FormMetaType } from 'lib/types';
 import UploadImage from 'features/shared/components/image/UploadImage';
 import ErrorFieldStyled from 'features/shared/components/styledComponents/ErrorField.styled';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
 
 const { Option } = Select;
-
-const FormTitle = styled.p`
-	${tw`
-        text-xl
-        my-2
-        ml-20
-        mb-8
-    `}
-`;
 
 type PropsType = {
 	formData: {
@@ -40,7 +29,6 @@ GenericForm.defaultProps = {
 export default function GenericForm(props: PropsType) {
 	const { isAdmin } = useAuth();
 	const [disable, setDisable] = useState(false);
-	const { isMobile } = useOrientation();
 	const {
 		handleSubmit,
 		formState: { errors },
@@ -80,7 +68,6 @@ export default function GenericForm(props: PropsType) {
 				firstName: 'ab',
 			}}
 		>
-			<FormTitle>User Details</FormTitle>
 			{fieldsData.map((fieldData) => {
 				const {
 					type,
@@ -106,7 +93,6 @@ export default function GenericForm(props: PropsType) {
 								key={fieldName}
 								label={label}
 								required={required}
-								style={{ marginBottom: '0.5rem' }}
 							>
 								<Controller
 									name={fieldName}
@@ -114,6 +100,63 @@ export default function GenericForm(props: PropsType) {
 									rules={validations}
 									render={({ field }) => (
 										<Input
+											placeholder={label}
+											defaultValue={defaultValue}
+											{...field}
+										/>
+									)}
+								/>
+
+								{errors[fieldName] && (
+									<ErrorFieldStyled>
+										{errors[fieldName].message}
+									</ErrorFieldStyled>
+								)}
+							</Form.Item>
+						);
+
+					case FORM_TYPES.NUMBER:
+						return (
+							<Form.Item
+								key={fieldName}
+								label={label}
+								required={required}
+							>
+								<Controller
+									name={fieldName}
+									control={control}
+									rules={validations}
+									render={({ field }) => (
+										<Input
+											type="number"
+											placeholder={label}
+											defaultValue={defaultValue}
+											{...field}
+										/>
+									)}
+								/>
+
+								{errors[fieldName] && (
+									<ErrorFieldStyled>
+										{errors[fieldName].message}
+									</ErrorFieldStyled>
+								)}
+							</Form.Item>
+						);
+
+					case FORM_TYPES.TEXTAREA:
+						return (
+							<Form.Item
+								key={fieldName}
+								label={label}
+								required={required}
+							>
+								<Controller
+									name={fieldName}
+									control={control}
+									rules={validations}
+									render={({ field }) => (
+										<Input.TextArea
 											placeholder={label}
 											defaultValue={defaultValue}
 											{...field}
@@ -228,17 +271,16 @@ export default function GenericForm(props: PropsType) {
 				}
 				return null;
 			})}
-			<Button
-				style={{
-					textTransform: 'capitalize',
-					marginLeft: isMobile ? 0 : '10%',
-				}}
-				type="primary"
-				loading={disable}
-				htmlType="submit"
-			>
-				{submitLabel}
-			</Button>
+			<div className="text-center">
+				<Button
+					className="uppercase font-semibold"
+					type="primary"
+					loading={disable}
+					htmlType="submit"
+				>
+					{submitLabel}
+				</Button>
+			</div>
 		</Form>
 	);
 }

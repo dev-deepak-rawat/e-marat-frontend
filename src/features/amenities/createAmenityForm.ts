@@ -28,7 +28,7 @@ const fieldsData: FieldType[] = [
 	},
 	{
 		name: 'description',
-		type: 'text',
+		type: 'textarea',
 		defaultValue: '',
 		label: 'Description',
 		validations: {
@@ -90,7 +90,6 @@ const fieldsData: FieldType[] = [
 ];
 
 const meta: FormMetaType = {
-	submitLabel: 'submit',
 	apiUrl: 'postUser',
 	imageField: 'icon',
 };

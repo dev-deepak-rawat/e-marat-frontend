@@ -37,6 +37,7 @@ export const PATTERNS = {
 
 export const FORM_TYPES = {
 	TEXT: 'text',
+	TEXTAREA: 'textarea',
 	SELECT: 'select',
 	CHECKBOX: 'checkbox',
 	NUMBER: 'number',
