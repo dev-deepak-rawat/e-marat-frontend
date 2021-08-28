@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button, Modal, Table, Space } from 'antd';
+import { Affix, Button, Modal, Table, Space } from 'antd';
 import {
 	EditFilled,
 	DeleteFilled,
@@ -16,10 +16,14 @@ import {
 } from 'lib/utils';
 import { apiResponse } from 'lib/types';
 import { AmenityType } from 'features/amenities/Types';
+import GenericForm from 'features/shared/components/GenericForm';
+import { createAmenityFormData } from './createAmenityForm';
 
 export default function ManageAmenities() {
 	const [amenities, setAmenities] = useState<AmenityType[]>([]);
 	const [loading, setLoading] = useState<boolean>(true);
+	const [createAmenitiesVisible, setCreateAmenitiesVisible] =
+		useState<boolean>(false);
 
 	useEffect(() => {
 		(async () => {
@@ -67,68 +71,93 @@ export default function ManageAmenities() {
 	};
 
 	return (
-		<ContainerCard>
-			<ContainerCardTitle>Manage Amenities</ContainerCardTitle>
+		<>
+			<ContainerCard>
+				<ContainerCardTitle>Manage Amenities</ContainerCardTitle>
 
-			<Table<AmenityType>
-				dataSource={amenities}
-				rowKey="_id"
-				loading={loading}
+				<div className="text-right mb-4 -mt-6">
+					<Button
+						type="primary"
+						onClick={() => setCreateAmenitiesVisible(true)}
+					>
+						Create
+					</Button>
+				</div>
+
+				<Table<AmenityType>
+					dataSource={amenities}
+					rowKey="_id"
+					loading={loading}
+				>
+					<Table.Column<AmenityType>
+						title="Name"
+						dataIndex="name"
+						sorter={sortStringByProperty<AmenityType>('name')}
+					/>
+					<Table.Column<AmenityType>
+						title="Description"
+						dataIndex="description"
+						sorter={sortStringByProperty<AmenityType>(
+							'description'
+						)}
+					/>
+					<Table.Column<AmenityType>
+						title="Fee"
+						dataIndex="fee"
+						sorter={sortNumberByProperty<AmenityType>('fee')}
+					/>
+					<Table.Column<AmenityType>
+						title="Icon"
+						dataIndex="icon"
+						sorter={false}
+					/>
+					<Table.Column<AmenityType>
+						title="Created At"
+						dataIndex="createdAt"
+						sorter={sortDateByProperty<AmenityType>('createdAt')}
+						render={(createdAt) =>
+							dayjs(createdAt).format('DD MMM h:mm:ss A')
+						}
+					/>
+					<Table.Column<AmenityType>
+						title="Actions"
+						render={(value, amenity) => (
+							<>
+								<Space>
+									<Button
+										type="primary"
+										shape="circle"
+										icon={<EditFilled />}
+									/>
+
+									<Button
+										type="primary"
+										shape="circle"
+										icon={<DeleteFilled />}
+										danger
+										onClick={() =>
+											amenity._id &&
+											deleteAmenity(amenity._id)
+										}
+									/>
+								</Space>
+							</>
+						)}
+					/>
+				</Table>
+			</ContainerCard>
+			<Modal
+				title="Basic Modal"
+				visible={createAmenitiesVisible}
+				// onOk={handleOk}
+				okText="Create"
+				onCancel={() => setCreateAmenitiesVisible(false)}
 			>
-				<Table.Column<AmenityType>
-					title="Name"
-					dataIndex="name"
-					sorter={sortStringByProperty<AmenityType>('name')}
+				<GenericForm
+					formData={createAmenityFormData}
+					layout="vertical"
 				/>
-				<Table.Column<AmenityType>
-					title="Description"
-					dataIndex="description"
-					sorter={sortStringByProperty<AmenityType>('description')}
-				/>
-				<Table.Column<AmenityType>
-					title="Fee"
-					dataIndex="fee"
-					sorter={sortNumberByProperty<AmenityType>('fee')}
-				/>
-				<Table.Column<AmenityType>
-					title="Icon"
-					dataIndex="icon"
-					sorter={false}
-				/>
-				<Table.Column<AmenityType>
-					title="Created At"
-					dataIndex="createdAt"
-					sorter={sortDateByProperty<AmenityType>('createdAt')}
-					render={(createdAt) =>
-						dayjs(createdAt).format('DD MMM h:mm:ss A')
-					}
-				/>
-				<Table.Column<AmenityType>
-					title="Actions"
-					render={(value, amenity) => (
-						<>
-							<Space>
-								<Button
-									type="primary"
-									shape="circle"
-									icon={<EditFilled />}
-								/>
-
-								<Button
-									type="primary"
-									shape="circle"
-									icon={<DeleteFilled />}
-									danger
-									onClick={() =>
-										amenity._id &&
-										deleteAmenity(amenity._id)
-									}
-								/>
-							</Space>
-						</>
-					)}
-				/>
-			</Table>
-		</ContainerCard>
+			</Modal>
+		</>
 	);
 }

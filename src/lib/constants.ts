@@ -35,6 +35,8 @@ export const FORM_TYPES = {
 	TEXT: 'text',
 	SELECT: 'select',
 	CHECKBOX: 'checkbox',
+	NUMBER: 'number',
+	UPLOAD: 'file',
 };
 
 export const ROLES = {
