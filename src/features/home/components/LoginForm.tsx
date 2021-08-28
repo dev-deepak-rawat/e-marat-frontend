@@ -3,8 +3,9 @@ import { ConfirmationResult } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { apiRequest } from 'config/apiRequest';
 import { stripNonNumbers } from 'lib/utils';
-import { sendOtp, confirmOtp } from 'lib/firebaseAuth';
+import { sendOtp, confirmOtp, signIn } from 'lib/firebaseAuth';
 import Button from 'features/shared/components/Button';
+import type { apiResponse } from 'lib/types';
 
 export default function LoginForm() {
 	const [mobile, setMobile] = useState<string>('');
@@ -21,6 +22,19 @@ export default function LoginForm() {
 		setOtp(stripNonNumbers(e.currentTarget.value));
 	};
 
+	const handleAuthorization = async (response: apiResponse) => {
+		const { meta } = response;
+		const { success: apiSuccess } = meta;
+		if (apiSuccess) {
+			const { data } = response;
+			const { authorizationToken = '' } = data || {};
+			const success = await signIn(authorizationToken);
+			if (!success) {
+				toast.error('Error while Loggin In');
+			}
+		}
+	};
+
 	const otpVerify = async () => {
 		if (!otpSentResult) return;
 
@@ -31,7 +45,11 @@ export default function LoginForm() {
 		setOtpInProgress(false);
 
 		if (jwt) {
-			await apiRequest({ apiUrl: 'login', data: { token: jwt } });
+			const response = await apiRequest({
+				apiUrl: 'login',
+				data: { token: jwt },
+			});
+			await handleAuthorization(response);
 		} else {
 			setOtp('');
 			setfeedbackText('Inavlid OTP entered.');

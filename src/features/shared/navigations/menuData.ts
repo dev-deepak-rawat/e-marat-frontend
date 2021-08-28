@@ -85,4 +85,11 @@ export const menuData = [
 		icon: HiCurrencyRupee,
 		role: ROLES.RESIDENT,
 	},
+	{
+		id: 'profile',
+		link: '/profile',
+		label: 'My Profile',
+		icon: HiCurrencyRupee,
+		role: 'na',
+	},
 ];

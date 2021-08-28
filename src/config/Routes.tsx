@@ -13,6 +13,7 @@ import Transactions from 'features/payments/Transactions';
 import Broadcasts from 'features/broadcasts/Broadcasts';
 import PageNotFound from 'features/errorPages/404';
 import { ROLES } from 'lib/constants';
+import Profile from 'features/profile/Profile';
 
 export default function Routes() {
 	return (
@@ -77,6 +78,7 @@ export default function Routes() {
 				component={CreateComplaint}
 				exact
 			/>
+			<ProtectedRoute path="/profile" component={Profile} exact />
 			<ProtectedRoute path="/broadcasts" component={Broadcasts} exact />
 			<Redirect from="*" to="/404" />
 		</Switch>
