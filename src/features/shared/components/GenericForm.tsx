@@ -33,28 +33,36 @@ export default function GenericForm(props: PropsType) {
 		handleSubmit,
 		formState: { errors },
 		control,
-		clearErrors,
+		reset,
+		setValue,
 	} = useForm<any>();
-	const { imageUrl, imageError } = useImage();
+	const { imageUrl, imageError, clearImage } = useImage();
 
 	const { formData, layout, submitHandler } = props;
 	const { fieldsData = [], meta = {} } = formData;
 	const { submitLabel = 'submit', apiUrl, imageField = '' } = meta;
 
-	const onSubmit: SubmitHandler<any> = async (data) => {
+	const onSubmit: SubmitHandler<any> = async (data, event) => {
 		setDisable(true);
 
 		if (submitHandler) {
 			await submitHandler(data);
 		} else if (apiUrl) {
-			await apiRequest({ apiUrl, data });
+			const result = await apiRequest({ apiUrl, data });
+			const { meta: resMeta = {} } = result;
+			if (resMeta.success) {
+				reset('', {
+					keepValues: false,
+				});
+				if (imageField) clearImage();
+			}
 		}
 		setDisable(false);
 	};
 
 	useEffect(() => {
 		if (imageField && imageUrl) {
-			clearErrors(imageField);
+			setValue(imageField, imageUrl);
 		}
 	}, [imageUrl, errors[imageField]]);
 
@@ -77,6 +85,7 @@ export default function GenericForm(props: PropsType) {
 					validations = {},
 					role,
 					label,
+					placeholder,
 				} = fieldData;
 
 				const required = Boolean(validations.required?.value);
@@ -100,7 +109,7 @@ export default function GenericForm(props: PropsType) {
 									rules={validations}
 									render={({ field }) => (
 										<Input
-											placeholder={label}
+											placeholder={placeholder || label}
 											defaultValue={defaultValue}
 											{...field}
 										/>
@@ -129,7 +138,7 @@ export default function GenericForm(props: PropsType) {
 									render={({ field }) => (
 										<Input
 											type="number"
-											placeholder={label}
+											placeholder={placeholder || label}
 											defaultValue={defaultValue}
 											{...field}
 										/>
@@ -157,8 +166,9 @@ export default function GenericForm(props: PropsType) {
 									rules={validations}
 									render={({ field }) => (
 										<Input.TextArea
-											placeholder={label}
+											placeholder={placeholder || label}
 											defaultValue={defaultValue}
+											rows={4}
 											{...field}
 										/>
 									)}
@@ -188,7 +198,6 @@ export default function GenericForm(props: PropsType) {
 										<input
 											hidden
 											type="text"
-											defaultValue={defaultValue}
 											{...field}
 											value={imageUrl}
 										/>
@@ -218,7 +227,7 @@ export default function GenericForm(props: PropsType) {
 									rules={validations}
 									render={({ field }) => (
 										<Select
-											placeholder={label}
+											placeholder={placeholder || label}
 											style={{ width: 200 }}
 											{...field}
 										>

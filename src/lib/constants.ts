@@ -70,5 +70,6 @@ export const SERVICE_URL = process.env.REACT_APP_PROXY;
 
 export const CLOUDINARY_IMG_SPLITTER = 'upload/';
 export const CLOUDINARY_IMG_TRANSFORMATIONS = {
-	WIDTH_500: 'w_500/',
+	WIDTH_600: 'w_600/',
+	AVATAR: 'w_50,h_50,c_thumb,g_face,r_max/',
 };

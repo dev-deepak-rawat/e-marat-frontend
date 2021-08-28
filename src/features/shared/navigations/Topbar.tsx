@@ -9,6 +9,7 @@ import { signOut } from 'lib/firebaseAuth';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth, useTopbar } from 'config/hooks';
 import { useEffect } from 'react';
+import { transformCloudinaryImage } from 'lib/utils';
 
 const { Text } = Typography;
 
@@ -41,7 +42,7 @@ export default function Topbar() {
 	const { title, setUrlTitle } = useTopbar();
 	const urlPathName = location.pathname;
 	const { claims = {} } = userInfo || {};
-	const { firstName = '', lastName = '' } = claims;
+	const { firstName = '', lastName = '', picture } = claims;
 	const intialTitle = getPageTitle(menuData, urlPathName);
 
 	useEffect(() => {
@@ -51,22 +52,21 @@ export default function Topbar() {
 		};
 	}, [urlPathName]);
 	return (
-		<div className="flex justify-between">
-			<Title>{title}</Title>
-			<Dropdown overlay={menu} className="mr-8 mt-2">
-				<Space>
-					<Avatar
-						size={45}
-						className="p-2"
-						icon={<AiOutlineUser size="30px" />}
-						shape="circle"
-					/>
-					<Text>
-						{firstName ? `${firstName} ${lastName}` : 'User'}
-					</Text>
-					<FaChevronDown />
-				</Space>
-			</Dropdown>
-		</div>
+		// <div className="flex justify-between">
+		// <Title>{title}</Title>
+		<Dropdown overlay={menu} className="absolute top-4 right-6">
+			<Space>
+				<Avatar
+					size={45}
+					className={picture ? '' : 'p-2'}
+					icon={<AiOutlineUser size="30px" />}
+					shape="circle"
+					src={transformCloudinaryImage(`${picture}`, 'AVATAR')}
+				/>
+				<Text>{firstName ? `${firstName} ${lastName}` : 'User'}</Text>
+				<FaChevronDown />
+			</Space>
+		</Dropdown>
+		// </div>
 	);
 }

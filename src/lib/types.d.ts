@@ -1,3 +1,5 @@
+import { API_CONFIG } from './constants';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type ColorType =
 	| 'primary'
@@ -30,7 +32,7 @@ export type FieldType = {
 
 export type FormMetaType = {
 	submitLabel?: string;
-	apiUrl?: string;
+	apiUrl?: keyof typeof API_CONFIG;
 	imageField?: string;
 };
 
