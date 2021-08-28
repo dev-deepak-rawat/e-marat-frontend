@@ -19,7 +19,6 @@ export default function UploadImage() {
 		clearImage,
 	} = useImage();
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => clearImage, []);
 
 	return (
