@@ -1,31 +1,14 @@
 import { Button, Upload } from 'antd';
 import styled from 'styled-components';
 import tw from 'twin.macro';
+import { CloudUploadOutlined } from '@ant-design/icons';
+
 import ImageCentered from 'features/shared/components/styledComponents/ImageCentered.style';
 import { beforeUpload } from 'features/shared/components/image/ImageHelper';
 import { SERVICE_URL } from 'lib/constants';
 import { useEffect } from 'react';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
-
-const ImageContainer = styled.div`
-	${tw`
-        rounded-lg
-        bg-gray-100
-    `}
-	width: 560px;
-	height: 315px;
-`;
-
-const ImageBox = styled.div`
-	${tw`
-        mx-auto
-        w-1/2
-        pt-10
-        flex
-        flex-col
-        justify-evenly
-    `}
-`;
+import uploadIcon from 'assets/images/upload-icon.svg';
 
 export default function UploadImage() {
 	const {
@@ -41,9 +24,8 @@ export default function UploadImage() {
 
 	return (
 		<div className="image-upload">
-			<Upload
+			<Upload.Dragger
 				name="upload"
-				// listType="picture-card"
 				className="avatar-uploader"
 				showUploadList={false}
 				action={`${SERVICE_URL}/upload`}
@@ -52,37 +34,28 @@ export default function UploadImage() {
 				accept=".jpg, .jpeg, .png"
 				multiple={false}
 			>
-				<ImageContainer>
+				<div className="mx-auto">
 					{imageUrl ? (
 						<ImageCentered
 							src={imageUrl}
 							alt="Upladed image"
-							style={{ width: '90%' }}
 							onLoad={handleImageLoad}
 						/>
 					) : (
-						<ImageBox>
+						<>
 							<img
-								src="https://res.cloudinary.com/emarat/image/upload/v1630072316/image-post_tkjtqj.svg"
+								src={uploadIcon}
+								className="inline-block"
 								alt="Upload"
 								width="200"
-								height="200"
 							/>
-							<Button
-								type="primary"
-								loading={isImageLoading}
-								style={{
-									width: 160,
-									marginLeft: 20,
-									marginTop: 50,
-								}}
-							>
-								Upload
-							</Button>
-						</ImageBox>
+							<p className="ant-upload-text mt-3">
+								Click or drag file to this area to upload
+							</p>
+						</>
 					)}
-				</ImageContainer>
-			</Upload>
+				</div>
+			</Upload.Dragger>
 		</div>
 	);
 }

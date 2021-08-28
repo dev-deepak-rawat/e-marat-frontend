@@ -9,6 +9,8 @@ import { useAuth, useOrientation } from 'config/hooks';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { FieldType, FormMetaType } from 'lib/types';
+import UploadImage from 'features/shared/components/image/UploadImage';
+import { useImage } from 'features/shared/components/image/UploadImageHook';
 
 const { Option } = Select;
 
@@ -34,6 +36,7 @@ type PropsType = {
 		fieldsData: FieldType[];
 		meta: FormMetaType;
 	};
+	layout?: 'horizontal' | 'vertical' | 'inline';
 	submitHandler?: (data: any) => Promise<void>;
 };
 
@@ -51,12 +54,13 @@ export default function GenericForm(props: PropsType) {
 		control,
 	} = useForm<any>();
 
-	const { formData, submitHandler } = props;
+	const { formData, layout, submitHandler } = props;
 	const { fieldsData = [], meta = {} } = formData;
 	const { submitLabel = 'submit', apiUrl } = meta;
 
 	const onSubmit: SubmitHandler<any> = async (data) => {
 		setDisable(true);
+
 		if (submitHandler) {
 			await submitHandler(data);
 		} else if (apiUrl) {
@@ -68,19 +72,9 @@ export default function GenericForm(props: PropsType) {
 	return (
 		<Form
 			onFinish={handleSubmit(onSubmit)}
-			layout="horizontal"
+			layout={layout}
 			size="large"
-			labelCol={{
-				span: 3,
-				offset: 1,
-			}}
-			wrapperCol={{
-				span: 12,
-			}}
 			requiredMark
-			style={{
-				marginLeft: '20%',
-			}}
 			initialValues={{
 				firstName: 'ab',
 			}}
@@ -111,6 +105,7 @@ export default function GenericForm(props: PropsType) {
 								key={fieldName}
 								label={label}
 								required={required}
+								style={{ marginBottom: '0.5rem' }}
 							>
 								<Controller
 									name={fieldName}
@@ -128,6 +123,17 @@ export default function GenericForm(props: PropsType) {
 								{errors[fieldName] && (
 									<Error>{errors[fieldName].message}</Error>
 								)}
+							</Form.Item>
+						);
+
+					case FORM_TYPES.UPLOAD:
+						return (
+							<Form.Item
+								key={fieldName}
+								label={label}
+								required={required}
+							>
+								<UploadImage />
 							</Form.Item>
 						);
 
