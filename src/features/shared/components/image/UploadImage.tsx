@@ -1,23 +1,11 @@
-import { Button, Upload } from 'antd';
-import styled from 'styled-components';
-import tw from 'twin.macro';
-import { CloudUploadOutlined } from '@ant-design/icons';
-
-import ImageCentered from 'features/shared/components/styledComponents/ImageCentered.style';
-import { beforeUpload } from 'features/shared/components/image/ImageHelper';
+import { Upload } from 'antd';
 import { SERVICE_URL } from 'lib/constants';
 import { useEffect } from 'react';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
-import uploadIcon from 'assets/images/upload-icon.svg';
+import ImageTemplate from './ImageTemplate';
 
 export default function UploadImage() {
-	const {
-		imageUrl,
-		isImageLoading,
-		handleImageChange,
-		handleImageLoad,
-		clearImage,
-	} = useImage();
+	const { handleImageChange, clearImage, beforeUpload } = useImage();
 
 	useEffect(() => clearImage, []);
 
@@ -30,30 +18,10 @@ export default function UploadImage() {
 				action={`${SERVICE_URL}/upload`}
 				beforeUpload={beforeUpload}
 				onChange={handleImageChange}
-				accept=".jpg, .jpeg, .png"
+				// accept=".jpg, .jpeg, .png"
 				multiple={false}
 			>
-				<div className="mx-auto">
-					{imageUrl ? (
-						<ImageCentered
-							src={imageUrl}
-							alt="Upladed image"
-							onLoad={handleImageLoad}
-						/>
-					) : (
-						<>
-							<img
-								src={uploadIcon}
-								className="inline-block"
-								alt="Upload"
-								width="200"
-							/>
-							<p className="ant-upload-text mt-3">
-								Click or drag file to this area to upload
-							</p>
-						</>
-					)}
-				</div>
+				<ImageTemplate />
 			</Upload.Dragger>
 		</div>
 	);

@@ -1,6 +1,6 @@
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Input, Checkbox, Select, Button } from 'antd';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { FORM_TYPES, ROLES } from 'lib/constants';
@@ -10,6 +10,7 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import { FieldType, FormMetaType } from 'lib/types';
 import UploadImage from 'features/shared/components/image/UploadImage';
+import ErrorFieldStyled from 'features/shared/components/styledComponents/ErrorField.styled';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
 
 const { Option } = Select;
@@ -20,14 +21,6 @@ const FormTitle = styled.p`
         my-2
         ml-20
         mb-8
-    `}
-`;
-
-const Error = styled.div`
-	${tw`
-        text-red-500
-        font-semibold
-        mt-1
     `}
 `;
 
@@ -52,11 +45,13 @@ export default function GenericForm(props: PropsType) {
 		handleSubmit,
 		formState: { errors },
 		control,
+		clearErrors,
 	} = useForm<any>();
+	const { imageUrl, imageError } = useImage();
 
 	const { formData, layout, submitHandler } = props;
 	const { fieldsData = [], meta = {} } = formData;
-	const { submitLabel = 'submit', apiUrl } = meta;
+	const { submitLabel = 'submit', apiUrl, imageField = '' } = meta;
 
 	const onSubmit: SubmitHandler<any> = async (data) => {
 		setDisable(true);
@@ -68,6 +63,12 @@ export default function GenericForm(props: PropsType) {
 		}
 		setDisable(false);
 	};
+
+	useEffect(() => {
+		if (imageField && imageUrl) {
+			clearErrors(imageField);
+		}
+	}, [imageUrl, errors[imageField]]);
 
 	return (
 		<Form
@@ -121,7 +122,9 @@ export default function GenericForm(props: PropsType) {
 								/>
 
 								{errors[fieldName] && (
-									<Error>{errors[fieldName].message}</Error>
+									<ErrorFieldStyled>
+										{errors[fieldName].message}
+									</ErrorFieldStyled>
 								)}
 							</Form.Item>
 						);
@@ -134,6 +137,27 @@ export default function GenericForm(props: PropsType) {
 								required={required}
 							>
 								<UploadImage />
+								<Controller
+									name={fieldName}
+									control={control}
+									rules={validations}
+									render={({ field }) => (
+										<input
+											hidden
+											type="text"
+											defaultValue={defaultValue}
+											{...field}
+											value={imageUrl}
+										/>
+									)}
+								/>
+
+								{(errors[fieldName] || imageError) && (
+									<ErrorFieldStyled>
+										{imageError ||
+											errors[fieldName]?.message}
+									</ErrorFieldStyled>
+								)}
 							</Form.Item>
 						);
 
@@ -167,7 +191,9 @@ export default function GenericForm(props: PropsType) {
 									)}
 								/>
 								{errors[fieldName] && (
-									<Error>{errors[fieldName].message}</Error>
+									<ErrorFieldStyled>
+										{errors[fieldName].message}
+									</ErrorFieldStyled>
 								)}
 							</Form.Item>
 						);
@@ -193,7 +219,9 @@ export default function GenericForm(props: PropsType) {
 								/>
 
 								{errors[fieldName] && (
-									<Error>{errors[fieldName].message}</Error>
+									<ErrorFieldStyled>
+										{errors[fieldName].message}
+									</ErrorFieldStyled>
 								)}
 							</Form.Item>
 						);

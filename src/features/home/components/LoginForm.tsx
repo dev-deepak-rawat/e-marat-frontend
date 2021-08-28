@@ -5,7 +5,7 @@ import { apiRequest } from 'config/apiRequest';
 import { stripNonNumbers } from 'lib/utils';
 import { sendOtp, confirmOtp, signIn } from 'lib/firebaseAuth';
 import Button from 'features/shared/components/Button';
-import type { apiResponse } from 'lib/types';
+import type { ApiResponse } from 'lib/types';
 
 export default function LoginForm() {
 	const [mobile, setMobile] = useState<string>('');
@@ -22,7 +22,7 @@ export default function LoginForm() {
 		setOtp(stripNonNumbers(e.currentTarget.value));
 	};
 
-	const handleAuthorization = async (response: apiResponse) => {
+	const handleAuthorization = async (response: ApiResponse) => {
 		const { meta } = response;
 		const { success: apiSuccess } = meta;
 		if (apiSuccess) {
