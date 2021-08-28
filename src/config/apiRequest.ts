@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-import { API_CONFIG } from 'lib/constants';
+import { API_CONFIG, SERVICE_URL } from 'lib/constants';
 import { getAuthToken, signIn } from 'lib/firebaseAuth';
 import { GenericObject, StringMapObj, apiResponse } from 'lib/types';
 
@@ -14,7 +14,7 @@ type BuildRequestDataType = {
 const buildRequestData = async (options: BuildRequestDataType) => {
 	const { apiUrl, headers = {}, data, appendToUrl } = options;
 	const { url, method } = API_CONFIG[apiUrl];
-	const reqUrl = `${process.env.REACT_APP_PROXY}${url}${appendToUrl || ''}`;
+	const reqUrl = `${SERVICE_URL}${url}${appendToUrl || ''}`;
 	const token = await getAuthToken();
 	const reqHeaders = {
 		'Content-Type': 'application/json',
