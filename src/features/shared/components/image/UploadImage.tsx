@@ -1,8 +1,4 @@
-import { Button, Upload } from 'antd';
-import styled from 'styled-components';
-import tw from 'twin.macro';
-import { CloudUploadOutlined } from '@ant-design/icons';
-
+import { Upload } from 'antd';
 import ImageCentered from 'features/shared/components/styledComponents/ImageCentered.style';
 import { beforeUpload } from 'features/shared/components/image/ImageHelper';
 import { SERVICE_URL } from 'lib/constants';
@@ -47,7 +43,7 @@ export default function UploadImage() {
 								src={uploadIcon}
 								className="inline-block"
 								alt="Upload"
-								width="200"
+								width="120"
 							/>
 							<p className="ant-upload-text mt-3">
 								Click or drag file to this area to upload
