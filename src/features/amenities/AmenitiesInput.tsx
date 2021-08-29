@@ -23,6 +23,13 @@ export default function AmenitiesInput({
 		submitCallback && submitCallback();
 	};
 
+	const formData = edit
+		? {
+				...createFormProps,
+				meta: { ...createFormProps.meta, apiUrl: 'putAmenities' },
+		  }
+		: createFormProps;
+
 	return (
 		<Modal
 			visible={isVisible}
@@ -34,8 +41,9 @@ export default function AmenitiesInput({
 			<h2 className="text-2xl mb-4">Add Amenity</h2>
 			{isVisible && (
 				<GenericForm
+					appendToUrl={edit?._id}
 					updateValues={edit}
-					formData={createFormProps}
+					formData={formData}
 					layout="vertical"
 					submitCallback={formSubmitCallback}
 				/>

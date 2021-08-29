@@ -21,6 +21,7 @@ export default function ImageTemplate() {
 				<ImageCentered
 					src={imageUrl}
 					alt="Upladed image"
+					className="max-h-52"
 					onLoad={handleImageLoad}
 				/>
 			) : (
