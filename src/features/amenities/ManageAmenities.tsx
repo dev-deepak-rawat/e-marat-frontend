@@ -92,7 +92,7 @@ export default function ManageAmenities() {
 					dataSource={amenities}
 					rowKey="_id"
 					loading={loading}
-					className="overflow-x-auto"
+					scroll={{ x: true }}
 				>
 					<Table.Column<AmenityType>
 						title="Name"
@@ -103,6 +103,7 @@ export default function ManageAmenities() {
 					<Table.Column<AmenityType>
 						title="Description"
 						dataIndex="description"
+						ellipsis={true}
 						sorter={sortStringByProperty<AmenityType>(
 							'description'
 						)}
