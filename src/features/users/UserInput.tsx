@@ -1,24 +1,24 @@
 import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
 import { Button, Modal } from 'antd';
-import createFormProps from 'features/amenities/formProps';
+import createFormProps from 'features/users/formProps';
 import GenericForm from 'features/shared/components/form/GenericForm';
-import { AmenityType } from 'features/amenities/Types';
+import { UserType } from 'features/users/Types';
 import { GenericFormDataType } from 'lib/types';
 
 export type PropsType = {
 	isVisible: boolean;
 	setIsVisible: Dispatch<SetStateAction<boolean>>;
-	edit?: AmenityType;
+	edit?: UserType;
 	submitCallback?: () => void;
 };
 
-export default function AmenitiesInput({
+export default function UserInput({
 	isVisible,
 	setIsVisible,
 	edit,
 	submitCallback,
 }: PropsType) {
-	const formSubmitCallback = (data: AmenityType) => {
+	const formSubmitCallback = (data: UserType) => {
 		setIsVisible(false);
 		submitCallback && submitCallback();
 	};
@@ -26,9 +26,13 @@ export default function AmenitiesInput({
 	const formData = edit
 		? {
 				...createFormProps,
-				meta: { ...createFormProps.meta, apiUrl: 'putAmenity' },
+				meta: { ...createFormProps.meta, apiUrl: 'putUser' },
 		  }
 		: createFormProps;
+
+	const updateValues = edit
+		? { ...edit, isAdmin: edit.isAdmin ? 'true' : 'false' }
+		: undefined;
 
 	return (
 		<Modal
@@ -38,11 +42,11 @@ export default function AmenitiesInput({
 			onCancel={() => setIsVisible(false)}
 			centered
 		>
-			<h2 className="text-2xl mb-4">Add Amenity</h2>
+			<h2 className="text-2xl mb-4">Add User</h2>
 			{isVisible && (
 				<GenericForm
 					appendToUrl={edit?._id}
-					updateValues={edit}
+					updateValues={updateValues}
 					formData={formData}
 					layout="vertical"
 					submitCallback={formSubmitCallback}

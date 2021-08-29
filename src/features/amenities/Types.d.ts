@@ -4,5 +4,5 @@ export type AmenityType = {
 	description: string;
 	fee: number;
 	icon: string;
-	createdAt: string;
+	createdAt?: string;
 };

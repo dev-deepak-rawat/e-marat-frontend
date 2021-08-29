@@ -15,17 +15,10 @@ export const menuData = [
 		role: ROLES.ADMIN,
 	},
 	{
-		id: 'manageUser',
-		link: '/manage-user',
-		label: 'Manage User',
+		id: 'user',
+		link: '/users',
+		label: 'Users',
 		icon: FaUserEdit,
-		role: ROLES.ADMIN,
-	},
-	{
-		id: 'createUser',
-		link: '/create-user',
-		label: 'Create User',
-		icon: FaUserPlus,
 		role: ROLES.ADMIN,
 	},
 	{

@@ -1,10 +1,10 @@
-import { Input, Select, Checkbox } from 'antd';
+import { Input, Select, Checkbox, Switch } from 'antd';
 import { FieldType } from 'lib/types';
 import { FORM_TYPES } from 'lib/constants';
 import { ControllerRenderProps } from 'react-hook-form';
 
 const { Option } = Select;
-const { TEXT, NUMBER, TEXTAREA, UPLOAD, CHECKBOX, SELECT } = FORM_TYPES;
+const { TEXT, NUMBER, TEXTAREA, UPLOAD, CHECKBOX, SWITCH, SELECT } = FORM_TYPES;
 
 type Types = {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -50,7 +50,7 @@ const GenericFormFields = ({ field, fieldData }: Types): JSX.Element => {
 			return (
 				<Select
 					placeholder={placeholder || label}
-					style={{ width: 200 }}
+					defaultValue={defaultValue}
 					{...field}
 				>
 					{options.map((op) => (
@@ -63,6 +63,9 @@ const GenericFormFields = ({ field, fieldData }: Types): JSX.Element => {
 
 		case CHECKBOX:
 			return <Checkbox defaultChecked={defaultValue} {...field} />;
+
+		case SWITCH:
+			return <Switch defaultChecked={defaultValue} {...field} />;
 
 		case UPLOAD:
 			return <input hidden type="text" {...field} />;

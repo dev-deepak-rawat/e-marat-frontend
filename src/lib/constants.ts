@@ -3,9 +3,21 @@ import { Method } from 'axios';
 type ApiConfigType = { [key: string]: { url: string; method: Method } };
 
 export const API_CONFIG: ApiConfigType = {
+	users: {
+		url: '/users/',
+		method: 'GET',
+	},
 	postUser: {
 		url: '/users/',
 		method: 'POST',
+	},
+	delUser: {
+		url: '/users/',
+		method: 'DELETE',
+	},
+	putUser: {
+		url: '/users/',
+		method: 'PUT',
 	},
 	login: {
 		url: '/login/',
@@ -19,11 +31,11 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/api/amenities/',
 		method: 'POST',
 	},
-	putAmenities: {
+	putAmenity: {
 		url: '/api/amenities/',
 		method: 'PUT',
 	},
-	amenitiesDel: {
+	delAmenity: {
 		url: '/api/amenities/',
 		method: 'DELETE',
 	},
@@ -33,14 +45,6 @@ export const API_CONFIG: ApiConfigType = {
 	},
 	announcements: {
 		url: '/broadcasts/',
-		method: 'GET',
-	},
-	updateUser: {
-		url: '/users/',
-		method: 'PUT',
-	},
-	getUsers: {
-		url: '/users/',
 		method: 'GET',
 	},
 };
@@ -56,6 +60,7 @@ export const FORM_TYPES = {
 	TEXTAREA: 'textarea',
 	SELECT: 'select',
 	CHECKBOX: 'checkbox',
+	SWITCH: 'switch',
 	NUMBER: 'number',
 	UPLOAD: 'file',
 };

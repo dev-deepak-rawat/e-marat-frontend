@@ -16,7 +16,14 @@ export type ColorMap = {
 
 export type FieldType = {
 	name: string;
-	type: 'text' | 'textarea' | 'number' | 'file' | 'checkbox';
+	type:
+		| 'text'
+		| 'textarea'
+		| 'select'
+		| 'number'
+		| 'file'
+		| 'checkbox'
+		| 'switch';
 	defaultValue: any;
 	label: string;
 	validations?: {

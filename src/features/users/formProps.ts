@@ -1,7 +1,18 @@
 import { PATTERNS, ROLES } from 'lib/constants';
-import { FieldType, FormMetaType } from 'lib/types';
+import { FieldType, FormMetaType, GenericFormDataType } from 'lib/types';
 
 const fieldsData: FieldType[] = [
+	{
+		name: 'isAdmin',
+		type: 'select',
+		options: [
+			{ value: 'false', label: 'Resident' },
+			{ value: 'true', label: 'Admin' },
+		],
+		defaultValue: undefined,
+		label: 'Role',
+		role: ROLES.ADMIN,
+	},
 	{
 		name: 'firstName',
 		type: 'text',
@@ -16,13 +27,9 @@ const fieldsData: FieldType[] = [
 				value: PATTERNS.NAME,
 				message: 'Please enter valid first name',
 			},
-			minLength: {
-				value: 2,
-				message: 'Minimum 2 lenghts required',
-			},
 			maxLength: {
-				value: 20,
-				message: 'First name  cannot be longer than 20 chars',
+				value: 50,
+				message: 'First name cannot be longer than 50 characters',
 			},
 		},
 	},
@@ -40,13 +47,9 @@ const fieldsData: FieldType[] = [
 				value: PATTERNS.NAME,
 				message: 'Please enter valid last name',
 			},
-			minLength: {
-				value: 2,
-				message: 'Minimum 2 lenghts required',
-			},
 			maxLength: {
-				value: 20,
-				message: 'First name  cannot be longer than 20 chars',
+				value: 50,
+				message: 'First name  cannot be longer than 50 characters',
 			},
 		},
 	},
@@ -59,6 +62,14 @@ const fieldsData: FieldType[] = [
 			required: {
 				value: true,
 				message: 'Mobile no. is required',
+			},
+			minLength: {
+				value: 10,
+				message: 'Mobile number must be 10 characters long',
+			},
+			maxLength: {
+				value: 10,
+				message: 'Mobile number must be 10 characters long',
 			},
 			pattern: {
 				value: PATTERNS.PHONE,
@@ -80,13 +91,6 @@ const fieldsData: FieldType[] = [
 			},
 		},
 	},
-	{
-		name: 'isAdmin',
-		type: 'checkbox',
-		defaultValue: false,
-		label: 'Is Admin',
-		role: ROLES.ADMIN,
-	},
 ];
 
 const meta: FormMetaType = {
@@ -94,7 +98,9 @@ const meta: FormMetaType = {
 	apiUrl: 'postUser',
 };
 
-export const createUserFormData = {
+const userFormData: GenericFormDataType = {
 	fieldsData,
 	meta,
 };
+
+export default userFormData;
