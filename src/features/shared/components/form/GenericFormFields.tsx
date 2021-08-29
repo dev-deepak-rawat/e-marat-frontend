@@ -32,6 +32,7 @@ const GenericFormFields = ({ field, fieldData }: Types): JSX.Element => {
 					placeholder={placeholder || label}
 					addonBefore={addonBefore}
 					addonAfter={addonAfter}
+					defaultValue={defaultValue}
 					{...field}
 				/>
 			);

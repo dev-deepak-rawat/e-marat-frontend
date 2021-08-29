@@ -1,5 +1,5 @@
 import { PATTERNS, ROLES } from 'lib/constants';
-import { FieldType, FormMetaType } from 'lib/types';
+import { FieldType, FormMetaType, GenericFormDataType } from 'lib/types';
 
 const fieldsData: FieldType[] = [
 	{
@@ -21,8 +21,8 @@ const fieldsData: FieldType[] = [
 				message: 'Minimum 2 lenghts required',
 			},
 			maxLength: {
-				value: 20,
-				message: 'Name cannot be longer than 20 chars',
+				value: 100,
+				message: 'Name cannot be longer than 100 chars',
 			},
 		},
 	},
@@ -41,11 +41,11 @@ const fieldsData: FieldType[] = [
 				message: 'Please enter valid description',
 			},
 			minLength: {
-				value: 2,
+				value: 5,
 				message: 'Minimum 2 lenghts required',
 			},
 			maxLength: {
-				value: 20,
+				value: 500,
 				message: 'Description cannot be longer than 20 chars',
 			},
 		},
@@ -62,7 +62,7 @@ const fieldsData: FieldType[] = [
 				message: 'Fee is required',
 			},
 			pattern: {
-				value: PATTERNS.NAME,
+				value: PATTERNS.DIGITS,
 				message: 'Please enter valid fee',
 			},
 			min: {
@@ -70,7 +70,7 @@ const fieldsData: FieldType[] = [
 				message: 'Fee cannot be lower than 0',
 			},
 			max: {
-				value: 99,
+				value: 9999,
 				message: 'Fee cannot be more than 9999',
 			},
 		},
@@ -91,11 +91,13 @@ const fieldsData: FieldType[] = [
 ];
 
 const meta: FormMetaType = {
-	apiUrl: 'postUser',
+	apiUrl: 'postAmenities',
 	imageField: 'icon',
 };
 
-export const createAmenityFormData = {
+const createAmenityFormData: GenericFormDataType = {
 	fieldsData,
 	meta,
 };
+
+export default createAmenityFormData;
