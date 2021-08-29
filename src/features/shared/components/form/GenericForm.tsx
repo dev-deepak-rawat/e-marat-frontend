@@ -68,6 +68,9 @@ export default function GenericForm(props: PropsType) {
 			setValue(imageField, imageUrl);
 			clearErrors(imageField);
 		}
+		if (!imageUrl) {
+			setValue(imageField, '');
+		}
 	}, [imageUrl, errors[imageField]]);
 
 	return (
