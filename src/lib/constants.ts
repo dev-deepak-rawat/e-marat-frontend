@@ -24,11 +24,19 @@ export const API_CONFIG: ApiConfigType = {
 		method: 'DELETE',
 	},
 	broadcast: {
-		url: '/broadcasts',
+		url: '/broadcasts/',
 		method: 'POST',
 	},
 	announcements: {
-		url: '/broadcasts',
+		url: '/broadcasts/',
+		method: 'GET',
+	},
+	updateUser: {
+		url: '/users/',
+		method: 'PUT',
+	},
+	getUsers: {
+		url: '/users/',
 		method: 'GET',
 	},
 };
