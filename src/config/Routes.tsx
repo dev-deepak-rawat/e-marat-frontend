@@ -8,7 +8,6 @@ import MyPayments from 'features/payments/MyPayments';
 import Dashboard from 'features/dashboard/Dashboard';
 import SocialFeed from 'features/socialFeed/SocialFeed';
 import ManageComplaints from 'features/complaints/ManageComplaints';
-import CreateComplaint from 'features/complaints/CreateComplaint';
 import Transactions from 'features/payments/Transactions';
 import Broadcasts from 'features/broadcasts/Broadcasts';
 import PageNotFound from 'features/errorPages/404';
@@ -70,12 +69,6 @@ export default function Routes() {
 				path="/manage-complaints"
 				role={ROLES.ADMIN}
 				component={ManageComplaints}
-				exact
-			/>
-			<ProtectedRoute
-				path="/complaint"
-				role={ROLES.RESIDENT}
-				component={CreateComplaint}
 				exact
 			/>
 			<ProtectedRoute

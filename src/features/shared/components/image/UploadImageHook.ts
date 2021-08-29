@@ -54,6 +54,9 @@ export const useImage = () => {
 		return isJpgOrPng && isLt2M;
 	};
 
+	const setImageDefaultValue = (value: string) =>
+		dispatch(setImageUrl(value));
+
 	return {
 		imageUrl,
 		isImageLoading,
@@ -62,5 +65,6 @@ export const useImage = () => {
 		handleImageLoad,
 		clearImage,
 		beforeUpload,
+		setImageDefaultValue,
 	};
 };

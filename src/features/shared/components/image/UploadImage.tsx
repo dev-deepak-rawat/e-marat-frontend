@@ -4,10 +4,24 @@ import { useEffect } from 'react';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
 import ImageTemplate from './ImageTemplate';
 
-export default function UploadImage() {
-	const { handleImageChange, clearImage, beforeUpload } = useImage();
+type UploadImageProps = {
+	defaultValue?: string;
+};
 
-	useEffect(() => clearImage, []);
+const UploadImage = ({ defaultValue }: UploadImageProps): JSX.Element => {
+	const {
+		handleImageChange,
+		clearImage,
+		beforeUpload,
+		setImageDefaultValue,
+	} = useImage();
+
+	useEffect(() => {
+		if (defaultValue) {
+			setImageDefaultValue(defaultValue);
+		}
+		return clearImage;
+	}, []);
 
 	return (
 		<div className="image-upload">
@@ -25,4 +39,6 @@ export default function UploadImage() {
 			</Upload.Dragger>
 		</div>
 	);
-}
+};
+
+export default UploadImage;

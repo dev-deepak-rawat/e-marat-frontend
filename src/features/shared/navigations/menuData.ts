@@ -2,7 +2,6 @@ import { FaUserEdit, FaUserPlus } from 'react-icons/fa';
 import { AiFillDashboard } from 'react-icons/ai';
 import { HiUsers, HiCurrencyRupee } from 'react-icons/hi';
 import { CgGym } from 'react-icons/cg';
-import { GiGymBag } from 'react-icons/gi';
 import { GoIssueOpened } from 'react-icons/go';
 import { RiBroadcastFill, RiFileList2Fill } from 'react-icons/ri';
 import { ROLES } from 'lib/constants';
@@ -44,16 +43,9 @@ export const menuData = [
 		role: '',
 	},
 	{
-		id: 'createAmenity',
-		link: '/create-amenity',
-		label: 'Create Amenity',
-		icon: GiGymBag,
-		role: ROLES.ADMIN,
-	},
-	{
 		id: 'manageComplaints',
 		link: '/manage-complaints',
-		label: 'Compalints',
+		label: 'Complaints',
 		icon: GoIssueOpened,
 		role: ROLES.ADMIN,
 	},
