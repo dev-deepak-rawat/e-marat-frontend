@@ -30,6 +30,7 @@ export type FieldType = {
 	placeholder?: string;
 	addonBefore?: React.ReactNode;
 	addonAfter?: React.ReactNode;
+	readonly?: boolean;
 };
 
 export type FormMetaType = {

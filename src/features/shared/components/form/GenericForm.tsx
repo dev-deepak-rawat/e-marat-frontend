@@ -6,7 +6,7 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { FORM_TYPES, ROLES } from 'lib/constants';
 import { apiRequest } from 'config/apiRequest';
 import { useAuth } from 'config/hooks';
-import { GenericObject, GenericFormDataType } from 'lib/types';
+import { GenericFormDataType, GenericObject } from 'lib/types';
 import UploadImage from 'features/shared/components/image/UploadImage';
 import ErrorFieldStyled from 'features/shared/components/styledComponents/ErrorField.styled';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
@@ -16,14 +16,17 @@ const { UPLOAD } = FORM_TYPES;
 
 type PropsType = {
 	formData: GenericFormDataType;
-	layout?: 'horizontal' | 'vertical' | 'inline';
-	currentFormData?: GenericObject;
+	layout: 'horizontal' | 'vertical' | 'inline';
 	submitHandler?: (data: any) => Promise<void>;
+	updateValues?: GenericObject;
+	appendToUrl?: string;
 	submitCallback?: (data: any) => any;
+	resetFormAfterSubmit?: boolean;
 };
 
 GenericForm.defaultProps = {
 	submitHandler: null,
+	resetFormAfterSubmit: true,
 };
 
 export default function GenericForm(props: PropsType) {
@@ -37,10 +40,18 @@ export default function GenericForm(props: PropsType) {
 		setValue,
 		clearErrors,
 	} = useForm<any>();
-	const { imageUrl, imageError, clearImage } = useImage();
+	const { imageUrl, imageError, clearImage, setImageDefaultValue } =
+		useImage();
 
-	const { formData, layout, currentFormData, submitHandler, submitCallback } =
-		props;
+	const {
+		formData,
+		layout,
+		submitHandler,
+		updateValues = {},
+		appendToUrl,
+		submitCallback,
+		resetFormAfterSubmit,
+	} = props;
 	const { fieldsData = [], meta = {} } = formData;
 	const { submitLabel = 'submit', apiUrl, imageField = '' } = meta;
 
@@ -50,9 +61,9 @@ export default function GenericForm(props: PropsType) {
 		if (submitHandler) {
 			await submitHandler(data);
 		} else if (apiUrl) {
-			const result = await apiRequest({ apiUrl, data });
+			const result = await apiRequest({ apiUrl, data, appendToUrl });
 			const { meta: resMeta = {} } = result;
-			if (resMeta.success) {
+			if (resetFormAfterSubmit && resMeta.success) {
 				reset('', {
 					keepValues: false,
 					keepDefaultValues: true,
@@ -65,6 +76,14 @@ export default function GenericForm(props: PropsType) {
 	};
 
 	useEffect(() => {
+		reset(updateValues);
+		const { [imageField]: imgUrl } = updateValues;
+		if (imgUrl) {
+			setImageDefaultValue(imgUrl);
+		}
+	}, [JSON.stringify(updateValues)]);
+
+	useEffect(() => {
 		if (imageField && imageUrl) {
 			setValue(imageField, imageUrl);
 			clearErrors(imageField);
@@ -72,9 +91,7 @@ export default function GenericForm(props: PropsType) {
 		if (!imageUrl) {
 			setValue(imageField, '');
 		}
-
-		reset(currentFormData);
-	}, [imageUrl, errors[imageField], currentFormData]);
+	}, [imageUrl, errors[imageField]]);
 
 	return (
 		<Form

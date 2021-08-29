@@ -1,5 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import * as Sentry from '@sentry/react';
-import { GenericObject } from 'lib/types';
+import { GenericFormDataType, GenericObject } from 'lib/types';
 import {
 	CLOUDINARY_IMG_SPLITTER,
 	CLOUDINARY_IMG_TRANSFORMATIONS,
@@ -59,4 +60,24 @@ export const getPrettyDateDiff = (date: Date): string => {
 	const minutes = differenceInMinutes(currDate, date);
 	if (minutes >= 1) return `${minutes} min`;
 	return 'Just Now';
+};
+
+export const isEmpty = (obj: any) =>
+	[Object, Array].includes((obj || {}).constructor) &&
+	!Object.entries(obj || {}).length;
+
+export const filterUpdateFormValues = (
+	updateValues: GenericObject,
+	formData: GenericFormDataType
+): GenericObject => {
+	if (isEmpty(updateValues)) return updateValues;
+	const { fieldsData } = formData;
+	const validFields = fieldsData.map((field: { name: string }) => field.name);
+	const newUpdateValues = {} as GenericObject;
+	validFields.forEach((validField: string) => {
+		if (validField in updateValues) {
+			newUpdateValues[validField] = updateValues[validField];
+		}
+	});
+	return newUpdateValues;
 };

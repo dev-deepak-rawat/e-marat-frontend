@@ -1,8 +1,11 @@
-import { ROLES } from 'lib/constants';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { useEffect, useState } from 'react';
 import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
+import { ROLES } from 'lib/constants';
 import type { RootState, AppDispatch } from 'config/store';
 import { setTitle } from 'features/shared/reducers/TopbarSlice';
+import { apiRequest } from 'config/apiRequest';
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 export const useAppDispatch = () => useDispatch<AppDispatch>();
@@ -31,4 +34,38 @@ export const useTopbar = () => {
 	const dispatch = useAppDispatch();
 	const setUrlTitle = (ti: string) => dispatch(setTitle(ti));
 	return { title, setUrlTitle };
+};
+
+type UseApiCall = {
+	apiUrl: string;
+	reqData?: any;
+	initDataValue: any;
+	appendToUrl?: string;
+};
+
+export const useApiCall = ({
+	apiUrl,
+	reqData,
+	initDataValue,
+	appendToUrl,
+}: UseApiCall) => {
+	const [loading, setLoading] = useState(false);
+	const [data, setData] = useState(initDataValue);
+
+	useEffect(() => {
+		const fetchData = async () => {
+			setLoading(true);
+			const response = await apiRequest({
+				apiUrl,
+				data: reqData,
+				appendToUrl,
+			});
+			const { data: resData } = response;
+			setData(resData);
+			setLoading(false);
+		};
+		fetchData();
+	}, []);
+
+	return { data, loading };
 };

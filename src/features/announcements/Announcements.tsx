@@ -1,25 +1,20 @@
-import { useEffect, useState } from 'react';
 import { List, Tooltip, Comment } from 'antd';
-import { apiRequest } from 'config/apiRequest';
 import { getPrettyDateDiff, transformCloudinaryImage } from 'lib/utils';
 import { format, parseISO } from 'date-fns';
+import { useApiCall } from 'config/hooks';
+
+type AnnouncementType = {
+	picture: string;
+	announcement: string;
+	createdAt: string;
+	title: string;
+};
 
 export default function Announcements() {
-	const [loading, setLoading] = useState(false);
-	const [announcements, setAnnouncements] = useState([]);
-
-	useEffect(() => {
-		const fetchAnnouncements = async () => {
-			setLoading(true);
-			const response = await apiRequest({
-				apiUrl: 'announcements',
-			});
-			const { data = [] } = response;
-			setAnnouncements(data);
-			setLoading(false);
-		};
-		fetchAnnouncements();
-	}, []);
+	const { loading, data: announcements } = useApiCall({
+		apiUrl: 'announcements',
+		initDataValue: [],
+	});
 
 	return (
 		<List
@@ -27,7 +22,7 @@ export default function Announcements() {
 			dataSource={announcements}
 			itemLayout="vertical"
 			className="w-3/5 mx-auto py-2"
-			renderItem={(item) => {
+			renderItem={(item: AnnouncementType) => {
 				const { picture, announcement, createdAt, title } = item;
 				const createdAtDate = parseISO(createdAt);
 				return (

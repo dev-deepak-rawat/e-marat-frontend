@@ -34,7 +34,7 @@ export default function AmenitiesInput({
 			<h2 className="text-2xl mb-4">Add Amenity</h2>
 			{isVisible && (
 				<GenericForm
-					currentFormData={edit}
+					updateValues={edit}
 					formData={createFormProps}
 					layout="vertical"
 					submitCallback={formSubmitCallback}
