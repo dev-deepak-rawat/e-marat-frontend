@@ -11,3 +11,23 @@
 
 @form-vertical-label-padding: 0;
 @form-item-margin-bottom: 1rem;
+
+@table-header-bg: #fff;
+@table-row-hover-bg: inherit;
+
+@table-header-cell-split-color: #fff;
+
+.ant-table-container table {
+	> thead > tr:first-child th {
+		font-weight: 700;
+	}
+	> tbody > tr {
+		&:nth-of-type(even) {
+			background: hsla(30, 89%, 93%, 1);
+		}
+
+		&:nth-child(2) {
+			box-shadow: 0px 4px 4px 0px hsla(29, 88%, 67%, 0.27) inset;
+		}
+	}
+}

@@ -21,7 +21,7 @@ export function sortStringByProperty<T extends GenericObject>(prop: keyof T) {
 }
 
 export function sortNumberByProperty<T extends GenericObject>(prop: keyof T) {
-	return (a: T, b: T) => a[prop].localeCompare(b[prop]);
+	return (a: T, b: T) => a[prop] - b[prop];
 }
 
 export function sortDateByProperty<T extends GenericObject>(prop: keyof T) {
