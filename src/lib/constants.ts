@@ -15,6 +15,10 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/api/amenities/',
 		method: 'GET',
 	},
+	postAmenities: {
+		url: '/api/amenities/',
+		method: 'POST',
+	},
 	amenitiesDel: {
 		url: '/api/amenities/',
 		method: 'DELETE',

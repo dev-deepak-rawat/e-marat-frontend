@@ -16,31 +16,35 @@ import {
 } from 'lib/utils';
 import { ApiResponse } from 'lib/types';
 import { AmenityType } from 'features/amenities/Types';
-import GenericForm from 'features/shared/components/form/GenericForm';
 import searchColumnProps from 'features/shared/components/table/search';
-import { createAmenityFormData } from './createAmenityForm';
+import AmenitiesInput from 'features/amenities/AmenitiesInput';
 
 export default function ManageAmenities() {
 	const [amenities, setAmenities] = useState<AmenityType[]>([]);
+	const [currentAmenity, setCurrentAmenity] = useState<AmenityType>();
 	const [loading, setLoading] = useState<boolean>(true);
-	const [createAmenitiesVisible, setCreateAmenitiesVisible] =
+	useState<boolean>(false);
+	const [amenitiesInputVisible, setAmenitiesInputVisible] =
 		useState<boolean>(false);
 
 	useEffect(() => {
-		(async () => {
-			const response = await apiRequest({
-				apiUrl: 'amenities',
-			});
-
-			if (Array.isArray(response.data)) {
-				setAmenities(response.data);
-			}
-			setLoading(false);
-		})();
+		loadAmenities();
 	}, []);
 
-	const editAmenity = (id: string) => {
-		console.log(id);
+	const loadAmenities = async () => {
+		const response = await apiRequest({
+			apiUrl: 'amenities',
+		});
+
+		if (Array.isArray(response.data)) {
+			setAmenities(response.data);
+		}
+		setLoading(false);
+	};
+
+	const editAmenity = (amenity: AmenityType) => {
+		setCurrentAmenity(amenity);
+		setAmenitiesInputVisible(true);
 	};
 
 	const deleteAmenity = (id: string) => {
@@ -82,7 +86,7 @@ export default function ManageAmenities() {
 				<div className="text-right mb-4 -mt-6">
 					<Button
 						type="primary"
-						onClick={() => setCreateAmenitiesVisible(true)}
+						onClick={() => setAmenitiesInputVisible(true)}
 					>
 						Create
 					</Button>
@@ -119,6 +123,13 @@ export default function ManageAmenities() {
 						title="Icon"
 						dataIndex="icon"
 						sorter={false}
+						render={(icon) => (
+							<img
+								className="h-10 w-10 rounded-full"
+								src={icon}
+								alt="Icon"
+							/>
+						)}
 					/>
 					<Table.Column<AmenityType>
 						title="Created At"
@@ -138,6 +149,7 @@ export default function ManageAmenities() {
 										shape="circle"
 										className="btn-warning"
 										icon={<EditFilled />}
+										onClick={() => editAmenity(amenity)}
 									/>
 
 									<Button
@@ -156,20 +168,13 @@ export default function ManageAmenities() {
 					/>
 				</Table>
 			</ContainerCard>
-			<Modal
-				visible={createAmenitiesVisible}
-				// onOk={handleOk}
-				okText="Create"
-				footer={null}
-				onCancel={() => setCreateAmenitiesVisible(false)}
-				centered
-			>
-				<h2 className="text-2xl mb-4">Add Amenity</h2>
-				<GenericForm
-					formData={createAmenityFormData}
-					layout="vertical"
-				/>
-			</Modal>
+
+			<AmenitiesInput
+				isVisible={amenitiesInputVisible}
+				setIsVisible={setAmenitiesInputVisible}
+				edit={currentAmenity}
+				submitCallback={loadAmenities}
+			/>
 		</>
 	);
 }

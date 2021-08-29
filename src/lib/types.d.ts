@@ -38,6 +38,11 @@ export type FormMetaType = {
 	imageField?: string;
 };
 
+export type GenericFormDataType = {
+	fieldsData: FieldType[];
+	meta: FormMetaType;
+};
+
 export type StringMapObj = { [key: string]: string };
 
 export type GenericObject = { [key: string]: any };

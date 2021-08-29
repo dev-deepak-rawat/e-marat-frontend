@@ -6,7 +6,7 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { FORM_TYPES, ROLES } from 'lib/constants';
 import { apiRequest } from 'config/apiRequest';
 import { useAuth } from 'config/hooks';
-import { FieldType, FormMetaType } from 'lib/types';
+import { GenericFormDataType } from 'lib/types';
 import UploadImage from 'features/shared/components/image/UploadImage';
 import ErrorFieldStyled from 'features/shared/components/styledComponents/ErrorField.styled';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
@@ -14,10 +14,7 @@ import { useImage } from 'features/shared/components/image/UploadImageHook';
 const { Option } = Select;
 
 type PropsType = {
-	formData: {
-		fieldsData: FieldType[];
-		meta: FormMetaType;
-	};
+	formData: GenericFormDataType;
 	layout?: 'horizontal' | 'vertical' | 'inline';
 	submitHandler?: (data: any) => Promise<void>;
 };
@@ -35,7 +32,6 @@ export default function GenericForm(props: PropsType) {
 		control,
 		reset,
 		setValue,
-		clearErrors,
 	} = useForm<any>();
 	const { imageUrl, imageError, clearImage } = useImage();
 
@@ -54,7 +50,6 @@ export default function GenericForm(props: PropsType) {
 			if (resMeta.success) {
 				reset('', {
 					keepValues: false,
-					keepDefaultValues: true,
 				});
 				if (imageField) clearImage();
 			}
@@ -65,7 +60,6 @@ export default function GenericForm(props: PropsType) {
 	useEffect(() => {
 		if (imageField && imageUrl) {
 			setValue(imageField, imageUrl);
-			clearErrors(imageField);
 		}
 	}, [imageUrl, errors[imageField]]);
 
@@ -75,6 +69,9 @@ export default function GenericForm(props: PropsType) {
 			layout={layout}
 			size="large"
 			requiredMark
+			initialValues={{
+				firstName: 'ab',
+			}}
 		>
 			{fieldsData.map((fieldData) => {
 				const {
@@ -109,7 +106,6 @@ export default function GenericForm(props: PropsType) {
 									name={fieldName}
 									control={control}
 									rules={validations}
-									defaultValue={defaultValue}
 									render={({ field }) => (
 										<Input
 											placeholder={placeholder || label}
@@ -196,12 +192,11 @@ export default function GenericForm(props: PropsType) {
 								label={label}
 								required={required}
 							>
-								<UploadImage defaultValue={defaultValue} />
+								<UploadImage />
 								<Controller
 									name={fieldName}
 									control={control}
 									rules={validations}
-									defaultValue={defaultValue}
 									render={({ field }) => (
 										<input
 											hidden
@@ -270,7 +265,6 @@ export default function GenericForm(props: PropsType) {
 									name={fieldName}
 									control={control}
 									rules={validations}
-									defaultValue={defaultValue}
 									render={({ field }) => (
 										<Checkbox
 											defaultChecked={defaultValue}

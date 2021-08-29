@@ -13,6 +13,8 @@ type Types = {
 };
 
 const GenericFormFields = ({ field, fieldData }: Types): JSX.Element => {
+	console.log('xzxx', fieldData.defaultValue, fieldData.type);
+
 	const {
 		type,
 		placeholder,
@@ -32,6 +34,7 @@ const GenericFormFields = ({ field, fieldData }: Types): JSX.Element => {
 					placeholder={placeholder || label}
 					addonBefore={addonBefore}
 					addonAfter={addonAfter}
+					defaultValue={defaultValue}
 					{...field}
 				/>
 			);

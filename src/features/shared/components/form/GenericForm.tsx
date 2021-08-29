@@ -6,7 +6,7 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { FORM_TYPES, ROLES } from 'lib/constants';
 import { apiRequest } from 'config/apiRequest';
 import { useAuth } from 'config/hooks';
-import { FieldType, FormMetaType } from 'lib/types';
+import { GenericObject, GenericFormDataType } from 'lib/types';
 import UploadImage from 'features/shared/components/image/UploadImage';
 import ErrorFieldStyled from 'features/shared/components/styledComponents/ErrorField.styled';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
@@ -15,12 +15,11 @@ import GenericFormFields from './GenericFormFields';
 const { UPLOAD } = FORM_TYPES;
 
 type PropsType = {
-	formData: {
-		fieldsData: FieldType[];
-		meta: FormMetaType;
-	};
+	formData: GenericFormDataType;
 	layout?: 'horizontal' | 'vertical' | 'inline';
+	currentFormData?: GenericObject;
 	submitHandler?: (data: any) => Promise<void>;
+	submitCallback?: (data: any) => any;
 };
 
 GenericForm.defaultProps = {
@@ -40,9 +39,12 @@ export default function GenericForm(props: PropsType) {
 	} = useForm<any>();
 	const { imageUrl, imageError, clearImage } = useImage();
 
-	const { formData, layout, submitHandler } = props;
+	const { formData, layout, currentFormData, submitHandler, submitCallback } =
+		props;
 	const { fieldsData = [], meta = {} } = formData;
 	const { submitLabel = 'submit', apiUrl, imageField = '' } = meta;
+
+	console.log('fff', formData);
 
 	const onSubmit: SubmitHandler<any> = async (data) => {
 		setDisable(true);
@@ -61,6 +63,7 @@ export default function GenericForm(props: PropsType) {
 			}
 		}
 		setDisable(false);
+		if (submitCallback) submitCallback(data);
 	};
 
 	useEffect(() => {
@@ -71,7 +74,9 @@ export default function GenericForm(props: PropsType) {
 		if (!imageUrl) {
 			setValue(imageField, '');
 		}
-	}, [imageUrl, errors[imageField]]);
+
+		reset(currentFormData);
+	}, [imageUrl, errors[imageField], currentFormData]);
 
 	return (
 		<Form
