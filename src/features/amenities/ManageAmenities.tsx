@@ -16,7 +16,7 @@ import {
 } from 'lib/utils';
 import { ApiResponse } from 'lib/types';
 import { AmenityType } from 'features/amenities/Types';
-import GenericForm from 'features/shared/components/GenericForm';
+import GenericForm from 'features/shared/components/form/GenericForm';
 import searchColumnProps from 'features/shared/components/table/search';
 import { createAmenityFormData } from './createAmenityForm';
 

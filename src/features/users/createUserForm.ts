@@ -73,12 +73,12 @@ const fieldsData: FieldType[] = [
 		defaultValue: '',
 		label: 'Flat No.',
 		role: ROLES.ADMIN,
-		// validations: {
-		//     required: {
-		//         value: true,
-		//         message: 'Flat No. is required',
-		//     }
-		// }
+		validations: {
+			required: {
+				value: true,
+				message: 'Flat No. is required',
+			},
+		},
 	},
 	{
 		name: 'isAdmin',

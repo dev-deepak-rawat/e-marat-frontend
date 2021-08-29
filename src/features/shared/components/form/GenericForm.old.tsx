@@ -35,6 +35,7 @@ export default function GenericForm(props: PropsType) {
 		control,
 		reset,
 		setValue,
+		clearErrors,
 	} = useForm<any>();
 	const { imageUrl, imageError, clearImage } = useImage();
 
@@ -53,6 +54,7 @@ export default function GenericForm(props: PropsType) {
 			if (resMeta.success) {
 				reset('', {
 					keepValues: false,
+					keepDefaultValues: true,
 				});
 				if (imageField) clearImage();
 			}
@@ -63,6 +65,7 @@ export default function GenericForm(props: PropsType) {
 	useEffect(() => {
 		if (imageField && imageUrl) {
 			setValue(imageField, imageUrl);
+			clearErrors(imageField);
 		}
 	}, [imageUrl, errors[imageField]]);
 
@@ -72,9 +75,6 @@ export default function GenericForm(props: PropsType) {
 			layout={layout}
 			size="large"
 			requiredMark
-			initialValues={{
-				firstName: 'ab',
-			}}
 		>
 			{fieldsData.map((fieldData) => {
 				const {
@@ -109,6 +109,7 @@ export default function GenericForm(props: PropsType) {
 									name={fieldName}
 									control={control}
 									rules={validations}
+									defaultValue={defaultValue}
 									render={({ field }) => (
 										<Input
 											placeholder={placeholder || label}
@@ -195,11 +196,12 @@ export default function GenericForm(props: PropsType) {
 								label={label}
 								required={required}
 							>
-								<UploadImage />
+								<UploadImage defaultValue={defaultValue} />
 								<Controller
 									name={fieldName}
 									control={control}
 									rules={validations}
+									defaultValue={defaultValue}
 									render={({ field }) => (
 										<input
 											hidden
@@ -268,6 +270,7 @@ export default function GenericForm(props: PropsType) {
 									name={fieldName}
 									control={control}
 									rules={validations}
+									defaultValue={defaultValue}
 									render={({ field }) => (
 										<Checkbox
 											defaultChecked={defaultValue}

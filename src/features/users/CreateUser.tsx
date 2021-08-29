@@ -1,5 +1,5 @@
-import GenericForm from 'features/shared/components/GenericForm';
-import { createUserFormData } from './createUserForm';
+import GenericForm from 'features/shared/components/form/GenericForm';
+import { createUserFormData } from 'features/users/createUserForm';
 
 export default function CreateUser() {
 	return (

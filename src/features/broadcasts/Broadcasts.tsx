@@ -1,6 +1,6 @@
 import { Radio, RadioChangeEvent } from 'antd';
 import Announcements from 'features/announcements/Announcements';
-import GenericForm from 'features/shared/components/GenericForm';
+import GenericForm from 'features/shared/components/form/GenericForm';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
 import { useState } from 'react';
 import { broadcastFormData } from './broadcastFormData';
