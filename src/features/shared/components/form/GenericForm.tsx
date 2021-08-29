@@ -44,8 +44,6 @@ export default function GenericForm(props: PropsType) {
 	const { fieldsData = [], meta = {} } = formData;
 	const { submitLabel = 'submit', apiUrl, imageField = '' } = meta;
 
-	console.log('fff', formData);
-
 	const onSubmit: SubmitHandler<any> = async (data) => {
 		setDisable(true);
 

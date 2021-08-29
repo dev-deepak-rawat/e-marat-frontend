@@ -60,8 +60,6 @@ export default function ManageAmenities() {
 					});
 
 					if (response.meta.success) {
-						console.log('SAd');
-
 						setAmenities(
 							amenities.filter((amenity) => amenity._id != id)
 						);
