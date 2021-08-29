@@ -20,7 +20,6 @@ import apartmentImg from 'features/home/assets/images/society.jpg';
 import TeamMember from 'features/home/components/TeamMember';
 import Feature from 'features/home/components/Feature';
 import LoginForm from 'features/home/components/LoginForm';
-import adityaImg from 'features/home/assets/images/aditya.jpg';
 import harisImg from 'features/home/assets/images/haris.jpeg';
 import deepakImg from 'features/home/assets/images/deepak.jpg';
 import { useAuth } from 'config/hooks';
@@ -185,13 +184,6 @@ export default function Home() {
 							<TeamMember
 								name="Deepak Rawat"
 								img={deepakImg}
-								github="#"
-								linkedin="#"
-								twitter="#"
-							/>
-							<TeamMember
-								name="Aditya Jugran"
-								img={adityaImg}
 								github="#"
 								linkedin="#"
 								twitter="#"

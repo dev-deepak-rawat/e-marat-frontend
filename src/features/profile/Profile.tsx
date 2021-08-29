@@ -11,7 +11,7 @@ export default function Profile() {
 	const { claims = {} } = userInfo || {};
 	const { uniqueId } = claims;
 	const { loading, data: profileData } = useApiCall({
-		apiUrl: 'getUsers',
+		apiUrl: 'users',
 		initDataValue: {},
 		appendToUrl: `${uniqueId}`,
 	});

@@ -1,9 +1,8 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
 import ProtectedRoute from 'config/ProtectedRoute';
-import ManageUser from 'features/users/ManageUser';
+import ManageUsers from 'features/users/ManageUsers';
 import Home from 'features/home/Home';
 import ManageAmenities from 'features/amenities/ManageAmenities';
-import CreateUser from 'features/users/CreateUser';
 import MyPayments from 'features/payments/MyPayments';
 import Dashboard from 'features/dashboard/Dashboard';
 import SocialFeed from 'features/socialFeed/SocialFeed';
@@ -25,15 +24,9 @@ export default function Routes() {
 				<PageNotFound />
 			</Route>
 			<ProtectedRoute
-				path="/manage-user*"
+				path="/users"
 				role={ROLES.ADMIN}
-				component={ManageUser}
-				exact
-			/>
-			<ProtectedRoute
-				path="/create-user"
-				role={ROLES.ADMIN}
-				component={CreateUser}
+				component={ManageUsers}
 				exact
 			/>
 			<ProtectedRoute

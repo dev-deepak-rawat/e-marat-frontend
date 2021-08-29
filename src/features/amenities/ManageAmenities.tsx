@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Button, Modal, Table, Space } from 'antd';
+import { Button, Modal, Table, Space, Image } from 'antd';
 import {
 	EditFilled,
 	DeleteFilled,
@@ -16,8 +16,10 @@ import {
 } from 'lib/utils';
 import { ApiResponse } from 'lib/types';
 import { AmenityType } from 'features/amenities/Types';
+import deleteItem from 'features/shared/components/table/delete';
 import searchColumnProps from 'features/shared/components/table/search';
 import AmenitiesInput from 'features/amenities/AmenitiesInput';
+import placeholderImg from 'assets/images/placeholder.svg';
 
 export default function ManageAmenities() {
 	const [amenities, setAmenities] = useState<AmenityType[]>([]);
@@ -45,32 +47,6 @@ export default function ManageAmenities() {
 	const editAmenity = (amenity: AmenityType) => {
 		setCurrentAmenity(amenity);
 		setAmenitiesInputVisible(true);
-	};
-
-	const deleteAmenity = (id: string) => {
-		Modal.confirm({
-			title: 'Are you sure?',
-			icon: <ExclamationCircleOutlined />,
-			content: 'This action is not recoverable',
-			async onOk() {
-				try {
-					const response: ApiResponse = await apiRequest({
-						apiUrl: 'amenitiesDel',
-						appendToUrl: id,
-					});
-
-					if (response.meta.success) {
-						setAmenities(
-							amenities.filter((amenity) => amenity._id != id)
-						);
-					}
-					// else {
-					// }
-				} catch (e) {
-					console.log('errors!');
-				}
-			},
-		});
 	};
 
 	const getColumnSearchProps = (dataIndex: string) =>
@@ -122,10 +98,13 @@ export default function ManageAmenities() {
 						dataIndex="icon"
 						sorter={false}
 						render={(icon) => (
-							<img
-								className="h-10 w-10 rounded-full"
-								src={icon}
-								alt="Icon"
+							<Image
+								className="rounded-full"
+								width={40}
+								height={40}
+								preview={false}
+								src={icon || placeholderImg}
+								fallback={placeholderImg}
 							/>
 						)}
 					/>
@@ -156,7 +135,12 @@ export default function ManageAmenities() {
 										icon={<DeleteFilled />}
 										onClick={() =>
 											amenity._id &&
-											deleteAmenity(amenity._id)
+											deleteItem<AmenityType[]>(
+												'delAmenity',
+												amenity._id,
+												amenities,
+												setAmenities
+											)
 										}
 										danger
 									/>

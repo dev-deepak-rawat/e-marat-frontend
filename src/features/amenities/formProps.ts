@@ -18,11 +18,11 @@ const fieldsData: FieldType[] = [
 			},
 			minLength: {
 				value: 2,
-				message: 'Minimum 2 lenghts required',
+				message: 'Name should be at least 2 characters long',
 			},
 			maxLength: {
 				value: 100,
-				message: 'Name cannot be longer than 100 chars',
+				message: 'Name cannot be longer than 100 characters',
 			},
 		},
 	},
@@ -42,11 +42,11 @@ const fieldsData: FieldType[] = [
 			},
 			minLength: {
 				value: 5,
-				message: 'Minimum 2 lenghts required',
+				message: 'Description should be at least 2 characters long',
 			},
 			maxLength: {
 				value: 500,
-				message: 'Description cannot be longer than 20 chars',
+				message: 'Description cannot be longer than 500 characters',
 			},
 		},
 	},
@@ -95,9 +95,9 @@ const meta: FormMetaType = {
 	imageField: 'icon',
 };
 
-const createAmenityFormData: GenericFormDataType = {
+const amenityFormData: GenericFormDataType = {
 	fieldsData,
 	meta,
 };
 
-export default createAmenityFormData;
+export default amenityFormData;
