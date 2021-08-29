@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Affix, Button, Modal, Table, Space } from 'antd';
+import { Button, Modal, Table, Space } from 'antd';
 import {
 	EditFilled,
 	DeleteFilled,
@@ -17,6 +17,7 @@ import {
 import { apiResponse } from 'lib/types';
 import { AmenityType } from 'features/amenities/Types';
 import GenericForm from 'features/shared/components/GenericForm';
+import searchColumnProps from 'features/shared/components/table/search';
 import { createAmenityFormData } from './createAmenityForm';
 
 export default function ManageAmenities() {
@@ -70,6 +71,9 @@ export default function ManageAmenities() {
 		});
 	};
 
+	const getColumnSearchProps = (dataIndex: string) =>
+		searchColumnProps<AmenityType>(dataIndex);
+
 	return (
 		<>
 			<ContainerCard>
@@ -88,11 +92,13 @@ export default function ManageAmenities() {
 					dataSource={amenities}
 					rowKey="_id"
 					loading={loading}
+					className="overflow-x-auto"
 				>
 					<Table.Column<AmenityType>
 						title="Name"
 						dataIndex="name"
 						sorter={sortStringByProperty<AmenityType>('name')}
+						{...getColumnSearchProps('name')}
 					/>
 					<Table.Column<AmenityType>
 						title="Description"
@@ -100,11 +106,13 @@ export default function ManageAmenities() {
 						sorter={sortStringByProperty<AmenityType>(
 							'description'
 						)}
+						{...getColumnSearchProps('description')}
 					/>
 					<Table.Column<AmenityType>
 						title="Fee"
 						dataIndex="fee"
 						sorter={sortNumberByProperty<AmenityType>('fee')}
+						{...getColumnSearchProps('fee')}
 					/>
 					<Table.Column<AmenityType>
 						title="Icon"
@@ -127,6 +135,7 @@ export default function ManageAmenities() {
 									<Button
 										type="primary"
 										shape="circle"
+										className="btn-warning"
 										icon={<EditFilled />}
 									/>
 
@@ -134,11 +143,11 @@ export default function ManageAmenities() {
 										type="primary"
 										shape="circle"
 										icon={<DeleteFilled />}
-										danger
 										onClick={() =>
 											amenity._id &&
 											deleteAmenity(amenity._id)
 										}
+										danger
 									/>
 								</Space>
 							</>

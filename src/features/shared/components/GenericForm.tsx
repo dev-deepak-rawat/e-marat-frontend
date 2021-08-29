@@ -79,6 +79,8 @@ export default function GenericForm(props: PropsType) {
 					validations = {},
 					role,
 					label,
+					addonBefore,
+					addonAfter,
 				} = fieldData;
 
 				const required = Boolean(validations.required?.value);
@@ -102,6 +104,8 @@ export default function GenericForm(props: PropsType) {
 									rules={validations}
 									render={({ field }) => (
 										<Input
+											addonBefore={addonBefore}
+											addonAfter={addonAfter}
 											placeholder={label}
 											defaultValue={defaultValue}
 											{...field}
@@ -130,6 +134,8 @@ export default function GenericForm(props: PropsType) {
 										<Input
 											type="number"
 											placeholder={label}
+											addonBefore={addonBefore}
+											addonAfter={addonAfter}
 											defaultValue={defaultValue}
 											{...field}
 										/>

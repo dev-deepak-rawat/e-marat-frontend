@@ -20,12 +20,14 @@ export type FieldType = {
 	validations?: {
 		[key: string]: {
 			value: boolean | RegExp | number | string;
-			message: string;
+			message?: string;
 		};
 	};
 	role?: string;
 	options?: Array<{ value: string; label: string }>;
 	placeholder?: string;
+	addonBefore?: React.ReactNode;
+	addonAfter?: React.ReactNode;
 };
 
 export type FormMetaType = {
