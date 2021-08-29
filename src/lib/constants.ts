@@ -23,6 +23,10 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/broadcasts',
 		method: 'POST',
 	},
+	announcements: {
+		url: '/broadcasts',
+		method: 'GET',
+	},
 };
 
 export const PATTERNS = {
@@ -63,3 +67,9 @@ export const STYLE_COMPONENT_THEME = {
 };
 
 export const SERVICE_URL = process.env.REACT_APP_PROXY;
+
+export const CLOUDINARY_IMG_SPLITTER = 'upload/';
+export const CLOUDINARY_IMG_TRANSFORMATIONS = {
+	WIDTH_600: 'w_600/',
+	AVATAR: 'w_50,h_50,c_thumb,g_face,r_max/',
+};

@@ -14,6 +14,7 @@ import Broadcasts from 'features/broadcasts/Broadcasts';
 import PageNotFound from 'features/errorPages/404';
 import { ROLES } from 'lib/constants';
 import Profile from 'features/profile/Profile';
+import Announcements from 'features/announcements/Announcements';
 
 export default function Routes() {
 	return (
@@ -59,7 +60,6 @@ export default function Routes() {
 				component={Dashboard}
 				exact
 			/>
-			<ProtectedRoute path="/social-feeds" component={SocialFeed} exact />
 			<ProtectedRoute
 				path="/create-amenity"
 				role={ROLES.ADMIN}
@@ -78,6 +78,13 @@ export default function Routes() {
 				component={CreateComplaint}
 				exact
 			/>
+			<ProtectedRoute
+				path="/announcements"
+				role={ROLES.RESIDENT}
+				component={Announcements}
+				exact
+			/>
+			<ProtectedRoute path="/social-feeds" component={SocialFeed} exact />
 			<ProtectedRoute path="/profile" component={Profile} exact />
 			<ProtectedRoute path="/broadcasts" component={Broadcasts} exact />
 			<Redirect from="*" to="/404" />

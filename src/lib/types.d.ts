@@ -1,3 +1,6 @@
+import { API_CONFIG } from './constants';
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type ColorType =
 	| 'primary'
 	| 'danger'
@@ -14,7 +17,6 @@ export type ColorMap = {
 export type FieldType = {
 	name: string;
 	type: 'text' | 'textarea' | 'number' | 'file' | 'checkbox';
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	defaultValue: any;
 	label: string;
 	validations?: {
@@ -32,15 +34,15 @@ export type FieldType = {
 
 export type FormMetaType = {
 	submitLabel?: string;
-	apiUrl?: string;
+	apiUrl?: keyof typeof API_CONFIG;
+	imageField?: string;
 };
 
 export type StringMapObj = { [key: string]: string };
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type GenericObject = { [key: string]: any };
 
-export type apiResponse = {
+export type ApiResponse = {
 	meta: {
 		success: booelan;
 		code: number;

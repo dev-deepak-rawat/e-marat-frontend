@@ -84,19 +84,7 @@ const fieldsData: FieldType[] = [
 		validations: {
 			required: {
 				value: true,
-				message: 'Fee is required',
-			},
-			pattern: {
-				value: PATTERNS.NAME,
-				message: 'Please enter valid fee',
-			},
-			minLength: {
-				value: 2,
-				message: 'Minimum 2 lenghts required',
-			},
-			maxLength: {
-				value: 20,
-				message: 'Fee cannot be longer than 20 chars',
+				message: 'Icon is required',
 			},
 		},
 	},
@@ -104,6 +92,7 @@ const fieldsData: FieldType[] = [
 
 const meta: FormMetaType = {
 	apiUrl: 'postUser',
+	imageField: 'icon',
 };
 
 export const createAmenityFormData = {

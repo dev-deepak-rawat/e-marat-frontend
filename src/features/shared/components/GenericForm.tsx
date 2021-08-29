@@ -1,26 +1,17 @@
 /* eslint-disable consistent-return */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Form, Input, Checkbox, Select, Button } from 'antd';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { FORM_TYPES, ROLES } from 'lib/constants';
 import { apiRequest } from 'config/apiRequest';
-import { useAuth, useOrientation } from 'config/hooks';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+import { useAuth } from 'config/hooks';
 import { FieldType, FormMetaType } from 'lib/types';
 import UploadImage from 'features/shared/components/image/UploadImage';
+import ErrorFieldStyled from 'features/shared/components/styledComponents/ErrorField.styled';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
 
 const { Option } = Select;
-
-const Error = styled.div`
-	${tw`
-        text-red-500
-        font-semibold
-        mt-1
-    `}
-`;
 
 type PropsType = {
 	formData: {
@@ -38,27 +29,42 @@ GenericForm.defaultProps = {
 export default function GenericForm(props: PropsType) {
 	const { isAdmin } = useAuth();
 	const [disable, setDisable] = useState(false);
-	const { isMobile } = useOrientation();
 	const {
 		handleSubmit,
 		formState: { errors },
 		control,
+		reset,
+		setValue,
 	} = useForm<any>();
+	const { imageUrl, imageError, clearImage } = useImage();
 
 	const { formData, layout, submitHandler } = props;
 	const { fieldsData = [], meta = {} } = formData;
-	const { submitLabel = 'submit', apiUrl } = meta;
+	const { submitLabel = 'submit', apiUrl, imageField = '' } = meta;
 
-	const onSubmit: SubmitHandler<any> = async (data) => {
+	const onSubmit: SubmitHandler<any> = async (data, event) => {
 		setDisable(true);
 
 		if (submitHandler) {
 			await submitHandler(data);
 		} else if (apiUrl) {
-			await apiRequest({ apiUrl, data });
+			const result = await apiRequest({ apiUrl, data });
+			const { meta: resMeta = {} } = result;
+			if (resMeta.success) {
+				reset('', {
+					keepValues: false,
+				});
+				if (imageField) clearImage();
+			}
 		}
 		setDisable(false);
 	};
+
+	useEffect(() => {
+		if (imageField && imageUrl) {
+			setValue(imageField, imageUrl);
+		}
+	}, [imageUrl, errors[imageField]]);
 
 	return (
 		<Form
@@ -79,6 +85,7 @@ export default function GenericForm(props: PropsType) {
 					validations = {},
 					role,
 					label,
+					placeholder,
 					addonBefore,
 					addonAfter,
 				} = fieldData;
@@ -104,9 +111,9 @@ export default function GenericForm(props: PropsType) {
 									rules={validations}
 									render={({ field }) => (
 										<Input
+											placeholder={placeholder || label}
 											addonBefore={addonBefore}
 											addonAfter={addonAfter}
-											placeholder={label}
 											defaultValue={defaultValue}
 											{...field}
 										/>
@@ -114,7 +121,9 @@ export default function GenericForm(props: PropsType) {
 								/>
 
 								{errors[fieldName] && (
-									<Error>{errors[fieldName].message}</Error>
+									<ErrorFieldStyled>
+										{errors[fieldName].message}
+									</ErrorFieldStyled>
 								)}
 							</Form.Item>
 						);
@@ -133,7 +142,7 @@ export default function GenericForm(props: PropsType) {
 									render={({ field }) => (
 										<Input
 											type="number"
-											placeholder={label}
+											placeholder={placeholder || label}
 											addonBefore={addonBefore}
 											addonAfter={addonAfter}
 											defaultValue={defaultValue}
@@ -143,7 +152,9 @@ export default function GenericForm(props: PropsType) {
 								/>
 
 								{errors[fieldName] && (
-									<Error>{errors[fieldName].message}</Error>
+									<ErrorFieldStyled>
+										{errors[fieldName].message}
+									</ErrorFieldStyled>
 								)}
 							</Form.Item>
 						);
@@ -161,15 +172,18 @@ export default function GenericForm(props: PropsType) {
 									rules={validations}
 									render={({ field }) => (
 										<Input.TextArea
-											placeholder={label}
+											placeholder={placeholder || label}
 											defaultValue={defaultValue}
+											rows={4}
 											{...field}
 										/>
 									)}
 								/>
 
 								{errors[fieldName] && (
-									<Error>{errors[fieldName].message}</Error>
+									<ErrorFieldStyled>
+										{errors[fieldName].message}
+									</ErrorFieldStyled>
 								)}
 							</Form.Item>
 						);
@@ -182,6 +196,26 @@ export default function GenericForm(props: PropsType) {
 								required={required}
 							>
 								<UploadImage />
+								<Controller
+									name={fieldName}
+									control={control}
+									rules={validations}
+									render={({ field }) => (
+										<input
+											hidden
+											type="text"
+											{...field}
+											value={imageUrl}
+										/>
+									)}
+								/>
+
+								{(errors[fieldName] || imageError) && (
+									<ErrorFieldStyled>
+										{imageError ||
+											errors[fieldName]?.message}
+									</ErrorFieldStyled>
+								)}
 							</Form.Item>
 						);
 
@@ -199,7 +233,7 @@ export default function GenericForm(props: PropsType) {
 									rules={validations}
 									render={({ field }) => (
 										<Select
-											placeholder={label}
+											placeholder={placeholder || label}
 											style={{ width: 200 }}
 											{...field}
 										>
@@ -215,7 +249,9 @@ export default function GenericForm(props: PropsType) {
 									)}
 								/>
 								{errors[fieldName] && (
-									<Error>{errors[fieldName].message}</Error>
+									<ErrorFieldStyled>
+										{errors[fieldName].message}
+									</ErrorFieldStyled>
 								)}
 							</Form.Item>
 						);
@@ -241,7 +277,9 @@ export default function GenericForm(props: PropsType) {
 								/>
 
 								{errors[fieldName] && (
-									<Error>{errors[fieldName].message}</Error>
+									<ErrorFieldStyled>
+										{errors[fieldName].message}
+									</ErrorFieldStyled>
 								)}
 							</Form.Item>
 						);

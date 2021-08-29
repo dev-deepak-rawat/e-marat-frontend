@@ -69,14 +69,14 @@ export const menuData = [
 		link: '/broadcasts',
 		label: 'Broadcasts',
 		icon: RiBroadcastFill,
-		role: '',
+		role: ROLES.ADMIN,
 	},
 	{
 		id: 'transactions',
 		link: '/transactions',
 		label: 'Transactions',
 		icon: RiFileList2Fill,
-		role: '',
+		role: ROLES.ADMIN,
 	},
 	{
 		id: 'payments',
@@ -91,5 +91,12 @@ export const menuData = [
 		label: 'My Profile',
 		icon: HiCurrencyRupee,
 		role: 'na',
+	},
+	{
+		id: 'announcements',
+		link: '/announcements',
+		label: 'Announcements',
+		icon: RiBroadcastFill,
+		role: ROLES.RESIDENT,
 	},
 ];

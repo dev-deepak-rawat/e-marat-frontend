@@ -1,21 +1,12 @@
 import { Upload } from 'antd';
-import ImageCentered from 'features/shared/components/styledComponents/ImageCentered.style';
-import { beforeUpload } from 'features/shared/components/image/ImageHelper';
 import { SERVICE_URL } from 'lib/constants';
 import { useEffect } from 'react';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
-import uploadIcon from 'assets/images/upload-icon.svg';
+import ImageTemplate from './ImageTemplate';
 
 export default function UploadImage() {
-	const {
-		imageUrl,
-		isImageLoading,
-		handleImageChange,
-		handleImageLoad,
-		clearImage,
-	} = useImage();
+	const { handleImageChange, clearImage, beforeUpload } = useImage();
 
-	// eslint-disable-next-line react-hooks/exhaustive-deps
 	useEffect(() => clearImage, []);
 
 	return (
@@ -30,27 +21,7 @@ export default function UploadImage() {
 				accept=".jpg, .jpeg, .png"
 				multiple={false}
 			>
-				<div className="mx-auto">
-					{imageUrl ? (
-						<ImageCentered
-							src={imageUrl}
-							alt="Upladed image"
-							onLoad={handleImageLoad}
-						/>
-					) : (
-						<>
-							<img
-								src={uploadIcon}
-								className="inline-block"
-								alt="Upload"
-								width="120"
-							/>
-							<p className="ant-upload-text mt-3">
-								Click or drag file to this area to upload
-							</p>
-						</>
-					)}
-				</div>
+				<ImageTemplate />
 			</Upload.Dragger>
 		</div>
 	);

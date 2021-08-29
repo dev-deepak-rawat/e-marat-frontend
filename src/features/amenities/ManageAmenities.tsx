@@ -14,7 +14,7 @@ import {
 	sortNumberByProperty,
 	sortDateByProperty,
 } from 'lib/utils';
-import { apiResponse } from 'lib/types';
+import { ApiResponse } from 'lib/types';
 import { AmenityType } from 'features/amenities/Types';
 import GenericForm from 'features/shared/components/GenericForm';
 import searchColumnProps from 'features/shared/components/table/search';
@@ -50,7 +50,7 @@ export default function ManageAmenities() {
 			content: 'This action is not recoverable',
 			async onOk() {
 				try {
-					const response: apiResponse = await apiRequest({
+					const response: ApiResponse = await apiRequest({
 						apiUrl: 'amenitiesDel',
 						appendToUrl: id,
 					});
