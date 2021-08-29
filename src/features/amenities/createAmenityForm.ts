@@ -55,6 +55,7 @@ const fieldsData: FieldType[] = [
 		type: 'number',
 		defaultValue: '',
 		label: 'Fee',
+		addonBefore: '₹',
 		validations: {
 			required: {
 				value: true,
@@ -64,13 +65,13 @@ const fieldsData: FieldType[] = [
 				value: PATTERNS.NAME,
 				message: 'Please enter valid fee',
 			},
-			minLength: {
-				value: 2,
-				message: 'Minimum 2 lenghts required',
+			min: {
+				value: 0,
+				message: 'Fee cannot be lower than 0',
 			},
-			maxLength: {
-				value: 20,
-				message: 'Fee cannot be longer than 20 chars',
+			max: {
+				value: 99,
+				message: 'Fee cannot be more than 9999',
 			},
 		},
 	},

@@ -11,10 +11,11 @@ export default function Announcements() {
 	useEffect(() => {
 		const fetchAnnouncements = async () => {
 			setLoading(true);
-			const announcementsList = await apiRequest({
+			const response = await apiRequest({
 				apiUrl: 'announcements',
 			});
-			setAnnouncements(announcementsList);
+			const { data = [] } = response;
+			setAnnouncements(data);
 			setLoading(false);
 		};
 		fetchAnnouncements();
