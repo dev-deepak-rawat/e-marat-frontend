@@ -8,7 +8,7 @@ import { GenericFormDataType } from 'lib/types';
 export type PropsType = {
 	isVisible: boolean;
 	setIsVisible: Dispatch<SetStateAction<boolean>>;
-	edit?: UserType;
+    edit?: UserType | null;
 	submitCallback?: () => void;
 };
 
@@ -46,7 +46,7 @@ export default function UserInput({
 			{isVisible && (
 				<GenericForm
 					appendToUrl={edit?._id}
-					updateValues={updateValues}
+                    updateValues={updateValues || undefined}
 					formData={formData}
 					layout="vertical"
 					submitCallback={formSubmitCallback}

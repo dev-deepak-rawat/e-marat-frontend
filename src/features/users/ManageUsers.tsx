@@ -16,7 +16,7 @@ import userPlaceholderImg from 'assets/images/user-placeholder.svg';
 
 export default function ManageUsers() {
 	const [users, setUsers] = useState<UserType[]>([]);
-	const [currentUser, setCurrentUser] = useState<UserType>();
+    const [currentUser, setCurrentUser] = useState<UserType | null>(null);
 	const [loading, setLoading] = useState<boolean>(true);
 	useState<boolean>(false);
 	const [userInputVisible, setUserInputVisible] = useState<boolean>(false);
@@ -36,7 +36,7 @@ export default function ManageUsers() {
 		setLoading(false);
 	};
 
-	const editUser = (user: UserType) => {
+    const editUser = (user: UserType | null) => {
 		setCurrentUser(user);
 		setUserInputVisible(true);
 	};
@@ -52,7 +52,7 @@ export default function ManageUsers() {
 				<div className="text-right mb-4 -mt-6">
 					<Button
 						type="primary"
-						onClick={() => setUserInputVisible(true)}
+                        onClick={() => editUser(null)}
 					>
 						Create
 					</Button>
@@ -158,12 +158,17 @@ export default function ManageUsers() {
 				</Table>
 			</ContainerCard>
 
-			<UserInput
+            {
+                userInputVisible
+                &&
+                <UserInput
 				isVisible={userInputVisible}
 				setIsVisible={setUserInputVisible}
 				edit={currentUser}
 				submitCallback={loadUsers}
 			/>
+            }
+
 		</>
 	);
 }
