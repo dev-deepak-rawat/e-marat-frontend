@@ -21,12 +21,12 @@ export default function Announcements() {
 			loading={loading}
 			dataSource={announcements}
 			itemLayout="vertical"
-			className="w-3/5 mx-auto py-2"
+            className="mx-auto py-2 sm:w-3/5"
 			renderItem={(item: AnnouncementType) => {
 				const { picture, announcement, createdAt, title } = item;
 				const createdAtDate = parseISO(createdAt);
 				return (
-					<List.Item className="mx-auto w-4/5 rounded-lg shadow-lg px-4 my-6 bg-white">
+                    <List.Item className="mx-auto sm:w-4/5 rounded-lg shadow-lg px-4 my-6 bg-white">
 						<Comment
 							datetime={
 								<Tooltip

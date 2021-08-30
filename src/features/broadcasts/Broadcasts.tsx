@@ -14,7 +14,7 @@ export default function Broadcasts() {
 	};
 
 	return (
-		<>
+        <div className="mt-10 sm:mt-0">
 			<Radio.Group
 				onChange={handleChange}
 				defaultValue={choice}
@@ -24,15 +24,15 @@ export default function Broadcasts() {
 				<Radio.Button value="broadcast">Broadcast</Radio.Button>
 			</Radio.Group>
 			{choice === 'broadcast' ? (
-				<ContainerCard width="600px">
+                <ContainerCard className="w-max mt-3 sm:w-1/2 sm:mt-5">
 					<GenericForm
 						formData={broadcastFormData}
-						layout="vertical"
+                        layout="vertical"
 					/>
 				</ContainerCard>
 			) : (
 				<Announcements />
 			)}
-		</>
+        </div>
 	);
 }
