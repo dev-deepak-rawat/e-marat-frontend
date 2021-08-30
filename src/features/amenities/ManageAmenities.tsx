@@ -23,10 +23,9 @@ import placeholderImg from 'assets/images/placeholder.svg';
 
 export default function ManageAmenities() {
 	const [amenities, setAmenities] = useState<AmenityType[]>([]);
-    const [
-        currentAmenity,
-        setCurrentAmenity
-    ] = useState<AmenityType | null>(null);
+	const [currentAmenity, setCurrentAmenity] = useState<AmenityType | null>(
+		null
+	);
 	const [loading, setLoading] = useState<boolean>(true);
 	useState<boolean>(false);
 	const [amenitiesInputVisible, setAmenitiesInputVisible] =
@@ -47,7 +46,7 @@ export default function ManageAmenities() {
 		setLoading(false);
 	};
 
-    const editAmenity = (amenity: AmenityType | null) => {
+	const editAmenity = (amenity: AmenityType | null) => {
 		setCurrentAmenity(amenity);
 		setAmenitiesInputVisible(true);
 	};
@@ -61,10 +60,7 @@ export default function ManageAmenities() {
 				<ContainerCardTitle>Manage Amenities</ContainerCardTitle>
 
 				<div className="text-right mb-4 -mt-6">
-					<Button
-						type="primary"
-                        onClick={() => editAmenity(null)}
-					>
+					<Button type="primary" onClick={() => editAmenity(null)}>
 						Create
 					</Button>
 				</div>
@@ -153,17 +149,14 @@ export default function ManageAmenities() {
 					/>
 				</Table>
 			</ContainerCard>
-            {
-                amenitiesInputVisible
-                &&
-                <AmenitiesInput
-				isVisible={amenitiesInputVisible}
-				setIsVisible={setAmenitiesInputVisible}
-				edit={currentAmenity}
-				submitCallback={loadAmenities}
-			/>
-            }
-
+			{amenitiesInputVisible && (
+				<AmenitiesInput
+					isVisible={amenitiesInputVisible}
+					setIsVisible={setAmenitiesInputVisible}
+					edit={currentAmenity}
+					submitCallback={loadAmenities}
+				/>
+			)}
 		</>
 	);
 }
