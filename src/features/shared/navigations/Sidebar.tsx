@@ -20,7 +20,7 @@ const Logo = styled.div`
         text-emarat-secondary-default
         cursor-pointer
     `}
-    background: #001529;
+	background: #001529;
 `;
 
 type SidebarProps = {
@@ -54,10 +54,10 @@ export default function Sidebar(props: SidebarProps) {
 		>
 			{!isMobile && (
 				<Logo onClick={() => onCollapse(!collapsed)}>
-                    <Space size="small">
-                        <img src={logo} alt="Logo" className="h-12" />
-                        {collapsed ? '' : '-MARAT'}
-                    </Space>
+					<Space size="small">
+						<img src={logo} alt="Logo" className="h-12" />
+						{collapsed ? '' : '-MARAT'}
+					</Space>
 				</Logo>
 			)}
 			<Menu
