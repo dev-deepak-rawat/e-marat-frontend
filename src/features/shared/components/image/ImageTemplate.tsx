@@ -7,7 +7,7 @@ export default function ImageTemplate() {
 	const { imageUrl, isImageLoading, handleImageLoad, clearImage } =
 		useImage();
 	return (
-        <div className="mx-auto">
+		<div className="mx-auto">
 			{imageUrl ? (
 				<ImageCentered
 					src={imageUrl}
