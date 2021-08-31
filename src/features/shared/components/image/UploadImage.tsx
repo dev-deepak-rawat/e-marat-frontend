@@ -14,6 +14,7 @@ const UploadImage = ({ defaultValue }: UploadImageProps): JSX.Element => {
 		clearImage,
 		beforeUpload,
 		setImageDefaultValue,
+        imageUrl,
 	} = useImage();
 
 	useEffect(() => {
@@ -25,6 +26,15 @@ const UploadImage = ({ defaultValue }: UploadImageProps): JSX.Element => {
 
 	return (
 		<div className="image-upload">
+            {imageUrl && (
+                <button
+                    type="button"
+                    onClick={() => clearImage()}
+                    className="text-lg font-medium hover:text-gray-500 absolute right-4 top-0 z-10"
+                >
+                    x
+                </button>
+            )}
 			<Upload.Dragger
 				name="upload"
 				className="avatar-uploader"

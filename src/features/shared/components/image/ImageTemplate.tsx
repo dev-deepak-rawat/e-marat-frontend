@@ -7,16 +7,7 @@ export default function ImageTemplate() {
 	const { imageUrl, isImageLoading, handleImageLoad, clearImage } =
 		useImage();
 	return (
-		<div className="mx-auto">
-			{imageUrl && (
-				<button
-					type="button"
-					onClick={() => clearImage()}
-					className="text-lg font-medium hover:text-gray-500 absolute right-4 top-0 z-10"
-				>
-					x
-				</button>
-			)}
+        <div className="mx-auto">
 			{imageUrl ? (
 				<ImageCentered
 					src={imageUrl}
