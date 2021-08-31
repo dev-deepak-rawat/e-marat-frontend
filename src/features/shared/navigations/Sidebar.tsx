@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { SetStateAction, Dispatch } from 'react';
 import { Layout, Menu } from 'antd';
 import { menuData } from 'features/shared/navigations/menuData';
 import MenuItem from 'features/shared/navigations/MenuItem';
-import { useAuth, useOrientation } from 'config/hooks';
+import { useAuth } from 'config/hooks';
 import { getDefaultSelectedKeys } from 'features/shared/navigations/menuHelper';
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -22,13 +22,19 @@ const Logo = styled.div`
     `}
 `;
 
-export default function Sidebar() {
-	const { isMobile } = useOrientation();
-	const [collapsed, onCollapse] = useState(isMobile);
+type SidebarProps = {
+	isMobile: boolean;
+	collapsed: boolean;
+	onCollapse: Dispatch<SetStateAction<boolean>>;
+};
+
+export default function Sidebar(props: SidebarProps) {
 	const { filterByRole } = useAuth();
 	const filteredMenuData = menuData.filter(filterByRole);
 	const { defaultOpenKeys, defaultSelectedKeys } =
 		getDefaultSelectedKeys(filteredMenuData);
+
+	const { isMobile, collapsed, onCollapse } = props;
 
 	return (
 		<Sider
@@ -43,6 +49,7 @@ export default function Sidebar() {
 				right: '-50px',
 				width: 50,
 			}}
+			className="h-screen fixed z-10"
 		>
 			{!isMobile && (
 				<Logo onClick={() => onCollapse(!collapsed)}>

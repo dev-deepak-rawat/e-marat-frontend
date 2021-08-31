@@ -4,8 +4,7 @@ import uploadIcon from 'assets/images/upload-icon.svg';
 import ImageCentered from 'features/shared/components/styledComponents/ImageCentered.style';
 
 export default function ImageTemplate() {
-	const { imageUrl, isImageLoading, handleImageLoad, clearImage } =
-		useImage();
+	const { imageUrl, isImageLoading, handleImageLoad } = useImage();
 	return (
 		<div className="mx-auto">
 			{imageUrl ? (
