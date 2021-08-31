@@ -19,7 +19,9 @@ export default function Profile() {
 		<ContainerCard width="700px">
 			<ContainerCardTitle>Update Profile</ContainerCardTitle>
 			{loading ? (
-				<Spin />
+                <div className="text-center">
+                    <Spin />
+                </div>
 			) : (
 				<GenericForm
 					formData={profileFormData}
