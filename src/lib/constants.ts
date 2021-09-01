@@ -47,6 +47,14 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/broadcasts/',
 		method: 'GET',
 	},
+	getPayments: {
+		url: '/payments/',
+		method: 'GET',
+	},
+	pay: {
+		url: '/payments/order/',
+		method: 'POST',
+	},
 };
 
 export const PATTERNS = {
@@ -93,4 +101,8 @@ export const CLOUDINARY_IMG_SPLITTER = 'upload/';
 export const CLOUDINARY_IMG_TRANSFORMATIONS = {
 	WIDTH_600: 'w_600/',
 	AVATAR: 'w_50,h_50,c_thumb,g_face,r_max/',
+};
+
+export const IMAGES_LINKS = {
+	LOGO: 'https://res.cloudinary.com/emarat/image/upload/v1630505506/logo.svg',
 };
