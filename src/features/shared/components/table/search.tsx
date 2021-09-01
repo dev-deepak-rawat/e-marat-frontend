@@ -31,8 +31,9 @@ export default function searchColumnProps<T>(dataIndex: string): ColumnType<T> {
 			confirm,
 			clearFilters,
 		}) => (
-			<div style={{ padding: 8 }}>
+			<div className="p-4">
 				<Input
+					className="block mb-3"
 					ref={(node) => {
 						searchInput = node;
 					}}
@@ -48,11 +49,10 @@ export default function searchColumnProps<T>(dataIndex: string): ColumnType<T> {
 							dataIndex as keyof T
 						)
 					}
-					style={{ marginBottom: 8, display: 'block' }}
 				/>
 				<Space size="large">
 					<Button
-						className="flex items-center"
+						className="flex items-center w-24"
 						type="primary"
 						onClick={() =>
 							handleSearch(
@@ -63,14 +63,13 @@ export default function searchColumnProps<T>(dataIndex: string): ColumnType<T> {
 						}
 						icon={<SearchOutlined />}
 						size="small"
-						style={{ width: 90 }}
 					>
 						Search
 					</Button>
 					<Button
+						className="w-24"
 						onClick={() => handleReset(clearFilters)}
 						size="small"
-						style={{ width: 90 }}
 					>
 						Reset
 					</Button>
