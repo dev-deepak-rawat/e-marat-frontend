@@ -1,0 +1,35 @@
+@import '~antd/dist/antd.less';
+
+.ant-form-large .ant-form-item-label > label {
+	height: auto;
+}
+
+.ant-input {
+	border-radius: 0.5rem;
+	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 7%);
+}
+
+@primary-color: #6366f1;
+
+@form-vertical-label-padding: 0;
+@form-item-margin-bottom: 1rem;
+
+@table-header-bg: #fff;
+@table-row-hover-bg: inherit;
+
+@table-header-cell-split-color: #fff;
+
+.ant-table-container table {
+	> thead > tr:first-child th {
+		font-weight: 700;
+	}
+	> tbody > tr:not(.ant-table-placeholder) {
+		&:nth-of-type(even) {
+			background: hsla(30, 89%, 93%, 1);
+		}
+
+		&:nth-child(2) {
+			box-shadow: 0px 4px 4px 0px hsla(29, 88%, 67%, 0.27) inset;
+		}
+	}
+}

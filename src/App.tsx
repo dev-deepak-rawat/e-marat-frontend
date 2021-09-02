@@ -1,17 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { ToastContainer } from 'react-toastify';
+import { Provider } from 'react-redux';
+import { ThemeProvider } from 'styled-components';
+import { BrowserRouter } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import 'index.less';
+import 'index.css';
+import { store } from 'config/store';
+import ErrorBoundary from 'config/ErrorBoundary';
+import { STYLE_COMPONENT_THEME } from 'lib/constants';
+import MasterLayout from 'features/shared/navigations/MasterLayout';
+import Routes from 'config/Routes';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-      </header>
-    </div>
-  );
+export default function App() {
+	return (
+		<div className="emarat">
+			<Provider store={store}>
+				<ThemeProvider theme={STYLE_COMPONENT_THEME}>
+					<ErrorBoundary>
+						<ToastContainer autoClose={3000} />
+						<div id="recaptcha-container" />
+						<BrowserRouter>
+							<MasterLayout>
+								<Routes />
+							</MasterLayout>
+						</BrowserRouter>
+					</ErrorBoundary>
+				</ThemeProvider>
+			</Provider>
+		</div>
+	);
 }
-
-export default App;
