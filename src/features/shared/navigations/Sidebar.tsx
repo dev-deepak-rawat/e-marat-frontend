@@ -6,7 +6,7 @@ import { menuData } from 'features/shared/navigations/menuData';
 import MenuItem from 'features/shared/navigations/MenuItem';
 import { useAuth } from 'config/hooks';
 import { getDefaultSelectedKeys } from 'features/shared/navigations/menuHelper';
-import logo from 'assets/images/imarat-color-1.svg';
+import { CLOUDINARY_IMAGES } from 'lib/constants';
 
 const { Sider } = Layout;
 
@@ -55,7 +55,11 @@ export default function Sidebar(props: SidebarProps) {
 			{!isMobile && (
 				<Logo onClick={() => onCollapse(!collapsed)}>
 					<Space size="small">
-						<img src={logo} alt="Logo" className="h-12" />
+						<img
+							src={CLOUDINARY_IMAGES.LOGO}
+							alt="Logo"
+							className="h-12"
+						/>
 						{collapsed ? '' : '-MARAT'}
 					</Space>
 				</Logo>

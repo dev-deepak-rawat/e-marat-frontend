@@ -20,16 +20,19 @@ export const useImage = () => {
 			dispatch(setImageError(''));
 			const { file } = info;
 			const { status, response } = file;
-			if (status === 'uploading') {
-				dispatch(setIsImageLoading(true));
-				return;
-			}
-			if (status === 'done' && response) {
-				dispatch(setImageUrl(response.url));
-			}
-			if (status === 'error') {
-				dispatch(setIsImageLoading(false));
-				dispatch(setImageError('Something went wrong!'));
+			switch (status) {
+				case 'uploading': {
+					dispatch(setIsImageLoading(true));
+					return;
+				}
+				case 'done': {
+					if (response) dispatch(setImageUrl(response.url));
+					return;
+				}
+				case 'error': {
+					dispatch(setIsImageLoading(false));
+					dispatch(setImageError('Something went wrong!'));
+				}
 			}
 		};
 

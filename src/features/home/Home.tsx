@@ -14,15 +14,11 @@ import {
 	faHandshake,
 	faSwimmer,
 } from '@fortawesome/free-solid-svg-icons';
-import logoImg from 'features/home/assets/images/logo.svg';
-import apartmentGraphic from 'features/home/assets/images/apartment.svg';
-import apartmentImg from 'features/home/assets/images/society.jpg';
 import TeamMember from 'features/home/components/TeamMember';
 import Feature from 'features/home/components/Feature';
 import LoginForm from 'features/home/components/LoginForm';
-import harisImg from 'features/home/assets/images/haris.jpeg';
-import deepakImg from 'features/home/assets/images/deepak.jpg';
 import { useAuth } from 'config/hooks';
+import { CLOUDINARY_IMAGES } from 'lib/constants';
 
 export default function Home() {
 	const { isLoggedIn, isAdmin } = useAuth();
@@ -43,7 +39,11 @@ export default function Home() {
 				<Container>
 					<nav>
 						<div className="inline-block p-4 bg-gray-100">
-							<img className="w-20" src={logoImg} alt="logo" />
+							<img
+								className="w-20"
+								src={CLOUDINARY_IMAGES.LOGO}
+								alt="logo"
+							/>
 						</div>
 					</nav>
 				</Container>
@@ -61,7 +61,7 @@ export default function Home() {
 											society
 										</HeroText>
 										<img
-											src={apartmentGraphic}
+											src={CLOUDINARY_IMAGES.APARTMENT}
 											className=""
 											alt="society"
 										/>
@@ -124,7 +124,7 @@ export default function Home() {
 						<Row align="middle" className="text-white">
 							<Col md={{ span: 12 }}>
 								<img
-									src={apartmentImg}
+									src={CLOUDINARY_IMAGES.SOCIETY}
 									className="rounded-5xl"
 									alt="apartment"
 								/>
@@ -176,14 +176,14 @@ export default function Home() {
 						<Row justify="space-around">
 							<TeamMember
 								name="Haris Rahman"
-								img={harisImg}
+								img={CLOUDINARY_IMAGES.HARIS}
 								github="#"
 								linkedin="#"
 								twitter="#"
 							/>
 							<TeamMember
 								name="Deepak Rawat"
-								img={deepakImg}
+								img={CLOUDINARY_IMAGES.DEEPAK}
 								github="#"
 								linkedin="#"
 								twitter="#"
