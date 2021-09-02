@@ -41,6 +41,7 @@ type UseApiCall = {
 	reqData?: any;
 	initDataValue: any;
 	appendToUrl?: string;
+	cond?: number;
 };
 
 export const useApiCall = ({
@@ -48,24 +49,26 @@ export const useApiCall = ({
 	reqData,
 	initDataValue,
 	appendToUrl,
+	cond,
 }: UseApiCall) => {
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState(initDataValue);
 
+	const fetchData = async () => {
+		setLoading(true);
+		const response = await apiRequest({
+			apiUrl,
+			data: reqData,
+			appendToUrl,
+		});
+		const { data: resData = initDataValue } = response;
+		setData(resData);
+		setLoading(false);
+	};
+
 	useEffect(() => {
-		const fetchData = async () => {
-			setLoading(true);
-			const response = await apiRequest({
-				apiUrl,
-				data: reqData,
-				appendToUrl,
-			});
-			const { data: resData } = response;
-			setData(resData);
-			setLoading(false);
-		};
 		fetchData();
-	}, []);
+	}, [cond]);
 
 	return { data, loading };
 };

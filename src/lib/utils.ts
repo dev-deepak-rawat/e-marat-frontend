@@ -81,3 +81,16 @@ export const filterUpdateFormValues = (
 	});
 	return newUpdateValues;
 };
+
+export const loadScript = (src: string) =>
+	new Promise((resolve) => {
+		const script = document.createElement('script');
+		script.src = src;
+		document.body.appendChild(script);
+		script.onload = () => {
+			resolve(true);
+		};
+		script.onerror = () => {
+			resolve(false);
+		};
+	});

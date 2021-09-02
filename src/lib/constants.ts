@@ -106,3 +106,35 @@ export const CLOUDINARY_IMG_TRANSFORMATIONS = {
 export const IMAGES_LINKS = {
 	LOGO: 'https://res.cloudinary.com/emarat/image/upload/v1630505506/logo.svg',
 };
+
+export const RAZORPAY_SCRIPT = 'https://checkout.razorpay.com/v1/checkout.js';
+
+export const MONTHS_LONG = [
+	'January',
+	'February',
+	'March',
+	'April',
+	'May',
+	'June',
+	'July',
+	'August',
+	'September',
+	'October',
+	'November',
+	'December',
+];
+
+export const MONTHS_SHORT = [
+	'Jan',
+	'Feb',
+	'Mar',
+	'Apr',
+	'May',
+	'Jun',
+	'Jul',
+	'Aug',
+	'Sep',
+	'Oct',
+	'Nov',
+	'Dec',
+];
