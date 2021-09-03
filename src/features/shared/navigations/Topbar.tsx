@@ -54,7 +54,10 @@ export default function Topbar() {
 	return (
 		// <div className="flex justify-between">
 		// <Title>{title}</Title>
-		<Dropdown overlay={menu} className="absolute top-4 right-6">
+		<Dropdown
+			overlay={menu}
+			className="absolute top-1 right-1 sm:top-4 sm:right-6 sm:z-10 cursor-pointer"
+		>
 			<Space>
 				<Avatar
 					size={45}
