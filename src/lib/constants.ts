@@ -103,10 +103,6 @@ export const CLOUDINARY_IMG_TRANSFORMATIONS = {
 	AVATAR: 'w_50,h_50,c_thumb,g_face,r_max/',
 };
 
-export const IMAGES_LINKS = {
-	LOGO: 'https://res.cloudinary.com/emarat/image/upload/v1630505506/logo.svg',
-};
-
 export const RAZORPAY_SCRIPT = 'https://checkout.razorpay.com/v1/checkout.js';
 
 export const MONTHS_LONG = [
@@ -138,3 +134,12 @@ export const MONTHS_SHORT = [
 	'Nov',
 	'Dec',
 ];
+export const CLOUDINARY_IMAGES = {
+	LOGO: 'https://res.cloudinary.com/emarat/image/upload/v1630505506/logo.svg',
+	HARIS: 'https://res.cloudinary.com/emarat/image/upload/v1630606578/haris_vtcfch.jpg',
+	DEEPAK: 'https://res.cloudinary.com/emarat/image/upload/v1630606542/deepak_bbpokm.jpg',
+	SOCIETY:
+		'https://res.cloudinary.com/emarat/image/upload/v1630606579/society_dxlslg.jpg',
+	APARTMENT:
+		'https://res.cloudinary.com/emarat/image/upload/v1630606579/apartment_limxbz.svg',
+};

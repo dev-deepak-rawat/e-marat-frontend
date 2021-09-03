@@ -6,7 +6,7 @@ import { menuData } from 'features/shared/navigations/menuData';
 import MenuItem from 'features/shared/navigations/MenuItem';
 import { useAuth } from 'config/hooks';
 import { getDefaultSelectedKeys } from 'features/shared/navigations/menuHelper';
-import { IMAGES_LINKS } from 'lib/constants';
+import { CLOUDINARY_IMAGES } from 'lib/constants';
 
 const { Sider } = Layout;
 
@@ -56,7 +56,7 @@ export default function Sidebar(props: SidebarProps) {
 				<Logo onClick={() => onCollapse(!collapsed)}>
 					<Space size="small">
 						<img
-							src={IMAGES_LINKS.LOGO}
+							src={CLOUDINARY_IMAGES.LOGO}
 							alt="Logo"
 							className="h-12"
 						/>
