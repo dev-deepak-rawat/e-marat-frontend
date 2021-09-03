@@ -46,9 +46,9 @@ export default function Sidebar(props: SidebarProps) {
 			theme="dark"
 			zeroWidthTriggerStyle={{
 				top: 0,
-				height: '3rem',
-				right: '-50px',
-				width: 50,
+				height: '2.8rem',
+				right: '-40px',
+				width: 40,
 			}}
 			className="h-screen fixed z-10"
 		>
