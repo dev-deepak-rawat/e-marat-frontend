@@ -55,6 +55,10 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/api/payments/order/',
 		method: 'POST',
 	},
+	dashboardStats: {
+		url: '/api/dashboard/',
+		method: 'GET',
+	},
 };
 
 export const PATTERNS = {
