@@ -3,25 +3,25 @@ import { Method } from 'axios';
 type ApiConfigType = { [key: string]: { url: string; method: Method } };
 
 export const API_CONFIG: ApiConfigType = {
-	users: {
-		url: '/users/',
-		method: 'GET',
-	},
-	postUser: {
-		url: '/users/',
-		method: 'POST',
-	},
-	delUser: {
-		url: '/users/',
-		method: 'DELETE',
-	},
-	putUser: {
-		url: '/users/',
-		method: 'PUT',
-	},
 	login: {
 		url: '/login/',
 		method: 'POST',
+	},
+	users: {
+		url: '/api/users/',
+		method: 'GET',
+	},
+	postUser: {
+		url: '/api/users/',
+		method: 'POST',
+	},
+	delUser: {
+		url: '/api/users/',
+		method: 'DELETE',
+	},
+	putUser: {
+		url: '/api/users/',
+		method: 'PUT',
 	},
 	amenities: {
 		url: '/api/amenities/',
@@ -40,11 +40,11 @@ export const API_CONFIG: ApiConfigType = {
 		method: 'DELETE',
 	},
 	broadcast: {
-		url: '/broadcasts/',
+		url: '/api/broadcasts/',
 		method: 'POST',
 	},
 	announcements: {
-		url: '/broadcasts/',
+		url: '/api/broadcasts/',
 		method: 'GET',
 	},
 	getPayments: {
