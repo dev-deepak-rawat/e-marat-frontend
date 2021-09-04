@@ -43,9 +43,9 @@ export const menuData = [
 		role: ROLES.ADMIN,
 	},
 	{
-		id: 'complaint',
-		link: '/complaint',
-		label: 'Complaint',
+		id: 'complaints',
+		link: '/complaints',
+		label: 'Complaints',
 		icon: GoIssueOpened,
 		role: ROLES.RESIDENT,
 	},
