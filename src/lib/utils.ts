@@ -54,7 +54,7 @@ export const transformCloudinaryImage = (
 export const getPrettyDateDiff = (date: Date): string => {
 	const currDate = new Date();
 	const days = differenceInDays(currDate, date);
-	if (days >= 1) return `${days} days`;
+	if (days >= 1) return `${days} ${days === 1 ? 'day' : 'days'}`;
 	const hours = differenceInHours(currDate, date);
 	if (hours >= 1) return `${hours} hr`;
 	const minutes = differenceInMinutes(currDate, date);
@@ -81,3 +81,16 @@ export const filterUpdateFormValues = (
 	});
 	return newUpdateValues;
 };
+
+export const loadScript = (src: string) =>
+	new Promise((resolve) => {
+		const script = document.createElement('script');
+		script.src = src;
+		document.body.appendChild(script);
+		script.onload = () => {
+			resolve(true);
+		};
+		script.onerror = () => {
+			resolve(false);
+		};
+	});

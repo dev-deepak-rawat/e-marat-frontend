@@ -3,13 +3,12 @@ import styled from 'styled-components';
 
 export default styled.div`
 	${tw`
-		max-w-screen-lg
 		mx-auto
-		mt-8
 		bg-white
 		shadow-lg
-		p-7
+		p-2
 		h-full
+        sm:mt-2
 	`}
 	width: ${(props: { width?: string }) => props.width || ''};
 `;

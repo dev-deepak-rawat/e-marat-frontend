@@ -23,19 +23,3 @@ export const getDefaultSelectedKeys = (filteredMenuData: any) => {
 	}
 	return { defaultOpenKeys, defaultSelectedKeys };
 };
-
-export const getPageTitle = (filteredMenuData: any, urlPathanme?: string) => {
-	const url = getCurrentUrl(urlPathanme);
-
-	for (const filteredMenu of filteredMenuData) {
-		const { options = [], link, label } = filteredMenu;
-		if (options.length) {
-			for (const option of options) {
-				if (option.link === url) {
-					return option.label;
-				}
-			}
-		} else if (link === url) return label;
-	}
-	return '';
-};

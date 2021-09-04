@@ -29,9 +29,9 @@ export default function ManageUsers() {
 		const response = await apiRequest({
 			apiUrl: 'users',
 		});
-
-		if (Array.isArray(response.data)) {
-			setUsers(response.data);
+		const { data } = response;
+		if (Array.isArray(data)) {
+			setUsers(data);
 		}
 		setLoading(false);
 	};

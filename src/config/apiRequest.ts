@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_CONFIG, SERVICE_URL } from 'lib/constants';
-import { getAuthToken } from 'lib/firebaseAuth';
+import { getAuthToken, signOut } from 'lib/firebaseAuth';
 import { GenericObject, StringMapObj } from 'lib/types';
 
 type BuildRequestDataType = {
@@ -18,7 +18,7 @@ const buildRequestData = async (options: BuildRequestDataType) => {
 	const token = await getAuthToken();
 	const reqHeaders = {
 		'Content-Type': 'application/json',
-		Authorizatoin: token ? `Bearer ${token}` : undefined,
+		Authorization: token ? `Bearer ${token}` : undefined,
 		...headers,
 	};
 
@@ -42,14 +42,18 @@ export const apiRequest = async (options: BuildRequestDataType) => {
 		}
 		return jsonResponse;
 	} catch (err) {
-		if (err.response) {
-			const { data = {} } = err.response;
+		const { response: errResponse } = err;
+		if (errResponse) {
+			const { data = {} } = errResponse;
 			const { meta = {} } = data;
-			const { msg = '' } = meta;
+			const { msg = '', code } = meta;
 			toast.error(msg || 'Something Went Wrong');
-			return {};
+			if ([401, 403].includes(code)) {
+				await signOut();
+			}
+			return errResponse;
 		}
 		toast.error('Something went wrong');
 	}
-	return {};
+	return { meta: { success: false } };
 };

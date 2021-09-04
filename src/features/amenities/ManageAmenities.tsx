@@ -1,25 +1,20 @@
 import { useState, useEffect } from 'react';
-import { Button, Modal, Table, Space, Image } from 'antd';
-import {
-	EditFilled,
-	DeleteFilled,
-	ExclamationCircleOutlined,
-} from '@ant-design/icons';
+import { Button, Table, Space, Image } from 'antd';
+import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
-import ContainerCardTitle from 'features/shared/components/styledComponents/ContainerCardTitle';
 import { apiRequest } from 'config/apiRequest';
 import {
 	sortStringByProperty,
 	sortNumberByProperty,
 	sortDateByProperty,
 } from 'lib/utils';
-import { ApiResponse } from 'lib/types';
 import { AmenityType } from 'features/amenities/Types';
 import deleteItem from 'features/shared/components/table/delete';
 import searchColumnProps from 'features/shared/components/table/search';
 import AmenitiesInput from 'features/amenities/AmenitiesInput';
 import placeholderImg from 'assets/images/placeholder.svg';
+import PageTitle from 'features/shared/components/styledComponents/PageTitle';
 
 export default function ManageAmenities() {
 	const [amenities, setAmenities] = useState<AmenityType[]>([]);
@@ -56,10 +51,9 @@ export default function ManageAmenities() {
 
 	return (
 		<>
+			<PageTitle>Manage Amenities</PageTitle>
 			<ContainerCard>
-				<ContainerCardTitle>Manage Amenities</ContainerCardTitle>
-
-				<div className="text-right mb-4 -mt-6">
+				<div className="text-right ">
 					<Button type="primary" onClick={() => editAmenity(null)}>
 						Create
 					</Button>

@@ -27,11 +27,11 @@ class ErrorBoundary extends Component<Props, State> {
 	}
 
 	public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
-		// Sentry.withScope((scope) => {
-		//     scope.setExtra('errorInfo', errorInfo);
-		//     const eventId = Sentry.captureException(error);
-		//     this.setState({ eventId, errorInfo });
-		// });
+		Sentry.withScope((scope) => {
+			scope.setExtra('errorInfo', errorInfo);
+			const eventId = Sentry.captureException(error);
+			this.setState({ eventId, errorInfo });
+		});
 		this.setState({ errorInfo });
 	}
 
@@ -51,13 +51,13 @@ class ErrorBoundary extends Component<Props, State> {
 								}}
 							>
 								Reload this page
-							</button>{' '}
+							</button>
 						</p>
 					</div>
 					<div className="card-body">
 						<details className="error-details">
 							<summary>Click for error details</summary>
-							{errorInfo && errorInfo.componentStack.toString()}
+							{errorInfo?.componentStack.toString()}
 						</details>
 					</div>
 					<button
