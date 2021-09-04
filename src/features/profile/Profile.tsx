@@ -16,7 +16,7 @@ export default function Profile() {
 		appendToUrl: `${uniqueId}`,
 	});
 	return (
-		<ContainerCard width="700px">
+		<ContainerCard size="lg">
 			<ContainerCardTitle>Update Profile</ContainerCardTitle>
 			{loading ? (
 				<div className="text-center">
