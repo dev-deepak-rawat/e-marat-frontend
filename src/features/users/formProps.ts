@@ -91,6 +91,15 @@ const fieldsData: FieldType[] = [
 			},
 		},
 	},
+	{
+		name: 'amenities',
+		type: 'multiselect',
+		prefetch: true,
+		defaultValue: [],
+		options: [],
+		label: 'Amenities',
+		role: ROLES.ADMIN,
+	},
 ];
 
 const meta: FormMetaType = {

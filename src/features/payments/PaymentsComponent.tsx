@@ -1,5 +1,10 @@
 import { Button, Space, Spin } from 'antd';
-import { MONTHS_LONG, MONTHS_SHORT } from 'lib/constants';
+import PieChartComponent from 'features/dashboard/PieChartComponent';
+import {
+	MONTHS_LONG,
+	MONTHS_SHORT,
+	STYLE_COMPONENT_THEME,
+} from 'lib/constants';
 
 type PaymentsComponentType = {
 	loading: boolean;
@@ -10,6 +15,10 @@ type PaymentsComponentType = {
 		isFirstPayment?: boolean;
 		onboardingDate?: number;
 		daysInMonth?: number;
+		amenities: {
+			name: string;
+			fee: number;
+		}[];
 	};
 };
 
@@ -22,10 +31,17 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 		isFirstPayment,
 		onboardingDate,
 		daysInMonth,
+		amenities = [],
 	} = paymentInfo;
 
 	const [month, year] = paymentMonth.split('_');
 	const monthShort = MONTHS_SHORT[+month];
+
+	const pieChartData = amenities.map((amenity) => ({
+		...amenity,
+		value: amenity.fee,
+		color: STYLE_COMPONENT_THEME.colors.emarat.accent,
+	}));
 
 	return loading ? (
 		<Spin />
@@ -51,6 +67,13 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 					{`${onboardingDate} ${monthShort} - ${daysInMonth} ${monthShort}`}
 				</p>
 			)}
+			<div>
+				<PieChartComponent
+					data={pieChartData}
+					title="Subscribed Amenities"
+					uniColor
+				/>
+			</div>
 		</>
 	);
 }

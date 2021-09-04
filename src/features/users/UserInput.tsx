@@ -1,9 +1,10 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
-import { Button, Modal } from 'antd';
+import { Dispatch, SetStateAction } from 'react';
+import { Modal, Spin } from 'antd';
 import createFormProps from 'features/users/formProps';
 import GenericForm from 'features/shared/components/form/GenericForm';
 import { UserType } from 'features/users/Types';
-import { GenericFormDataType } from 'lib/types';
+import { useApiCall } from 'config/hooks';
+import { addPrefetchOptions } from 'features/shared/components/form/genericFormHelper';
 
 export type PropsType = {
 	isVisible: boolean;
@@ -18,6 +19,10 @@ export default function UserInput({
 	edit,
 	submitCallback,
 }: PropsType) {
+	const { data: amenitiesData, loading } = useApiCall({
+		apiUrl: 'amenities',
+		initDataValue: [],
+	});
 	const formSubmitCallback = (data: UserType) => {
 		setIsVisible(false);
 		submitCallback && submitCallback();
@@ -34,6 +39,14 @@ export default function UserInput({
 		? { ...edit, isAdmin: edit.isAdmin ? 'true' : 'false' }
 		: undefined;
 
+	const formDataWithAmenities = addPrefetchOptions({
+		field: 'amenities',
+		form: formData,
+		options: amenitiesData,
+		labelKey: 'name',
+		valueKey: '_id',
+	});
+
 	return (
 		<Modal
 			visible={isVisible}
@@ -43,15 +56,18 @@ export default function UserInput({
 			centered
 		>
 			<h2 className="text-2xl mb-4">Add User</h2>
-			{isVisible && (
-				<GenericForm
-					appendToUrl={edit?._id}
-					updateValues={updateValues || undefined}
-					formData={formData}
-					layout="vertical"
-					submitCallback={formSubmitCallback}
-				/>
-			)}
+			{isVisible &&
+				(loading ? (
+					<Spin />
+				) : (
+					<GenericForm
+						appendToUrl={edit?._id}
+						updateValues={updateValues || undefined}
+						formData={formDataWithAmenities}
+						layout="vertical"
+						submitCallback={formSubmitCallback}
+					/>
+				))}
 		</Modal>
 	);
 }

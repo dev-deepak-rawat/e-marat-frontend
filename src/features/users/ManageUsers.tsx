@@ -3,7 +3,6 @@ import { Button, Image, Table, Space } from 'antd';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
-import ContainerCardTitle from 'features/shared/components/styledComponents/ContainerCardTitle';
 import { apiRequest } from 'config/apiRequest';
 import { sortStringByProperty, sortDateByProperty } from 'lib/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -13,6 +12,7 @@ import searchColumnProps from 'features/shared/components/table/search';
 import deleteItem from 'features/shared/components/table/delete';
 import UserInput from 'features/users/UserInput';
 import userPlaceholderImg from 'assets/images/user-placeholder.svg';
+import PageTitle from 'features/shared/components/styledComponents/PageTitle';
 
 export default function ManageUsers() {
 	const [users, setUsers] = useState<UserType[]>([]);
@@ -46,9 +46,8 @@ export default function ManageUsers() {
 
 	return (
 		<>
+			<PageTitle>Manage Users</PageTitle>
 			<ContainerCard size="xl">
-				<ContainerCardTitle>Manage Users</ContainerCardTitle>
-
 				<div className="text-right mb-4 -mt-6">
 					<Button type="primary" onClick={() => editUser(null)}>
 						Create

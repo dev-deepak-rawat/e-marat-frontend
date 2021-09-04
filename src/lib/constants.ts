@@ -75,6 +75,7 @@ export const FORM_TYPES = {
 	SWITCH: 'switch',
 	NUMBER: 'number',
 	UPLOAD: 'file',
+	MULTISELECT: 'multiselect',
 };
 
 export const ROLES = {

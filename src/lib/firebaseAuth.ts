@@ -10,6 +10,7 @@ import {
 	ConfirmationResult,
 	signInWithCustomToken,
 	signOut as firebaseSignOut,
+	User,
 } from 'firebase/auth';
 import firebaseApp from 'config/firebase';
 import { errorLogger } from 'lib/utils';
@@ -99,7 +100,18 @@ export const confirmOtp = async (
 	}
 };
 
-export const getAuthToken = async () => auth.currentUser?.getIdToken();
+const getCurrentUser = () =>
+	new Promise((resolve, reject) => {
+		const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
+			unsubscribe();
+			resolve(user);
+		}, reject);
+	});
+
+export const getAuthToken = async () => {
+	const authUser = await getCurrentUser();
+	return (authUser as User)?.getIdToken();
+};
 
 export const signIn = async (token: string) => {
 	try {

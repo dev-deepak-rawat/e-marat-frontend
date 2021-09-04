@@ -23,7 +23,8 @@ export type FieldType = {
 		| 'number'
 		| 'file'
 		| 'checkbox'
-		| 'switch';
+		| 'switch'
+		| 'multiselect';
 	defaultValue: any;
 	label: string;
 	validations?: {
@@ -38,6 +39,7 @@ export type FieldType = {
 	addonBefore?: React.ReactNode;
 	addonAfter?: React.ReactNode;
 	readonly?: boolean;
+	prefetch?: boolean;
 };
 
 export type FormMetaType = {
