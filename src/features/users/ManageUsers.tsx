@@ -46,7 +46,7 @@ export default function ManageUsers() {
 
 	return (
 		<>
-			<ContainerCard>
+			<ContainerCard size="xl">
 				<ContainerCardTitle>Manage Users</ContainerCardTitle>
 
 				<div className="text-right mb-4 -mt-6">
