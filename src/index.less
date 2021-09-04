@@ -33,3 +33,31 @@
 		}
 	}
 }
+
+.ant-layout-sider {
+	.ant-layout-sider-children {
+		> div:first-child {
+			height: auto;
+			padding-top: 2rem;
+			padding-bottom: 2rem;
+		}
+
+		ul {
+			.ant-menu-item {
+				margin-top: 1rem;
+				margin-bottom: 1rem;
+
+				.ant-menu-item-icon {
+					min-width: 28px;
+					font-size: 1.8rem;
+				}
+			}
+		}
+
+		@media screen and (max-width: 480px) {
+			> ul:first-child {
+				padding-top: 3rem;
+			}
+		}
+	}
+}

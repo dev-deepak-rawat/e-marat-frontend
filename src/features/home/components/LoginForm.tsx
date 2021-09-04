@@ -23,11 +23,13 @@ export default function LoginForm() {
 	};
 
 	const handleAuthorization = async (response: ApiResponse) => {
+		if (!response || !response.data) return;
 		const { meta } = response;
 		const { success: apiSuccess } = meta;
 		if (apiSuccess) {
 			const { data } = response;
 			const { authorizationToken = '' } = data || {};
+
 			const success = await signIn(authorizationToken);
 			if (!success) {
 				toast.error('Error while Loggin In');
