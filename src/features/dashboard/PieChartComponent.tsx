@@ -1,6 +1,7 @@
 import { Space } from 'antd';
 import { PieChart, Pie, Cell } from 'recharts';
 import { ColoredBox } from 'features/shared/components/styledComponents/ColoredBox';
+import { useOrientation } from 'config/hooks';
 
 type PieChartComponentProps = {
 	data: {
@@ -17,14 +18,15 @@ export default function PieChartComponent({
 	innerContent,
 	title,
 }: PieChartComponentProps) {
+	const { isMobile } = useOrientation();
 	return (
-		<div className="">
-			<p>{title}</p>
-			<PieChart width={350} height={220}>
+		<div className="border-t-2 pt-1 sm:border-t-0 sm:w-1/2 sm:mb-6 sm:ml-4">
+			<p className="sm:mt-5 sm:ml-4">{title}</p>
+			<PieChart width={isMobile ? 350 : 400} height={220}>
 				{innerContent && (
 					<text
-						x={125}
-						y={130}
+						x={isMobile ? 145 : 200}
+						y={120}
 						textAnchor="middle"
 						dominantBaseline="middle"
 					>
@@ -33,16 +35,21 @@ export default function PieChartComponent({
 				)}
 				<Pie
 					data={data}
-					cx={120}
-					cy={120}
+					cx={isMobile ? 145 : 200}
+					cy={110}
 					innerRadius={50}
 					outerRadius={70}
 					paddingAngle={2}
 					dataKey="value"
 					nameKey="name"
 					isAnimationActive={false}
-					label={(entry) => `${(entry.percent * 100).toFixed(0)}%`}
-					// label={(entry) => `${entry.name} ${(entry.percent * 100).toFixed(0)}%`}
+					label={(entry) =>
+						isMobile
+							? `${(entry.percent * 100).toFixed(0)}%`
+							: `${entry.name} ${(entry.percent * 100).toFixed(
+									0
+							  )}%`
+					}
 				>
 					{data.map((entry) => (
 						<Cell key={entry.name} fill={entry.color} />

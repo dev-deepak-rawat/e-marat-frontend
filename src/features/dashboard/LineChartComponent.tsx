@@ -1,3 +1,4 @@
+import { useOrientation } from 'config/hooks';
 import {
 	LineChart,
 	Line,
@@ -8,75 +9,46 @@ import {
 	Legend,
 } from 'recharts';
 
-const data = [
-	{
-		name: 'Aug',
-		Rejected: 2,
-		Pending: 40,
-		Resolved: 24,
-		'In Progress': 100,
-	},
-	{
-		name: 'Jul',
-		Rejected: 43,
-		Pending: 51,
-		Resolved: 11,
-		'In Progress': 53,
-	},
-	{
-		name: 'Jun',
-		Rejected: 12,
-		Pending: 53,
-		Resolved: 23,
-		'In Progress': 11,
-	},
-	{
-		name: 'May',
-		Rejected: 1,
-		Pending: 44,
-		Resolved: 21,
-		'In Progress': 32,
-	},
-	{
-		name: 'Apr',
-		Rejected: 2,
-		Pending: 1,
-		Resolved: 53,
-		'In Progress': 21,
-	},
-	{
-		name: 'Mar',
-		Rejected: 12,
-		Pending: 32,
-		Resolved: 69,
-		'In Progress': 77,
-	},
-];
+type LineChartComponentProps = {
+	complaintMetas: {
+		monthName: string;
+		raised: number;
+		progress: number;
+		resolved: number;
+		rejected: number;
+	}[];
+};
 
-export default function LineChartComponent() {
+export default function LineChartComponent(props: LineChartComponentProps) {
+	const { isMobile } = useOrientation();
+	const { complaintMetas } = props;
+	const slicedComplaintMetas = complaintMetas.slice(0, isMobile ? 6 : 8);
 	return (
-		<div>
-			<p className="pl-2 my-2">Last 6 months Complaints</p>
+		<div className="mt-4 border-t-2 sm:border-t-0 sm:w-1/2">
+			<p className="pl-2 my-2 sm:mb-4">
+				Last {isMobile ? 6 : 8} months Complaints
+			</p>
 			<LineChart
-				width={280}
-				height={200}
-				data={data}
+				width={isMobile ? 300 : 420}
+				height={isMobile ? 200 : 230}
+				data={slicedComplaintMetas}
 				className="ml-0 pl-0"
 			>
 				<CartesianGrid strokeDasharray="3 3" />
-				<XAxis dataKey="name" />
+				<XAxis dataKey="monthName" />
 				<YAxis />
 				<Tooltip />
 				<Legend />
 				<Line
 					type="monotone"
-					dataKey="Resolved"
+					dataKey="resolved"
 					stroke="#00C49F"
+					aria-label="Resolved"
 					activeDot={{ r: 8 }}
 				/>
-				<Line type="monotone" dataKey="Pending" stroke="#FFBB28" />
-				<Line type="monotone" dataKey="Rejected" stroke="#FF8042" />
-				<Line type="monotone" dataKey="In Progress" stroke="#0088FE" />
+				<Line type="monotone" dataKey="raised" stroke="#FFBB28" />
+				<Line type="monotone" dataKey="rejected" stroke="#FF8042" />
+				<Line type="monotone" dataKey="progress" stroke="#0088FE" />
 			</LineChart>
 		</div>
 	);

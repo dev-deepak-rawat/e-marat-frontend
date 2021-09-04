@@ -1,64 +1,40 @@
-import ContainerCardTitle from 'features/shared/components/styledComponents/ContainerCardTitle';
+import { useApiCall } from 'config/hooks';
+import PageTitle from 'features/shared/components/styledComponents/PageTitle';
 import BarChartComponent from './BarChartComponent';
 import LineChartComponent from './LineChartComponent';
 import PieChartComponent from './PieChartComponent';
 
-const complaintMetas = [
-	{ name: 'Ongoing', value: 800, color: '#0088FE' },
-	{ name: 'Pending', value: 300, color: '#FFBB28' },
-	{ name: 'Resolved', value: 300, color: '#00C49F' },
-	{ name: 'Rejected', value: 200, color: '#FF8042' },
-];
-
-const totalComplaints = complaintMetas.reduce(
-	(total, complaint) => total + complaint.value,
-	0
-);
-const pieInnerContent = `Total ${totalComplaints}`;
-
-const amenitiesMetas = [
-	{
-		name: 'Gym',
-		value: 100,
-	},
-	{
-		name: 'Wifi',
-		value: 50,
-	},
-	{
-		name: 'Parking',
-		value: 20,
-	},
-	{
-		name: 'Laundry',
-		value: 105,
-	},
-	{
-		name: 'Theatre',
-		value: 10,
-	},
-	{
-		name: 'Yoga',
-		value: 60,
-	},
-];
-
 export default function Dashboard() {
+	const { data } = useApiCall({
+		apiUrl: 'dashboardStats',
+		initDataValue: {},
+	});
+	const { complaints = {}, amenities = [] } = data;
+	const { count = {}, byMonth = [] } = complaints;
+	const { progress, raised, rejected, resolved } = count;
+
+	const complaintMetas = [
+		{ name: 'Ongoing', value: progress, color: '#0088FE' },
+		{ name: 'Pending', value: raised, color: '#FFBB28' },
+		{ name: 'Resolved', value: resolved, color: '#00C49F' },
+		{ name: 'Rejected', value: rejected, color: '#FF8042' },
+	];
+
+	const totalComplaints = progress + raised + rejected + resolved;
+	const pieInnerContent = `Total ${totalComplaints}`;
+
 	return (
 		<>
-			<div className="bg-white pt-2 mt-8 px-2 w-screen">
+			<PageTitle>Dashboard</PageTitle>
+			<div className="bg-white pt-1 px-2 sm:flex sm:mt-2">
 				<PieChartComponent
 					data={complaintMetas}
 					innerContent={pieInnerContent}
 					title="Overall Complaints Status"
 				/>
+				<LineChartComponent complaintMetas={byMonth} />
 			</div>
-			<div className="bg-white pt-2 mt-4 pl-0 w-screen">
-				<LineChartComponent />
-			</div>
-			<div className="bg-white pt-2 mt-4 pl-0 w-screen">
-				<BarChartComponent data={amenitiesMetas} color="#F5A962" />
-			</div>
+			<BarChartComponent data={amenities} color="#F5A962" />
 		</>
 	);
 }
