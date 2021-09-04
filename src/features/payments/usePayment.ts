@@ -2,7 +2,7 @@
 
 import { toast } from 'react-toastify';
 import { useApiCall, useAuth } from 'config/hooks';
-import { IMAGES_LINKS, RAZORPAY_SCRIPT } from 'lib/constants';
+import { CLOUDINARY_IMAGES, RAZORPAY_SCRIPT } from 'lib/constants';
 import { useState } from 'react';
 import { apiRequest } from 'config/apiRequest';
 import { loadScript } from 'lib/utils';
@@ -38,7 +38,7 @@ export const usePayment = () => {
 				key: process.env.REACT_APP_RAZORPAY_KEY_ID,
 				name: 'E-marat',
 				description: 'User monthly maintenance Fees',
-				image: IMAGES_LINKS.LOGO,
+				image: CLOUDINARY_IMAGES.LOGO,
 				order_id: id,
 				handler: (respone: any) => handlePayment(respone),
 				prefill: {
