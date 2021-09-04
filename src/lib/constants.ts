@@ -48,11 +48,11 @@ export const API_CONFIG: ApiConfigType = {
 		method: 'GET',
 	},
 	getPayments: {
-		url: '/payments/',
+		url: '/api/payments/',
 		method: 'GET',
 	},
 	pay: {
-		url: '/payments/order/',
+		url: '/api/payments/order/',
 		method: 'POST',
 	},
 };

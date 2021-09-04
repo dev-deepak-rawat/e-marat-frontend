@@ -1,7 +1,8 @@
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
 import PaymentSuccess from 'features/payments/PaymentSuccess';
 import PaymentsComponent from 'features/payments/PaymentsComponent';
-import { usePayment } from './usePayment';
+import PageTitle from 'features/shared/components/styledComponents/PageTitle';
+import { usePayment } from 'features/payments/usePayment';
 
 export default function MyPayments() {
 	const {
@@ -14,7 +15,7 @@ export default function MyPayments() {
 
 	return (
 		<>
-			<div className="text-lg uppercase mx-0 px-0">My Payments</div>
+			<PageTitle>My Payments</PageTitle>
 			<ContainerCard>
 				{orderId ? (
 					<PaymentSuccess {...{ handleSuccessClick, orderId }} />

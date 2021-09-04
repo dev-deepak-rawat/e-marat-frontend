@@ -44,13 +44,8 @@ type UseApiCall = {
 	cond?: number;
 };
 
-export const useApiCall = ({
-	apiUrl,
-	reqData,
-	initDataValue,
-	appendToUrl,
-	cond,
-}: UseApiCall) => {
+export const useApiCall = (props: UseApiCall) => {
+	const { apiUrl, reqData, initDataValue, appendToUrl, cond } = props;
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState(initDataValue);
 

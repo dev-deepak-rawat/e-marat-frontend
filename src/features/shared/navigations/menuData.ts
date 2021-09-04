@@ -1,4 +1,4 @@
-import { FaUserEdit, FaUserPlus } from 'react-icons/fa';
+import { FaUserEdit } from 'react-icons/fa';
 import { AiFillDashboard } from 'react-icons/ai';
 import { HiUsers, HiCurrencyRupee } from 'react-icons/hi';
 import { CgGym } from 'react-icons/cg';
