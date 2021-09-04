@@ -3,6 +3,7 @@ import ProtectedRoute from 'config/ProtectedRoute';
 import ManageUsers from 'features/users/ManageUsers';
 import Home from 'features/home/Home';
 import ManageAmenities from 'features/amenities/ManageAmenities';
+import MyAmenities from 'features/amenities/MyAmenities';
 import MyPayments from 'features/payments/MyPayments';
 import Dashboard from 'features/dashboard/Dashboard';
 import SocialFeed from 'features/socialFeed/SocialFeed';
@@ -13,8 +14,13 @@ import PageNotFound from 'features/errorPages/404';
 import { ROLES } from 'lib/constants';
 import Profile from 'features/profile/Profile';
 import Announcements from 'features/announcements/Announcements';
+import { useAuth } from 'config/hooks';
 
 export default function Routes() {
+	const { isAdmin } = useAuth();
+
+	console.log(isAdmin);
+
 	return (
 		<Switch>
 			<Route path="/" exact>
@@ -53,15 +59,15 @@ export default function Routes() {
 				exact
 			/>
 			<ProtectedRoute
-				path="/create-amenity"
-				role={ROLES.ADMIN}
-				component={ManageAmenities}
-				exact
-			/>
-			<ProtectedRoute
 				path="/manage-complaints"
 				role={ROLES.ADMIN}
 				component={ManageComplaints}
+				exact
+			/>
+			<ProtectedRoute
+				path="/complaints"
+				role={ROLES.USER}
+				component={isAdmin ? ManageAmenities : MyAmenities}
 				exact
 			/>
 			<ProtectedRoute

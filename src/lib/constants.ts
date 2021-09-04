@@ -74,6 +74,7 @@ export const FORM_TYPES = {
 };
 
 export const ROLES = {
+	USER: 'user',
 	ADMIN: 'admin',
 	RESIDENT: 'resident',
 };
