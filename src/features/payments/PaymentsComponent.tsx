@@ -3,6 +3,7 @@ import placeholderImg from 'assets/images/placeholder.svg';
 import { useOrientation } from 'config/hooks';
 import PieChartComponent from 'features/dashboard/PieChartComponent';
 import { COLOR_CODES, MONTHS_LONG, MONTHS_SHORT } from 'lib/constants';
+import { transformCloudinaryImage } from 'lib/utils';
 
 type PaymentsComponentType = {
 	loading: boolean;
@@ -80,11 +81,15 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 							<div key={_id} className="w-3/4 my-4">
 								<div className="flex justify-between">
 									<Image
-										className="rounded-full"
 										width={35}
 										height={35}
 										preview={false}
-										src={icon || placeholderImg}
+										src={
+											transformCloudinaryImage(
+												icon,
+												'WIDTH_50'
+											) || placeholderImg
+										}
 										fallback={placeholderImg}
 									/>
 									<span className="capitalize">{name}</span>

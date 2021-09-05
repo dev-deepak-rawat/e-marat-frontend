@@ -59,6 +59,10 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/api/dashboard/',
 		method: 'GET',
 	},
+	transactions: {
+		url: '/api/transactions/',
+		method: 'GET',
+	},
 };
 
 export const PATTERNS = {
@@ -107,6 +111,7 @@ export const CLOUDINARY_IMG_SPLITTER = 'upload/';
 export const CLOUDINARY_IMG_TRANSFORMATIONS = {
 	WIDTH_600: 'w_600/',
 	AVATAR: 'w_50,h_50,c_thumb,g_face,r_max/',
+	WIDTH_50: 'w_50/',
 };
 
 export const RAZORPAY_SCRIPT = 'https://checkout.razorpay.com/v1/checkout.js';
@@ -166,3 +171,11 @@ export const COLOR_CODES = [
 	'#D65076',
 	'#45B8AC',
 ];
+
+export const STATUS_COLOR_MAPPER = {
+	success: 'text-green-500',
+	failed: 'text-red-500',
+	pending: 'text-yellow-500',
+};
+
+export const DATE_FORMAT = 'DD MMM h:mm:ss A';
