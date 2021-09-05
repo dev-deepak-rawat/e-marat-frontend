@@ -23,7 +23,6 @@ export default function ManageAmenities() {
 		null
 	);
 	const [loading, setLoading] = useState<boolean>(true);
-	useState<boolean>(false);
 	const [amenitiesInputVisible, setAmenitiesInputVisible] =
 		useState<boolean>(false);
 

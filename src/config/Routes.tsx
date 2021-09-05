@@ -8,6 +8,7 @@ import MyPayments from 'features/payments/MyPayments';
 import Dashboard from 'features/dashboard/Dashboard';
 import SocialFeed from 'features/socialFeed/SocialFeed';
 import ManageComplaints from 'features/complaints/ManageComplaints';
+import MyComplaints from 'features/complaints/MyComplaints';
 import Transactions from 'features/payments/Transactions';
 import Broadcasts from 'features/broadcasts/Broadcasts';
 import PageNotFound from 'features/errorPages/404';
@@ -35,7 +36,7 @@ export default function Routes() {
 			/>
 			<ProtectedRoute
 				path="/amenities"
-				component={ManageAmenities}
+				component={isAdmin ? ManageAmenities : MyAmenities}
 				exact
 			/>
 			<ProtectedRoute
@@ -57,15 +58,9 @@ export default function Routes() {
 				exact
 			/>
 			<ProtectedRoute
-				path="/manage-complaints"
-				role={ROLES.ADMIN}
-				component={ManageComplaints}
-				exact
-			/>
-			<ProtectedRoute
 				path="/complaints"
-				role={ROLES.USER}
-				component={isAdmin ? ManageAmenities : MyAmenities}
+				role=""
+				component={isAdmin ? ManageComplaints : MyComplaints}
 				exact
 			/>
 			<ProtectedRoute

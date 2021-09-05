@@ -39,6 +39,22 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/api/amenities/',
 		method: 'DELETE',
 	},
+	complaints: {
+		url: '/api/complaints/',
+		method: 'GET',
+	},
+	postComplaints: {
+		url: '/api/complaints/',
+		method: 'POST',
+	},
+	putComplaint: {
+		url: '/api/complaints/',
+		method: 'PUT',
+	},
+	delComplaint: {
+		url: '/api/complaints/',
+		method: 'DELETE',
+	},
 	broadcast: {
 		url: '/api/broadcasts/',
 		method: 'POST',
@@ -83,7 +99,6 @@ export const FORM_TYPES = {
 };
 
 export const ROLES = {
-	USER: 'user',
 	ADMIN: 'admin',
 	RESIDENT: 'resident',
 };
