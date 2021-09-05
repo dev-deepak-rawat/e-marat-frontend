@@ -9,11 +9,16 @@ import { CLOUDINARY_IMAGES } from 'lib/constants';
 
 const { Text } = Typography;
 
-const menu = (
+const getMenu = (isAdmin: boolean) => (
 	<Menu>
 		<Menu.Item>
 			<Link to="/profile">My Profile</Link>
 		</Menu.Item>
+		{!isAdmin && (
+			<Menu.Item>
+				<Link to="/payments">My Amenities</Link>
+			</Menu.Item>
+		)}
 		<Menu.Item>
 			<button type="button" onClick={() => signOut()}>
 				Signout
@@ -24,7 +29,7 @@ const menu = (
 
 export default function Topbar() {
 	const { isMobile } = useOrientation();
-	const { userInfo } = useAuth();
+	const { userInfo, isAdmin } = useAuth();
 	const { claims = {} } = userInfo || {};
 	const { firstName = '', picture } = claims;
 
@@ -43,7 +48,7 @@ export default function Topbar() {
 				</Space>
 			)}
 			<Dropdown
-				overlay={menu}
+				overlay={getMenu(isAdmin)}
 				className="absolute top-1.5 right-2 sm:top-2.5 sm:right-4"
 			>
 				<Space>

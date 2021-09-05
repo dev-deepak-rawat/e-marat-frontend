@@ -149,3 +149,20 @@ export const CLOUDINARY_IMAGES = {
 	APARTMENT:
 		'https://res.cloudinary.com/emarat/image/upload/v1630606579/apartment_limxbz.svg',
 };
+
+export const COLOR_CODES = [
+	'#34568B',
+	'#FF6F61',
+	'#88B04B',
+	'#6B5B95',
+	'#009B77',
+	'#EFC050',
+	'#B565A7',
+	'#F7CAC9',
+	'#9B2335',
+	'#92A8D1',
+	'#955251',
+	'#DD4124',
+	'#D65076',
+	'#45B8AC',
+];

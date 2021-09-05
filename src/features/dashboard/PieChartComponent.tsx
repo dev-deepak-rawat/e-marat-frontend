@@ -11,14 +11,14 @@ type PieChartComponentProps = {
 	}[];
 	innerContent?: string;
 	title: string;
-	uniColor?: boolean;
+	isPayment?: boolean;
 };
 
 export default function PieChartComponent({
 	data,
 	innerContent,
 	title,
-	uniColor = false,
+	isPayment = false,
 }: PieChartComponentProps) {
 	const { isMobile } = useOrientation();
 	return (
@@ -46,7 +46,7 @@ export default function PieChartComponent({
 					nameKey="name"
 					isAnimationActive={false}
 					label={(entry) =>
-						isMobile && !uniColor
+						isMobile
 							? `${(entry.percent * 100).toFixed(0)}%`
 							: `${entry.name} ${(entry.percent * 100).toFixed(
 									0
@@ -58,25 +58,23 @@ export default function PieChartComponent({
 					))}
 				</Pie>
 			</PieChart>
-			<div className="flex flex-wrap">
-				{data.map((dataItem) => {
-					const { name, value, color } = dataItem;
-					return (
-						<Space key={name} className="mx-4">
-							{uniColor ? (
-								<span>{`${name} ${value}`}</span>
-							) : (
+			{!isPayment && (
+				<div className="flex flex-wrap">
+					{data.map((dataItem) => {
+						const { name, value, color } = dataItem;
+						return (
+							<Space key={name} className="mx-4">
 								<>
 									<ColoredBox color={color} />
 									<span
 										style={{ color }}
 									>{`${name} ${value}`}</span>
 								</>
-							)}
-						</Space>
-					);
-				})}
-			</div>
+							</Space>
+						);
+					})}
+				</div>
+			)}
 		</div>
 	);
 }

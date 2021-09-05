@@ -19,8 +19,6 @@ import { useAuth } from 'config/hooks';
 export default function Routes() {
 	const { isAdmin } = useAuth();
 
-	console.log(isAdmin);
-
 	return (
 		<Switch>
 			<Route path="/" exact>

@@ -52,18 +52,16 @@ export default function Sidebar(props: SidebarProps) {
 			}}
 			className="h-screen fixed z-10"
 		>
-			{!isMobile && (
-				<Logo onClick={() => onCollapse(!collapsed)}>
-					<Space size="small">
-						<img
-							src={CLOUDINARY_IMAGES.LOGO}
-							alt="Logo"
-							className="h-12"
-						/>
-						{collapsed ? '' : '-MARAT'}
-					</Space>
-				</Logo>
-			)}
+			<Logo onClick={() => onCollapse(!collapsed)}>
+				<Space size="small">
+					<img
+						src={CLOUDINARY_IMAGES.LOGO}
+						alt="Logo"
+						className="h-12"
+					/>
+					{collapsed ? '' : '-MARAT'}
+				</Space>
+			</Logo>
 			<Menu
 				theme="dark"
 				defaultSelectedKeys={defaultSelectedKeys}
