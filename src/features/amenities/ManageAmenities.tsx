@@ -8,6 +8,7 @@ import {
 	sortStringByProperty,
 	sortNumberByProperty,
 	sortDateByProperty,
+	transformCloudinaryImage,
 } from 'lib/utils';
 import { AmenityType } from 'features/amenities/Types';
 import deleteItem from 'features/shared/components/table/delete';
@@ -92,11 +93,15 @@ export default function ManageAmenities() {
 						sorter={false}
 						render={(icon) => (
 							<Image
-								className="rounded-full"
 								width={40}
 								height={40}
 								preview={false}
-								src={icon || placeholderImg}
+								src={
+									transformCloudinaryImage(
+										icon,
+										'WIDTH_50'
+									) || placeholderImg
+								}
 								fallback={placeholderImg}
 							/>
 						)}
