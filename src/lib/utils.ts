@@ -27,7 +27,11 @@ export const stripNonNumbers = (val: string) =>
 	val.length > 0 ? val.replace(/[^0-9]+/g, '') : val;
 
 export function sortStringByProperty<T extends GenericObject>(prop: keyof T) {
-	return (a: T, b: T) => a[prop].localeCompare(b[prop]);
+	return (a: T, b: T) => {
+		if (!a[prop]) return 0;
+		if (!b[prop]) return 1;
+		return a[prop].localeCompare(b[prop]);
+	};
 }
 
 export function sortNumberByProperty<T extends GenericObject>(prop: keyof T) {

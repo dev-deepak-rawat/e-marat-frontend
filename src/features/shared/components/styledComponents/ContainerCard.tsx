@@ -15,7 +15,6 @@ const containerSizeVariants: Record<ContainerSizeVariant, TwStyle> = {
 
 export default styled.div<ContainerProps>(() => [
 	tw`
-		max-w-screen-lg	
 		mx-auto
 		bg-white
 		shadow-lg

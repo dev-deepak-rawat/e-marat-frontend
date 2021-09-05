@@ -36,18 +36,11 @@ export const menuData = [
 		role: '',
 	},
 	{
-		id: 'manageComplaints',
-		link: '/manage-complaints',
-		label: 'Complaints',
-		icon: GoIssueOpened,
-		role: ROLES.ADMIN,
-	},
-	{
 		id: 'complaints',
 		link: '/complaints',
 		label: 'Complaints',
 		icon: GoIssueOpened,
-		role: ROLES.RESIDENT,
+		role: '',
 	},
 	{
 		id: 'broadcasts',
