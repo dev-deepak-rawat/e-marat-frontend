@@ -21,7 +21,7 @@ export default styled.div<ContainerProps>(() => [
 		py-5
 		px-8
 		h-full
-		sm:mt-6
+		mt-6
 	`,
 	({ size = 'lg' }) => containerSizeVariants[size],
 ]);
