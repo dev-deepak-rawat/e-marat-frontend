@@ -35,6 +35,18 @@ export default function Topbar() {
 
 	return (
 		<>
+			{isMobile && (
+				<Space size="small" className="absolute top-2 right-40">
+					<img
+						src={CLOUDINARY_IMAGES.LOGO}
+						alt="logo"
+						className="h-8"
+					/>
+					<span className=" text-emarat-secondary-default">
+						MARAT
+					</span>
+				</Space>
+			)}
 			<Dropdown
 				overlay={getMenu(isAdmin)}
 				className="absolute top-1.5 right-2 sm:top-2.5 sm:right-4"
