@@ -2,7 +2,6 @@ import { Space } from 'antd';
 import { PieChart, Pie, Cell } from 'recharts';
 import { ColoredBox } from 'features/shared/components/styledComponents/ColoredBox';
 import { useOrientation } from 'config/hooks';
-import Card from 'features/shared/components/styledComponents/Card';
 
 type PieChartComponentProps = {
 	data: {
