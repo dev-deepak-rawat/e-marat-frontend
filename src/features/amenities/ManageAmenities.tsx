@@ -16,6 +16,7 @@ import searchColumnProps from 'features/shared/components/table/search';
 import AmenitiesInput from 'features/amenities/AmenitiesInput';
 import placeholderImg from 'assets/images/placeholder.svg';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
+import { DATE_TIME_FORMAT } from 'lib/constants';
 
 export default function ManageAmenities() {
 	const [amenities, setAmenities] = useState<AmenityType[]>([]);
@@ -110,7 +111,7 @@ export default function ManageAmenities() {
 						dataIndex="createdAt"
 						sorter={sortDateByProperty<AmenityType>('createdAt')}
 						render={(createdAt) =>
-							dayjs(createdAt).format('DD MMM h:mm:ss A')
+							dayjs(createdAt).format(DATE_TIME_FORMAT)
 						}
 					/>
 					<Table.Column<AmenityType>

@@ -24,15 +24,16 @@ export default function LineChartComponent(props: LineChartComponentProps) {
 	const { complaintMetas } = props;
 	const slicedComplaintMetas = complaintMetas.slice(0, isMobile ? 6 : 8);
 	return (
-		<div className="mt-4 border-t-2 sm:border-t-0 sm:w-1/2">
-			<p className="pl-2 my-2 sm:mb-4">
+		<>
+			<p className="text-3xl">
 				Last {isMobile ? 6 : 8} months Complaints
 			</p>
+
 			<LineChart
 				width={isMobile ? 300 : 420}
 				height={isMobile ? 200 : 230}
 				data={slicedComplaintMetas}
-				className="ml-0 pl-0"
+				className="ml-0 pl-0 mt-8"
 			>
 				<CartesianGrid strokeDasharray="3 3" />
 				<XAxis dataKey="monthName" />
@@ -50,6 +51,6 @@ export default function LineChartComponent(props: LineChartComponentProps) {
 				<Line type="monotone" dataKey="rejected" stroke="#FF8042" />
 				<Line type="monotone" dataKey="progress" stroke="#0088FE" />
 			</LineChart>
-		</div>
+		</>
 	);
 }
