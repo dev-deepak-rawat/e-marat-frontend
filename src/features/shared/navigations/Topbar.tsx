@@ -3,8 +3,9 @@ import { AiOutlineUser } from 'react-icons/ai';
 import { FaChevronDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { signOut } from 'lib/firebaseAuth';
-import { useAuth } from 'config/hooks';
+import { useAuth, useOrientation } from 'config/hooks';
 import { transformCloudinaryImage } from 'lib/utils';
+import { CLOUDINARY_IMAGES } from 'lib/constants';
 
 const { Text } = Typography;
 
@@ -27,6 +28,7 @@ const getMenu = (isAdmin: boolean) => (
 );
 
 export default function Topbar() {
+	const { isMobile } = useOrientation();
 	const { userInfo, isAdmin } = useAuth();
 	const { claims = {} } = userInfo || {};
 	const { firstName = '', picture } = claims;
