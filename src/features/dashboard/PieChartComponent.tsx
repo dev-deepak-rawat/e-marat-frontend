@@ -2,7 +2,6 @@ import { Space } from 'antd';
 import { PieChart, Pie, Cell } from 'recharts';
 import { ColoredBox } from 'features/shared/components/styledComponents/ColoredBox';
 import { useOrientation } from 'config/hooks';
-import Card from 'features/shared/components/styledComponents/Card';
 
 type PieChartComponentProps = {
 	data: {
@@ -47,11 +46,11 @@ export default function PieChartComponent({
 					nameKey="name"
 					isAnimationActive={false}
 					label={(entry) =>
-						isMobile
-							? `${(entry.percent * 100).toFixed(0)}%`
-							: `${entry.name} ${(entry.percent * 100).toFixed(
+						isPayment
+							? `${entry.name} ${(entry.percent * 100).toFixed(
 									0
 							  )}%`
+							: `${(entry.percent * 100).toFixed(0)}%`
 					}
 				>
 					{data.map((entry) => (

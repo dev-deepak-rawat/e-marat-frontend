@@ -31,15 +31,13 @@ export default function LineChartComponent(props: LineChartComponentProps) {
 
 			<LineChart
 				width={isMobile ? 300 : 420}
-				height={isMobile ? 200 : 230}
+				height={isMobile ? 200 : 210}
 				data={slicedComplaintMetas}
 				className="ml-0 pl-0 mt-8"
 			>
 				<CartesianGrid strokeDasharray="3 3" />
 				<XAxis dataKey="monthName" />
 				<YAxis />
-				<Tooltip />
-				<Legend />
 				<Line
 					type="monotone"
 					dataKey="resolved"
@@ -50,6 +48,8 @@ export default function LineChartComponent(props: LineChartComponentProps) {
 				<Line type="monotone" dataKey="raised" stroke="#FFBB28" />
 				<Line type="monotone" dataKey="rejected" stroke="#FF8042" />
 				<Line type="monotone" dataKey="progress" stroke="#0088FE" />
+				<Tooltip />
+				<Legend wrapperStyle={{ position: 'relative' }} />
 			</LineChart>
 		</>
 	);
