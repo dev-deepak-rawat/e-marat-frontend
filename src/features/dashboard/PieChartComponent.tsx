@@ -23,7 +23,7 @@ export default function PieChartComponent({
 	const { isMobile } = useOrientation();
 	return (
 		<>
-			<p className="text-3xl">{title}</p>
+			<p className="text-xl">{title}</p>
 			<PieChart width={isMobile ? 350 : 400} height={220}>
 				{innerContent && (
 					<text

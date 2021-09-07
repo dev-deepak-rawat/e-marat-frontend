@@ -18,7 +18,7 @@ export default function BarChartComponent({
 	const width = Math.max(data.length * 60, 600);
 	return (
 		<>
-			<p className="text-3xl">Most Availed Amenities</p>
+			<p className="text-xl">Most Availed Amenities</p>
 			<BarChart
 				width={isMobile ? 320 : width}
 				height={isMobile ? 200 : 250}

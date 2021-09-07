@@ -25,9 +25,7 @@ export default function LineChartComponent(props: LineChartComponentProps) {
 	const slicedComplaintMetas = complaintMetas.slice(0, isMobile ? 6 : 8);
 	return (
 		<>
-			<p className="text-3xl">
-				Last {isMobile ? 6 : 8} months Complaints
-			</p>
+			<p className="text-xl">Last {isMobile ? 6 : 8} months Complaints</p>
 
 			<LineChart
 				width={isMobile ? 300 : 420}
