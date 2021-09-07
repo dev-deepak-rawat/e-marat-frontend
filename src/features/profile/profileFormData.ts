@@ -85,7 +85,7 @@ const fieldsData: FieldType[] = [
 
 const meta: FormMetaType = {
 	submitLabel: 'update',
-	apiUrl: 'updateUser',
+	apiUrl: 'updateCurrentUserProfile',
 	imageField: 'picture',
 };
 

@@ -17,7 +17,7 @@ export default function MyAmenities() {
 	});
 
 	const { loading: loadingUserAmenities, data: userAmenities } = useApiCall({
-		apiUrl: 'userAmenities',
+		apiUrl: 'currentUserAmenities',
 		initDataValue: [],
 	});
 

@@ -15,7 +15,7 @@ const getMenu = (isAdmin: boolean) => (
 		</Menu.Item>
 		{!isAdmin && (
 			<Menu.Item>
-				<Link to="/payments">My Amenities</Link>
+				<Link to="/amenities">My Amenities</Link>
 			</Menu.Item>
 		)}
 		<Menu.Item>
