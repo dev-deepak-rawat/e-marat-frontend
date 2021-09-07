@@ -23,6 +23,10 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/api/users/',
 		method: 'PUT',
 	},
+	userAmenities: {
+		url: '/api/users/current/amenities',
+		method: 'GET',
+	},
 	amenities: {
 		url: '/api/amenities/',
 		method: 'GET',
