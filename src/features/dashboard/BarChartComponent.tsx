@@ -16,9 +16,8 @@ export default function BarChartComponent({
 	const { isMobile } = useOrientation();
 	const slicedData = isMobile ? data.slice(0, 5) : data;
 	return (
-		<div className="border-t-2 bg-white">
-			<p className="pl-2 my-2 sm:mt-6 sm:ml-6">Most Availed Amenities</p>
-
+		<>
+			<p className="text-3xl">Most Availed Amenities</p>
 			<BarChart
 				width={320}
 				height={isMobile ? 200 : 250}
@@ -32,6 +31,6 @@ export default function BarChartComponent({
 					<LabelList dataKey="value" position="top" />
 				</Bar>
 			</BarChart>
-		</div>
+		</>
 	);
 }

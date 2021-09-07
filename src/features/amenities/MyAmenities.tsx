@@ -34,9 +34,7 @@ export default function MyAmenities() {
 								className="w-full"
 							>
 								<Card>
-									<Skeleton loading={loading} active avatar>
-										<div>nhsn</div>
-									</Skeleton>
+									<Skeleton active avatar />
 								</Card>
 							</Col>
 						))}
@@ -57,10 +55,9 @@ export default function MyAmenities() {
 								key={amenity._id}
 								className="w-full"
 							>
-								<Card>
+								<Card className="flex items-center">
 									<Image
 										width={40}
-										height={40}
 										preview={false}
 										src={
 											transformCloudinaryImage(
@@ -75,6 +72,9 @@ export default function MyAmenities() {
 											{amenity.name}
 										</h3>
 										<p>{amenity.description}</p>
+										<h4 className="text-2xl font-semibold">
+											₹ {amenity.fee}
+										</h4>
 									</div>
 								</Card>
 							</Col>

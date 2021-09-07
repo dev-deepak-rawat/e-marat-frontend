@@ -28,6 +28,7 @@ const GenericFormFields = ({ field, fieldData }: Types): JSX.Element => {
 		label,
 		addonBefore,
 		addonAfter,
+		maxLength,
 		options = [],
 		defaultValue,
 	} = fieldData;
@@ -43,6 +44,7 @@ const GenericFormFields = ({ field, fieldData }: Types): JSX.Element => {
 					placeholder={placeholder || label}
 					addonBefore={addonBefore}
 					addonAfter={addonAfter}
+					maxLength={maxLength}
 					defaultValue={defaultValue}
 					{...field}
 				/>

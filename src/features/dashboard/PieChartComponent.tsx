@@ -2,6 +2,7 @@ import { Space } from 'antd';
 import { PieChart, Pie, Cell } from 'recharts';
 import { ColoredBox } from 'features/shared/components/styledComponents/ColoredBox';
 import { useOrientation } from 'config/hooks';
+import Card from 'features/shared/components/styledComponents/Card';
 
 type PieChartComponentProps = {
 	data: {
@@ -22,8 +23,8 @@ export default function PieChartComponent({
 }: PieChartComponentProps) {
 	const { isMobile } = useOrientation();
 	return (
-		<div className="border-t-2 pt-1 sm:border-t-0 sm:w-1/2 sm:mb-6 sm:ml-4">
-			<p className="sm:mt-5 sm:ml-4">{title}</p>
+		<>
+			<p className="text-3xl">{title}</p>
 			<PieChart width={isMobile ? 350 : 400} height={220}>
 				{innerContent && (
 					<text
@@ -75,6 +76,6 @@ export default function PieChartComponent({
 					})}
 				</div>
 			)}
-		</div>
+		</>
 	);
 }
