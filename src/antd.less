@@ -1,5 +1,9 @@
 @import '~antd/dist/antd.less';
 
+@primary-color: #6366f1;
+
+// Form
+
 .ant-form-large .ant-form-item-label > label {
 	height: auto;
 }
@@ -9,10 +13,10 @@
 	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 7%);
 }
 
-@primary-color: #6366f1;
-
 @form-vertical-label-padding: 0;
 @form-item-margin-bottom: 1rem;
+
+// Table
 
 @table-header-bg: #fff;
 @table-row-hover-bg: inherit;
@@ -34,33 +38,16 @@
 	}
 }
 
-.ant-layout-sider {
-	.ant-layout-sider-children {
-		> div:first-child {
-			height: auto;
-			padding-top: 2rem;
-			padding-bottom: 2rem;
-		}
+// Sidebar
 
-		ul {
-			.ant-menu-item {
-				margin-top: 1rem;
-				margin-bottom: 1rem;
+@menu-icon-size: 1.8rem;
+@menu-icon-size-lg: 1.8rem;
 
-				.ant-menu-item-icon {
-					min-width: 28px;
-					font-size: 1.8rem;
-				}
-			}
-		}
+@menu-item-vertical-margin: 0.7rem;
+@menu-item-boundary-margin: 0.7rem;
+@menu-inline-toplevel-item-height: 55px;
 
-		@media screen and (max-width: 480px) {
-			> ul:first-child {
-				padding-top: 3rem;
-			}
-		}
-	}
-}
+// Skeleton
 
 .ant-skeleton-element.xl-avatar .ant-skeleton-avatar {
 	width: 100px;

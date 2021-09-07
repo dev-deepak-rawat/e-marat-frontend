@@ -1,9 +1,8 @@
-import React, { useState, useEffect, Dispatch, SetStateAction } from 'react';
-import { Button, Modal } from 'antd';
+import React, { Dispatch, SetStateAction } from 'react';
+import { Modal } from 'antd';
 import createFormProps from 'features/amenities/formProps';
 import GenericForm from 'features/shared/components/form/GenericForm';
 import { AmenityType } from 'features/amenities/Types';
-import { GenericFormDataType } from 'lib/types';
 
 export type PropsType = {
 	isVisible: boolean;

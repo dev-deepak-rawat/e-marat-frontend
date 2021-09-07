@@ -4,7 +4,7 @@ import { Modal } from 'antd';
 import { ApiResponse } from 'lib/types';
 import { apiRequest } from 'config/apiRequest';
 
-export default <T extends unknown[]>(
+const Delete = <T extends unknown[]>(
 	url: string,
 	id: string,
 	items: T,
@@ -21,21 +21,22 @@ export default <T extends unknown[]>(
 					appendToUrl: id,
 				});
 
-				console.log(response);
-
 				if (response.meta.success) {
 					setItems(items);
 					setItems(
 						items.filter(
-							(item) => (item as { _id: string })._id != id
+							(item) => (item as { _id: string })._id !== id
 						) as T
 					);
 				}
 				// else {
 				// }
 			} catch (e) {
-				console.log('errors!');
+				// eslint-disable-next-line no-console
+				console.error(e);
 			}
 		},
 	});
 };
+
+export default Delete;

@@ -12,10 +12,10 @@ const { Sider } = Layout;
 
 const Logo = styled.div`
 	${tw`
-        h-16
+        h-24
         text-center
         text-2xl
-        pt-3
+        pt-5
         font-bold
         text-emarat-secondary-default
         cursor-pointer
