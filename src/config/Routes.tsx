@@ -5,7 +5,7 @@ import Home from 'features/home/Home';
 import ManageAmenities from 'features/amenities/ManageAmenities';
 import MyAmenities from 'features/amenities/MyAmenities';
 import MyPayments from 'features/payments/MyPayments';
-import Dashboard from 'features/dashboard/Dashboard';
+import DashboardV2 from 'features/dashboard/DashboardV2';
 import SocialFeed from 'features/socialFeed/SocialFeed';
 import ManageComplaints from 'features/complaints/ManageComplaints';
 import MyComplaints from 'features/complaints/MyComplaints';
@@ -54,7 +54,7 @@ export default function Routes() {
 			<ProtectedRoute
 				path="/dashboard"
 				role={ROLES.ADMIN}
-				component={Dashboard}
+				component={DashboardV2}
 				exact
 			/>
 			<ProtectedRoute

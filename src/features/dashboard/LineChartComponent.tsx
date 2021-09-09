@@ -1,4 +1,3 @@
-import { useOrientation } from 'config/hooks';
 import {
 	LineChart,
 	Line,
@@ -8,6 +7,8 @@ import {
 	Tooltip,
 	Legend,
 } from 'recharts';
+import { useOrientation } from 'config/hooks';
+import StyledTitle from 'features/shared/components/styledComponents/StyledTitle';
 
 type LineChartComponentProps = {
 	complaintMetas: {
@@ -24,8 +25,8 @@ export default function LineChartComponent(props: LineChartComponentProps) {
 	const { complaintMetas } = props;
 	const slicedComplaintMetas = complaintMetas.slice(0, isMobile ? 6 : 8);
 	return (
-		<>
-			<p className="text-xl">Last {isMobile ? 6 : 8} months Complaints</p>
+		<div className="pb-8">
+			<StyledTitle>Last {isMobile ? 6 : 8} months Complaints</StyledTitle>
 
 			<LineChart
 				width={isMobile ? 300 : 420}
@@ -49,6 +50,6 @@ export default function LineChartComponent(props: LineChartComponentProps) {
 				<Tooltip />
 				<Legend wrapperStyle={{ position: 'relative' }} />
 			</LineChart>
-		</>
+		</div>
 	);
 }

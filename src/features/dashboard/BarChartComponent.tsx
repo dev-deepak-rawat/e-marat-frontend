@@ -1,5 +1,6 @@
-import { useOrientation } from 'config/hooks';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, LabelList } from 'recharts';
+import { useOrientation } from 'config/hooks';
+import StyledTitle from 'features/shared/components/styledComponents/StyledTitle';
 
 type BarChartComponentType = {
 	data: {
@@ -14,11 +15,11 @@ export default function BarChartComponent({
 	color,
 }: BarChartComponentType) {
 	const { isMobile } = useOrientation();
-	const slicedData = isMobile ? data.slice(0, 5) : data;
-	const width = Math.max(data.length * 60, 600);
+	const slicedData = isMobile ? data.slice(0, 5) : data.slice(0, 7);
+	const width = Math.max(data.length * 60, 500);
 	return (
 		<>
-			<p className="text-xl">Most Availed Amenities</p>
+			<StyledTitle>Most Availed Amenities</StyledTitle>
 			<BarChart
 				width={isMobile ? 320 : width}
 				height={isMobile ? 200 : 250}

@@ -208,3 +208,6 @@ export const STATUS_COLOR_MAPPER = {
 
 export const DATE_FORMAT = 'DD MMM YYYY';
 export const DATE_TIME_FORMAT = 'DD MMM h:mm:ss A';
+
+export const SENTRY_DSN =
+	'https://1ef6e7d163ff41eeb401880603c323da@o960298.ingest.sentry.io/5912682';

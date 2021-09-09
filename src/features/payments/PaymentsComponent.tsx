@@ -47,7 +47,9 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 	}));
 
 	return loading ? (
-		<Spin />
+		<div className="text-center">
+			<Spin />
+		</div>
 	) : (
 		<>
 			<div className="mb-4">
