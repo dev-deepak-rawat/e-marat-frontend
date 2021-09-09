@@ -11,15 +11,15 @@ const { Text } = Typography;
 
 const getMenu = (isAdmin: boolean) => (
 	<Menu>
-		<Menu.Item>
+		<Menu.Item key="profile">
 			<Link to="/profile">My Profile</Link>
 		</Menu.Item>
 		{!isAdmin && (
-			<Menu.Item>
-				<Link to="/payments">My Amenities</Link>
+			<Menu.Item key="amenities">
+				<Link to="/amenities">My Amenities</Link>
 			</Menu.Item>
 		)}
-		<Menu.Item>
+		<Menu.Item key="signout">
 			<button type="button" onClick={() => signOut()}>
 				Signout
 			</button>

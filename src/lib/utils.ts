@@ -8,10 +8,12 @@ import {
 
 export const errorLogger = (error: Error) => {
 	try {
-		// Sentry.withScope((scope) => {
-		// 	scope.setExtra('errorInfo', error.message);
-		// 	Sentry.captureException(error);
-		// });
+		if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
+			Sentry.withScope((scope) => {
+				scope.setExtra('errorInfo', error.message);
+				Sentry.captureException(error);
+			});
+		}
 	} catch (err) {
 		// eslint-disable-next-line no-console
 		console.error(err);
