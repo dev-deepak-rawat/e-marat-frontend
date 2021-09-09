@@ -9,7 +9,7 @@ import {
 } from 'lib/utils';
 import userPlaceholderImg from 'assets/images/user-placeholder.svg';
 import type { TransactionType } from 'features/payments/paymentsTypes';
-import { useApiCall } from 'config/hooks';
+import { useApiCall, useAuth } from 'config/hooks';
 import searchColumnProps from 'features/shared/components/table/search';
 import { DATE_FORMAT, STATUS_COLOR_MAPPER } from 'lib/constants';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
@@ -24,6 +24,8 @@ export default function Transactions({ showTitle = true }: TransactionsProps) {
 		initDataValue: [],
 	});
 
+	const { isAdmin } = useAuth();
+
 	const getColumnSearchProps = (dataIndex: string) =>
 		searchColumnProps<TransactionType>(dataIndex);
 
@@ -37,33 +39,39 @@ export default function Transactions({ showTitle = true }: TransactionsProps) {
 					loading={loading}
 					scroll={{ x: true }}
 				>
-					<Table.Column<TransactionType>
-						title=""
-						dataIndex="picture"
-						sorter={false}
-						render={(picture) => (
-							<Image
-								className="rounded-full"
-								width={40}
-								height={40}
-								preview={false}
-								src={
-									transformCloudinaryImage(
-										`${picture}`,
-										'AVATAR'
-									) || userPlaceholderImg
-								}
-								fallback={userPlaceholderImg}
+					{isAdmin && (
+						<>
+							<Table.Column<TransactionType>
+								title=""
+								dataIndex="picture"
+								sorter={false}
+								render={(picture) => (
+									<Image
+										className="rounded-full"
+										width={40}
+										height={40}
+										preview={false}
+										src={
+											transformCloudinaryImage(
+												`${picture}`,
+												'AVATAR'
+											) || userPlaceholderImg
+										}
+										fallback={userPlaceholderImg}
+									/>
+								)}
 							/>
-						)}
-					/>
 
-					<Table.Column<TransactionType>
-						title="Name"
-						dataIndex="name"
-						sorter={sortStringByProperty<TransactionType>('name')}
-						{...getColumnSearchProps('name')}
-					/>
+							<Table.Column<TransactionType>
+								title="Name"
+								dataIndex="name"
+								sorter={sortStringByProperty<TransactionType>(
+									'name'
+								)}
+								{...getColumnSearchProps('name')}
+							/>
+						</>
+					)}
 
 					<Table.Column<TransactionType>
 						title="Order Id"

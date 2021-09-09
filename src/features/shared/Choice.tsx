@@ -18,6 +18,7 @@ const Choice = ({ setChoice, choice, labels }: ChoiceProps) => {
 			onChange={handleChange}
 			defaultValue={choice}
 			buttonStyle="solid"
+			className="title-font"
 		>
 			<Radio.Button value={0}>{labels[0]}</Radio.Button>
 			<Radio.Button value={1}>{labels[1]}</Radio.Button>

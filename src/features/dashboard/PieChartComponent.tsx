@@ -22,8 +22,8 @@ export default function PieChartComponent({
 }: PieChartComponentProps) {
 	const { isMobile } = useOrientation();
 	return (
-		<div className="border-t-2 pt-1 sm:border-t-0 sm:w-1/2 sm:mb-6 sm:ml-4">
-			<p className="sm:mt-5 sm:ml-4">{title}</p>
+		<>
+			<p className="text-xl">{title}</p>
 			<PieChart width={isMobile ? 350 : 400} height={220}>
 				{innerContent && (
 					<text
@@ -46,11 +46,11 @@ export default function PieChartComponent({
 					nameKey="name"
 					isAnimationActive={false}
 					label={(entry) =>
-						isMobile
-							? `${(entry.percent * 100).toFixed(0)}%`
-							: `${entry.name} ${(entry.percent * 100).toFixed(
+						isPayment
+							? `${entry.name} ${(entry.percent * 100).toFixed(
 									0
 							  )}%`
+							: `${(entry.percent * 100).toFixed(0)}%`
 					}
 				>
 					{data.map((entry) => (
@@ -75,6 +75,6 @@ export default function PieChartComponent({
 					})}
 				</div>
 			)}
-		</div>
+		</>
 	);
 }

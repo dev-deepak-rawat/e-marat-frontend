@@ -23,6 +23,18 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/api/users/',
 		method: 'PUT',
 	},
+	currentUserProfile: {
+		url: '/api/users/current/profile',
+		method: 'GET',
+	},
+	updateCurrentUserProfile: {
+		url: '/api/users/current/profile',
+		method: 'PUT',
+	},
+	currentUserAmenities: {
+		url: '/api/users/current/amenities',
+		method: 'GET',
+	},
 	amenities: {
 		url: '/api/amenities/',
 		method: 'GET',
@@ -82,7 +94,7 @@ export const API_CONFIG: ApiConfigType = {
 };
 
 export const PATTERNS = {
-	NAME: /^[a-zA-Z]+$/,
+	NAME: /^[a-zA-Z\s.']+$/,
 	PHONE: /^\d{10}$/,
 	DIGITS: /^\d+$/,
 };
@@ -193,4 +205,5 @@ export const STATUS_COLOR_MAPPER = {
 	pending: 'text-yellow-500',
 };
 
-export const DATE_FORMAT = 'DD MMM h:mm:ss A';
+export const DATE_FORMAT = 'DD MMM YYYY';
+export const DATE_TIME_FORMAT = 'DD MMM h:mm:ss A';

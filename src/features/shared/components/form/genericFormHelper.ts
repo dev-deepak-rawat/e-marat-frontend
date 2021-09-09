@@ -13,6 +13,9 @@ export const addPrefetchOptions = (params: AddPrefetchOptions) => {
 	const { fieldsData = [] } = form;
 	const targetField = fieldsData.find((fields) => fields.name === field);
 	if (!targetField) return form;
+
+	if (!Array.isArray(options)) return form;
+
 	targetField.options = options.map((option) => ({
 		label: option[labelKey],
 		value: option[valueKey],

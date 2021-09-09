@@ -53,7 +53,7 @@ export default function ManageUsers() {
 		<>
 			<PageTitle>Manage Users</PageTitle>
 			<ContainerCard size="xl">
-				<div className="text-right mb-4 -mt-6">
+				<div className="text-right">
 					<Button type="primary" onClick={() => editUser(null)}>
 						Create
 					</Button>

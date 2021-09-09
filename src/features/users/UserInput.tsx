@@ -55,7 +55,7 @@ export default function UserInput({
 			onCancel={() => setIsVisible(false)}
 			centered
 		>
-			<h2 className="text-2xl mb-4">Add User</h2>
+			<h2 className="text-2xl mb-4">{edit ? 'Edit' : 'Add'} User</h2>
 			{isVisible &&
 				(loading ? (
 					<Spin />

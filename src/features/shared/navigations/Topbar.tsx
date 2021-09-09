@@ -16,7 +16,7 @@ const getMenu = (isAdmin: boolean) => (
 		</Menu.Item>
 		{!isAdmin && (
 			<Menu.Item key="amenities">
-				<Link to="/payments">My Amenities</Link>
+				<Link to="/amenities">My Amenities</Link>
 			</Menu.Item>
 		)}
 		<Menu.Item key="signout">
@@ -36,7 +36,7 @@ export default function Topbar() {
 	return (
 		<>
 			{isMobile && (
-				<Space size="small" className="absolute top-2 right-1/2">
+				<Space size="small" className="absolute top-2 right-40">
 					<img
 						src={CLOUDINARY_IMAGES.LOGO}
 						alt="logo"

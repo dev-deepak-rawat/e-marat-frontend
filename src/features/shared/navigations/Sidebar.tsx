@@ -12,10 +12,10 @@ const { Sider } = Layout;
 
 const Logo = styled.div`
 	${tw`
-        h-16
+        h-24
         text-center
         text-2xl
-        pt-3
+        pt-5
         font-bold
         text-emarat-secondary-default
         cursor-pointer
@@ -32,8 +32,7 @@ type SidebarProps = {
 export default function Sidebar(props: SidebarProps) {
 	const { filterByRole } = useAuth();
 	const filteredMenuData = menuData.filter(filterByRole);
-	const { defaultOpenKeys, defaultSelectedKeys } =
-		getDefaultSelectedKeys(filteredMenuData);
+	const defaultSelectedKeys = getDefaultSelectedKeys(filteredMenuData);
 
 	const { isMobile, collapsed, onCollapse } = props;
 
@@ -62,12 +61,7 @@ export default function Sidebar(props: SidebarProps) {
 					{collapsed ? '' : '-MARAT'}
 				</Space>
 			</Logo>
-			<Menu
-				theme="dark"
-				defaultSelectedKeys={defaultSelectedKeys}
-				mode="inline"
-				defaultOpenKeys={defaultOpenKeys}
-			>
+			<Menu theme="dark" selectedKeys={defaultSelectedKeys} mode="inline">
 				{filteredMenuData.map(MenuItem)}
 			</Menu>
 		</Sider>

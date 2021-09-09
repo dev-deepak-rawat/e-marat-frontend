@@ -36,6 +36,7 @@ export type FieldType = {
 	role?: string;
 	options?: Array<{ value: string; label: string }>;
 	placeholder?: string;
+	maxLength?: number;
 	addonBefore?: React.ReactNode;
 	addonAfter?: React.ReactNode;
 	readonly?: boolean;

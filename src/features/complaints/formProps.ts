@@ -1,4 +1,4 @@
-import { PATTERNS, ROLES } from 'lib/constants';
+import { ROLES } from 'lib/constants';
 import { FieldType, FormMetaType, GenericFormDataType } from 'lib/types';
 
 const fieldsData: FieldType[] = [
