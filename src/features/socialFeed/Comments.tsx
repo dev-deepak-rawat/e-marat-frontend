@@ -1,12 +1,15 @@
 import { Comment, Tooltip, List } from 'antd';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { ref, remove } from 'firebase/database';
 import { db } from 'config/firebaseDbHelper';
 import { useAuth } from 'config/hooks';
 import dayjs from 'dayjs';
 import { DATE_FORMAT } from 'lib/constants';
-import { getPrettyDateDiff } from 'lib/utils';
+import { transformCloudinaryImage } from 'lib/utils';
 import DeleteOverlay from './DeleteOverlay';
 import type { CommentType } from './SocialFeedTypes';
+
+dayjs.extend(relativeTime);
 
 type CommentsType = {
 	comments: CommentType[];
@@ -33,15 +36,13 @@ export default function Comments({ comments = [], postId }: CommentsType) {
 				<div className="flex">
 					<Comment
 						author={name}
-						avatar={userIcon}
+						avatar={transformCloudinaryImage(userIcon, 'AVATAR')}
 						content={text}
 						datetime={
 							<Tooltip
 								title={dayjs(createdAt).format(DATE_FORMAT)}
 							>
-								<span>
-									{getPrettyDateDiff(new Date(createdAt))}
-								</span>
+								<span>{dayjs(createdAt).fromNow()}</span>
 							</Tooltip>
 						}
 					/>
