@@ -127,6 +127,7 @@ export const CLOUDINARY_IMG_TRANSFORMATIONS = {
 	WIDTH_600: 'w_600/',
 	AVATAR: 'w_50,h_50,c_thumb,g_face,r_max/',
 	WIDTH_50: 'w_50/',
+	WIDTH_200: 'w_200/',
 };
 
 export const RAZORPAY_SCRIPT = 'https://checkout.razorpay.com/v1/checkout.js';
