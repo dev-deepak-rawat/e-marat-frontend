@@ -1,15 +1,16 @@
 import { useState } from 'react';
-import { Skeleton, Row, Col, Image } from 'antd';
+import { useHistory } from 'react-router-dom';
+import { Row } from 'antd';
 import { useApiCall } from 'config/hooks';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
 import Choice from 'features/shared/Choice';
-import Card from 'features/shared/components/styledComponents/Card';
 import { AmenityType } from 'features/amenities/Types';
-import placeholderImg from 'assets/images/placeholder.svg';
-import { transformCloudinaryImage } from 'lib/utils';
+import AmenitySkeleton from 'features/amenities/AmenitySkeleton';
+import MyAmenityView from 'features/amenities/MyAmenityView';
 
 export default function MyAmenities() {
 	const [choice, setChoice] = useState(0);
+	const history = useHistory();
 
 	const { loading: loadingAmenities, data: amenities } = useApiCall({
 		apiUrl: 'amenities',
@@ -20,6 +21,12 @@ export default function MyAmenities() {
 		apiUrl: 'currentUserAmenities',
 		initDataValue: [],
 	});
+
+	const addAmenity = (id: string, name: string) => {
+		history.push(`/complaints?id=${id}&name=${name}`);
+	};
+
+	const loading = loadingAmenities || loadingUserAmenities;
 
 	return (
 		<>
@@ -40,30 +47,8 @@ export default function MyAmenities() {
 					]}
 					justify="center"
 				>
-					{loadingAmenities || loadingUserAmenities ? (
-						<>
-							{[...Array(6)].map((e, i) => (
-								/* eslint-disable react/no-array-index-key */
-								<Col
-									key={i}
-									xs={22}
-									sm={11}
-									lg={8}
-									className="w-full"
-								>
-									<Card className="flex items-center">
-										<Skeleton.Avatar
-											className="my-7"
-											size="large"
-											active
-										/>
-										<div className="pl-6 w-full">
-											<Skeleton paragraph active />
-										</div>
-									</Card>
-								</Col>
-							))}
-						</>
+					{loading ? (
+						<AmenitySkeleton />
 					) : (
 						<>
 							{amenities
@@ -73,36 +58,15 @@ export default function MyAmenities() {
 										userAmenities.includes(amenity._id)
 								)
 								.map((amenity: AmenityType) => (
-									<Col
-										xs={22}
-										sm={11}
-										lg={8}
+									<MyAmenityView
 										key={amenity._id}
-										className="w-full"
-									>
-										<Card className="flex items-center">
-											<Image
-												width={40}
-												preview={false}
-												src={
-													transformCloudinaryImage(
-														amenity.icon,
-														'WIDTH_50'
-													) || placeholderImg
-												}
-												fallback={placeholderImg}
-											/>
-											<div className="pl-6">
-												<h3 className="text-3xl mb-3">
-													{amenity.name}
-												</h3>
-												<p>{amenity.description}</p>
-												<h4 className="text-2xl font-semibold">
-													₹ {amenity.fee}
-												</h4>
-											</div>
-										</Card>
-									</Col>
+										{...{
+											amenity,
+											addAmenity,
+											userAmenities,
+											choice,
+										}}
+									/>
 								))}
 						</>
 					)}

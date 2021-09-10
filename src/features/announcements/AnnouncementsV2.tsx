@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import { DATE_TIME_FORMAT } from 'lib/constants';
 import placeholderImg from 'assets/images/placeholder.svg';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
+import SpinContainer from 'features/shared/components/styledComponents/SpinContainer';
 
 const { Text } = Typography;
 dayjs.extend(relativeTime);
@@ -144,9 +145,9 @@ export default function AnnouncementsV2({
 					</div>
 				)}
 				{isFetchedOnce && loading && (
-					<div className="sm:w-4 /6 sm:mx-auto text-center">
-						<Spin />{' '}
-					</div>
+					<SpinContainer className="sm:w-4 /6 sm:mx-auto">
+						<Spin />
+					</SpinContainer>
 				)}
 			</div>
 		</>

@@ -1,5 +1,5 @@
 export type AmenityType = {
-	_id?: string;
+	_id: string;
 	name: string;
 	description: string;
 	fee: number;

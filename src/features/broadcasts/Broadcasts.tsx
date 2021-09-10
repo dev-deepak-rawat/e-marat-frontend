@@ -27,6 +27,7 @@ export default function Broadcasts() {
 					<GenericForm
 						formData={broadcastFormData}
 						layout="vertical"
+						submitCallback={() => setChoice(1)}
 					/>
 				</ContainerCard>
 			)}

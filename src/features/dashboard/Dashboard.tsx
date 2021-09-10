@@ -6,6 +6,8 @@ import BarChartComponent from 'features/dashboard/BarChartComponent';
 import LineChartComponent from 'features/dashboard/LineChartComponent';
 import PieChartComponent from 'features/dashboard/PieChartComponent';
 import AreaChart from 'features/dashboard/AreaChart';
+import { Spin } from 'antd';
+import SpinContainer from 'features/shared/components/styledComponents/SpinContainer';
 
 const Divider = styled.div`
 	${tw`
@@ -60,7 +62,7 @@ const areaData = [
 ];
 
 export default function Dashboard() {
-	const { data } = useApiCall({
+	const { data, loading } = useApiCall({
 		apiUrl: 'dashboardStats',
 		initDataValue: {},
 	});
@@ -81,34 +83,46 @@ export default function Dashboard() {
 	return (
 		<>
 			<PageTitle>Dashboard</PageTitle>
+
 			<div className="bg-white mt-2 pl-2 pt-2 sm:mx-6 sm:mt-2">
-				<ChartRowContainer className="mt-1">
-					<ChartContainer>
-						<PieChartComponent
-							data={complaintMetas}
-							innerContent={pieInnerContent}
-							title="Overall Complaints Status"
-						/>
-					</ChartContainer>
-					<Divider className="sm:border-r-2" />
-					<ChartContainer>
-						<LineChartComponent complaintMetas={byMonth} />
-					</ChartContainer>
-				</ChartRowContainer>
+				{loading ? (
+					<SpinContainer>
+						<Spin />
+					</SpinContainer>
+				) : (
+					<>
+						<ChartRowContainer className="mt-1">
+							<ChartContainer>
+								<PieChartComponent
+									data={complaintMetas}
+									innerContent={pieInnerContent}
+									title="Overall Complaints Status"
+								/>
+							</ChartContainer>
+							<Divider className="sm:border-r-2" />
+							<ChartContainer>
+								<LineChartComponent complaintMetas={byMonth} />
+							</ChartContainer>
+						</ChartRowContainer>
 
-				<Divider />
+						<Divider />
 
-				<ChartRowContainer>
-					<ChartContainer>
-						<BarChartComponent data={amenities} color="#F5A962" />
-					</ChartContainer>
-					<Divider className="sm:border-r-2" />
-					<ChartContainer>
-						<AreaChart data={areaData} />
-					</ChartContainer>
-				</ChartRowContainer>
+						<ChartRowContainer>
+							<ChartContainer>
+								<BarChartComponent
+									data={amenities}
+									color="#F5A962"
+								/>
+							</ChartContainer>
+							<Divider className="sm:border-r-2" />
+							<ChartContainer>
+								<AreaChart data={areaData} />
+							</ChartContainer>
+						</ChartRowContainer>
 
-				<Divider />
+						<Divider />
+					</>
+				)}
 			</div>
 		</>
 	);

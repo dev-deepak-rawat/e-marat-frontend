@@ -2,6 +2,7 @@ import { Button, Image, Space, Spin } from 'antd';
 import placeholderImg from 'assets/images/placeholder.svg';
 import { useOrientation } from 'config/hooks';
 import PieChartComponent from 'features/dashboard/PieChartComponent';
+import SpinContainer from 'features/shared/components/styledComponents/SpinContainer';
 import { COLOR_CODES, MONTHS_LONG, MONTHS_SHORT } from 'lib/constants';
 import { transformCloudinaryImage } from 'lib/utils';
 
@@ -50,9 +51,9 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 	);
 
 	return loading ? (
-		<div className="text-center">
+		<SpinContainer>
 			<Spin />
-		</div>
+		</SpinContainer>
 	) : (
 		<>
 			<div className="mb-4">
