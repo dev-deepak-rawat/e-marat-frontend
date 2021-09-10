@@ -28,10 +28,12 @@ export default function PieChartComponent({
 			<PieChart width={isMobile ? 350 : 400} height={220}>
 				{innerContent && (
 					<text
+						className="font-semibold"
 						x={isMobile ? 145 : 200}
 						y={120}
 						textAnchor="middle"
 						dominantBaseline="middle"
+						fill="#374151"
 					>
 						{innerContent}
 					</text>

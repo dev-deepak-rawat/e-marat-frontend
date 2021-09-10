@@ -102,6 +102,7 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 											) || placeholderImg
 										}
 										fallback={placeholderImg}
+										alt="amenity icon"
 									/>
 									<span className="capitalize">{name}</span>
 									<span>₹{fee}</span>

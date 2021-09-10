@@ -3,12 +3,12 @@ import { AiFillClockCircle } from 'react-icons/ai';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { useInfiniteScrollApiCall, useOrientation } from 'config/hooks';
 import { transformCloudinaryImage } from 'lib/utils';
-import userPlaceholderImg from 'assets/images/user-placeholder.svg';
 import dayjs from 'dayjs';
 import { DATE_TIME_FORMAT } from 'lib/constants';
 import placeholderImg from 'assets/images/placeholder.svg';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
 import SpinContainer from 'features/shared/components/styledComponents/SpinContainer';
+import AvatarImage from 'features/shared/components/image/AvatarImage';
 
 const { Text } = Typography;
 dayjs.extend(relativeTime);
@@ -77,30 +77,23 @@ export default function Announcements({
 										}
 										fallback={placeholderImg}
 										preview={!isMobile}
+										alt="announcement"
 									/>
 								</div>
 							)}
 							<div
-								className={`ml-4 sm:h-72 sm:overflow-y-auto ${
-									picture ? 'sm:w-3/5 pr-6' : 'sm:w-full'
+								className={`ml-4 sm:h-72 sm:overflow-y-auto pr-6 ${
+									picture ? 'sm:w-3/5' : 'sm:w-full'
 								}`}
 							>
 								{user && createdAt && (
-									<Space className="mt-5">
-										<Image
-											className="rounded-full"
-											width={40}
-											height={40}
-											preview={false}
-											src={
-												transformCloudinaryImage(
-													`${userPicture}`,
-													'AVATAR'
-												) || userPlaceholderImg
-											}
-											fallback={userPlaceholderImg}
-										/>
-										<Text type="secondary">{user}</Text>
+									<div className="pt-5 flex justify-between">
+										<Space>
+											<AvatarImage
+												userImg={userPicture}
+											/>
+											<Text type="secondary">{user}</Text>
+										</Space>
 										<Tooltip
 											title={createdTime.format(
 												DATE_TIME_FORMAT
@@ -118,7 +111,7 @@ export default function Announcements({
 												</Text>
 											</div>
 										</Tooltip>
-									</Space>
+									</div>
 								)}
 								<Text className="block text-xl capitalize my-3 font-bold text-gray-700">
 									{title}
@@ -131,19 +124,25 @@ export default function Announcements({
 					);
 				})}
 
-				{!isFetchedOnce && loading && (
-					<div className="bg-white m-2 p-4 rounded-2xl shadow-lg my-6 pb-6 sm:w-4/6 sm:mx-auto">
-						<div>
-							<Space className="my-4">
-								<Skeleton.Avatar active />
-								<Skeleton.Input active className="w-20" />
-							</Space>
+				{!isFetchedOnce &&
+					loading &&
+					[...Array(3)].map((e, i) => (
+						<div
+							// eslint-disable-next-line react/no-array-index-key
+							key={i}
+							className="bg-white m-2 p-4 rounded-2xl shadow-lg my-6 pb-6 sm:w-4/6 sm:mx-auto"
+						>
+							<div>
+								<Space className="my-4">
+									<Skeleton.Avatar active />
+									<Skeleton.Input active className="w-20" />
+								</Space>
+							</div>
+							<div>
+								<Skeleton active />
+							</div>
 						</div>
-						<div>
-							<Skeleton active />
-						</div>
-					</div>
-				)}
+					))}
 				{isFetchedOnce && loading && (
 					<SpinContainer className="sm:w-4 /6 sm:mx-auto">
 						<Spin />

@@ -30,55 +30,24 @@ const ChartRowContainer = styled.div`
     `}
 `;
 
-const areaData = [
-	{
-		month: 'Sep',
-		amount: 4000,
-	},
-	{
-		month: 'Aug',
-		amount: 3000,
-	},
-	{
-		month: 'Jul',
-		amount: 9800,
-	},
-	{
-		month: 'Jun',
-		amount: 3908,
-	},
-	{
-		month: 'May',
-		amount: 1890,
-	},
-	{
-		month: 'Apr',
-		amount: 2500,
-	},
-	{
-		month: 'Mar',
-		amount: 2100,
-	},
-];
-
 export default function Dashboard() {
 	const { data, loading } = useApiCall({
 		apiUrl: 'dashboardStats',
 		initDataValue: {},
 	});
-	const { complaints = {}, amenities = [] } = data;
+	const { complaints = {}, amenities = [], revenues = [] } = data;
 	const { count = {}, byMonth = [] } = complaints;
 	const { progress, raised, rejected, resolved } = count;
 
 	const complaintMetas = [
-		{ name: 'Ongoing', value: progress, color: '#0088FE' },
-		{ name: 'Pending', value: raised, color: '#FFBB28' },
 		{ name: 'Resolved', value: resolved, color: '#00C49F' },
+		{ name: 'Raised', value: raised, color: '#FFBB28' },
 		{ name: 'Rejected', value: rejected, color: '#FF8042' },
+		{ name: 'Progress', value: progress, color: '#0088FE' },
 	];
 
 	const totalComplaints = progress + raised + rejected + resolved;
-	const pieInnerContent = `Total ${totalComplaints}`;
+	const pieInnerContent = `Total: ${totalComplaints}`;
 
 	return (
 		<>
@@ -116,7 +85,7 @@ export default function Dashboard() {
 							</ChartContainer>
 							<Divider className="sm:border-r-2" />
 							<ChartContainer>
-								<AreaChart data={areaData} />
+								<AreaChart data={revenues} />
 							</ChartContainer>
 						</ChartRowContainer>
 

@@ -61,7 +61,7 @@ export default function ManageComplaints({
 	return (
 		<>
 			{showTitle && <PageTitle>Manage Complaints</PageTitle>}
-			<ContainerCard>
+			<ContainerCard size="xl">
 				<Table<ComplaintType>
 					dataSource={complaints}
 					rowKey="_id"
@@ -139,6 +139,7 @@ export default function ManageComplaints({
 											placeholderImg
 										}
 										fallback={placeholderImg}
+										alt="amenity description"
 									/>
 								</Popover>
 							) : (

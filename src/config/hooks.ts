@@ -13,9 +13,9 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const filterByRole = (isAdmin: boolean) => (option: { role?: string }) => {
 	const { role } = option;
-    const currRole = isAdmin ? ROLES.ADMIN : ROLES.RESIDENT;
+	const currRole = isAdmin ? ROLES.ADMIN : ROLES.RESIDENT;
 	if (!role) return true;
-    return role === currRole;
+	return role === currRole;
 };
 
 export const useAuth = () => {

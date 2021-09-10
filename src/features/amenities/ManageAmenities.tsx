@@ -103,6 +103,7 @@ export default function ManageAmenities() {
 									) || placeholderImg
 								}
 								fallback={placeholderImg}
+								alt="amenity"
 							/>
 						)}
 					/>
