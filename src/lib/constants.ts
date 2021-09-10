@@ -5,7 +5,7 @@ type ApiConfigType = { [key: string]: { url: string; method: Method } };
 export const API_CONFIG: ApiConfigType = {
 	login: {
 		url: '/login/',
-		method: 'POST',
+		method: 'GET',
 	},
 	users: {
 		url: '/api/users/',
@@ -89,6 +89,10 @@ export const API_CONFIG: ApiConfigType = {
 	},
 	transactions: {
 		url: '/api/transactions/',
+		method: 'GET',
+	},
+	refreshToken: {
+		url: '/refreshToken/',
 		method: 'GET',
 	},
 };

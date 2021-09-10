@@ -20,7 +20,6 @@ type PaymentsComponentType = {
 			_id: string;
 			icon: string;
 		}[];
-		monthlyFee: string;
 	};
 };
 
@@ -34,7 +33,6 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 		onboardingDate,
 		daysInMonth,
 		amenities = [],
-		monthlyFee,
 	} = paymentInfo;
 
 	const [month, year] = paymentMonth.split('_');
@@ -45,6 +43,11 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 		value: amenity.fee,
 		color: COLOR_CODES[index],
 	}));
+
+	const totalMonthlyFee = amenities.reduce(
+		(total, { fee }: { fee: number }) => total + fee,
+		0
+	);
 
 	return loading ? (
 		<div className="text-center">
@@ -71,6 +74,11 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 				{isFirstPayment && (
 					<p className="font-light text-sm">
 						{`${onboardingDate} ${monthShort} - ${daysInMonth} ${monthShort}`}
+					</p>
+				)}
+				{!pay && (
+					<p className="font-semibold text-green-500">
+						All dues are paid.
 					</p>
 				)}
 			</div>
@@ -100,7 +108,7 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 							</div>
 						))}
 						<span className="font-semibold">
-							Total Monthly Fee: ₹{monthlyFee}
+							Total Monthly Fee: ₹{totalMonthlyFee}
 						</span>
 					</div>
 					{!isMobile && (
@@ -109,7 +117,7 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 								data={pieChartData}
 								title=""
 								isPayment
-								innerContent={`Total ₹${monthlyFee}`}
+								innerContent={`Total ₹${totalMonthlyFee}`}
 							/>
 						</div>
 					)}

@@ -90,11 +90,6 @@ export default function Dashboard() {
 							/>
 						</Card>
 					</Col>
-					<Col md={23} lg={22}>
-						<Card className="mb-6">
-							<AreaChart data={areaData} />
-						</Card>
-					</Col>
 				</Row>
 			</div>
 		</>

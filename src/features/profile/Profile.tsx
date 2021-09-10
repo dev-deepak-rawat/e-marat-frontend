@@ -1,4 +1,5 @@
 import { Spin } from 'antd';
+import { apiRequest } from 'config/apiRequest';
 import { useApiCall } from 'config/hooks';
 import GenericForm from 'features/shared/components/form/GenericForm';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
@@ -11,6 +12,9 @@ export default function Profile() {
 		apiUrl: 'currentUserProfile',
 		initDataValue: {},
 	});
+
+	const refreshToken = () => apiRequest({ apiUrl: 'refreshToken' });
+
 	return (
 		<>
 			<PageTitle>My Profile</PageTitle>
@@ -28,6 +32,7 @@ export default function Profile() {
 							profileFormData
 						)}
 						resetFormAfterSubmit={false}
+						submitCallback={refreshToken}
 					/>
 				)}
 			</ContainerCard>

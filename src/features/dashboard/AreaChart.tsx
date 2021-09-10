@@ -11,8 +11,8 @@ import StyledTitle from 'features/shared/components/styledComponents/StyledTitle
 
 type AreaChartProps = {
 	data: {
-		name: string;
-		value: number;
+		month: string;
+		amount: number;
 	}[];
 };
 
@@ -29,12 +29,12 @@ export default function AreaChart({ data }: AreaChartProps) {
 				data={slicedData}
 			>
 				<CartesianGrid strokeDasharray="3 3" />
-				<XAxis dataKey="name" />
+				<XAxis dataKey="month" />
 				<YAxis className="text-xs" />
 				<Tooltip />
 				<Area
 					type="monotone"
-					dataKey="value"
+					dataKey="amount"
 					stroke="#8884d8"
 					fill="#8884d8"
 				/>

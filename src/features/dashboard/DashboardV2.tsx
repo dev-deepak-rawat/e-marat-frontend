@@ -30,32 +30,32 @@ const ChartRowContainer = styled.div`
 
 const areaData = [
 	{
-		name: 'Sep',
-		value: 4000,
+		month: 'Sep',
+		amount: 4000,
 	},
 	{
-		name: 'Aug',
-		value: 3000,
+		month: 'Aug',
+		amount: 3000,
 	},
 	{
-		name: 'Jul',
-		value: 9800,
+		month: 'Jul',
+		amount: 9800,
 	},
 	{
-		name: 'Jun',
-		value: 3908,
+		month: 'Jun',
+		amount: 3908,
 	},
 	{
-		name: 'May',
-		value: 1890,
+		month: 'May',
+		amount: 1890,
 	},
 	{
-		name: 'Apr',
-		value: 2500,
+		month: 'Apr',
+		amount: 2500,
 	},
 	{
-		name: 'Mar',
-		value: 2100,
+		month: 'Mar',
+		amount: 2100,
 	},
 ];
 
