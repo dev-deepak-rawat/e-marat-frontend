@@ -15,7 +15,7 @@ import PageNotFound from 'features/errorPages/404';
 import { ROLES } from 'lib/constants';
 import Profile from 'features/profile/Profile';
 import { useAuth } from 'config/hooks';
-import AnnouncementsV2 from 'features/announcements/AnnouncementsV2';
+import Announcements from 'features/announcements/Announcements';
 
 export default function Routes() {
 	const { isAdmin } = useAuth();
@@ -66,7 +66,7 @@ export default function Routes() {
 			<ProtectedRoute
 				path="/announcements"
 				role={ROLES.RESIDENT}
-				component={AnnouncementsV2}
+				component={Announcements}
 				exact
 			/>
 			<ProtectedRoute path="/social-feeds" component={SocialFeed} exact />

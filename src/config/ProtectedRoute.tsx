@@ -11,11 +11,10 @@ export default function ProtectedRoute({
 	...routeProps
 }: ProtectedRouteProps) {
 	const { isLoggedIn, isAdmin } = useAuth();
+	const currRole = isAdmin ? ROLES.ADMIN : ROLES.RESIDENT;
 	if (isLoggedIn) {
 		if (!role) return <Route {...routeProps} />;
-		if (role === ROLES.ADMIN && isAdmin) return <Route {...routeProps} />;
-		if (!isAdmin && role === ROLES.RESIDENT)
-			return <Route {...routeProps} />;
+		if (role === currRole) return <Route {...routeProps} />;
 		return <Redirect to={{ pathname: '/404' }} />;
 	}
 	return <Redirect to={{ pathname: '/' }} />;
