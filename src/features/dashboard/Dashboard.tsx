@@ -1,40 +1,61 @@
-import { Row, Col } from 'antd';
+import styled from 'styled-components';
+import tw from 'twin.macro';
 import { useApiCall } from 'config/hooks';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
-import Card from 'features/shared/components/styledComponents/Card';
 import BarChartComponent from 'features/dashboard/BarChartComponent';
 import LineChartComponent from 'features/dashboard/LineChartComponent';
 import PieChartComponent from 'features/dashboard/PieChartComponent';
 import AreaChart from 'features/dashboard/AreaChart';
 
+const Divider = styled.div`
+	${tw`
+        border-b-2
+        my-4
+        mr-2
+    `}
+`;
+
+const ChartContainer = styled.div`
+	${tw`
+        sm:w-2/5
+    `}
+`;
+
+const ChartRowContainer = styled.div`
+	${tw`
+        sm:flex
+        sm:justify-evenly
+    `}
+`;
+
 const areaData = [
 	{
-		name: 'Sep',
-		value: 4000,
+		month: 'Sep',
+		amount: 4000,
 	},
 	{
-		name: 'Aug',
-		value: 3000,
+		month: 'Aug',
+		amount: 3000,
 	},
 	{
-		name: 'Jul',
-		value: 9800,
+		month: 'Jul',
+		amount: 9800,
 	},
 	{
-		name: 'Jun',
-		value: 3908,
+		month: 'Jun',
+		amount: 3908,
 	},
 	{
-		name: 'May',
-		value: 1890,
+		month: 'May',
+		amount: 1890,
 	},
 	{
-		name: 'Apr',
-		value: 2500,
+		month: 'Apr',
+		amount: 2500,
 	},
 	{
-		name: 'Mar',
-		value: 2100,
+		month: 'Mar',
+		amount: 2100,
 	},
 ];
 
@@ -60,37 +81,34 @@ export default function Dashboard() {
 	return (
 		<>
 			<PageTitle>Dashboard</PageTitle>
-			<div className="my-8">
-				<Row
-					gutter={[
-						{ xs: 0, sm: 20, lg: 20 },
-						{ xs: 20, sm: 20, lg: 20 },
-					]}
-					justify="center"
-				>
-					<Col md={23} lg={11}>
-						<Card className="mb-6">
-							<PieChartComponent
-								data={complaintMetas}
-								innerContent={pieInnerContent}
-								title="Overall Complaints Status"
-							/>
-						</Card>
-					</Col>
-					<Col md={23} lg={11}>
-						<Card className="mb-6">
-							<LineChartComponent complaintMetas={byMonth} />
-						</Card>
-					</Col>
-					<Col md={23} lg={22}>
-						<Card className="mb-6">
-							<BarChartComponent
-								data={amenities}
-								color="#F5A962"
-							/>
-						</Card>
-					</Col>
-				</Row>
+			<div className="bg-white mt-2 pl-2 pt-2 sm:mx-6 sm:mt-2">
+				<ChartRowContainer className="mt-1">
+					<ChartContainer>
+						<PieChartComponent
+							data={complaintMetas}
+							innerContent={pieInnerContent}
+							title="Overall Complaints Status"
+						/>
+					</ChartContainer>
+					<Divider className="sm:border-r-2" />
+					<ChartContainer>
+						<LineChartComponent complaintMetas={byMonth} />
+					</ChartContainer>
+				</ChartRowContainer>
+
+				<Divider />
+
+				<ChartRowContainer>
+					<ChartContainer>
+						<BarChartComponent data={amenities} color="#F5A962" />
+					</ChartContainer>
+					<Divider className="sm:border-r-2" />
+					<ChartContainer>
+						<AreaChart data={areaData} />
+					</ChartContainer>
+				</ChartRowContainer>
+
+				<Divider />
 			</div>
 		</>
 	);
