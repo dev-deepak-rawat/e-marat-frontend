@@ -17,6 +17,7 @@ import AmenitiesInput from 'features/amenities/AmenitiesInput';
 import placeholderImg from 'assets/images/placeholder.svg';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
 import { DATE_TIME_FORMAT } from 'lib/constants';
+import AmenityTypeTag from './AmenityTypeTag';
 
 export default function ManageAmenities() {
 	const [amenities, setAmenities] = useState<AmenityType[]>([]);
@@ -53,7 +54,7 @@ export default function ManageAmenities() {
 	return (
 		<>
 			<PageTitle>Manage Amenities</PageTitle>
-			<ContainerCard>
+			<ContainerCard size="xl">
 				<div className="text-right ">
 					<Button type="primary" onClick={() => editAmenity(null)}>
 						Create
@@ -66,6 +67,13 @@ export default function ManageAmenities() {
 					loading={loading}
 					scroll={{ x: true }}
 				>
+					<Table.Column<AmenityType>
+						title=""
+						dataIndex="type"
+						sorter={sortStringByProperty<AmenityType>('type')}
+						{...getColumnSearchProps('type')}
+						render={(type) => <AmenityTypeTag type={type} />}
+					/>
 					<Table.Column<AmenityType>
 						title="Name"
 						dataIndex="name"

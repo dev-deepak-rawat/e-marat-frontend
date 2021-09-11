@@ -7,6 +7,7 @@ import Choice from 'features/shared/Choice';
 import { AmenityType } from 'features/amenities/Types';
 import AmenitySkeleton from 'features/amenities/AmenitySkeleton';
 import MyAmenityView from 'features/amenities/MyAmenityView';
+import { AMENITY_TYPES } from 'lib/constants';
 
 export default function MyAmenities() {
 	const [choice, setChoice] = useState(0);
@@ -55,7 +56,8 @@ export default function MyAmenities() {
 								.filter(
 									(amenity: AmenityType) =>
 										choice ||
-										userAmenities.includes(amenity._id)
+										userAmenities.includes(amenity._id) ||
+										amenity.type === AMENITY_TYPES.BASIC
 								)
 								.map((amenity: AmenityType) => (
 									<MyAmenityView

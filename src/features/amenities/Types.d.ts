@@ -5,4 +5,5 @@ export type AmenityType = {
 	fee: number;
 	icon: string;
 	createdAt?: string;
+	type: 'basic' | 'flexible' | 'limited';
 };

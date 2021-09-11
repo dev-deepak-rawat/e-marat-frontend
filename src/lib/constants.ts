@@ -215,3 +215,9 @@ export const DATE_TIME_FORMAT = 'DD MMM h:mm:ss A';
 
 export const SENTRY_DSN =
 	'https://1ef6e7d163ff41eeb401880603c323da@o960298.ingest.sentry.io/5912682';
+
+export const AMENITY_TYPES = {
+	BASIC: 'basic',
+	FLEXI: 'flexible',
+	LIMITED: 'limited',
+};

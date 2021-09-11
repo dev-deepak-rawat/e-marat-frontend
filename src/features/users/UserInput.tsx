@@ -5,6 +5,7 @@ import GenericForm from 'features/shared/components/form/GenericForm';
 import { UserType } from 'features/users/Types';
 import { useApiCall } from 'config/hooks';
 import { addPrefetchOptions } from 'features/shared/components/form/genericFormHelper';
+import SpinContainer from 'features/shared/components/styledComponents/SpinContainer';
 
 export type PropsType = {
 	isVisible: boolean;
@@ -22,6 +23,7 @@ export default function UserInput({
 	const { data: amenitiesData, loading } = useApiCall({
 		apiUrl: 'amenities',
 		initDataValue: [],
+		appendToUrl: '?basic=no',
 	});
 	const formSubmitCallback = (data: UserType) => {
 		setIsVisible(false);
@@ -58,7 +60,9 @@ export default function UserInput({
 			<h2 className="text-2xl mb-4">{edit ? 'Edit' : 'Add'} User</h2>
 			{isVisible &&
 				(loading ? (
-					<Spin />
+					<SpinContainer>
+						<Spin />
+					</SpinContainer>
 				) : (
 					<GenericForm
 						appendToUrl={edit?._id}

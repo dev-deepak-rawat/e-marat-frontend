@@ -33,21 +33,15 @@ export default function CommentsContainer({
 	const commentsRef = ref(db, `post-comments/${postId}`);
 
 	useEffect(() => {
-		onValue(
-			commentsRef,
-			(snapshot) => {
-				const updatedComments: CommentType[] = [];
-				snapshot.forEach((childSnapshot) => {
-					const childKey = childSnapshot.key;
-					const childData = childSnapshot.val();
-					updatedComments.push({ key: childKey, ...childData });
-				});
-				setComments(updatedComments.reverse());
-			}
-			// {
-			//     onlyOnce: true
-			// }
-		);
+		onValue(commentsRef, (snapshot) => {
+			const updatedComments: CommentType[] = [];
+			snapshot.forEach((childSnapshot) => {
+				const childKey = childSnapshot.key;
+				const childData = childSnapshot.val();
+				updatedComments.push({ key: childKey, ...childData });
+			});
+			setComments(updatedComments.reverse());
+		});
 		return () => {
 			off(commentsRef);
 		};
