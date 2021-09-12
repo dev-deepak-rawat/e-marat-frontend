@@ -1,4 +1,5 @@
 import { Card, Col, Image, Space, Button } from 'antd';
+import { PlusOutlined } from '@ant-design/icons';
 import { transformCloudinaryImage } from 'lib/utils';
 import { AmenityType } from 'features/amenities/Types';
 import placeholderImg from 'assets/images/placeholder.svg';
@@ -33,23 +34,24 @@ export default function MyAmenityView(props: MyAmenityViewProps) {
 						fallback={placeholderImg}
 						alt="amenity"
 					/>
-					<div className="pl-6">
-						<Space size="large" className="items-start">
-							<h3 className="text-3xl mb-3">{name}</h3>
-							<AmenityTypeTag type={type} />
-						</Space>
+					<div className="w-full pl-6">
+						<div className="flex justify-between items-center mb-3">
+							<h3 className="text-3xl">{name}</h3>
+							<AmenityTypeTag type={type} className="h-fit" />
+						</div>
 						<p>{description}</p>
-						<Space className="mt-4" size="middle">
+						<div className="flex justify-between items-center mt-4">
 							<h4 className="text-2xl font-semibold">₹ {fee}</h4>
 							{showAddButton && (
 								<Button
-									type="primary"
+									className="text-white bg-green-500 hover:text-green-500 hover:border-green-500"
+									type="ghost"
 									onClick={() => addAmenity(amenityId, name)}
-								>
-									Add
-								</Button>
+									shape="circle"
+									icon={<PlusOutlined />}
+								/>
 							)}
-						</Space>
+						</div>
 					</div>
 				</div>
 			</Card>

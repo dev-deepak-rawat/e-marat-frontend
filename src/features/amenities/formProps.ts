@@ -32,9 +32,9 @@ const fieldsData: FieldType[] = [
 		name: 'type',
 		type: 'select',
 		options: [
-			{ value: BASIC, label: 'Basic Amenity' },
-			{ value: FLEXI, label: 'Flexible Amenity' },
-			{ value: LIMITED, label: 'Limited Amenity' },
+			{ value: BASIC, label: 'Basic' },
+			{ value: FLEXI, label: 'Flexible' },
+			{ value: LIMITED, label: 'Limited' },
 		],
 		validations: {
 			required: {

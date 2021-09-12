@@ -5,6 +5,8 @@ import { useMediaQuery } from 'react-responsive';
 import { ROLES } from 'lib/constants';
 import type { RootState, AppDispatch } from 'config/store';
 import { setTitle } from 'features/shared/reducers/TopbarSlice';
+import { setPosts, setUsers } from 'features/shared/reducers/SocialFeedSlice';
+import { PostList, UserList } from 'features/socialFeed/SocialFeedTypes';
 import { apiRequest } from 'config/apiRequest';
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
@@ -20,7 +22,15 @@ const filterByRole = (isAdmin: boolean) => (option: { role?: string }) => {
 
 export const useAuth = () => {
 	const authState = useAppSelector((state) => state.auth);
-	return { ...authState, filterByRole: filterByRole(authState.isAdmin) };
+
+	let id = authState?.userInfo?.claims?.uniqueId;
+	if (id) id = id as string;
+
+	return {
+		...authState,
+		uniqueId: id,
+		filterByRole: filterByRole(authState.isAdmin),
+	};
 };
 
 export const useOrientation = () => {
@@ -94,4 +104,17 @@ export const useInfiniteScrollApiCall = (props: UseInfiniteScrollApiCall) => {
 	}, [data]);
 
 	return { setSkip, isNoMoreData, loading, isFetchedOnce, list };
+};
+
+export const useSocialFeed = () => {
+	const { posts, users } = useAppSelector((state) => state.socialFeed);
+
+	const dispatch = useAppDispatch();
+
+	return {
+		posts,
+		setPosts: (p: PostList) => dispatch(setPosts(p)),
+		users,
+		setUsers: (u: UserList) => dispatch(setUsers(u)),
+	};
 };

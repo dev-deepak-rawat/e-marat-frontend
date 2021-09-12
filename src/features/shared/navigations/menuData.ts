@@ -23,8 +23,8 @@ export const menuData = [
 	},
 	{
 		id: 'socialFeeds',
-		link: '/social-feeds',
-		label: 'Social Feeds',
+		link: '/social-feed',
+		label: 'Social Feed',
 		icon: HiUsers,
 		role: '',
 	},

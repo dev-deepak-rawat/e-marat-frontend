@@ -29,7 +29,7 @@ export default function Home() {
 			history.push('/dashboard');
 		}
 		if (isLoggedIn && !isAdmin) {
-			history.push('/social-feeds');
+			history.push('/social-feed');
 		}
 	}, [isLoggedIn, isAdmin, history]);
 

@@ -20,7 +20,7 @@ export default styled.div<ContainerProps>(() => [
 		shadow-lg
 		py-5
 		px-8
-		h-full
+		min-h-full
 		mt-6
 	`,
 	({ size = 'lg' }) => containerSizeVariants[size],

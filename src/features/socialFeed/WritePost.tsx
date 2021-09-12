@@ -1,36 +1,49 @@
-import { push, ref, serverTimestamp, set } from 'firebase/database';
-import { useAuth } from 'config/hooks';
+import { useState } from 'react';
+import { Button, Modal } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 import GenericForm from 'features/shared/components/form/GenericForm';
-import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
 import { postStoryFormData } from 'features/socialFeed/postStoryFormData';
-import { db } from 'config/firebaseDbHelper';
+import { PostType } from 'features/socialFeed/SocialFeedTypes';
+import { store } from 'features/socialFeed/firebase/posts';
+import { useSocialFeed, useAuth } from 'config/hooks';
 
 export default function WritePost() {
-	const { userInfo } = useAuth();
-	const { claims } = userInfo || {};
-	const { uniqueId, picture, firstName, lastName } = claims || {};
+	const [visible, setVisible] = useState<boolean>(false);
+	const { uniqueId } = useAuth();
+	const { posts, setPosts } = useSocialFeed();
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	const handleSubmit = async (data: any) => {
-		const postListRef = ref(db, 'posts');
-		const newPostRef = push(postListRef);
-		await set(newPostRef, {
-			...data,
-			picture: data.picture || '',
-			userId: uniqueId,
-			userIcon: picture,
-			firstName,
-			lastName,
-			createdAt: serverTimestamp(),
-		});
+	const handleSubmit = async (data: PostType) => {
+		if (uniqueId) {
+			const post = await store(data, uniqueId);
+			if (post) {
+				setPosts({ ...posts, ...post });
+				setVisible(false);
+			}
+		}
 	};
+
 	return (
-		<ContainerCard>
-			<GenericForm
-				formData={postStoryFormData}
-				layout="vertical"
-				submitHandler={handleSubmit}
+		<>
+			<Modal
+				title={<h3 className="text-2xl">Write Post</h3>}
+				visible={visible}
+				footer={null}
+				onCancel={() => setVisible(false)}
+				centered
+			>
+				<GenericForm
+					formData={postStoryFormData}
+					layout="vertical"
+					submitHandler={handleSubmit}
+				/>
+			</Modal>
+			<Button
+				className="!h-auto !w-auto !p-3 fixed z-10 bottom-10 right-10 lg:bottom-20 lg:right-20 shadow-xl border-0"
+				size="large"
+				shape="circle"
+				onClick={() => setVisible(true)}
+				icon={<EditOutlined className="!text-4xl" />}
 			/>
-		</ContainerCard>
+		</>
 	);
 }
