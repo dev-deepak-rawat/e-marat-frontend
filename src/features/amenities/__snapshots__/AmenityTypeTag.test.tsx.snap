@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Amenity Type Tag 1`] = `
+<span
+  className="ant-tag ant-tag-green font-semibold capitalize rounded mr-0 h-fit"
+  style={
+    Object {
+      "backgroundColor": undefined,
+    }
+  }
+>
+  basic
+</span>
+`;

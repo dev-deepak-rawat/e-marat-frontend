@@ -1,4 +1,4 @@
-import { Card, Col, Image, Space, Button } from 'antd';
+import { Card, Col, Image, Button } from 'antd';
 import { PlusOutlined } from '@ant-design/icons';
 import { transformCloudinaryImage } from 'lib/utils';
 import { AmenityType } from 'features/amenities/Types';
@@ -17,7 +17,7 @@ export default function MyAmenityView(props: MyAmenityViewProps) {
 	const { amenity, userAmenities, choice, addAmenity } = props;
 	const { name, _id: amenityId, icon, description, fee, type } = amenity;
 	const showAddButton =
-		userAmenities.includes(amenityId) &&
+		!userAmenities.includes(amenityId) &&
 		Boolean(choice) &&
 		type !== AMENITY_TYPES.BASIC;
 	return (
@@ -49,6 +49,7 @@ export default function MyAmenityView(props: MyAmenityViewProps) {
 									onClick={() => addAmenity(amenityId, name)}
 									shape="circle"
 									icon={<PlusOutlined />}
+									data-testid="addButton"
 								/>
 							)}
 						</div>

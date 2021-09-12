@@ -124,25 +124,30 @@ export default function Announcements({
 					);
 				})}
 
-				{!isFetchedOnce &&
-					loading &&
-					[...Array(3)].map((e, i) => (
-						<div
-							// eslint-disable-next-line react/no-array-index-key
-							key={i}
-							className="bg-white m-2 p-4 rounded-2xl shadow-lg my-6 pb-6 sm:w-4/6 sm:mx-auto"
-						>
-							<div>
-								<Space className="my-4">
-									<Skeleton.Avatar active />
-									<Skeleton.Input active className="w-20" />
-								</Space>
+				{!isFetchedOnce && loading && (
+					<div data-testid="announcementSkeleton">
+						{[...Array(3)].map((e, i) => (
+							<div
+								// eslint-disable-next-line react/no-array-index-key
+								key={i}
+								className="bg-white m-2 p-4 rounded-2xl shadow-lg my-6 pb-6 sm:w-4/6 sm:mx-auto"
+							>
+								<div>
+									<Space className="my-4">
+										<Skeleton.Avatar active />
+										<Skeleton.Input
+											active
+											className="w-20"
+										/>
+									</Space>
+								</div>
+								<div>
+									<Skeleton active />
+								</div>
 							</div>
-							<div>
-								<Skeleton active />
-							</div>
-						</div>
-					))}
+						))}
+					</div>
+				)}
 				{isFetchedOnce && loading && (
 					<SpinContainer className="sm:w-4 /6 sm:mx-auto">
 						<Spin />

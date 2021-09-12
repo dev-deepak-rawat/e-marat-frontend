@@ -1,0 +1,378 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Amenity Skeleton 1`] = `
+Array [
+  <div
+    className="ant-col w-full ant-col-xs-22 ant-col-sm-11 ant-col-lg-8"
+    style={Object {}}
+  >
+    <div
+      className="sc-bdfBQB DEPcs flex items-center"
+    >
+      <div
+        className="ant-skeleton ant-skeleton-element ant-skeleton-active my-7"
+      >
+        <span
+          className="ant-skeleton-avatar ant-skeleton-avatar-lg ant-skeleton-avatar-circle"
+          style={Object {}}
+        />
+      </div>
+      <div
+        className="pl-6 w-full"
+      >
+        <div
+          className="ant-skeleton ant-skeleton-active"
+        >
+          <div
+            className="ant-skeleton-content"
+          >
+            <h3
+              className="ant-skeleton-title"
+              style={
+                Object {
+                  "width": "38%",
+                }
+              }
+            />
+            <ul
+              className="ant-skeleton-paragraph"
+            >
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": "61%",
+                  }
+                }
+              />
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="ant-col w-full ant-col-xs-22 ant-col-sm-11 ant-col-lg-8"
+    style={Object {}}
+  >
+    <div
+      className="sc-bdfBQB DEPcs flex items-center"
+    >
+      <div
+        className="ant-skeleton ant-skeleton-element ant-skeleton-active my-7"
+      >
+        <span
+          className="ant-skeleton-avatar ant-skeleton-avatar-lg ant-skeleton-avatar-circle"
+          style={Object {}}
+        />
+      </div>
+      <div
+        className="pl-6 w-full"
+      >
+        <div
+          className="ant-skeleton ant-skeleton-active"
+        >
+          <div
+            className="ant-skeleton-content"
+          >
+            <h3
+              className="ant-skeleton-title"
+              style={
+                Object {
+                  "width": "38%",
+                }
+              }
+            />
+            <ul
+              className="ant-skeleton-paragraph"
+            >
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": "61%",
+                  }
+                }
+              />
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="ant-col w-full ant-col-xs-22 ant-col-sm-11 ant-col-lg-8"
+    style={Object {}}
+  >
+    <div
+      className="sc-bdfBQB DEPcs flex items-center"
+    >
+      <div
+        className="ant-skeleton ant-skeleton-element ant-skeleton-active my-7"
+      >
+        <span
+          className="ant-skeleton-avatar ant-skeleton-avatar-lg ant-skeleton-avatar-circle"
+          style={Object {}}
+        />
+      </div>
+      <div
+        className="pl-6 w-full"
+      >
+        <div
+          className="ant-skeleton ant-skeleton-active"
+        >
+          <div
+            className="ant-skeleton-content"
+          >
+            <h3
+              className="ant-skeleton-title"
+              style={
+                Object {
+                  "width": "38%",
+                }
+              }
+            />
+            <ul
+              className="ant-skeleton-paragraph"
+            >
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": "61%",
+                  }
+                }
+              />
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="ant-col w-full ant-col-xs-22 ant-col-sm-11 ant-col-lg-8"
+    style={Object {}}
+  >
+    <div
+      className="sc-bdfBQB DEPcs flex items-center"
+    >
+      <div
+        className="ant-skeleton ant-skeleton-element ant-skeleton-active my-7"
+      >
+        <span
+          className="ant-skeleton-avatar ant-skeleton-avatar-lg ant-skeleton-avatar-circle"
+          style={Object {}}
+        />
+      </div>
+      <div
+        className="pl-6 w-full"
+      >
+        <div
+          className="ant-skeleton ant-skeleton-active"
+        >
+          <div
+            className="ant-skeleton-content"
+          >
+            <h3
+              className="ant-skeleton-title"
+              style={
+                Object {
+                  "width": "38%",
+                }
+              }
+            />
+            <ul
+              className="ant-skeleton-paragraph"
+            >
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": "61%",
+                  }
+                }
+              />
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="ant-col w-full ant-col-xs-22 ant-col-sm-11 ant-col-lg-8"
+    style={Object {}}
+  >
+    <div
+      className="sc-bdfBQB DEPcs flex items-center"
+    >
+      <div
+        className="ant-skeleton ant-skeleton-element ant-skeleton-active my-7"
+      >
+        <span
+          className="ant-skeleton-avatar ant-skeleton-avatar-lg ant-skeleton-avatar-circle"
+          style={Object {}}
+        />
+      </div>
+      <div
+        className="pl-6 w-full"
+      >
+        <div
+          className="ant-skeleton ant-skeleton-active"
+        >
+          <div
+            className="ant-skeleton-content"
+          >
+            <h3
+              className="ant-skeleton-title"
+              style={
+                Object {
+                  "width": "38%",
+                }
+              }
+            />
+            <ul
+              className="ant-skeleton-paragraph"
+            >
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": "61%",
+                  }
+                }
+              />
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  <div
+    className="ant-col w-full ant-col-xs-22 ant-col-sm-11 ant-col-lg-8"
+    style={Object {}}
+  >
+    <div
+      className="sc-bdfBQB DEPcs flex items-center"
+    >
+      <div
+        className="ant-skeleton ant-skeleton-element ant-skeleton-active my-7"
+      >
+        <span
+          className="ant-skeleton-avatar ant-skeleton-avatar-lg ant-skeleton-avatar-circle"
+          style={Object {}}
+        />
+      </div>
+      <div
+        className="pl-6 w-full"
+      >
+        <div
+          className="ant-skeleton ant-skeleton-active"
+        >
+          <div
+            className="ant-skeleton-content"
+          >
+            <h3
+              className="ant-skeleton-title"
+              style={
+                Object {
+                  "width": "38%",
+                }
+              }
+            />
+            <ul
+              className="ant-skeleton-paragraph"
+            >
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": undefined,
+                  }
+                }
+              />
+              <li
+                style={
+                  Object {
+                    "width": "61%",
+                  }
+                }
+              />
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;

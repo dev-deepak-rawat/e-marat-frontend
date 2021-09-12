@@ -10,6 +10,7 @@ import { GenericFormDataType, GenericObject } from 'lib/types';
 import UploadImage from 'features/shared/components/image/UploadImage';
 import ErrorFieldStyled from 'features/shared/components/styledComponents/ErrorField.styled';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
+import { isEmpty } from 'lib/utils';
 import GenericFormFields from './GenericFormFields';
 
 const { UPLOAD } = FORM_TYPES;
@@ -80,10 +81,12 @@ export default function GenericForm(props: PropsType) {
 	};
 
 	useEffect(() => {
-		reset(updateValues);
-		const { [imageField]: imgUrl } = updateValues;
-		if (imgUrl) {
-			setImageDefaultValue(imgUrl);
+		if (!isEmpty(updateValues)) {
+			reset(updateValues);
+			const { [imageField]: imgUrl } = updateValues;
+			if (imgUrl) {
+				setImageDefaultValue(imgUrl);
+			}
 		}
 	}, [JSON.stringify(updateValues)]);
 
@@ -105,6 +108,7 @@ export default function GenericForm(props: PropsType) {
 			layout={layout}
 			size="large"
 			requiredMark
+			data-testid="genericForm"
 		>
 			{fieldsData.map((fieldData) => {
 				const {
