@@ -1,96 +1,123 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { useState, useEffect } from 'react';
-import { db } from 'config/firebaseDbHelper';
-import {
-	off,
-	onValue,
-	push,
-	ref,
-	serverTimestamp,
-	set,
-} from 'firebase/database';
-import { Button, Input } from 'antd';
-import { useAuth } from 'config/hooks';
+import { useState, useEffect, Dispatch, SetStateAction } from 'react';
+import { Button, Empty, Input, Modal } from 'antd';
 import ErrorFieldStyled from 'features/shared/components/styledComponents/ErrorField.styled';
 import Comments from 'features/socialFeed/Comments';
-import type { CommentType } from 'features/socialFeed/SocialFeedTypes';
+import type { CommentList } from 'features/socialFeed/SocialFeedTypes';
+import { useSocialFeed, useAuth } from 'config/hooks';
+import {
+	index,
+	store,
+	removeListener,
+	destroy,
+} from 'features/socialFeed/firebase/comments';
 
-type PostCommentsType = {
+type PropsType = {
 	postId?: string;
+	setPostId: Dispatch<SetStateAction<string | undefined>>;
 };
 
-export default function CommentsContainer({
-	postId = 'Mitmhw_5rK9d43uJ9LG',
-}: PostCommentsType) {
-	const [comments, setComments] = useState<CommentType[]>([]);
+export default function CommentsContainer({ postId, setPostId }: PropsType) {
+	const [comments, setComments] = useState<CommentList>({});
 	const [newComment, setNewComment] = useState('');
 	const [newCommentErr, setNewCommentErr] = useState('');
+	const { posts, users, setUsers } = useSocialFeed();
+	const { uniqueId } = useAuth();
 
-	const { userInfo } = useAuth();
-	const { claims } = userInfo || {};
-	const { uniqueId, picture, firstName, lastName } = claims || {};
+	const post = postId ? posts[postId] : undefined;
+	let title = '';
 
-	const commentsRef = ref(db, `post-comments/${postId}`);
+	if (post) {
+		const { userId } = post;
+		const user = users[userId] || {};
+		const { firstName = '' } = user;
+		title = firstName !== '' ? `Comments on ${firstName}'s post` : '';
+	}
 
 	useEffect(() => {
-		onValue(
-			commentsRef,
-			(snapshot) => {
-				const updatedComments: CommentType[] = [];
-				snapshot.forEach((childSnapshot) => {
-					const childKey = childSnapshot.key;
-					const childData = childSnapshot.val();
-					updatedComments.push({ key: childKey, ...childData });
-				});
-				setComments(updatedComments.reverse());
-			}
-			// {
-			//     onlyOnce: true
-			// }
-		);
+		init();
+
 		return () => {
-			off(commentsRef);
+			removeListener(postId);
 		};
-	}, []);
+	}, [postId]);
+
+	const init = async () => {
+		if (postId) {
+			setComments({});
+			const comnts = await index(postId, setComments, users, setUsers);
+			if (comnts) setComments(comnts);
+		}
+	};
 
 	const writeComment = async () => {
 		if (!newComment) {
 			setNewCommentErr('Field cannot be empty');
 			return;
 		}
-		const newPostRef = push(commentsRef);
-		await set(newPostRef, {
-			text: newComment,
-			userId: uniqueId,
-			userIcon: picture,
-			name: `${firstName} ${lastName}`,
-			createdAt: serverTimestamp(),
-		});
+
+		if (postId && uniqueId) {
+			const comment = await store(postId, uniqueId, newComment);
+			if (comment) setComments({ ...comments, ...comment });
+		}
+
 		setNewComment('');
 		setNewCommentErr('');
 	};
 
+	const deleteComment = async (key: string) => {
+		if (postId && (await destroy(postId, key))) {
+			const updatedComments = { ...comments };
+			if (updatedComments[key]) {
+				delete updatedComments[key];
+				setComments(updatedComments);
+			}
+		}
+	};
+
 	return (
-		<>
-			<div className="flex">
-				<Input
-					className="sm:w-4/5 mr-1"
+		<Modal
+			title={<h3 className="text-xl">{title}</h3>}
+			visible={Boolean(postId && post)}
+			footer={null}
+			onCancel={() => setPostId(undefined)}
+			centered
+		>
+			<div>
+				<Input.TextArea
+					allowClear={true}
+					rows={4}
 					value={newComment}
 					onChange={({ target }) => setNewComment(target.value)}
 					placeholder="Write a comment..."
 				/>
-				<Button
-					className="ml-2 sm:w-1/5 rounded"
-					type="primary"
-					onClick={writeComment}
-				>
+
+				<Button className="mt-2" type="primary" onClick={writeComment}>
 					Send
 				</Button>
 			</div>
 			{newCommentErr && (
 				<ErrorFieldStyled>{newCommentErr}</ErrorFieldStyled>
 			)}
-			<Comments comments={comments} postId={postId} />
-		</>
+
+			<div className="mt-5">
+				{Object.keys(comments).length === 0 ? (
+					<Empty
+						image={Empty.PRESENTED_IMAGE_SIMPLE}
+						description="No comments yet."
+					/>
+				) : (
+					Object.entries(comments)
+						.reverse()
+						.map(([key, comment]) => (
+							<Comments
+								key={key}
+								comment={comment}
+								postId={key}
+								onDelete={deleteComment}
+							/>
+						))
+				)}
+			</div>
+		</Modal>
 	);
 }

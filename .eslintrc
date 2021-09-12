@@ -45,6 +45,11 @@
                 "ignoreRestArgs": true
             }
         ],
+        "no-console": [
+            "warn", {
+                "allow": ["warn", "error"]
+            }
+        ],
         "max-len": [
             "warn",
             {

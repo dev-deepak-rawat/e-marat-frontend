@@ -63,16 +63,20 @@ export default function GenericForm(props: PropsType) {
 		} else if (apiUrl) {
 			const result = await apiRequest({ apiUrl, data, appendToUrl });
 			const { meta: resMeta = {} } = result;
-			if (resetFormAfterSubmit && resMeta.success) {
-				reset('', {
-					keepValues: false,
-					keepDefaultValues: true,
-				});
-				if (imageField) clearImage();
-			}
+			if (resetFormAfterSubmit && resMeta.success) resetForm();
 		}
+		if (resetFormAfterSubmit && !apiUrl) resetForm();
+
 		setDisable(false);
 		if (submitCallback) submitCallback(data);
+	};
+
+	const resetForm = () => {
+		reset('', {
+			keepValues: false,
+			keepDefaultValues: true,
+		});
+		if (imageField) clearImage();
 	};
 
 	useEffect(() => {

@@ -1,5 +1,7 @@
+const plugin = require('tailwindcss/plugin');
+
 module.exports = {
-	important: true,
+	// important: true,
 	purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
 	darkMode: false, // or 'media' or 'class'
 	theme: {
@@ -34,6 +36,13 @@ module.exports = {
 			borderRadius: {
 				'5xl': '3rem',
 			},
+			minHeight: {
+				inherit: 'inherit',
+				'screen--topbar': 'calc(100vh - 3rem)',
+			},
+			height: {
+				fit: 'fit-content',
+			},
 		},
 		screens: {
 			sm: '640px',
@@ -54,7 +63,22 @@ module.exports = {
 			backgroundColor: ['active', 'disabled'],
 			textColor: ['active', 'disabled'],
 			cursor: ['disabled'],
+			fontSize: ['important'],
+			padding: ['important'],
+			height: ['important'],
+			width: ['important'],
 		},
 	},
-	plugins: [],
+	plugins: [
+		plugin(function ({ addVariant }) {
+			addVariant('important', ({ container }) => {
+				container.walkRules((rule) => {
+					rule.selector = `.\\!${rule.selector.slice(1)}`;
+					rule.walkDecls((decl) => {
+						decl.important = true;
+					});
+				});
+			});
+		}),
+	],
 };

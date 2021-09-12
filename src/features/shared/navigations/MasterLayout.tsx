@@ -14,7 +14,7 @@ export default function MasterLayout(props: PropsWithChildren<{}>) {
 	if (['/', '/404'].includes(location.pathname)) return <>{props.children}</>;
 
 	return (
-		<Layout style={{ minHeight: '100vh' }}>
+		<Layout style={{ minHeight: 'calc(100vh)' }}>
 			<SiteLayout collapsed={collapsed}>
 				<Topbar />
 				<Main {...props} />

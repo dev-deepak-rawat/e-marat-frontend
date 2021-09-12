@@ -49,7 +49,7 @@ export default function Sidebar(props: SidebarProps) {
 				right: '-40px',
 				width: 40,
 			}}
-			className="h-screen fixed z-10"
+			className="min-h-full fixed z-10"
 		>
 			<Logo onClick={() => onCollapse(!collapsed)}>
 				<Space size="small">

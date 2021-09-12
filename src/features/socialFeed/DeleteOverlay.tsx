@@ -3,7 +3,7 @@ import { HiOutlineDotsVertical } from 'react-icons/hi';
 
 type DeleteOverlayType = {
 	itemKey: string;
-	handleClick: (itemKey: string) => Promise<void>;
+	handleClick: (itemKey: string) => unknown;
 };
 
 export default function DeleteOverlay({
@@ -15,6 +15,7 @@ export default function DeleteOverlay({
 	};
 	return (
 		<Dropdown
+			trigger={['click']}
 			overlay={
 				<Menu>
 					<Menu.Item key="delete">
@@ -29,9 +30,10 @@ export default function DeleteOverlay({
 				</Menu>
 			}
 			placement="bottomRight"
-			className="absolute right-2 mt-6"
 		>
-			<HiOutlineDotsVertical />
+			<div className="cursor-pointer h-fit">
+				<HiOutlineDotsVertical className="text-gray-400 text-2xl" />
+			</div>
 		</Dropdown>
 	);
 }

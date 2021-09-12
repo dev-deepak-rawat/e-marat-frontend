@@ -1,58 +1,49 @@
-import { Comment, Tooltip, List } from 'antd';
-import { ref, remove } from 'firebase/database';
-import { db } from 'config/firebaseDbHelper';
-import { useAuth } from 'config/hooks';
+import { Comment, Tooltip } from 'antd';
+import { useSocialFeed, useAuth } from 'config/hooks';
 import dayjs from 'dayjs';
 import { DATE_FORMAT } from 'lib/constants';
 import { getPrettyDateDiff } from 'lib/utils';
-import DeleteOverlay from './DeleteOverlay';
-import type { CommentType } from './SocialFeedTypes';
+import UserInfoPop from 'features/shared/components/UserInfoPop';
+import DeleteOverlay from 'features/socialFeed/DeleteOverlay';
+import type { CommentType } from 'features/socialFeed/SocialFeedTypes';
 
-type CommentsType = {
-	comments: CommentType[];
+type PropsType = {
+	comment: CommentType;
 	postId: string;
+	onDelete: (key: string) => unknown;
 };
 
-export default function Comments({ comments = [], postId }: CommentsType) {
-	const { isAdmin, userInfo } = useAuth();
-	const { claims } = userInfo || {};
-	const { uniqueId } = claims || {};
+export default function Comments({
+	comment: { userId, text, createdAt },
+	postId,
+	onDelete,
+}: PropsType) {
+	const { isAdmin, uniqueId } = useAuth();
+	const { users } = useSocialFeed();
 
-	const deleteComment = async (key: string) => {
-		const commentRef = ref(db, `post-comments/${postId}/${key}`);
-		await remove(commentRef);
-	};
+	const user = users[userId] || {};
+	const { firstName = '', lastName = '', phone, picture, flat } = user;
 
 	return (
-		<List
-			className="comment-list"
-			header={`${comments.length} replies`}
-			itemLayout="horizontal"
-			dataSource={comments}
-			renderItem={({ key, name, userIcon, text, createdAt, userId }) => (
-				<div className="flex">
-					<Comment
-						author={name}
-						avatar={userIcon}
-						content={text}
-						datetime={
-							<Tooltip
-								title={dayjs(createdAt).format(DATE_FORMAT)}
-							>
-								<span>
-									{getPrettyDateDiff(new Date(createdAt))}
-								</span>
-							</Tooltip>
-						}
-					/>
-					{(isAdmin || uniqueId === userId) && (
-						<DeleteOverlay
-							itemKey={key}
-							handleClick={deleteComment}
-						/>
-					)}
-				</div>
+		<div className="flex">
+			<Comment
+				className="w-full"
+				author={
+					<UserInfoPop flat={flat} phone={phone}>
+						{`${firstName} ${lastName}`}
+					</UserInfoPop>
+				}
+				avatar={picture}
+				content={text}
+				datetime={
+					<Tooltip title={dayjs(createdAt).format(DATE_FORMAT)}>
+						<span>{getPrettyDateDiff(new Date(createdAt))}</span>
+					</Tooltip>
+				}
+			/>
+			{(isAdmin || uniqueId === userId) && (
+				<DeleteOverlay itemKey={postId} handleClick={onDelete} />
 			)}
-		/>
+		</div>
 	);
 }

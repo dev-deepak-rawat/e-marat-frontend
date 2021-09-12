@@ -2,11 +2,12 @@ import { FieldType, FormMetaType } from 'lib/types';
 
 const fieldsData: FieldType[] = [
 	{
-		name: 'story',
+		name: 'text',
 		type: 'textarea',
 		defaultValue: '',
 		placeholder: "What's on your mind...",
 		label: '',
+		maxLength: 500,
 		validations: {
 			required: {
 				value: true,
@@ -14,11 +15,11 @@ const fieldsData: FieldType[] = [
 			},
 			minLength: {
 				value: 2,
-				message: 'Minimum 2 lenghts required',
+				message: 'Story should be at least 2 characters long',
 			},
 			maxLength: {
-				value: 200,
-				message: 'Please write within 200 chars...',
+				value: 500,
+				message: 'Story cannot be longer than 500 characters',
 			},
 		},
 	},
