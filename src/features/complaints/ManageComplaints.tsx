@@ -12,6 +12,7 @@ import ComplaintInput from 'features/complaints/ComplaintInput';
 import placeholderImg from 'assets/images/placeholder.svg';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
 import { useAuth } from 'config/hooks';
+import UserInfoPop from 'features/shared/components/UserInfoPop';
 
 type ManageComplaintsProps = {
 	showTitle?: boolean;
@@ -78,31 +79,14 @@ export default function ManageComplaints({
 							)}
 							{...getColumnSearchProps('userName')}
 							render={(name, complaint) => (
-								<Popover
-									content={
-										<div>
-											{complaint.userFlat && (
-												<p>
-													Flat :
-													<b> {complaint.userFlat}</b>
-												</p>
-											)}
-											{complaint.userPhone && (
-												<p>
-													Phone :
-													<b>
-														{' '}
-														{complaint.userPhone}
-													</b>
-												</p>
-											)}
-										</div>
-									}
+								<UserInfoPop
+									flat={complaint.userFlat}
+									phone={complaint.userPhone}
 								>
 									<span className="cursor-pointer">
 										{complaint.userName}
 									</span>
-								</Popover>
+								</UserInfoPop>
 							)}
 						/>
 					)}

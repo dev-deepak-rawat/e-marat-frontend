@@ -69,7 +69,7 @@ export default function Routes() {
 				component={Announcements}
 				exact
 			/>
-			<ProtectedRoute path="/social-feeds" component={SocialFeed} exact />
+			<ProtectedRoute path="/social-feed" component={SocialFeed} exact />
 			<ProtectedRoute path="/profile" component={Profile} exact />
 			<ProtectedRoute path="/broadcasts" component={Broadcasts} exact />
 			<Redirect from="*" to="/404" />
