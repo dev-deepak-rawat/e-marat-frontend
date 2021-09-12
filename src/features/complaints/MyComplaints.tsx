@@ -5,7 +5,7 @@ import { useApiCall } from 'config/hooks';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
 import GenericForm from 'features/shared/components/form/GenericForm';
-import Choice from 'features/shared/Choice';
+import Choice from 'features/shared/components/Choice';
 import createFormProps from 'features/complaints/formProps';
 import { addPrefetchOptions } from 'features/shared/components/form/genericFormHelper';
 import SpinContainer from 'features/shared/components/styledComponents/SpinContainer';

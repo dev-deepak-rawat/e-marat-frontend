@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Row } from 'antd';
 import { useApiCall } from 'config/hooks';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
-import Choice from 'features/shared/Choice';
+import Choice from 'features/shared/components/Choice';
 import { AmenityType } from 'features/amenities/Types';
 import AmenitySkeleton from 'features/amenities/AmenitySkeleton';
 import MyAmenityView from 'features/amenities/MyAmenityView';

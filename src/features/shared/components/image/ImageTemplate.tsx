@@ -13,6 +13,7 @@ export default function ImageTemplate() {
 					alt="Upladed image"
 					className="max-h-52"
 					onLoad={handleImageLoad}
+					data-testid="uploadedImage"
 				/>
 			) : (
 				<>

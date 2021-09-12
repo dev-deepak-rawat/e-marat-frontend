@@ -41,12 +41,14 @@ export function sortDateByProperty<T extends GenericObject>(prop: keyof T) {
 
 type Transformation = keyof typeof CLOUDINARY_IMG_TRANSFORMATIONS;
 
+/*
+/ Transform image url to support cloudinary optimizations
+*/
 export const transformCloudinaryImage = (
 	img: string,
 	transformation: Transformation
 ): string => {
 	if (!img) return '';
-	if (!transformation) return img;
 	const imgTransformation = CLOUDINARY_IMG_TRANSFORMATIONS[transformation];
 	const [origin, imgName] = img.split(CLOUDINARY_IMG_SPLITTER);
 	return `${origin}${CLOUDINARY_IMG_SPLITTER}${imgTransformation}${imgName}`;

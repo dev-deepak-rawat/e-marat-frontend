@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Announcements from 'features/announcements/Announcements';
-import Choice from 'features/shared/Choice';
+import Choice from 'features/shared/components/Choice';
 import GenericForm from 'features/shared/components/form/GenericForm';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
