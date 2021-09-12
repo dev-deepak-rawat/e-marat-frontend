@@ -25,7 +25,7 @@ export default function MyPayments() {
 					{...{
 						choice,
 						setChoice,
-						labels: ['My Payments', 'My Transactions'],
+						labels: ['My Payments', 'Transactions'],
 					}}
 				/>
 			</PageTitle>

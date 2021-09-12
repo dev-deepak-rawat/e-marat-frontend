@@ -1,10 +1,10 @@
+import { useState } from 'react';
 import Announcements from 'features/announcements/Announcements';
 import Choice from 'features/shared/Choice';
 import GenericForm from 'features/shared/components/form/GenericForm';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
-import { useState } from 'react';
-import { broadcastFormData } from './broadcastFormData';
+import { broadcastFormData } from 'features/broadcasts/broadcastFormData';
 
 export default function Broadcasts() {
 	const [choice, setChoice] = useState(0);
@@ -27,6 +27,7 @@ export default function Broadcasts() {
 					<GenericForm
 						formData={broadcastFormData}
 						layout="vertical"
+						submitCallback={() => setChoice(1)}
 					/>
 				</ContainerCard>
 			)}

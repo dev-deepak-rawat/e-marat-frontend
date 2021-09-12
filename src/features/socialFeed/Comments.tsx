@@ -2,7 +2,7 @@ import { Comment, Tooltip } from 'antd';
 import { useSocialFeed, useAuth } from 'config/hooks';
 import dayjs from 'dayjs';
 import { DATE_FORMAT } from 'lib/constants';
-import { getPrettyDateDiff } from 'lib/utils';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import UserInfoPop from 'features/shared/components/UserInfoPop';
 import DeleteOverlay from 'features/socialFeed/DeleteOverlay';
 import type { CommentType } from 'features/socialFeed/SocialFeedTypes';
@@ -21,6 +21,8 @@ export default function Comments({
 	const { isAdmin, uniqueId } = useAuth();
 	const { users } = useSocialFeed();
 
+	dayjs.extend(relativeTime);
+
 	const user = users[userId] || {};
 	const { firstName = '', lastName = '', phone, picture, flat } = user;
 
@@ -37,7 +39,7 @@ export default function Comments({
 				content={text}
 				datetime={
 					<Tooltip title={dayjs(createdAt).format(DATE_FORMAT)}>
-						<span>{getPrettyDateDiff(new Date(createdAt))}</span>
+						<span>{dayjs(createdAt).fromNow()}</span>
 					</Tooltip>
 				}
 			/>

@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { API_CONFIG, SERVICE_URL } from 'lib/constants';
-import { getAuthToken, signOut } from 'lib/firebaseAuth';
+import { getAuthToken, signIn, signOut } from 'lib/firebaseAuth';
 import { GenericObject, StringMapObj } from 'lib/types';
 
 type BuildRequestDataType = {
@@ -37,23 +37,37 @@ export const apiRequest = async (options: BuildRequestDataType) => {
 		const jsonResponse = await response.data;
 		const { meta = {} } = jsonResponse;
 		const { success = false, msg = '' } = meta;
+		const { headers = {} } = response;
+		const { authorization } = headers;
+		if (authorization) {
+			await handleAuthorization(authorization);
+		}
 		if (success && msg) {
 			toast.success(msg);
 		}
 		return jsonResponse;
 	} catch (err) {
-		const { response: errResponse } = err;
-		if (errResponse) {
-			const { data = {} } = errResponse;
-			const { meta = {} } = data;
-			const { msg = '', code } = meta;
-			toast.error(msg || 'Something Went Wrong');
-			if ([401, 403].includes(code)) {
-				await signOut();
+		if (axios.isAxiosError(err)) {
+			const { response: errResponse } = err;
+			if (errResponse) {
+				const { data = {} } = errResponse;
+				const { meta = {} } = data;
+				const { msg = '', code } = meta;
+				toast.error(msg || 'Something Went Wrong');
+				if ([401, 403].includes(code)) {
+					await signOut();
+				}
+				return errResponse;
 			}
-			return errResponse;
 		}
 		toast.error('Something went wrong');
 	}
 	return { meta: { success: false } };
+};
+
+const handleAuthorization = async (token: string) => {
+	const success = await signIn(token);
+	if (!success) {
+		toast.error('Error while Loggin In');
+	}
 };

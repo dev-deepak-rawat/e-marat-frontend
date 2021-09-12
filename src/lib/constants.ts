@@ -5,7 +5,7 @@ type ApiConfigType = { [key: string]: { url: string; method: Method } };
 export const API_CONFIG: ApiConfigType = {
 	login: {
 		url: '/login/',
-		method: 'POST',
+		method: 'GET',
 	},
 	users: {
 		url: '/api/users/',
@@ -91,6 +91,10 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/api/transactions/',
 		method: 'GET',
 	},
+	refreshToken: {
+		url: '/refreshToken/',
+		method: 'GET',
+	},
 };
 
 export const PATTERNS = {
@@ -139,6 +143,7 @@ export const CLOUDINARY_IMG_TRANSFORMATIONS = {
 	WIDTH_600: 'w_600/',
 	AVATAR: 'w_50,h_50,c_thumb,g_face,r_max/',
 	WIDTH_50: 'w_50/',
+	WIDTH_200: 'w_200/',
 };
 
 export const RAZORPAY_SCRIPT = 'https://checkout.razorpay.com/v1/checkout.js';
@@ -207,3 +212,12 @@ export const STATUS_COLOR_MAPPER = {
 
 export const DATE_FORMAT = 'DD MMM YYYY';
 export const DATE_TIME_FORMAT = 'DD MMM h:mm:ss A';
+
+export const SENTRY_DSN =
+	'https://1ef6e7d163ff41eeb401880603c323da@o960298.ingest.sentry.io/5912682';
+
+export const AMENITY_TYPES = {
+	BASIC: 'basic',
+	FLEXI: 'flexible',
+	LIMITED: 'limited',
+};

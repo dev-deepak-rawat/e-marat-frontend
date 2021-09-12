@@ -1,5 +1,7 @@
-import { PATTERNS } from 'lib/constants';
+import { AMENITY_TYPES, PATTERNS } from 'lib/constants';
 import { FieldType, FormMetaType, GenericFormDataType } from 'lib/types';
+
+const { BASIC, FLEXI, LIMITED } = AMENITY_TYPES;
 
 const fieldsData: FieldType[] = [
 	{
@@ -25,6 +27,23 @@ const fieldsData: FieldType[] = [
 				message: 'Name cannot be longer than 100 characters',
 			},
 		},
+	},
+	{
+		name: 'type',
+		type: 'select',
+		options: [
+			{ value: BASIC, label: 'Basic Amenity' },
+			{ value: FLEXI, label: 'Flexible Amenity' },
+			{ value: LIMITED, label: 'Limited Amenity' },
+		],
+		validations: {
+			required: {
+				value: true,
+				message: 'Amenity Type is required',
+			},
+		},
+		defaultValue: '',
+		label: 'Amenity Type',
 	},
 	{
 		name: 'description',

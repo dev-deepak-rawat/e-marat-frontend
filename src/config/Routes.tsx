@@ -14,8 +14,8 @@ import Broadcasts from 'features/broadcasts/Broadcasts';
 import PageNotFound from 'features/errorPages/404';
 import { ROLES } from 'lib/constants';
 import Profile from 'features/profile/Profile';
-import Announcements from 'features/announcements/Announcements';
 import { useAuth } from 'config/hooks';
+import Announcements from 'features/announcements/Announcements';
 
 export default function Routes() {
 	const { isAdmin } = useAuth();

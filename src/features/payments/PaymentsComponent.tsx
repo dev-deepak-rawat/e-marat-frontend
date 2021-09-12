@@ -1,9 +1,12 @@
 import { Button, Image, Space, Spin } from 'antd';
 import placeholderImg from 'assets/images/placeholder.svg';
 import { useOrientation } from 'config/hooks';
+import AmenityTypeTag from 'features/amenities/AmenityTypeTag';
 import PieChartComponent from 'features/dashboard/PieChartComponent';
+import SpinContainer from 'features/shared/components/styledComponents/SpinContainer';
 import { COLOR_CODES, MONTHS_LONG, MONTHS_SHORT } from 'lib/constants';
 import { transformCloudinaryImage } from 'lib/utils';
+import type { AmenityType } from 'features/amenities/Types';
 
 type PaymentsComponentType = {
 	loading: boolean;
@@ -14,13 +17,7 @@ type PaymentsComponentType = {
 		isFirstPayment?: boolean;
 		onboardingDate?: number;
 		daysInMonth?: number;
-		amenities: {
-			name: string;
-			fee: number;
-			_id: string;
-			icon: string;
-		}[];
-		monthlyFee: string;
+		amenities: AmenityType[];
 	};
 };
 
@@ -34,7 +31,6 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 		onboardingDate,
 		daysInMonth,
 		amenities = [],
-		monthlyFee,
 	} = paymentInfo;
 
 	const [month, year] = paymentMonth.split('_');
@@ -46,8 +42,15 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 		color: COLOR_CODES[index],
 	}));
 
+	const totalMonthlyFee = amenities.reduce(
+		(total, { fee }: { fee: number }) => total + fee,
+		0
+	);
+
 	return loading ? (
-		<Spin />
+		<SpinContainer>
+			<Spin />
+		</SpinContainer>
 	) : (
 		<>
 			<div className="mb-4">
@@ -71,15 +74,23 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 						{`${onboardingDate} ${monthShort} - ${daysInMonth} ${monthShort}`}
 					</p>
 				)}
+				{!pay && (
+					<p className="font-semibold text-green-500">
+						All dues are paid.
+					</p>
+				)}
 			</div>
 
 			<div className="pt-6 border-t-2">
 				Fare Breakdown per Month
+				<span className="block font-semibold text-xs text-blue-500 bg-blue-100 w-max">
+					Note: Basic Amenities are included by default.
+				</span>
 				<div className="sm:flex">
-					<div className="sm:w-2/5">
-						{amenities.map(({ icon, name, fee, _id }) => (
+					<div className="sm:w-2/5 my-4">
+						{amenities.map(({ icon, name, fee, _id, type }) => (
 							<div key={_id} className="w-3/4 my-4">
-								<div className="flex justify-between">
+								<div className="flex justify-between items-start">
 									<Image
 										width={35}
 										height={35}
@@ -91,26 +102,29 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 											) || placeholderImg
 										}
 										fallback={placeholderImg}
+										alt="amenity icon"
 									/>
+
 									<span className="capitalize">{name}</span>
-									<span>₹{fee}</span>
+									<Space size={isMobile ? 'middle' : 'large'}>
+										<span>₹{fee}</span>
+										<AmenityTypeTag type={type} fix />
+									</Space>
 								</div>
 							</div>
 						))}
 						<span className="font-semibold">
-							Total Monthly Fee: ₹{monthlyFee}
+							Total Monthly Fee: ₹{totalMonthlyFee}
 						</span>
 					</div>
-					{!isMobile && (
-						<div>
-							<PieChartComponent
-								data={pieChartData}
-								title=""
-								isPayment
-								innerContent={`Total ₹${monthlyFee}`}
-							/>
-						</div>
-					)}
+					<div className="-ml-5 sm:-mt-6 sm:ml-20">
+						<PieChartComponent
+							data={pieChartData}
+							title=""
+							isPayment
+							innerContent={`Total ₹${totalMonthlyFee}`}
+						/>
+					</div>
 				</div>
 			</div>
 		</>

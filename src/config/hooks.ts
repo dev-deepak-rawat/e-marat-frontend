@@ -15,10 +15,9 @@ export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
 const filterByRole = (isAdmin: boolean) => (option: { role?: string }) => {
 	const { role } = option;
+	const currRole = isAdmin ? ROLES.ADMIN : ROLES.RESIDENT;
 	if (!role) return true;
-	if (isAdmin && role === ROLES.ADMIN) return true;
-	if (!isAdmin && role === ROLES.RESIDENT) return true;
-	return false;
+	return role === currRole;
 };
 
 export const useAuth = () => {
@@ -52,22 +51,25 @@ type UseApiCall = {
 	initDataValue: any;
 	appendToUrl?: string;
 	cond?: number;
+	isSkip?: boolean;
 };
 
 export const useApiCall = (props: UseApiCall) => {
-	const { apiUrl, reqData, initDataValue, appendToUrl, cond } = props;
+	const { apiUrl, reqData, initDataValue, appendToUrl, cond, isSkip } = props;
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState(initDataValue);
+	const [isFetchedOnce, setIsFetchedOnce] = useState(false);
 
 	const fetchData = async () => {
 		setLoading(true);
 		const response = await apiRequest({
 			apiUrl,
 			data: reqData,
-			appendToUrl,
+			appendToUrl: isSkip ? `?skip=${cond}` : appendToUrl,
 		});
 		const { data: resData = initDataValue } = response;
 		setData(resData);
+		setIsFetchedOnce(true);
 		setLoading(false);
 	};
 
@@ -75,7 +77,33 @@ export const useApiCall = (props: UseApiCall) => {
 		fetchData();
 	}, [cond]);
 
-	return { data, loading };
+	return { data, loading, isFetchedOnce };
+};
+
+type UseInfiniteScrollApiCall = {
+	apiUrl: string;
+};
+export const useInfiniteScrollApiCall = (props: UseInfiniteScrollApiCall) => {
+	const [skip, setSkip] = useState(0);
+	const [isNoMoreData, setIsNoMoreData] = useState(false);
+	const [list, setList] = useState<any[]>([]);
+
+	const { loading, data, isFetchedOnce } = useApiCall({
+		apiUrl: props.apiUrl,
+		initDataValue: [],
+		cond: skip,
+		isSkip: true,
+	});
+
+	useEffect(() => {
+		if (!data.length) {
+			skip && setIsNoMoreData(true);
+		} else {
+			setList([...list, ...data]);
+		}
+	}, [data]);
+
+	return { setSkip, isNoMoreData, loading, isFetchedOnce, list };
 };
 
 export const useSocialFeed = () => {

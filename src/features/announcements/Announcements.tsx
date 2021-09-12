@@ -1,119 +1,152 @@
-import { Skeleton, Row, Col, Image, Tooltip } from 'antd';
-import dayjs from 'dayjs';
+import { Empty, Image, Skeleton, Space, Spin, Tooltip, Typography } from 'antd';
+import { AiFillClockCircle } from 'react-icons/ai';
 import relativeTime from 'dayjs/plugin/relativeTime';
+import { useInfiniteScrollApiCall, useOrientation } from 'config/hooks';
+import { transformCloudinaryImage } from 'lib/utils';
+import dayjs from 'dayjs';
 import { DATE_TIME_FORMAT } from 'lib/constants';
-import { ClockCircleFilled } from '@ant-design/icons';
-import { useApiCall } from 'config/hooks';
-import PageTitle from 'features/shared/components/styledComponents/PageTitle';
-import Card from 'features/shared/components/styledComponents/Card';
 import placeholderImg from 'assets/images/placeholder.svg';
-import { AnnouncementType } from './Types';
+import PageTitle from 'features/shared/components/styledComponents/PageTitle';
+import SpinContainer from 'features/shared/components/styledComponents/SpinContainer';
+import AvatarImage from 'features/shared/components/image/AvatarImage';
+
+const { Text } = Typography;
+dayjs.extend(relativeTime);
 
 export default function Announcements({
 	showTitle = true,
 }: {
 	showTitle?: boolean;
 }) {
-	const { loading, data: announcements } = useApiCall({
-		apiUrl: 'announcements',
-		initDataValue: [],
-	});
+	const {
+		setSkip,
+		loading,
+		isFetchedOnce,
+		list: announcements,
+	} = useInfiniteScrollApiCall({ apiUrl: 'announcements' });
 
-	dayjs.extend(relativeTime);
+	const { isMobile } = useOrientation();
+
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	const handleScroll = (e: any) => {
+		const { offsetHeight, scrollTop, scrollHeight } = e.target;
+
+		if (offsetHeight + scrollTop === scrollHeight) {
+			setSkip(announcements.length);
+		}
+	};
 
 	return (
 		<>
 			{showTitle && (
 				<PageTitle className="bg-transparent">Announcements</PageTitle>
 			)}
+			{isFetchedOnce && !announcements.length && <Empty />}
+			<div
+				onScroll={handleScroll}
+				className="overflow-y-scroll"
+				style={{ height: '90vh' }}
+			>
+				{announcements.map((announcementObj) => {
+					const {
+						picture,
+						announcement,
+						createdAt,
+						title,
+						user,
+						userPicture,
+						_id: key,
+					} = announcementObj;
 
-			<div className="max-w-screen-xl mx-auto my-12">
-				{loading ? (
-					<Row
-						gutter={[
-							{ xs: 0, sm: 20, lg: 30 },
-							{ xs: 20, sm: 20, lg: 30 },
-						]}
-						justify="center"
-					>
-						{[...Array(6)].map((e, i) => (
-							/* eslint-disable react/no-array-index-key */
-							<Col key={i} md={23} lg={11} className="w-full">
-								<Card className="flex rounded">
-									<Skeleton.Avatar
-										className="xl-avatar my-7"
-										shape="square"
-										active
+					const createdTime = dayjs(createdAt);
+					return (
+						<div
+							className="bg-white m-2 rounded-2xl shadow-lg my-6 pb-6 sm:flex sm:pb-0 sm:w-4/6 sm:mx-auto"
+							key={key}
+						>
+							{picture && (
+								<div className="sm:w-2/5">
+									<Image
+										className="rounded-t-2xl sm:rounded-tr-none sm:rounded-bl-2xl object-cover"
+										height={isMobile ? 'auto' : '100%'}
+										src={
+											transformCloudinaryImage(
+												`${picture}`,
+												'WIDTH_600'
+											) || placeholderImg
+										}
+										fallback={placeholderImg}
+										preview={!isMobile}
+										alt="announcement"
 									/>
-									<div className="pl-6 w-full">
-										<Skeleton paragraph active />
-										<Skeleton.Input
-											className="w-full h-4 rounded mt-2"
-											active
-										/>
-									</div>
-								</Card>
-							</Col>
-						))}
-					</Row>
-				) : (
-					<Row
-						gutter={[
-							{ xs: 0, sm: 20, lg: 30 },
-							{ xs: 20, sm: 20, lg: 30 },
-						]}
-						justify="center"
-					>
-						{announcements.map(
-							({
-								_id,
-								title,
-								announcement,
-								picture,
-								createdAt,
-							}: AnnouncementType) => (
-								<Col
-									md={23}
-									lg={11}
-									key={_id}
-									className="w-full"
-								>
-									<Card className="relative flex flex-col sm:flex-row rounded">
-										<div className="flex items-center justify-center my-7">
-											<Image
-												width={200}
-												src={picture || placeholderImg}
-												fallback={placeholderImg}
+								</div>
+							)}
+							<div
+								className={`ml-4 sm:h-72 sm:overflow-y-auto pr-6 ${
+									picture ? 'sm:w-3/5' : 'sm:w-full'
+								}`}
+							>
+								{user && createdAt && (
+									<div className="pt-5 flex justify-between">
+										<Space>
+											<AvatarImage
+												userImg={userPicture}
 											/>
-										</div>
-										<div className="sm:pl-6 h-full flex flex-wrap flex-col justify-between break-all">
-											<div>
-												<h3 className="text-3xl font-medium mb-2">
-													{title}
-												</h3>
-												<p className="mb-2">
-													{announcement}
-												</p>
-											</div>
-										</div>
+											<Text type="secondary">{user}</Text>
+										</Space>
 										<Tooltip
-											title={dayjs(createdAt).format(
+											title={createdTime.format(
 												DATE_TIME_FORMAT
 											)}
-											className="absolute bottom-2 right-3"
 										>
-											<div className="flex items-center text-gray-400">
-												<ClockCircleFilled />
-												<span className="ml-2">
-													{dayjs(createdAt).fromNow()}
-												</span>
+											<div className="flex ml-2 items-center">
+												<Text type="secondary">
+													<AiFillClockCircle />
+												</Text>
+												<Text
+													type="secondary"
+													className="ml-1"
+												>
+													{createdTime.fromNow()}
+												</Text>
 											</div>
 										</Tooltip>
-									</Card>
-								</Col>
-							)
-						)}
-					</Row>
+									</div>
+								)}
+								<Text className="block text-xl capitalize my-3 font-bold text-gray-700">
+									{title}
+								</Text>
+								<Text type="secondary" className="text-lg">
+									{announcement}
+								</Text>
+							</div>
+						</div>
+					);
+				})}
+
+				{!isFetchedOnce &&
+					loading &&
+					[...Array(3)].map((e, i) => (
+						<div
+							// eslint-disable-next-line react/no-array-index-key
+							key={i}
+							className="bg-white m-2 p-4 rounded-2xl shadow-lg my-6 pb-6 sm:w-4/6 sm:mx-auto"
+						>
+							<div>
+								<Space className="my-4">
+									<Skeleton.Avatar active />
+									<Skeleton.Input active className="w-20" />
+								</Space>
+							</div>
+							<div>
+								<Skeleton active />
+							</div>
+						</div>
+					))}
+				{isFetchedOnce && loading && (
+					<SpinContainer className="sm:w-4 /6 sm:mx-auto">
+						<Spin />
+					</SpinContainer>
 				)}
 			</div>
 		</>

@@ -1,18 +1,17 @@
-import { Image, Table } from 'antd';
+import { Table } from 'antd';
 import dayjs from 'dayjs';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
 import {
 	sortDateByProperty,
 	sortNumberByProperty,
 	sortStringByProperty,
-	transformCloudinaryImage,
 } from 'lib/utils';
-import userPlaceholderImg from 'assets/images/user-placeholder.svg';
 import type { TransactionType } from 'features/payments/paymentsTypes';
 import { useApiCall, useAuth } from 'config/hooks';
 import searchColumnProps from 'features/shared/components/table/search';
 import { DATE_FORMAT, STATUS_COLOR_MAPPER } from 'lib/constants';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
+import AvatarImage from 'features/shared/components/image/AvatarImage';
 
 type TransactionsProps = {
 	showTitle?: boolean;
@@ -46,19 +45,7 @@ export default function Transactions({ showTitle = true }: TransactionsProps) {
 								dataIndex="picture"
 								sorter={false}
 								render={(picture) => (
-									<Image
-										className="rounded-full"
-										width={40}
-										height={40}
-										preview={false}
-										src={
-											transformCloudinaryImage(
-												`${picture}`,
-												'AVATAR'
-											) || userPlaceholderImg
-										}
-										fallback={userPlaceholderImg}
-									/>
+									<AvatarImage userImg={picture} />
 								)}
 							/>
 

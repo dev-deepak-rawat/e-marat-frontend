@@ -97,6 +97,8 @@ export default function GenericForm(props: PropsType) {
 		}
 	}, [imageUrl, errors[imageField]]);
 
+	const currRole = isAdmin ? ROLES.ADMIN : ROLES.RESIDENT;
+
 	return (
 		<Form
 			onFinish={handleSubmit(onSubmit)}
@@ -117,10 +119,8 @@ export default function GenericForm(props: PropsType) {
 				const required = Boolean(validations.required?.value);
 				const isImgField = type === UPLOAD;
 
-				if (role) {
-					if (isAdmin && role !== ROLES.ADMIN) return;
-					if (!isAdmin && role === ROLES.ADMIN) return;
-				}
+				if (role && role !== currRole) return;
+
 				return (
 					<Form.Item
 						key={fieldName}

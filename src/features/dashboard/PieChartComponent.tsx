@@ -1,7 +1,8 @@
 import { Space } from 'antd';
-import { PieChart, Pie, Cell } from 'recharts';
+import { PieChart, Pie, Cell, Tooltip } from 'recharts';
 import { ColoredBox } from 'features/shared/components/styledComponents/ColoredBox';
 import { useOrientation } from 'config/hooks';
+import StyledTitle from 'features/shared/components/styledComponents/StyledTitle';
 
 type PieChartComponentProps = {
 	data: {
@@ -23,30 +24,32 @@ export default function PieChartComponent({
 	const { isMobile } = useOrientation();
 	return (
 		<>
-			<p className="text-xl">{title}</p>
-			<PieChart width={isMobile ? 350 : 400} height={220}>
+			<StyledTitle>{title}</StyledTitle>
+			<PieChart width={isMobile ? 355 : 420} height={240}>
 				{innerContent && (
 					<text
-						x={isMobile ? 145 : 200}
+						className="font-semibold"
+						x={isMobile ? 155 : 210}
 						y={120}
 						textAnchor="middle"
 						dominantBaseline="middle"
+						fill="#374151"
 					>
 						{innerContent}
 					</text>
 				)}
 				<Pie
 					data={data}
-					cx={isMobile ? 145 : 200}
+					cx={isMobile ? 155 : 210}
 					cy={110}
-					innerRadius={50}
-					outerRadius={70}
+					innerRadius={60}
+					outerRadius={85}
 					paddingAngle={2}
 					dataKey="value"
 					nameKey="name"
 					isAnimationActive={false}
 					label={(entry) =>
-						isPayment
+						isPayment && !isMobile
 							? `${entry.name} ${(entry.percent * 100).toFixed(
 									0
 							  )}%`
@@ -57,24 +60,24 @@ export default function PieChartComponent({
 						<Cell key={entry.name} fill={entry.color} />
 					))}
 				</Pie>
+				<Tooltip />
 			</PieChart>
-			{!isPayment && (
-				<div className="flex flex-wrap">
-					{data.map((dataItem) => {
-						const { name, value, color } = dataItem;
-						return (
-							<Space key={name} className="mx-4">
-								<>
-									<ColoredBox color={color} />
-									<span
-										style={{ color }}
-									>{`${name} ${value}`}</span>
-								</>
-							</Space>
-						);
-					})}
-				</div>
-			)}
+			{!isPayment ||
+				(isMobile && (
+					<div className="flex flex-wrap">
+						{data.map((dataItem) => {
+							const { name, color } = dataItem;
+							return (
+								<Space key={name} className="mx-4">
+									<>
+										<ColoredBox color={color} />
+										<span style={{ color }}>{name}</span>
+									</>
+								</Space>
+							);
+						})}
+					</div>
+				))}
 		</>
 	);
 }
