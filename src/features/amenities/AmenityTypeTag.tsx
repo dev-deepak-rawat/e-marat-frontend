@@ -4,6 +4,7 @@ import { AmenityType } from './Types';
 type AmenityTypeTagType = {
 	type: AmenityType['type'];
 	fix?: boolean;
+	className?: string;
 };
 
 const amenityTypeColorMapper = {
@@ -12,12 +13,15 @@ const amenityTypeColorMapper = {
 	limited: 'red',
 };
 
-export default function AmenityTypeTag({ type, fix }: AmenityTypeTagType) {
+export default function AmenityTypeTag({
+	type,
+	fix,
+	className,
+}: AmenityTypeTagType) {
 	return (
 		<Tag
 			color={amenityTypeColorMapper[type]}
-			className="font-semibold capitalize rounded -mr-4"
-			style={{ width: fix ? '8ch' : 'auto' }}
+			className={`font-semibold capitalize rounded mr-0 ${className}`}
 		>
 			{type}
 		</Tag>
