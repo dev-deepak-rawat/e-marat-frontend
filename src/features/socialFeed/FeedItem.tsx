@@ -11,7 +11,7 @@ import likeIcon from 'features/socialFeed/assets/images/like.svg';
 import sadIcon from 'features/socialFeed/assets/images/sad.svg';
 import DeleteOverlay from 'features/socialFeed/DeleteOverlay';
 import { DATE_TIME_FORMAT } from 'lib/constants';
-import placeholderImg from 'assets/images/placeholder.svg';
+import userPlaceholderImg from 'assets/images/user-placeholder.svg';
 import useLongPress from 'features/socialFeed/hooks/useLongPress';
 import { ReactionType } from 'features/socialFeed/SocialFeedTypes';
 import { destroy } from 'features/socialFeed/firebase/posts';
@@ -151,8 +151,8 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 							height={50}
 							width={50}
 							preview={false}
-							src={userPic || placeholderImg}
-							fallback={placeholderImg}
+							src={userPic || userPlaceholderImg}
+							fallback={userPlaceholderImg}
 						/>
 						<div className="ml-4">
 							<UserInfoPop flat={flat} phone={phone}>
@@ -177,8 +177,8 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 					{postPic && (
 						<Image
 							width="100%"
-							src={postPic || placeholderImg}
-							fallback={placeholderImg}
+							src={postPic || userPlaceholderImg}
+							fallback={userPlaceholderImg}
 						/>
 					)}
 				</div>
