@@ -20,7 +20,7 @@ export default function CommentsContainer({ postId, setPostId }: PropsType) {
 	const [comments, setComments] = useState<CommentList>({});
 	const [newComment, setNewComment] = useState('');
 	const [newCommentErr, setNewCommentErr] = useState('');
-	const { posts, users, setUsers } = useSocialFeed();
+	const { posts, users, addUser } = useSocialFeed();
 	const { uniqueId } = useAuth();
 
 	const post = postId ? posts[postId] : undefined;
@@ -37,15 +37,14 @@ export default function CommentsContainer({ postId, setPostId }: PropsType) {
 		init();
 
 		return () => {
+			setComments({});
 			removeListener(postId);
 		};
 	}, [postId]);
 
 	const init = async () => {
 		if (postId) {
-			setComments({});
-			const comnts = await index(postId, setComments, users, setUsers);
-			if (comnts) setComments(comnts);
+			await index(postId, setComments, users, addUser);
 		}
 	};
 
