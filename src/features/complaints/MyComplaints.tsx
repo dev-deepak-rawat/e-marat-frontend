@@ -61,7 +61,7 @@ export default function MyPayments() {
 				<ContainerCard>
 					{loading ? (
 						<SpinContainer>
-							<Spin />
+							<Spin tip="loading..." />
 						</SpinContainer>
 					) : (
 						<GenericForm

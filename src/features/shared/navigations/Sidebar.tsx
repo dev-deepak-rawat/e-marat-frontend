@@ -24,7 +24,7 @@ const Logo = styled.div`
 `;
 
 type SidebarProps = {
-	isMobile: boolean;
+	isMobileSize: boolean;
 	collapsed: boolean;
 	onCollapse: Dispatch<SetStateAction<boolean>>;
 };
@@ -34,14 +34,14 @@ export default function Sidebar(props: SidebarProps) {
 	const filteredMenuData = menuData.filter(filterByRole);
 	const defaultSelectedKeys = getDefaultSelectedKeys(filteredMenuData);
 
-	const { isMobile, collapsed, onCollapse } = props;
+	const { isMobileSize, collapsed, onCollapse } = props;
 
 	return (
 		<Sider
 			collapsible
 			collapsed={collapsed}
 			onCollapse={onCollapse}
-			collapsedWidth={isMobile ? 0 : 80}
+			collapsedWidth={isMobileSize ? 0 : 80}
 			theme="dark"
 			zeroWidthTriggerStyle={{
 				top: 0,

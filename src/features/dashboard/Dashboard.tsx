@@ -56,7 +56,7 @@ export default function Dashboard() {
 			<div className="bg-white mt-2 pl-2 pt-2 sm:mx-6 sm:mt-2">
 				{loading ? (
 					<SpinContainer>
-						<Spin />
+						<Spin tip="loading..." />
 					</SpinContainer>
 				) : (
 					<>

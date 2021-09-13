@@ -34,8 +34,8 @@ export const useAuth = () => {
 };
 
 export const useOrientation = () => {
-	const isMobile = useMediaQuery({ query: '(max-width: 480px)' });
-	return { isMobile };
+	const isMobileSize = useMediaQuery({ query: '(max-width: 480px)' });
+	return { isMobileSize };
 };
 
 export const useTopbar = () => {

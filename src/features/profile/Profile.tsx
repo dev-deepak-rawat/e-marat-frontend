@@ -22,7 +22,7 @@ export default function Profile() {
 			<ContainerCard size="sm">
 				{loading ? (
 					<SpinContainer>
-						<Spin />
+						<Spin tip="loading..." />
 					</SpinContainer>
 				) : (
 					<GenericForm

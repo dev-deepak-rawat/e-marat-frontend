@@ -21,15 +21,15 @@ export default function PieChartComponent({
 	title,
 	isPayment = false,
 }: PieChartComponentProps) {
-	const { isMobile } = useOrientation();
+	const { isMobileSize } = useOrientation();
 	return (
 		<>
 			<StyledTitle>{title}</StyledTitle>
-			<PieChart width={isMobile ? 355 : 420} height={240}>
+			<PieChart width={isMobileSize ? 355 : 420} height={240}>
 				{innerContent && (
 					<text
 						className="font-semibold"
-						x={isMobile ? 155 : 210}
+						x={isMobileSize ? 155 : 210}
 						y={120}
 						textAnchor="middle"
 						dominantBaseline="middle"
@@ -40,7 +40,7 @@ export default function PieChartComponent({
 				)}
 				<Pie
 					data={data}
-					cx={isMobile ? 155 : 210}
+					cx={isMobileSize ? 155 : 210}
 					cy={110}
 					innerRadius={60}
 					outerRadius={85}
@@ -49,7 +49,7 @@ export default function PieChartComponent({
 					nameKey="name"
 					isAnimationActive={false}
 					label={(entry) =>
-						isPayment && !isMobile
+						isPayment && !isMobileSize
 							? `${entry.name} ${(entry.percent * 100).toFixed(
 									0
 							  )}%`
@@ -63,7 +63,7 @@ export default function PieChartComponent({
 				<Tooltip />
 			</PieChart>
 			{!isPayment ||
-				(isMobile && (
+				(isMobileSize && (
 					<div className="flex flex-wrap">
 						{data.map((dataItem) => {
 							const { name, color } = dataItem;

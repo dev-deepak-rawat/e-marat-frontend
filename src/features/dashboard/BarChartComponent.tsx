@@ -14,15 +14,15 @@ export default function BarChartComponent({
 	data = [],
 	color,
 }: BarChartComponentType) {
-	const { isMobile } = useOrientation();
-	const slicedData = isMobile ? data.slice(0, 5) : data.slice(0, 7);
+	const { isMobileSize } = useOrientation();
+	const slicedData = isMobileSize ? data.slice(0, 5) : data.slice(0, 7);
 	const width = Math.max(data.length * 60, 500);
 	return (
 		<>
 			<StyledTitle>Most Availed Amenities</StyledTitle>
 			<BarChart
-				width={isMobile ? 320 : width}
-				height={isMobile ? 200 : 250}
+				width={isMobileSize ? 320 : width}
+				height={isMobileSize ? 200 : 250}
 				data={slicedData}
 				className="mt-10"
 			>

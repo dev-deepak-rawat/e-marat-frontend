@@ -23,7 +23,7 @@ type PaymentsComponentType = {
 
 export default function PaymentsComponent(props: PaymentsComponentType) {
 	const { loading, displayRazorpay, paymentInfo } = props;
-	const { isMobile } = useOrientation();
+	const { isMobileSize } = useOrientation();
 	const {
 		pay,
 		paymentMonth = '',
@@ -49,7 +49,7 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 
 	return loading ? (
 		<SpinContainer>
-			<Spin />
+			<Spin tip="loading..." />
 		</SpinContainer>
 	) : (
 		<>
@@ -106,7 +106,9 @@ export default function PaymentsComponent(props: PaymentsComponentType) {
 									/>
 
 									<span className="capitalize">{name}</span>
-									<Space size={isMobile ? 'middle' : 'large'}>
+									<Space
+										size={isMobileSize ? 'middle' : 'large'}
+									>
 										<span>₹{fee}</span>
 										<AmenityTypeTag type={type} fix />
 									</Space>

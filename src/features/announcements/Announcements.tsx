@@ -25,7 +25,7 @@ export default function Announcements({
 		list: announcements,
 	} = useInfiniteScrollApiCall({ apiUrl: 'announcements' });
 
-	const { isMobile } = useOrientation();
+	const { isMobileSize } = useOrientation();
 
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const handleScroll = (e: any) => {
@@ -68,7 +68,7 @@ export default function Announcements({
 								<div className="sm:w-2/5">
 									<Image
 										className="rounded-t-2xl sm:rounded-tr-none sm:rounded-bl-2xl object-cover"
-										height={isMobile ? 'auto' : '100%'}
+										height={isMobileSize ? 'auto' : '100%'}
 										src={
 											transformCloudinaryImage(
 												`${picture}`,
@@ -76,7 +76,7 @@ export default function Announcements({
 											) || placeholderImg
 										}
 										fallback={placeholderImg}
-										preview={!isMobile}
+										preview={!isMobileSize}
 										alt="announcement"
 									/>
 								</div>
@@ -150,7 +150,7 @@ export default function Announcements({
 				)}
 				{isFetchedOnce && loading && (
 					<SpinContainer className="sm:w-4 /6 sm:mx-auto">
-						<Spin />
+						<Spin tip="Announcements Loading..." />
 					</SpinContainer>
 				)}
 			</div>

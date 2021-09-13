@@ -8,8 +8,8 @@ import { useOrientation } from 'config/hooks';
 import { SiteLayout } from 'features/shared/components/styledComponents/SiteLayout';
 
 export default function MasterLayout(props: PropsWithChildren<{}>) {
-	const { isMobile } = useOrientation();
-	const [collapsed, onCollapse] = useState(isMobile);
+	const { isMobileSize } = useOrientation();
+	const [collapsed, onCollapse] = useState(isMobileSize);
 	const location = useLocation();
 	if (['/', '/404'].includes(location.pathname)) return <>{props.children}</>;
 
@@ -19,7 +19,7 @@ export default function MasterLayout(props: PropsWithChildren<{}>) {
 				<Topbar />
 				<Main {...props} />
 			</SiteLayout>
-			<Sidebar {...{ collapsed, onCollapse, isMobile }} />
+			<Sidebar {...{ collapsed, onCollapse, isMobileSize }} />
 		</Layout>
 	);
 }

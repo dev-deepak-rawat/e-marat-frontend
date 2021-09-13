@@ -21,16 +21,18 @@ type LineChartComponentProps = {
 };
 
 export default function LineChartComponent(props: LineChartComponentProps) {
-	const { isMobile } = useOrientation();
+	const { isMobileSize } = useOrientation();
 	const { complaintMetas } = props;
-	const slicedComplaintMetas = complaintMetas.slice(0, isMobile ? 6 : 8);
+	const slicedComplaintMetas = complaintMetas.slice(0, isMobileSize ? 6 : 8);
 	return (
 		<div className="pb-8">
-			<StyledTitle>Last {isMobile ? 6 : 8} months Complaints</StyledTitle>
+			<StyledTitle>
+				Last {isMobileSize ? 6 : 8} months Complaints
+			</StyledTitle>
 
 			<LineChart
-				width={isMobile ? 300 : 420}
-				height={isMobile ? 200 : 210}
+				width={isMobileSize ? 300 : 420}
+				height={isMobileSize ? 200 : 210}
 				data={slicedComplaintMetas}
 				className="ml-0 pl-0 mt-8"
 			>

@@ -61,7 +61,7 @@ export default function UserInput({
 			{isVisible &&
 				(loading ? (
 					<SpinContainer>
-						<Spin />
+						<Spin tip="loading..." />
 					</SpinContainer>
 				) : (
 					<GenericForm

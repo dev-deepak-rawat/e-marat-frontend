@@ -11,7 +11,7 @@ import UploadImage from 'features/shared/components/image/UploadImage';
 import ErrorFieldStyled from 'features/shared/components/styledComponents/ErrorField.styled';
 import { useImage } from 'features/shared/components/image/UploadImageHook';
 import { isEmpty } from 'lib/utils';
-import GenericFormFields from './GenericFormFields';
+import GenericFormFields from 'features/shared/components/form/GenericFormFields';
 
 const { UPLOAD } = FORM_TYPES;
 
