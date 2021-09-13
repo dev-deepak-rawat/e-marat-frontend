@@ -5,7 +5,7 @@ import { useMediaQuery } from 'react-responsive';
 import { ROLES } from 'lib/constants';
 import type { RootState, AppDispatch } from 'config/store';
 import { setTitle } from 'features/shared/reducers/TopbarSlice';
-import { setPosts, setUsers } from 'features/shared/reducers/SocialFeedSlice';
+import { setPosts, addUser } from 'features/shared/reducers/SocialFeedSlice';
 import { PostList, UserList } from 'features/socialFeed/SocialFeedTypes';
 import { apiRequest } from 'config/apiRequest';
 
@@ -115,6 +115,6 @@ export const useSocialFeed = () => {
 		posts,
 		setPosts: (p: PostList) => dispatch(setPosts(p)),
 		users,
-		setUsers: (u: UserList) => dispatch(setUsers(u)),
+		addUser: (u: UserList) => dispatch(addUser(u)),
 	};
 };

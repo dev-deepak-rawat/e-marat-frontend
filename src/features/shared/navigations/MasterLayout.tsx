@@ -14,7 +14,7 @@ export default function MasterLayout(props: PropsWithChildren<{}>) {
 	if (['/', '/404'].includes(location.pathname)) return <>{props.children}</>;
 
 	return (
-		<Layout className="h-screen">
+		<Layout className="min-h-screen">
 			<SiteLayout collapsed={collapsed}>
 				<Topbar />
 				<Main {...props} />

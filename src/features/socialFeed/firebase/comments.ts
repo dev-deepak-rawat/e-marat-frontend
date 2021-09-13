@@ -10,30 +10,25 @@ import {
 } from 'firebase/database';
 import { db } from 'config/firebaseDbHelper';
 import { UserList, CommentList } from 'features/socialFeed/SocialFeedTypes';
+import { loadOnRefLoad } from 'features/socialFeed/firebase/users';
 
 export const index = async (
 	postId: string,
 	setComments: Dispatch<SetStateAction<CommentList>>,
 	users: UserList,
-	setUsers: (users: UserList) => void
-): Promise<CommentList | false> => {
+	addUser: (users: UserList) => void
+) => {
 	const commentsRef = ref(db, `post-comments/${postId}`);
 
 	try {
-		onValue(
-			commentsRef,
-			(snapshot) => {
-				if (snapshot.val()) setComments(snapshot.val());
-			},
-			{
-				onlyOnce: true,
+		onValue(commentsRef, (snapshot) => {
+			if (snapshot.val()) {
+				loadOnRefLoad(commentsRef, users, addUser);
+				setComments(snapshot.val());
 			}
-		);
-
-		return false;
+		});
 	} catch (error) {
 		console.error(error);
-		return false;
 	}
 };
 

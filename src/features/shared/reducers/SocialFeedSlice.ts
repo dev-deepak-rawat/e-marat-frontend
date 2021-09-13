@@ -19,11 +19,11 @@ export const socialFeedSlice = createSlice({
 		setPosts: (state, action: PayloadAction<PostList>) => {
 			state.posts = action.payload;
 		},
-		setUsers: (state, action: PayloadAction<UserList>) => {
-			state.users = action.payload;
+		addUser: (state, action: PayloadAction<UserList>) => {
+			state.users = { ...state.users, ...action.payload };
 		},
 	},
 });
 
-export const { setPosts, setUsers } = socialFeedSlice.actions;
+export const { setPosts, addUser } = socialFeedSlice.actions;
 export default socialFeedSlice.reducer;
