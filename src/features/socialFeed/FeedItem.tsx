@@ -17,6 +17,7 @@ import { ReactionType } from 'features/socialFeed/SocialFeedTypes';
 import { destroy } from 'features/socialFeed/firebase/posts';
 import { useSocialFeed } from 'config/hooks';
 import UserInfoPop from 'features/shared/components/UserInfoPop';
+import deleteConfirm from 'features/shared/components/deleteConfirm';
 
 type PropsType = {
 	postId: string;
@@ -70,15 +71,17 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 		// setPosts(updatedPosts);
 	};
 
-	const deletePost = async (key: string) => {
-		const updatedPosts = { ...posts };
+	const deletePost = (key: string) => {
+		deleteConfirm(async () => {
+			const updatedPosts = { ...posts };
 
-		if (await destroy(key)) {
-			if (updatedPosts[key]) {
-				delete updatedPosts[key];
-				setPosts(updatedPosts);
+			if (await destroy(key)) {
+				if (updatedPosts[key]) {
+					delete updatedPosts[key];
+					setPosts(updatedPosts);
+				}
 			}
-		}
+		});
 	};
 
 	const longPressEvent = useLongPress<HTMLButtonElement>(
@@ -139,7 +142,7 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 	};
 
 	return (
-		<div className="shadow-lg rounded-3xl border border-gray-200 mb-4">
+		<div className="shadow-lg rounded-3xl bg-white mb-5">
 			<div className="p-4">
 				<div className="flex justify-between items-center">
 					<div className="flex items-center mb-4">

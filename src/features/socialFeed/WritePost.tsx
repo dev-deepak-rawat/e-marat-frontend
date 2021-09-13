@@ -38,7 +38,7 @@ export default function WritePost() {
 				/>
 			</Modal>
 			<Button
-				className="!h-auto !w-auto !p-3 fixed z-10 bottom-10 right-10 lg:bottom-20 lg:right-20 shadow-xl border-0"
+				className="!h-auto !w-auto !p-3 fixed z-10 bottom-10 right-10 lg:bottom-20 lg:right-20 shadow-around border-0"
 				size="large"
 				shape="circle"
 				onClick={() => setVisible(true)}

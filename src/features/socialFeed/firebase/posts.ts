@@ -83,8 +83,14 @@ export const index = async (
 
 export const destroy = async (postId: string): Promise<boolean> => {
 	try {
+		// Remove all comments for the post
+		const postCommentsRef = ref(db, `post-comments/${postId}`);
+		await remove(postCommentsRef);
+
+		// Remove the post
 		const postRef = ref(db, `posts/${postId}`);
 		await remove(postRef);
+
 		return true;
 	} catch (error) {
 		console.error(error);
