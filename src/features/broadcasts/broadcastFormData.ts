@@ -48,12 +48,6 @@ const fieldsData: FieldType[] = [
 		type: 'file',
 		defaultValue: '',
 		label: '',
-		validations: {
-			required: {
-				value: true,
-				message: 'Image is required',
-			},
-		},
 	},
 ];
 

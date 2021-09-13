@@ -1,5 +1,9 @@
 @import '~antd/dist/antd.less';
 
+@primary-color: #6366f1;
+
+// Form
+
 .ant-form-large .ant-form-item-label > label {
 	height: auto;
 }
@@ -9,10 +13,10 @@
 	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 7%);
 }
 
-@primary-color: #6366f1;
-
 @form-vertical-label-padding: 0;
 @form-item-margin-bottom: 1rem;
+
+// Table
 
 @table-header-bg: #fff;
 @table-row-hover-bg: inherit;
@@ -32,4 +36,20 @@
 			box-shadow: 0px 4px 4px 0px hsla(29, 88%, 67%, 0.27) inset;
 		}
 	}
+}
+
+// Sidebar
+
+@menu-icon-size: 1.8rem;
+@menu-icon-size-lg: 1.8rem;
+
+@menu-item-vertical-margin: 0.5rem;
+@menu-item-boundary-margin: 0.5rem;
+@menu-inline-toplevel-item-height: 55px;
+
+// Skeleton
+
+.ant-skeleton-element.xl-avatar .ant-skeleton-avatar {
+	width: 100px;
+	height: 100px;
 }

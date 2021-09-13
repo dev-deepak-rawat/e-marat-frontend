@@ -1,5 +1,7 @@
-import { PATTERNS, ROLES } from 'lib/constants';
+import { AMENITY_TYPES, PATTERNS } from 'lib/constants';
 import { FieldType, FormMetaType, GenericFormDataType } from 'lib/types';
+
+const { BASIC, FLEXI, LIMITED } = AMENITY_TYPES;
 
 const fieldsData: FieldType[] = [
 	{
@@ -27,6 +29,23 @@ const fieldsData: FieldType[] = [
 		},
 	},
 	{
+		name: 'type',
+		type: 'select',
+		options: [
+			{ value: BASIC, label: 'Basic' },
+			{ value: FLEXI, label: 'Flexible' },
+			{ value: LIMITED, label: 'Limited' },
+		],
+		validations: {
+			required: {
+				value: true,
+				message: 'Amenity Type is required',
+			},
+		},
+		defaultValue: '',
+		label: 'Amenity Type',
+	},
+	{
 		name: 'description',
 		type: 'textarea',
 		defaultValue: '',
@@ -35,10 +54,6 @@ const fieldsData: FieldType[] = [
 			required: {
 				value: true,
 				message: 'Description is required',
-			},
-			pattern: {
-				value: PATTERNS.NAME,
-				message: 'Please enter valid description',
 			},
 			minLength: {
 				value: 5,

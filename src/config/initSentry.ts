@@ -1,9 +1,10 @@
 import * as Sentry from '@sentry/react';
 import { Integrations } from '@sentry/tracing';
+import { SENTRY_DSN } from 'lib/constants';
 
 const initSentry = () => {
 	Sentry.init({
-		dsn: 'https://1ef6e7d163ff41eeb401880603c323da@o960298.ingest.sentry.io/5912682',
+		dsn: SENTRY_DSN,
 		integrations: [new Integrations.BrowserTracing()],
 
 		// Set tracesSampleRate to 1.0 to capture 100%

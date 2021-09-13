@@ -13,6 +13,7 @@ export default function ImageTemplate() {
 					alt="Upladed image"
 					className="max-h-52"
 					onLoad={handleImageLoad}
+					data-testid="uploadedImage"
 				/>
 			) : (
 				<>
@@ -24,7 +25,7 @@ export default function ImageTemplate() {
 					/>
 					<div className="ant-upload-text mt-3">
 						{isImageLoading ? (
-							<Spin />
+							<Spin tip="loading..." />
 						) : (
 							<>Click or drag file to this area to upload</>
 						)}

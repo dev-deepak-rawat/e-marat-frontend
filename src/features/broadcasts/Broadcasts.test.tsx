@@ -1,14 +1,16 @@
 import { render } from '@testing-library/react';
+import Broadcasts from 'features/broadcasts/Broadcasts';
 import { Provider } from 'react-redux';
 import { store } from 'config/store';
-import Broadcasts from 'features/broadcasts/Broadcasts';
 
-test('renders learn react link', () => {
-	const { getByText } = render(
+describe('Broadcasts', () => {
+	const { getByTestId } = render(
 		<Provider store={store}>
 			<Broadcasts />
 		</Provider>
 	);
 
-	expect(getByText(/Broadcast/i)).toBeInTheDocument();
+	it('On intial load Broadcasts should be active and broadcast form should show.', () => {
+		expect(getByTestId('genericForm')).toBeInTheDocument();
+	});
 });

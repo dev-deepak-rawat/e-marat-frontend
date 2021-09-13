@@ -3,11 +3,8 @@ import type { PropsWithChildren } from 'react';
 
 export default function Main({ children }: PropsWithChildren<{}>) {
 	return (
-		<Content style={{ margin: '0 16px' }}>
-			<div
-				className="site-layout-background"
-				style={{ padding: 24, minHeight: 360 }}
-			>
+		<Content>
+			<div className="site-layout-background pt-12 px-2 sm:pt-0 sm:px-3">
 				{children}
 			</div>
 		</Content>

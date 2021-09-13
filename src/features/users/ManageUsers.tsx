@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Button, Image, Table, Space } from 'antd';
+import { Button, Table, Space } from 'antd';
 import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
-import ContainerCardTitle from 'features/shared/components/styledComponents/ContainerCardTitle';
 import { apiRequest } from 'config/apiRequest';
 import { sortStringByProperty, sortDateByProperty } from 'lib/utils';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -12,7 +11,9 @@ import { UserType } from 'features/users/Types';
 import searchColumnProps from 'features/shared/components/table/search';
 import deleteItem from 'features/shared/components/table/delete';
 import UserInput from 'features/users/UserInput';
-import userPlaceholderImg from 'assets/images/user-placeholder.svg';
+import PageTitle from 'features/shared/components/styledComponents/PageTitle';
+import { DATE_FORMAT } from 'lib/constants';
+import AvatarImage from 'features/shared/components/image/AvatarImage';
 
 export default function ManageUsers() {
 	const [users, setUsers] = useState<UserType[]>([]);
@@ -46,10 +47,9 @@ export default function ManageUsers() {
 
 	return (
 		<>
-			<ContainerCard>
-				<ContainerCardTitle>Manage Users</ContainerCardTitle>
-
-				<div className="text-right mb-4 -mt-6">
+			<PageTitle>Manage Users</PageTitle>
+			<ContainerCard size="xl">
+				<div className="text-right">
 					<Button type="primary" onClick={() => editUser(null)}>
 						Create
 					</Button>
@@ -96,15 +96,7 @@ export default function ManageUsers() {
 						title="Picture"
 						dataIndex="picture"
 						sorter={false}
-						render={(picture) => (
-							<Image
-								width={40}
-								height={40}
-								preview={false}
-								src={picture || userPlaceholderImg}
-								fallback={userPlaceholderImg}
-							/>
-						)}
+						render={(picture) => <AvatarImage userImg={picture} />}
 					/>
 					<Table.Column<UserType>
 						title="Flat"
@@ -117,7 +109,7 @@ export default function ManageUsers() {
 						dataIndex="createdAt"
 						sorter={sortDateByProperty<UserType>('createdAt')}
 						render={(createdAt) =>
-							dayjs(createdAt).format('DD MMM h:mm:ss A')
+							dayjs(createdAt).format(DATE_FORMAT)
 						}
 					/>
 					<Table.Column<UserType>

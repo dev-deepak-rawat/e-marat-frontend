@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image Template 1`] = `
+<div
+  className="mx-auto"
+>
+  <img
+    alt="Upload"
+    className="inline-block"
+    src="upload-icon.svg"
+    width="200"
+  />
+  <div
+    className="ant-upload-text mt-3"
+  >
+    Click or drag file to this area to upload
+  </div>
+</div>
+`;

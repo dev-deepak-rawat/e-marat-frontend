@@ -1,15 +1,27 @@
-import tw from 'twin.macro';
+import tw, { TwStyle } from 'twin.macro';
 import styled from 'styled-components';
 
-export default styled.div`
-	${tw`
-		max-w-screen-lg
+type ContainerSizeVariant = 'xl' | 'lg' | 'sm';
+
+type ContainerProps = {
+	size?: ContainerSizeVariant;
+};
+
+const containerSizeVariants: Record<ContainerSizeVariant, TwStyle> = {
+	xl: tw`max-w-screen-xl`,
+	lg: tw`max-w-screen-lg`,
+	sm: tw`max-w-screen-sm`,
+};
+
+export default styled.div<ContainerProps>(() => [
+	tw`
 		mx-auto
-		mt-8
 		bg-white
 		shadow-lg
-		p-7
-		h-full
-	`}
-	width: ${(props: { width?: string }) => props.width || ''};
-`;
+		py-5
+		px-8
+		min-h-full
+		mt-6
+	`,
+	({ size = 'lg' }) => containerSizeVariants[size],
+]);

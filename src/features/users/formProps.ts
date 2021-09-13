@@ -18,6 +18,7 @@ const fieldsData: FieldType[] = [
 		type: 'text',
 		defaultValue: '',
 		label: 'First Name',
+		maxLength: 50,
 		validations: {
 			required: {
 				value: true,
@@ -27,10 +28,6 @@ const fieldsData: FieldType[] = [
 				value: PATTERNS.NAME,
 				message: 'Please enter valid first name',
 			},
-			maxLength: {
-				value: 50,
-				message: 'First name cannot be longer than 50 characters',
-			},
 		},
 	},
 	{
@@ -38,6 +35,7 @@ const fieldsData: FieldType[] = [
 		type: 'text',
 		defaultValue: '',
 		label: 'Last Name',
+		maxLength: 50,
 		validations: {
 			required: {
 				value: true,
@@ -47,10 +45,6 @@ const fieldsData: FieldType[] = [
 				value: PATTERNS.NAME,
 				message: 'Please enter valid last name',
 			},
-			maxLength: {
-				value: 50,
-				message: 'First name  cannot be longer than 50 characters',
-			},
 		},
 	},
 	{
@@ -58,16 +52,13 @@ const fieldsData: FieldType[] = [
 		type: 'text',
 		defaultValue: '',
 		label: 'Mobile No.',
+		maxLength: 10,
 		validations: {
 			required: {
 				value: true,
 				message: 'Mobile no. is required',
 			},
 			minLength: {
-				value: 10,
-				message: 'Mobile number must be 10 characters long',
-			},
-			maxLength: {
 				value: 10,
 				message: 'Mobile number must be 10 characters long',
 			},
@@ -83,6 +74,7 @@ const fieldsData: FieldType[] = [
 		type: 'text',
 		defaultValue: '',
 		label: 'Flat No.',
+		maxLength: 10,
 		role: ROLES.ADMIN,
 		validations: {
 			required: {
@@ -90,6 +82,15 @@ const fieldsData: FieldType[] = [
 				message: 'Flat No. is required',
 			},
 		},
+	},
+	{
+		name: 'amenities',
+		type: 'multiselect',
+		prefetch: true,
+		defaultValue: [],
+		options: [],
+		label: 'Amenities',
+		role: ROLES.ADMIN,
 	},
 ];
 

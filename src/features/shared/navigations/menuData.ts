@@ -1,4 +1,4 @@
-import { FaUserEdit, FaUserPlus } from 'react-icons/fa';
+import { FaUserEdit } from 'react-icons/fa';
 import { AiFillDashboard } from 'react-icons/ai';
 import { HiUsers, HiCurrencyRupee } from 'react-icons/hi';
 import { CgGym } from 'react-icons/cg';
@@ -23,8 +23,8 @@ export const menuData = [
 	},
 	{
 		id: 'socialFeeds',
-		link: '/social-feeds',
-		label: 'Social Feeds',
+		link: '/social-feed',
+		label: 'Social Feed',
 		icon: HiUsers,
 		role: '',
 	},
@@ -36,18 +36,11 @@ export const menuData = [
 		role: '',
 	},
 	{
-		id: 'manageComplaints',
-		link: '/manage-complaints',
+		id: 'complaints',
+		link: '/complaints',
 		label: 'Complaints',
 		icon: GoIssueOpened,
-		role: ROLES.ADMIN,
-	},
-	{
-		id: 'complaint',
-		link: '/complaint',
-		label: 'Complaint',
-		icon: GoIssueOpened,
-		role: ROLES.RESIDENT,
+		role: '',
 	},
 	{
 		id: 'broadcasts',

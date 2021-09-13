@@ -10,6 +10,7 @@ import {
 	ConfirmationResult,
 	signInWithCustomToken,
 	signOut as firebaseSignOut,
+	User,
 } from 'firebase/auth';
 import firebaseApp from 'config/firebase';
 import { errorLogger } from 'lib/utils';
@@ -33,27 +34,29 @@ const loadAuthStateFromLocalStorage = () => {
 	}
 };
 
+const saveAuthUserOnStore = (authUser: User | null) => {
+	if (!authUser) {
+		store.dispatch(removeAuthUser());
+	}
+	authUser?.getIdTokenResult().then((authUserInfo) => {
+		const { claims = {} } = authUserInfo;
+		if ('isAdmin' in claims) {
+			store.dispatch(
+				saveAuthUser({
+					isLoggedIn: true,
+					isAdmin: Boolean(claims.isAdmin),
+					userInfo: authUserInfo,
+					isLoaded: true,
+				})
+			);
+		}
+	});
+};
+
 export const listenUserAuthState = () => {
 	saveAuthStateOnLocalStorage();
 	loadAuthStateFromLocalStorage();
-	auth.onAuthStateChanged((authUser) => {
-		if (!authUser) {
-			store.dispatch(removeAuthUser());
-		}
-		authUser?.getIdTokenResult().then((authUserInfo) => {
-			const { claims = {} } = authUserInfo;
-			if ('isAdmin' in claims) {
-				store.dispatch(
-					saveAuthUser({
-						isLoggedIn: true,
-						isAdmin: Boolean(claims.isAdmin),
-						userInfo: authUserInfo,
-						isLoaded: true,
-					})
-				);
-			}
-		});
-	});
+	auth.onAuthStateChanged(saveAuthUserOnStore);
 };
 
 const invisibeRecaptcha = (elId: string) =>
@@ -77,7 +80,7 @@ export const sendOtp = async (
 		return await signInWithPhoneNumber(auth, phoneNumber, appVerifier);
 	} catch (error) {
 		// Error; SMS not sent
-		errorLogger(error);
+		errorLogger(error as Error);
 		return false;
 	}
 };
@@ -85,28 +88,38 @@ export const sendOtp = async (
 export const confirmOtp = async (
 	confirmationResult: ConfirmationResult,
 	otp: string
-): Promise<string | false> => {
+): Promise<boolean> => {
 	try {
-		const credentials = await confirmationResult.confirm(otp);
-
-		// User signed in successfully.
-		// Return token
-		return await credentials.user.getIdToken();
+		await confirmationResult.confirm(otp);
+		return true;
 	} catch (error) {
 		// User couldn't sign in (bad verification code?)
-		errorLogger(error);
+		errorLogger(error as Error);
 		return false;
 	}
 };
 
-export const getAuthToken = async () => auth.currentUser?.getIdToken();
+const getCurrentUser = () =>
+	new Promise((resolve, reject) => {
+		const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
+			unsubscribe();
+			resolve(user);
+		}, reject);
+	});
+
+export const getAuthToken = async () => {
+	const authUser = await getCurrentUser();
+	return (authUser as User)?.getIdToken();
+};
 
 export const signIn = async (token: string) => {
 	try {
 		await signInWithCustomToken(auth, token);
+		const authUser = await getCurrentUser();
+		saveAuthUserOnStore(authUser as User);
 		return true;
 	} catch (err) {
-		errorLogger(err);
+		errorLogger(err as Error);
 	}
 	return false;
 };
@@ -116,7 +129,7 @@ export const signOut = async () => {
 		await firebaseSignOut(auth);
 		return true;
 	} catch (err) {
-		errorLogger(err);
+		errorLogger(err as Error);
 	}
 	return false;
 };

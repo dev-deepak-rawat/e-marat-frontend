@@ -1,3 +1,21 @@
+import { Result, Button } from 'antd';
+import { useHistory } from 'react-router-dom';
+
 export default function PageNotFound() {
-	return <div>Page Not Found</div>;
+	const history = useHistory();
+
+	const handleClick = () => history.push('/');
+
+	return (
+		<Result
+			status="404"
+			title="404"
+			subTitle="Sorry, the page you visited does not exist."
+			extra={
+				<Button type="primary" onClick={handleClick}>
+					Back Home
+				</Button>
+			}
+		/>
+	);
 }

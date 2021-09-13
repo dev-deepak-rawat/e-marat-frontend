@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`My Amenities 1`] = `
+Array [
+  <div
+    className="sc-bdfBQB itvOLS bg-transparent"
+  >
+    <div
+      className="ant-radio-group ant-radio-group-solid title-font"
+    >
+      <label
+        className="ant-radio-button-wrapper ant-radio-button-wrapper-checked"
+      >
+        <span
+          className="ant-radio-button ant-radio-button-checked"
+          style={Object {}}
+        >
+          <input
+            checked={true}
+            className="ant-radio-button-input"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyPress={[Function]}
+            onKeyUp={[Function]}
+            type="radio"
+            value={0}
+          />
+          <span
+            className="ant-radio-button-inner"
+          />
+        </span>
+        <span>
+          My Amenities
+        </span>
+      </label>
+      <label
+        className="ant-radio-button-wrapper"
+      >
+        <span
+          className="ant-radio-button"
+          style={Object {}}
+        >
+          <input
+            checked={false}
+            className="ant-radio-button-input"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyPress={[Function]}
+            onKeyUp={[Function]}
+            type="radio"
+            value={1}
+          />
+          <span
+            className="ant-radio-button-inner"
+          />
+        </span>
+        <span>
+          All Amenities
+        </span>
+      </label>
+    </div>
+  </div>,
+  <div
+    className="max-w-screen-lg mx-auto mt-12"
+  >
+    <div
+      className="ant-row ant-row-center"
+      style={
+        Object {
+          "marginBottom": -10,
+          "marginLeft": -10,
+          "marginRight": -10,
+          "marginTop": -10,
+        }
+      }
+    />
+  </div>,
+]
+`;

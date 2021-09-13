@@ -1,25 +1,23 @@
 import { useState, useEffect } from 'react';
-import { Button, Modal, Table, Space, Image } from 'antd';
-import {
-	EditFilled,
-	DeleteFilled,
-	ExclamationCircleOutlined,
-} from '@ant-design/icons';
+import { Button, Table, Space, Image } from 'antd';
+import { EditFilled, DeleteFilled } from '@ant-design/icons';
 import dayjs from 'dayjs';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
-import ContainerCardTitle from 'features/shared/components/styledComponents/ContainerCardTitle';
 import { apiRequest } from 'config/apiRequest';
 import {
 	sortStringByProperty,
 	sortNumberByProperty,
 	sortDateByProperty,
+	transformCloudinaryImage,
 } from 'lib/utils';
-import { ApiResponse } from 'lib/types';
 import { AmenityType } from 'features/amenities/Types';
 import deleteItem from 'features/shared/components/table/delete';
 import searchColumnProps from 'features/shared/components/table/search';
 import AmenitiesInput from 'features/amenities/AmenitiesInput';
 import placeholderImg from 'assets/images/placeholder.svg';
+import PageTitle from 'features/shared/components/styledComponents/PageTitle';
+import { DATE_TIME_FORMAT } from 'lib/constants';
+import AmenityTypeTag from './AmenityTypeTag';
 
 export default function ManageAmenities() {
 	const [amenities, setAmenities] = useState<AmenityType[]>([]);
@@ -27,7 +25,6 @@ export default function ManageAmenities() {
 		null
 	);
 	const [loading, setLoading] = useState<boolean>(true);
-	useState<boolean>(false);
 	const [amenitiesInputVisible, setAmenitiesInputVisible] =
 		useState<boolean>(false);
 
@@ -56,10 +53,9 @@ export default function ManageAmenities() {
 
 	return (
 		<>
-			<ContainerCard>
-				<ContainerCardTitle>Manage Amenities</ContainerCardTitle>
-
-				<div className="text-right mb-4 -mt-6">
+			<PageTitle>Manage Amenities</PageTitle>
+			<ContainerCard size="xl">
+				<div className="text-right ">
 					<Button type="primary" onClick={() => editAmenity(null)}>
 						Create
 					</Button>
@@ -71,6 +67,13 @@ export default function ManageAmenities() {
 					loading={loading}
 					scroll={{ x: true }}
 				>
+					<Table.Column<AmenityType>
+						title=""
+						dataIndex="type"
+						sorter={sortStringByProperty<AmenityType>('type')}
+						{...getColumnSearchProps('type')}
+						render={(type) => <AmenityTypeTag type={type} />}
+					/>
 					<Table.Column<AmenityType>
 						title="Name"
 						dataIndex="name"
@@ -98,12 +101,17 @@ export default function ManageAmenities() {
 						sorter={false}
 						render={(icon) => (
 							<Image
-								className="rounded-full"
 								width={40}
 								height={40}
 								preview={false}
-								src={icon || placeholderImg}
+								src={
+									transformCloudinaryImage(
+										icon,
+										'WIDTH_50'
+									) || placeholderImg
+								}
 								fallback={placeholderImg}
+								alt="amenity"
 							/>
 						)}
 					/>
@@ -112,7 +120,7 @@ export default function ManageAmenities() {
 						dataIndex="createdAt"
 						sorter={sortDateByProperty<AmenityType>('createdAt')}
 						render={(createdAt) =>
-							dayjs(createdAt).format('DD MMM h:mm:ss A')
+							dayjs(createdAt).format(DATE_TIME_FORMAT)
 						}
 					/>
 					<Table.Column<AmenityType>

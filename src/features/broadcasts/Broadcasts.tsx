@@ -1,38 +1,36 @@
-import { Radio, RadioChangeEvent } from 'antd';
+import { useState } from 'react';
 import Announcements from 'features/announcements/Announcements';
+import Choice from 'features/shared/components/Choice';
 import GenericForm from 'features/shared/components/form/GenericForm';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
-import { useState } from 'react';
-import { broadcastFormData } from './broadcastFormData';
+import PageTitle from 'features/shared/components/styledComponents/PageTitle';
+import { broadcastFormData } from 'features/broadcasts/broadcastFormData';
 
 export default function Broadcasts() {
-	const [choice, setChoice] = useState('broadcast');
-
-	const handleChange = (event: RadioChangeEvent) => {
-		const { value } = event.target;
-		setChoice(value);
-	};
+	const [choice, setChoice] = useState(0);
 
 	return (
-		<div className="mt-10 sm:mt-0">
-			<Radio.Group
-				onChange={handleChange}
-				defaultValue={choice}
-				buttonStyle="solid"
-			>
-				<Radio.Button value="announcement">Announcements</Radio.Button>
-				<Radio.Button value="broadcast">Broadcast</Radio.Button>
-			</Radio.Group>
-			{choice === 'broadcast' ? (
-				<ContainerCard className="w-max mt-3 sm:w-1/2 sm:mt-5">
+		<>
+			<PageTitle className="bg-transparent">
+				<Choice
+					{...{
+						choice,
+						setChoice,
+						labels: ['Broadcast', 'Announcements'],
+					}}
+				/>
+			</PageTitle>
+			{choice ? (
+				<Announcements showTitle={false} />
+			) : (
+				<ContainerCard className="mt-3 mx-2 sm:mt-8 sm:w-7/12 sm:mx-auto">
 					<GenericForm
 						formData={broadcastFormData}
 						layout="vertical"
+						submitCallback={() => setChoice(1)}
 					/>
 				</ContainerCard>
-			) : (
-				<Announcements />
 			)}
-		</div>
+		</>
 	);
 }

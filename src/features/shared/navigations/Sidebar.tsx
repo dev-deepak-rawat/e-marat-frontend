@@ -12,10 +12,10 @@ const { Sider } = Layout;
 
 const Logo = styled.div`
 	${tw`
-        h-16
+        h-24
         text-center
         text-2xl
-        pt-3
+        pt-5
         font-bold
         text-emarat-secondary-default
         cursor-pointer
@@ -24,7 +24,7 @@ const Logo = styled.div`
 `;
 
 type SidebarProps = {
-	isMobile: boolean;
+	isMobileSize: boolean;
 	collapsed: boolean;
 	onCollapse: Dispatch<SetStateAction<boolean>>;
 };
@@ -32,44 +32,36 @@ type SidebarProps = {
 export default function Sidebar(props: SidebarProps) {
 	const { filterByRole } = useAuth();
 	const filteredMenuData = menuData.filter(filterByRole);
-	const { defaultOpenKeys, defaultSelectedKeys } =
-		getDefaultSelectedKeys(filteredMenuData);
+	const defaultSelectedKeys = getDefaultSelectedKeys(filteredMenuData);
 
-	const { isMobile, collapsed, onCollapse } = props;
+	const { isMobileSize, collapsed, onCollapse } = props;
 
 	return (
 		<Sider
 			collapsible
 			collapsed={collapsed}
 			onCollapse={onCollapse}
-			collapsedWidth={isMobile ? 0 : 80}
+			collapsedWidth={isMobileSize ? 0 : 80}
 			theme="dark"
 			zeroWidthTriggerStyle={{
 				top: 0,
-				height: '3rem',
-				right: '-50px',
-				width: 50,
+				height: '2.8rem',
+				right: '-40px',
+				width: 40,
 			}}
-			className="h-screen fixed z-10"
+			className="min-h-full fixed z-10"
 		>
-			{!isMobile && (
-				<Logo onClick={() => onCollapse(!collapsed)}>
-					<Space size="small">
-						<img
-							src={CLOUDINARY_IMAGES.LOGO}
-							alt="Logo"
-							className="h-12"
-						/>
-						{collapsed ? '' : '-MARAT'}
-					</Space>
-				</Logo>
-			)}
-			<Menu
-				theme="dark"
-				defaultSelectedKeys={defaultSelectedKeys}
-				mode="inline"
-				defaultOpenKeys={defaultOpenKeys}
-			>
+			<Logo onClick={() => onCollapse(!collapsed)}>
+				<Space size="small">
+					<img
+						src={CLOUDINARY_IMAGES.LOGO}
+						alt="Logo"
+						className="h-12"
+					/>
+					{collapsed ? '' : '-MARAT'}
+				</Space>
+			</Logo>
+			<Menu theme="dark" selectedKeys={defaultSelectedKeys} mode="inline">
 				{filteredMenuData.map(MenuItem)}
 			</Menu>
 		</Sider>

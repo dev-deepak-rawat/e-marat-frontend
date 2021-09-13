@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const SiteLayout = styled.div`
+	min-height: 100%;
 	margin-left: ${(props: { collapsed: boolean }) =>
 		props.collapsed ? '80px' : '200px'};
 	width: ${(props: { collapsed: boolean }) =>

@@ -4,7 +4,16 @@ import { FORM_TYPES } from 'lib/constants';
 import { ControllerRenderProps } from 'react-hook-form';
 
 const { Option } = Select;
-const { TEXT, NUMBER, TEXTAREA, UPLOAD, CHECKBOX, SWITCH, SELECT } = FORM_TYPES;
+const {
+	TEXT,
+	NUMBER,
+	TEXTAREA,
+	UPLOAD,
+	CHECKBOX,
+	SWITCH,
+	SELECT,
+	MULTISELECT,
+} = FORM_TYPES;
 
 type Types = {
 	// eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -19,9 +28,12 @@ const GenericFormFields = ({ field, fieldData }: Types): JSX.Element => {
 		label,
 		addonBefore,
 		addonAfter,
+		maxLength,
 		options = [],
 		defaultValue,
 	} = fieldData;
+
+	const isMultiselect = type === MULTISELECT;
 
 	switch (type) {
 		case TEXT:
@@ -32,6 +44,7 @@ const GenericFormFields = ({ field, fieldData }: Types): JSX.Element => {
 					placeholder={placeholder || label}
 					addonBefore={addonBefore}
 					addonAfter={addonAfter}
+					maxLength={maxLength}
 					defaultValue={defaultValue}
 					{...field}
 				/>
@@ -47,10 +60,13 @@ const GenericFormFields = ({ field, fieldData }: Types): JSX.Element => {
 			);
 
 		case SELECT:
+		case MULTISELECT:
 			return (
 				<Select
 					placeholder={placeholder || label}
 					defaultValue={defaultValue}
+					mode={isMultiselect ? 'multiple' : undefined}
+					allowClear={isMultiselect}
 					{...field}
 				>
 					{options.map((op) => (

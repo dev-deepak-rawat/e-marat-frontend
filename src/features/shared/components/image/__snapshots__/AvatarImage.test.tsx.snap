@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Image Template 1`] = `
+<div
+  className="ant-image"
+  style={
+    Object {
+      "height": 40,
+      "width": 40,
+    }
+  }
+>
+  <img
+    alt="avatar"
+    className="ant-image-img rounded-full"
+    onError={[Function]}
+    onLoad={[Function]}
+    src="https://res.cloudinary.com/emarat/image/upload/w_50,h_50,c_thumb,g_face,r_max/v1631362403/dfejes8g9doeysyniydd.png"
+    style={
+      Object {
+        "height": 40,
+      }
+    }
+  />
+</div>
+`;
