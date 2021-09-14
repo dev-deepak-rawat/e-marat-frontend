@@ -62,22 +62,21 @@ export default function PieChartComponent({
 				</Pie>
 				<Tooltip />
 			</PieChart>
-			{!isPayment ||
-				(isMobileSize && (
-					<div className="flex flex-wrap">
-						{data.map((dataItem) => {
-							const { name, color } = dataItem;
-							return (
-								<Space key={name} className="mx-4">
-									<>
-										<ColoredBox color={color} />
-										<span style={{ color }}>{name}</span>
-									</>
-								</Space>
-							);
-						})}
-					</div>
-				))}
+			{(!isPayment || isMobileSize) && (
+				<div className="flex flex-wrap">
+					{data.map((dataItem) => {
+						const { name, color } = dataItem;
+						return (
+							<Space key={name} className="mx-4">
+								<>
+									<ColoredBox color={color} />
+									<span style={{ color }}>{name}</span>
+								</>
+							</Space>
+						);
+					})}
+				</div>
+			)}
 		</>
 	);
 }

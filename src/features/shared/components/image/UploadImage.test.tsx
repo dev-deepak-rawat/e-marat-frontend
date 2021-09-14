@@ -4,10 +4,9 @@ import { Provider } from 'react-redux';
 import { store } from 'config/store';
 import { setImageUrl } from 'features/shared/components/image/imageSlice';
 import { act } from 'react-dom/test-utils';
+import { TEST_IMG_URL } from 'lib/constants';
 
 describe('Upload Image ', () => {
-	const imageUrl =
-		'https://res.cloudinary.com/emarat/image/upload/v1631362403/dfejes8g9doeysyniydd.png';
 	const { getByTestId } = render(
 		<Provider store={store}>
 			<UploadImage />
@@ -16,14 +15,16 @@ describe('Upload Image ', () => {
 
 	act(() => {
 		if (store) {
-			store.dispatch(setImageUrl(imageUrl));
+			store.dispatch(setImageUrl(TEST_IMG_URL));
 		}
 	});
 
 	const crossButton = getByTestId('crossButton');
 
 	it('Redux store image url should be in the img src', () => {
-		expect(getByTestId('uploadedImage').getAttribute('src')).toBe(imageUrl);
+		expect(getByTestId('uploadedImage').getAttribute('src')).toBe(
+			TEST_IMG_URL
+		);
 	});
 
 	it('If imageUrl in store then cross button is present', () => {

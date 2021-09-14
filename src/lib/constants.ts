@@ -221,3 +221,6 @@ export const AMENITY_TYPES = {
 	FLEXI: 'flexible',
 	LIMITED: 'limited',
 };
+
+export const TEST_IMG_URL =
+	'https://res.cloudinary.com/emarat/image/upload/v1631362403/dfejes8g9doeysyniydd.png';

@@ -25,7 +25,7 @@ export const usePayment = () => {
 	};
 
 	const displayRazorpay = async () => {
-		const { firstName, lastName, phone } = userInfo?.claims || {};
+		const { firstName, lastName, phone, flat } = userInfo?.claims || {};
 		const res = await loadScript(RAZORPAY_SCRIPT);
 		if (!res) {
 			return;
@@ -37,7 +37,7 @@ export const usePayment = () => {
 			const options = {
 				key: process.env.REACT_APP_RAZORPAY_KEY_ID,
 				name: 'E-marat',
-				description: 'User monthly maintenance Fees',
+				description: `Flat-No. ${flat} monthly maintenance fee.`,
 				image: CLOUDINARY_IMAGES.LOGO,
 				order_id: id,
 				handler: (respone: any) => handlePayment(respone),

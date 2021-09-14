@@ -5,6 +5,12 @@ import * as serviceWorker from 'serviceWorker';
 import App from 'App';
 import { listenUserAuthState } from 'lib/firebaseAuth';
 
+if (process.env.NODE_ENV === 'development') {
+	// eslint-disable-next-line global-require
+	const { worker } = require('mocks/browser');
+	worker.start();
+}
+
 initSentry();
 listenUserAuthState();
 
