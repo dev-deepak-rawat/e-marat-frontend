@@ -63,7 +63,7 @@ export default function PieChartComponent({
 				<Tooltip />
 			</PieChart>
 			{(!isPayment || isMobileSize) && (
-				<div className="flex flex-wrap">
+				<div data-testid="pieChartLabels" className="flex flex-wrap">
 					{data.map((dataItem) => {
 						const { name, color } = dataItem;
 						return (

@@ -1,0 +1,924 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Amenity Skeleton 1`] = `
+<div
+  className="pb-8"
+>
+  <p
+    className="sc-bdfBQB bbCVRC"
+  >
+    Last 
+    8
+     months Complaints
+  </p>
+  <div
+    className="recharts-wrapper ml-0 pl-0 mt-8"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseMove={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "cursor": "default",
+        "height": 210,
+        "position": "relative",
+        "width": 420,
+      }
+    }
+  >
+    <svg
+      className="recharts-surface"
+      height={210}
+      version="1.1"
+      viewBox="0 0 420 210"
+      width={420}
+    >
+      <defs>
+        <clipPath
+          id="recharts1-clip"
+        >
+          <rect
+            height={170}
+            width={350}
+            x={65}
+            y={5}
+          />
+        </clipPath>
+      </defs>
+      <g
+        className="recharts-cartesian-grid"
+      >
+        <g
+          className="recharts-cartesian-grid-horizontal"
+        >
+          <line
+            fill="none"
+            height={170}
+            offset={
+              Object {
+                "bottom": 35,
+                "brushBottom": 35,
+                "height": 170,
+                "left": 65,
+                "right": 5,
+                "top": 5,
+                "width": 350,
+              }
+            }
+            stroke="#ccc"
+            strokeDasharray="3 3"
+            width={350}
+            x={65}
+            x1={65}
+            x2={415}
+            y={5}
+            y1={175}
+            y2={175}
+          />
+          <line
+            fill="none"
+            height={170}
+            offset={
+              Object {
+                "bottom": 35,
+                "brushBottom": 35,
+                "height": 170,
+                "left": 65,
+                "right": 5,
+                "top": 5,
+                "width": 350,
+              }
+            }
+            stroke="#ccc"
+            strokeDasharray="3 3"
+            width={350}
+            x={65}
+            x1={65}
+            x2={415}
+            y={5}
+            y1={132.5}
+            y2={132.5}
+          />
+          <line
+            fill="none"
+            height={170}
+            offset={
+              Object {
+                "bottom": 35,
+                "brushBottom": 35,
+                "height": 170,
+                "left": 65,
+                "right": 5,
+                "top": 5,
+                "width": 350,
+              }
+            }
+            stroke="#ccc"
+            strokeDasharray="3 3"
+            width={350}
+            x={65}
+            x1={65}
+            x2={415}
+            y={5}
+            y1={90}
+            y2={90}
+          />
+          <line
+            fill="none"
+            height={170}
+            offset={
+              Object {
+                "bottom": 35,
+                "brushBottom": 35,
+                "height": 170,
+                "left": 65,
+                "right": 5,
+                "top": 5,
+                "width": 350,
+              }
+            }
+            stroke="#ccc"
+            strokeDasharray="3 3"
+            width={350}
+            x={65}
+            x1={65}
+            x2={415}
+            y={5}
+            y1={47.5}
+            y2={47.5}
+          />
+          <line
+            fill="none"
+            height={170}
+            offset={
+              Object {
+                "bottom": 35,
+                "brushBottom": 35,
+                "height": 170,
+                "left": 65,
+                "right": 5,
+                "top": 5,
+                "width": 350,
+              }
+            }
+            stroke="#ccc"
+            strokeDasharray="3 3"
+            width={350}
+            x={65}
+            x1={65}
+            x2={415}
+            y={5}
+            y1={5}
+            y2={5}
+          />
+        </g>
+        <g
+          className="recharts-cartesian-grid-vertical"
+        >
+          <line
+            fill="none"
+            height={170}
+            offset={
+              Object {
+                "bottom": 35,
+                "brushBottom": 35,
+                "height": 170,
+                "left": 65,
+                "right": 5,
+                "top": 5,
+                "width": 350,
+              }
+            }
+            stroke="#ccc"
+            strokeDasharray="3 3"
+            width={350}
+            x={65}
+            x1={240}
+            x2={240}
+            y={5}
+            y1={5}
+            y2={175}
+          />
+          <line
+            fill="none"
+            height={170}
+            offset={
+              Object {
+                "bottom": 35,
+                "brushBottom": 35,
+                "height": 170,
+                "left": 65,
+                "right": 5,
+                "top": 5,
+                "width": 350,
+              }
+            }
+            stroke="#ccc"
+            strokeDasharray="3 3"
+            width={350}
+            x={65}
+            x1={65}
+            x2={65}
+            y={5}
+            y1={5}
+            y2={175}
+          />
+          <line
+            fill="none"
+            height={170}
+            offset={
+              Object {
+                "bottom": 35,
+                "brushBottom": 35,
+                "height": 170,
+                "left": 65,
+                "right": 5,
+                "top": 5,
+                "width": 350,
+              }
+            }
+            stroke="#ccc"
+            strokeDasharray="3 3"
+            width={350}
+            x={65}
+            x1={415}
+            x2={415}
+            y={5}
+            y1={5}
+            y2={175}
+          />
+        </g>
+      </g>
+      <g
+        className="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis"
+      >
+        <line
+          className="recharts-cartesian-axis-line"
+          fill="none"
+          height={30}
+          orientation="bottom"
+          stroke="#666"
+          type="category"
+          width={350}
+          x={65}
+          x1={65}
+          x2={415}
+          y={175}
+          y1={175}
+          y2={175}
+        />
+        <g
+          className="recharts-cartesian-axis-ticks"
+        >
+          <g
+            className="recharts-layer recharts-cartesian-axis-tick"
+          >
+            <line
+              className="recharts-cartesian-axis-tick-line"
+              fill="none"
+              height={30}
+              orientation="bottom"
+              stroke="#666"
+              type="category"
+              width={350}
+              x={65}
+              x1={240}
+              x2={240}
+              y={175}
+              y1={181}
+              y2={175}
+            />
+            <text
+              className="recharts-text recharts-cartesian-axis-tick-value"
+              fill="#666"
+              height={30}
+              orientation="bottom"
+              stroke="none"
+              textAnchor="middle"
+              type="category"
+              width={350}
+              x={240}
+              y={183}
+            >
+              <tspan
+                dy="0.71em"
+                x={240}
+              >
+                jan
+              </tspan>
+            </text>
+          </g>
+        </g>
+      </g>
+      <g
+        className="recharts-layer recharts-cartesian-axis recharts-yAxis yAxis"
+      >
+        <line
+          className="recharts-cartesian-axis-line"
+          fill="none"
+          height={170}
+          orientation="left"
+          stroke="#666"
+          type="number"
+          width={60}
+          x={5}
+          x1={65}
+          x2={65}
+          y={5}
+          y1={5}
+          y2={175}
+        />
+        <g
+          className="recharts-cartesian-axis-ticks"
+        >
+          <g
+            className="recharts-layer recharts-cartesian-axis-tick"
+          >
+            <line
+              className="recharts-cartesian-axis-tick-line"
+              fill="none"
+              height={170}
+              orientation="left"
+              stroke="#666"
+              type="number"
+              width={60}
+              x={5}
+              x1={59}
+              x2={65}
+              y={5}
+              y1={175}
+              y2={175}
+            />
+            <text
+              className="recharts-text recharts-cartesian-axis-tick-value"
+              fill="#666"
+              height={170}
+              orientation="left"
+              stroke="none"
+              textAnchor="end"
+              type="number"
+              width={60}
+              x={57}
+              y={175}
+            >
+              <tspan
+                dy="0.355em"
+                x={57}
+              >
+                0
+              </tspan>
+            </text>
+          </g>
+          <g
+            className="recharts-layer recharts-cartesian-axis-tick"
+          >
+            <line
+              className="recharts-cartesian-axis-tick-line"
+              fill="none"
+              height={170}
+              orientation="left"
+              stroke="#666"
+              type="number"
+              width={60}
+              x={5}
+              x1={59}
+              x2={65}
+              y={5}
+              y1={132.5}
+              y2={132.5}
+            />
+            <text
+              className="recharts-text recharts-cartesian-axis-tick-value"
+              fill="#666"
+              height={170}
+              orientation="left"
+              stroke="none"
+              textAnchor="end"
+              type="number"
+              width={60}
+              x={57}
+              y={132.5}
+            >
+              <tspan
+                dy="0.355em"
+                x={57}
+              >
+                3
+              </tspan>
+            </text>
+          </g>
+          <g
+            className="recharts-layer recharts-cartesian-axis-tick"
+          >
+            <line
+              className="recharts-cartesian-axis-tick-line"
+              fill="none"
+              height={170}
+              orientation="left"
+              stroke="#666"
+              type="number"
+              width={60}
+              x={5}
+              x1={59}
+              x2={65}
+              y={5}
+              y1={90}
+              y2={90}
+            />
+            <text
+              className="recharts-text recharts-cartesian-axis-tick-value"
+              fill="#666"
+              height={170}
+              orientation="left"
+              stroke="none"
+              textAnchor="end"
+              type="number"
+              width={60}
+              x={57}
+              y={90}
+            >
+              <tspan
+                dy="0.355em"
+                x={57}
+              >
+                6
+              </tspan>
+            </text>
+          </g>
+          <g
+            className="recharts-layer recharts-cartesian-axis-tick"
+          >
+            <line
+              className="recharts-cartesian-axis-tick-line"
+              fill="none"
+              height={170}
+              orientation="left"
+              stroke="#666"
+              type="number"
+              width={60}
+              x={5}
+              x1={59}
+              x2={65}
+              y={5}
+              y1={47.5}
+              y2={47.5}
+            />
+            <text
+              className="recharts-text recharts-cartesian-axis-tick-value"
+              fill="#666"
+              height={170}
+              orientation="left"
+              stroke="none"
+              textAnchor="end"
+              type="number"
+              width={60}
+              x={57}
+              y={47.5}
+            >
+              <tspan
+                dy="0.355em"
+                x={57}
+              >
+                9
+              </tspan>
+            </text>
+          </g>
+          <g
+            className="recharts-layer recharts-cartesian-axis-tick"
+          >
+            <line
+              className="recharts-cartesian-axis-tick-line"
+              fill="none"
+              height={170}
+              orientation="left"
+              stroke="#666"
+              type="number"
+              width={60}
+              x={5}
+              x1={59}
+              x2={65}
+              y={5}
+              y1={5}
+              y2={5}
+            />
+            <text
+              className="recharts-text recharts-cartesian-axis-tick-value"
+              fill="#666"
+              height={170}
+              orientation="left"
+              stroke="none"
+              textAnchor="end"
+              type="number"
+              width={60}
+              x={57}
+              y={5}
+            >
+              <tspan
+                dy="0.355em"
+                x={57}
+              >
+                12
+              </tspan>
+            </text>
+          </g>
+        </g>
+      </g>
+      <g
+        className="recharts-layer recharts-line"
+      >
+        <g
+          className="recharts-layer recharts-line-dots"
+          clipPath={null}
+        >
+          <circle
+            className="recharts-dot recharts-line-dot"
+            cx={240}
+            cy={33.33333333333333}
+            fill="#fff"
+            height={170}
+            points={
+              Array [
+                Object {
+                  "payload": Object {
+                    "monthName": "jan",
+                    "progress": 10,
+                    "raised": 10,
+                    "rejected": 10,
+                    "resolved": 10,
+                  },
+                  "value": 10,
+                  "x": 240,
+                  "y": 33.33333333333333,
+                },
+              ]
+            }
+            r={3}
+            stroke="#00C49F"
+            strokeWidth={1}
+            type="monotone"
+            width={350}
+          />
+        </g>
+      </g>
+      <g
+        className="recharts-layer recharts-line"
+      >
+        <g
+          className="recharts-layer recharts-line-dots"
+          clipPath={null}
+        >
+          <circle
+            className="recharts-dot recharts-line-dot"
+            cx={240}
+            cy={33.33333333333333}
+            fill="#fff"
+            height={170}
+            points={
+              Array [
+                Object {
+                  "payload": Object {
+                    "monthName": "jan",
+                    "progress": 10,
+                    "raised": 10,
+                    "rejected": 10,
+                    "resolved": 10,
+                  },
+                  "value": 10,
+                  "x": 240,
+                  "y": 33.33333333333333,
+                },
+              ]
+            }
+            r={3}
+            stroke="#FFBB28"
+            strokeWidth={1}
+            type="monotone"
+            width={350}
+          />
+        </g>
+      </g>
+      <g
+        className="recharts-layer recharts-line"
+      >
+        <g
+          className="recharts-layer recharts-line-dots"
+          clipPath={null}
+        >
+          <circle
+            className="recharts-dot recharts-line-dot"
+            cx={240}
+            cy={33.33333333333333}
+            fill="#fff"
+            height={170}
+            points={
+              Array [
+                Object {
+                  "payload": Object {
+                    "monthName": "jan",
+                    "progress": 10,
+                    "raised": 10,
+                    "rejected": 10,
+                    "resolved": 10,
+                  },
+                  "value": 10,
+                  "x": 240,
+                  "y": 33.33333333333333,
+                },
+              ]
+            }
+            r={3}
+            stroke="#FF8042"
+            strokeWidth={1}
+            type="monotone"
+            width={350}
+          />
+        </g>
+      </g>
+      <g
+        className="recharts-layer recharts-line"
+      >
+        <g
+          className="recharts-layer recharts-line-dots"
+          clipPath={null}
+        >
+          <circle
+            className="recharts-dot recharts-line-dot"
+            cx={240}
+            cy={33.33333333333333}
+            fill="#fff"
+            height={170}
+            points={
+              Array [
+                Object {
+                  "payload": Object {
+                    "monthName": "jan",
+                    "progress": 10,
+                    "raised": 10,
+                    "rejected": 10,
+                    "resolved": 10,
+                  },
+                  "value": 10,
+                  "x": 240,
+                  "y": 33.33333333333333,
+                },
+              ]
+            }
+            r={3}
+            stroke="#0088FE"
+            strokeWidth={1}
+            type="monotone"
+            width={350}
+          />
+        </g>
+      </g>
+    </svg>
+    <div
+      className="recharts-legend-wrapper"
+      style={
+        Object {
+          "bottom": 5,
+          "height": "auto",
+          "left": 5,
+          "position": "relative",
+          "width": 410,
+        }
+      }
+    >
+      <ul
+        className="recharts-default-legend"
+        style={
+          Object {
+            "margin": 0,
+            "padding": 0,
+            "textAlign": "center",
+          }
+        }
+      >
+        <li
+          className="recharts-legend-item legend-item-0"
+          style={
+            Object {
+              "display": "inline-block",
+              "marginRight": 10,
+            }
+          }
+        >
+          <svg
+            className="recharts-surface"
+            height={14}
+            style={
+              Object {
+                "display": "inline-block",
+                "marginRight": 4,
+                "verticalAlign": "middle",
+              }
+            }
+            version="1.1"
+            viewBox="0 0 32 32"
+            width={14}
+          >
+            <path
+              className="recharts-legend-icon"
+              d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+              fill="none"
+              stroke="#00C49F"
+              strokeWidth={4}
+            />
+          </svg>
+          <span
+            className="recharts-legend-item-text"
+            style={
+              Object {
+                "color": "#00C49F",
+              }
+            }
+          >
+            resolved
+          </span>
+        </li>
+        <li
+          className="recharts-legend-item legend-item-1"
+          style={
+            Object {
+              "display": "inline-block",
+              "marginRight": 10,
+            }
+          }
+        >
+          <svg
+            className="recharts-surface"
+            height={14}
+            style={
+              Object {
+                "display": "inline-block",
+                "marginRight": 4,
+                "verticalAlign": "middle",
+              }
+            }
+            version="1.1"
+            viewBox="0 0 32 32"
+            width={14}
+          >
+            <path
+              className="recharts-legend-icon"
+              d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+              fill="none"
+              stroke="#FFBB28"
+              strokeWidth={4}
+            />
+          </svg>
+          <span
+            className="recharts-legend-item-text"
+            style={
+              Object {
+                "color": "#FFBB28",
+              }
+            }
+          >
+            raised
+          </span>
+        </li>
+        <li
+          className="recharts-legend-item legend-item-2"
+          style={
+            Object {
+              "display": "inline-block",
+              "marginRight": 10,
+            }
+          }
+        >
+          <svg
+            className="recharts-surface"
+            height={14}
+            style={
+              Object {
+                "display": "inline-block",
+                "marginRight": 4,
+                "verticalAlign": "middle",
+              }
+            }
+            version="1.1"
+            viewBox="0 0 32 32"
+            width={14}
+          >
+            <path
+              className="recharts-legend-icon"
+              d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+              fill="none"
+              stroke="#FF8042"
+              strokeWidth={4}
+            />
+          </svg>
+          <span
+            className="recharts-legend-item-text"
+            style={
+              Object {
+                "color": "#FF8042",
+              }
+            }
+          >
+            rejected
+          </span>
+        </li>
+        <li
+          className="recharts-legend-item legend-item-3"
+          style={
+            Object {
+              "display": "inline-block",
+              "marginRight": 10,
+            }
+          }
+        >
+          <svg
+            className="recharts-surface"
+            height={14}
+            style={
+              Object {
+                "display": "inline-block",
+                "marginRight": 4,
+                "verticalAlign": "middle",
+              }
+            }
+            version="1.1"
+            viewBox="0 0 32 32"
+            width={14}
+          >
+            <path
+              className="recharts-legend-icon"
+              d="M0,16h10.666666666666666
+            A5.333333333333333,5.333333333333333,0,1,1,21.333333333333332,16
+            H32M21.333333333333332,16
+            A5.333333333333333,5.333333333333333,0,1,1,10.666666666666666,16"
+              fill="none"
+              stroke="#0088FE"
+              strokeWidth={4}
+            />
+          </svg>
+          <span
+            className="recharts-legend-item-text"
+            style={
+              Object {
+                "color": "#0088FE",
+              }
+            }
+          >
+            progress
+          </span>
+        </li>
+      </ul>
+    </div>
+    <div
+      className="recharts-tooltip-wrapper"
+      style={
+        Object {
+          "MozTransform": "translate(undefinedpx, undefinedpx)",
+          "OTransform": "translate(undefinedpx, undefinedpx)",
+          "WebkitTransform": "translate(undefinedpx, undefinedpx)",
+          "left": 0,
+          "msTransform": "translate(undefinedpx, undefinedpx)",
+          "pointerEvents": "none",
+          "position": "absolute",
+          "top": 0,
+          "transform": "translate(undefinedpx, undefinedpx)",
+          "visibility": "hidden",
+        }
+      }
+    >
+      <div
+        className="recharts-default-tooltip"
+        style={
+          Object {
+            "backgroundColor": "#fff",
+            "border": "1px solid #ccc",
+            "margin": 0,
+            "padding": 10,
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <p
+          className="recharts-tooltip-label"
+          style={
+            Object {
+              "margin": 0,
+            }
+          }
+        >
+          
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+`;
