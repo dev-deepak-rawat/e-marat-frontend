@@ -157,15 +157,13 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 
 			Object.entries(latestReactions).forEach(([key, el]) => {
 				// Total reaction types are 4 and this array is supposed to be unique
-				if (
-					el &&
-					el.reaction &&
-					uniqueR.length < 4 &&
-					!uniqueR.includes(el.reaction)
-				) {
-					totals[el.reaction] += 1;
+				if (el && el.reaction) {
 					totals.sum += 1;
-					uniqueR.push(el.reaction);
+					totals[el.reaction] += 1;
+
+					if (uniqueR.length < 4 && !uniqueR.includes(el.reaction)) {
+						uniqueR.push(el.reaction);
+					}
 				}
 			});
 
