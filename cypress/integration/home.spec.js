@@ -23,9 +23,5 @@ describe('Home Page testing', () => {
         cy.location().should((loc) => {
             expect(loc.pathname.toString()).to.contain('/social-feed');
           });
-        
     })
-
-
-
 });

@@ -11,7 +11,7 @@ import { addPrefetchOptions } from 'features/shared/components/form/genericFormH
 import SpinContainer from 'features/shared/components/styledComponents/SpinContainer';
 import ManageComplaints from 'features/complaints/ManageComplaints';
 
-export default function MyPayments() {
+export default function MyComplaints() {
 	const [choice, setChoice] = useState(0);
 
 	const { data: amenitiesData, loading } = useApiCall({
