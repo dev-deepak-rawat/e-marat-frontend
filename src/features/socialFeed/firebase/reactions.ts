@@ -1,5 +1,5 @@
 import { ref, serverTimestamp, set, remove } from 'firebase/database';
-import { db } from 'config/firebaseDbHelper';
+import { db } from 'config/firebase';
 import { ReactionType, UserList } from 'features/socialFeed/SocialFeedTypes';
 import { loadOnRefLoad } from 'features/socialFeed/firebase/users';
 

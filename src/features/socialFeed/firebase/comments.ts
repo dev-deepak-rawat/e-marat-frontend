@@ -1,16 +1,23 @@
 import { Dispatch, SetStateAction } from 'react';
 import {
+	DatabaseReference,
 	push,
 	ref,
 	serverTimestamp,
+	onChildAdded,
 	set,
 	remove,
 	onValue,
 	off,
 } from 'firebase/database';
-import { db } from 'config/firebaseDbHelper';
-import { UserList, CommentList } from 'features/socialFeed/SocialFeedTypes';
+import { db } from 'config/firebase';
+import {
+	UserList,
+	CommentList,
+	PostCountType,
+} from 'features/socialFeed/SocialFeedTypes';
 import { loadOnRefLoad } from 'features/socialFeed/firebase/users';
+import { get } from 'lib/firebaseApi';
 
 export const index = async (
 	postId: string,
@@ -84,4 +91,22 @@ export const removeListener = (postId?: string) => {
 	if (!postId) return;
 	const commentsRef = ref(db, `posts/${postId}`);
 	off(commentsRef);
+};
+
+export const addCommentCount = (
+	dbRef: DatabaseReference,
+	setCommentsCount: (c: PostCountType) => void
+) => {
+	onChildAdded(dbRef, async (data) => {
+		const postId = data.key;
+		if (postId) {
+			const response = await get(`post-comments/${postId}`);
+			if (typeof response === 'object') {
+				setCommentsCount({
+					id: postId,
+					count: Object.keys(response).length,
+				});
+			}
+		}
+	});
 };
