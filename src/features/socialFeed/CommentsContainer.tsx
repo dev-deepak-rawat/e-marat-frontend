@@ -79,6 +79,7 @@ export default function CommentsContainer({ postId, setPostId }: PropsType) {
 			visible={Boolean(postId && post)}
 			footer={null}
 			onCancel={() => setPostId(undefined)}
+			destroyOnClose={true}
 			centered
 		>
 			<div>
