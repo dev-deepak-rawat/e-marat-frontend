@@ -3,6 +3,10 @@ import { Method } from 'axios';
 type ApiConfigType = { [key: string]: { url: string; method: Method } };
 
 export const API_CONFIG: ApiConfigType = {
+	homepage: {
+		url: '/api/home',
+		method: 'GET',
+	},
 	login: {
 		url: '/login/',
 		method: 'GET',
