@@ -17,18 +17,26 @@ import {
 import TeamMember from 'features/home/components/TeamMember';
 import Feature from 'features/home/components/Feature';
 import LoginForm from 'features/home/components/LoginForm';
-import { useAuth } from 'config/hooks';
+import { useAuth, useApiCall } from 'config/hooks';
 import { CLOUDINARY_IMAGES } from 'lib/constants';
 
 export default function Home() {
 	const { isLoggedIn, isAdmin } = useAuth();
 	const history = useHistory();
 
+	const { data: stats } = useApiCall({
+		apiUrl: 'homepage',
+		initDataValue: {
+			residentsCount: 0,
+			complaintsResolved: 0,
+			amenitiesCount: 0,
+		},
+	});
+
 	useEffect(() => {
 		if (isAdmin) {
 			history.push('/dashboard');
-		}
-		if (isLoggedIn && !isAdmin) {
+		} else if (isLoggedIn && !isAdmin) {
 			history.push('/social-feed');
 		}
 	}, [isLoggedIn, isAdmin, history]);
@@ -91,7 +99,7 @@ export default function Home() {
 								>
 									<Feature
 										title="Members Onboarded"
-										number="200+"
+										number={`${stats.residentsCount}+`}
 										icon={faBuilding}
 									/>
 								</Col>
@@ -103,7 +111,7 @@ export default function Home() {
 								>
 									<Feature
 										title="Complaints Resolved"
-										number="120+"
+										number={`${stats.complaintsResolved}+`}
 										icon={faHandshake}
 									/>
 								</Col>
@@ -115,7 +123,7 @@ export default function Home() {
 								>
 									<Feature
 										title="Amenities"
-										number="20+"
+										number={`${stats.amenitiesCount}+`}
 										icon={faSwimmer}
 									/>
 								</Col>

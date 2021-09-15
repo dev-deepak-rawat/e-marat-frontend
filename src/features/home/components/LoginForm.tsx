@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react';
+import { useState, FormEvent } from 'react';
 import { ConfirmationResult } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { apiRequest } from 'config/apiRequest';
@@ -12,6 +12,7 @@ export default function LoginForm() {
 	const [otpSentResult, setOtpSentResult] = useState<ConfirmationResult>();
 	const [otpInProgress, setOtpInProgress] = useState<boolean>(false);
 	const [otp, setOtp] = useState<string>('');
+	const [sumbitBtnText, setSumbitBtnText] = useState<string>('Send OTP');
 
 	const mobileHandler = (e: FormEvent<HTMLInputElement>) => {
 		setMobile(stripNonNumbers(e.currentTarget.value));
@@ -24,21 +25,23 @@ export default function LoginForm() {
 	const otpVerify = async () => {
 		if (!otpSentResult) return;
 
+		setSumbitBtnText('Verifying');
 		setOtpInProgress(true);
 
 		const isOtpVerified = await confirmOtp(otpSentResult, otp);
 
-		setOtpInProgress(false);
-
 		if (isOtpVerified) {
+			setSumbitBtnText('Logging In');
 			await apiRequest({ apiUrl: 'login' });
 		} else {
+			setOtpInProgress(false);
 			setOtp('');
-			setfeedbackText('Inavlid OTP entered.');
+			setfeedbackText('Invalid OTP entered.');
 		}
 	};
 
 	const otpSend = async () => {
+		setSumbitBtnText('Sending OTP');
 		setOtpInProgress(true);
 
 		const otpSentResultResult = await sendOtp(
@@ -51,6 +54,7 @@ export default function LoginForm() {
 
 		if (otpSentResultResult) {
 			setOtpSentResult(otpSentResultResult);
+			setSumbitBtnText('Verify');
 		} else {
 			setfeedbackText('Could not send OTP.');
 		}
@@ -118,7 +122,7 @@ export default function LoginForm() {
 						pilled={true}
 						loading={otpInProgress}
 					>
-						{otpSentResult ? 'Verify' : 'Send OTP'}
+						{sumbitBtnText}
 					</Button>
 				</form>
 			</div>
