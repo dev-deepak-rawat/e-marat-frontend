@@ -8,13 +8,15 @@ import {
 	query,
 	orderByChild,
 } from 'firebase/database';
-import { db } from 'config/firebaseDbHelper';
+import { db } from 'config/firebase';
 import {
 	PostType,
 	PostList,
 	UserList,
+	PostCountType,
 } from 'features/socialFeed/SocialFeedTypes';
 import { loadOnRefLoad } from 'features/socialFeed/firebase/users';
+import { addCommentCount } from 'features/socialFeed/firebase/comments';
 
 export const store = async (
 	data: PostType,
@@ -52,7 +54,8 @@ export const store = async (
 
 export const index = async (
 	users: UserList,
-	addUser: (users: UserList) => void
+	addUser: (users: UserList) => void,
+	setCommentsCount: (c: PostCountType) => void
 ) => {
 	try {
 		const postListRef = ref(db, 'posts');
@@ -61,6 +64,7 @@ export const index = async (
 		);
 
 		loadOnRefLoad(postListRef, users, addUser);
+		addCommentCount(postListRef, setCommentsCount);
 
 		return response.val();
 	} catch (error) {

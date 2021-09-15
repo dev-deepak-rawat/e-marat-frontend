@@ -1,5 +1,5 @@
 import { ref, get, onChildAdded, DatabaseReference } from 'firebase/database';
-import { db } from 'config/firebaseDbHelper';
+import { db } from 'config/firebase';
 import { UserList } from 'features/socialFeed/SocialFeedTypes';
 
 export const loadOnRefLoad = (

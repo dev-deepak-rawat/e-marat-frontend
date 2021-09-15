@@ -21,7 +21,10 @@ export type PostType = {
 	picture?: string;
 	reactions?: UserReactionListType;
 	createdAt: number;
+	commentsCount?: number;
 };
+
+export type PostCountType = { id: string; count: number };
 
 export type TotalReactionsType = { [k in ReactionType | 'sum']: number };
 

@@ -66,6 +66,7 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 		picture: postPic,
 		reactions: dbReactions,
 		createdAt,
+		commentsCount = 0,
 	} = post;
 
 	useEffect(() => {
@@ -311,12 +312,14 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 						<span className="ml-2">{totalReactions.sum || ''}</span>
 					</button>
 
-					<button
-						type="button"
-						onClick={() => setCommentingOn(postId)}
-					>
-						2 Comments
-					</button>
+					{commentsCount > 0 && (
+						<button
+							type="button"
+							onClick={() => setCommentingOn(postId)}
+						>
+							{commentsCount} Comment{commentsCount > 1 && 's'}
+						</button>
+					)}
 				</div>
 
 				<div className="flex border-t border-gray-200 px-5">

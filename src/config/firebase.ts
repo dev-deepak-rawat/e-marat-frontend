@@ -1,4 +1,5 @@
 import { initializeApp, getApps, getApp } from 'firebase/app';
+import { getDatabase } from 'firebase/database';
 
 // Your web app's Firebase configuration
 const config = {
@@ -16,3 +17,4 @@ const config = {
 const firebaseApp = getApps().length > 0 ? getApp() : initializeApp(config);
 
 export default firebaseApp;
+export const db = getDatabase();

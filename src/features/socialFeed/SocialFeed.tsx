@@ -9,7 +9,8 @@ import { useSocialFeed } from 'config/hooks';
 
 export default function SocialFeed() {
 	const [loading, setLoading] = useState<boolean>(true);
-	const { posts, setPosts, users, addUser } = useSocialFeed();
+	const { posts, setPosts, setPostCommentsCount, users, addUser } =
+		useSocialFeed();
 	const [commentingOnPostId, setCommentingOnPostId] = useState<string>();
 
 	useEffect(() => {
@@ -17,7 +18,7 @@ export default function SocialFeed() {
 	}, []);
 
 	const init = async () => {
-		const feeds = await index(users, addUser);
+		const feeds = await index(users, addUser, setPostCommentsCount);
 		if (feeds) setPosts(feeds);
 		setLoading(false);
 	};
