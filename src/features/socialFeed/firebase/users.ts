@@ -1,16 +1,17 @@
 import { ref, get, onChildAdded, DatabaseReference } from 'firebase/database';
-import { db } from 'config/firebaseDbHelper';
+import { db } from 'config/firebase';
 import { UserList } from 'features/socialFeed/SocialFeedTypes';
 
 export const loadOnRefLoad = (
 	dbRef: DatabaseReference,
 	users: UserList,
-	addUser: (user: UserList) => void
+	addUser: (user: UserList) => void,
+	fromKey: boolean = false
 ) => {
 	const usersIds: string[] = [];
 
 	onChildAdded(dbRef, async (data) => {
-		const { userId } = data.val();
+		const userId = fromKey ? data.key : data.val().userId;
 
 		if (userId && !usersIds.includes(userId) && !users[userId]) {
 			usersIds.push(userId);

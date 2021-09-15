@@ -8,17 +8,25 @@ export type CommentList = Record<string, CommentType>;
 
 export type ReactionType = 'like' | 'laugh' | 'sad' | 'congrats';
 
-export type UserReactionType = {
-	[userId: string]: ReactionType;
+export type UserReactionListType = {
+	[userId: string]: {
+		reaction: ReactionType;
+		createdAt: number;
+	};
 };
 
 export type PostType = {
 	userId: string;
 	text: string;
 	picture?: string;
-	reactions?: UserReactionType;
+	reactions?: UserReactionListType;
 	createdAt: number;
+	commentsCount?: number;
 };
+
+export type PostCountType = { id: string; count: number };
+
+export type TotalReactionsType = { [k in ReactionType | 'sum']: number };
 
 export type PostList = Record<string, PostType>;
 

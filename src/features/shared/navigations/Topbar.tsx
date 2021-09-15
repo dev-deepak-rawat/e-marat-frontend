@@ -35,6 +35,7 @@ export default function Topbar() {
 			<Dropdown
 				overlay={getMenu(isAdmin)}
 				className="absolute top-1.5 right-2 sm:top-2.5 sm:right-4"
+				data-testid="topbarDropdown"
 			>
 				<Space>
 					<AvatarImage userImg={`${picture}`} />

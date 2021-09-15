@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Amenity Skeleton 1`] = `
+Array [
+  <p
+    className="sc-bdfBQB bbCVRC"
+  >
+    Most Availed Amenities
+  </p>,
+  <div
+    className="recharts-wrapper mt-10"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseMove={[Function]}
+    onTouchEnd={[Function]}
+    onTouchMove={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "cursor": "default",
+        "height": 250,
+        "position": "relative",
+        "width": 500,
+      }
+    }
+  >
+    <svg
+      className="recharts-surface"
+      height={250}
+      version="1.1"
+      viewBox="0 0 500 250"
+      width={500}
+    >
+      <defs>
+        <clipPath
+          id="recharts1-clip"
+        >
+          <rect
+            height={210}
+            width={430}
+            x={65}
+            y={5}
+          />
+        </clipPath>
+      </defs>
+      <g
+        className="recharts-layer recharts-cartesian-axis recharts-xAxis xAxis"
+      >
+        <line
+          className="recharts-cartesian-axis-line"
+          fill="none"
+          height={30}
+          orientation="bottom"
+          stroke="#666"
+          type="category"
+          width={430}
+          x={65}
+          x1={65}
+          x2={495}
+          y={215}
+          y1={215}
+          y2={215}
+        />
+        <g
+          className="recharts-cartesian-axis-ticks"
+        >
+          <g
+            className="recharts-layer recharts-cartesian-axis-tick"
+          >
+            <line
+              className="recharts-cartesian-axis-tick-line"
+              fill="none"
+              height={30}
+              orientation="bottom"
+              stroke="#666"
+              type="category"
+              width={430}
+              x={65}
+              x1={280}
+              x2={280}
+              y={215}
+              y1={221}
+              y2={215}
+            />
+            <text
+              className="recharts-text recharts-cartesian-axis-tick-value"
+              fill="#666"
+              height={30}
+              orientation="bottom"
+              stroke="none"
+              textAnchor="middle"
+              type="category"
+              width={430}
+              x={280}
+              y={223}
+            >
+              <tspan
+                dy="0.71em"
+                x={280}
+              >
+                wifi
+              </tspan>
+            </text>
+          </g>
+        </g>
+      </g>
+      <g
+        className="recharts-layer recharts-cartesian-axis recharts-yAxis yAxis"
+      >
+        <line
+          className="recharts-cartesian-axis-line"
+          fill="none"
+          height={210}
+          orientation="left"
+          stroke="#666"
+          type="number"
+          width={60}
+          x={5}
+          x1={65}
+          x2={65}
+          y={5}
+          y1={5}
+          y2={215}
+        />
+        <g
+          className="recharts-cartesian-axis-ticks"
+        />
+      </g>
+      <g
+        className="recharts-layer recharts-bar"
+      >
+        <g
+          className="recharts-layer recharts-bar-rectangles"
+          clipPath={null}
+        >
+          <g
+            className="recharts-layer"
+          >
+            <g
+              className="recharts-layer recharts-bar-rectangle"
+            />
+          </g>
+        </g>
+      </g>
+    </svg>
+    <div
+      className="recharts-tooltip-wrapper"
+      style={
+        Object {
+          "MozTransform": "translate(undefinedpx, undefinedpx)",
+          "OTransform": "translate(undefinedpx, undefinedpx)",
+          "WebkitTransform": "translate(undefinedpx, undefinedpx)",
+          "left": 0,
+          "msTransform": "translate(undefinedpx, undefinedpx)",
+          "pointerEvents": "none",
+          "position": "absolute",
+          "top": 0,
+          "transform": "translate(undefinedpx, undefinedpx)",
+          "visibility": "hidden",
+        }
+      }
+    >
+      <div
+        className="recharts-default-tooltip"
+        style={
+          Object {
+            "backgroundColor": "#fff",
+            "border": "1px solid #ccc",
+            "margin": 0,
+            "padding": 10,
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        <p
+          className="recharts-tooltip-label"
+          style={
+            Object {
+              "margin": 0,
+            }
+          }
+        >
+          
+        </p>
+      </div>
+    </div>
+  </div>,
+]
+`;

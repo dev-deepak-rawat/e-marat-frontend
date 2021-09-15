@@ -95,6 +95,10 @@ export const API_CONFIG: ApiConfigType = {
 		url: '/refreshToken/',
 		method: 'GET',
 	},
+	firebaseCommentsCount: {
+		url: '',
+		method: 'GET',
+	},
 };
 
 export const PATTERNS = {

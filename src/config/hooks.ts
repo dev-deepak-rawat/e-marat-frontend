@@ -5,8 +5,16 @@ import { useMediaQuery } from 'react-responsive';
 import { ROLES } from 'lib/constants';
 import type { RootState, AppDispatch } from 'config/store';
 import { setTitle } from 'features/shared/reducers/TopbarSlice';
-import { setPosts, addUser } from 'features/shared/reducers/SocialFeedSlice';
-import { PostList, UserList } from 'features/socialFeed/SocialFeedTypes';
+import {
+	setPosts,
+	setPostCommentsCount,
+	addUser,
+} from 'features/shared/reducers/SocialFeedSlice';
+import {
+	PostList,
+	PostCountType,
+	UserList,
+} from 'features/socialFeed/SocialFeedTypes';
 import { apiRequest } from 'config/apiRequest';
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
@@ -114,6 +122,8 @@ export const useSocialFeed = () => {
 	return {
 		posts,
 		setPosts: (p: PostList) => dispatch(setPosts(p)),
+		setPostCommentsCount: (p: PostCountType) =>
+			dispatch(setPostCommentsCount(p)),
 		users,
 		addUser: (u: UserList) => dispatch(addUser(u)),
 	};

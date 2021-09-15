@@ -1,0 +1,446 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Master Layout snapshot 1`] = `
+<section
+  className="ant-layout ant-layout-has-sider min-h-screen"
+>
+  <div
+    className="sc-gsTEea gPxuZF"
+  >
+    <div
+      className="ant-space ant-space-horizontal ant-space-align-center ant-dropdown-trigger absolute top-1.5 right-2 sm:top-2.5 sm:right-4"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      style={Object {}}
+    >
+      <div
+        className="ant-space-item"
+        style={
+          Object {
+            "marginRight": 8,
+          }
+        }
+      >
+        <div
+          className="ant-image"
+          style={
+            Object {
+              "height": 40,
+              "width": 40,
+            }
+          }
+        >
+          <img
+            alt="avatar"
+            className="ant-image-img rounded-full"
+            onError={[Function]}
+            onLoad={[Function]}
+            src="undefinedupload/w_50,h_50,c_thumb,g_face,r_max/undefined"
+            style={
+              Object {
+                "height": 40,
+              }
+            }
+          />
+        </div>
+      </div>
+      <div
+        className="ant-space-item"
+        style={
+          Object {
+            "marginRight": 8,
+          }
+        }
+      >
+        <span
+          className="ant-typography"
+          style={
+            Object {
+              "WebkitLineClamp": undefined,
+            }
+          }
+        >
+          User
+        </span>
+      </div>
+      <div
+        className="ant-space-item"
+        style={Object {}}
+      >
+        <svg
+          fill="currentColor"
+          height="1em"
+          stroke="currentColor"
+          strokeWidth="0"
+          style={
+            Object {
+              "color": undefined,
+            }
+          }
+          viewBox="0 0 448 512"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"
+          />
+        </svg>
+      </div>
+    </div>
+    <main
+      className="ant-layout-content"
+    >
+      <div
+        className="site-layout-background pt-12 px-2 sm:pt-0 sm:px-3"
+      />
+    </main>
+  </div>
+  <aside
+    className="ant-layout-sider ant-layout-sider-dark ant-layout-sider-has-trigger min-h-full fixed z-10"
+    style={
+      Object {
+        "flex": "0 0 200px",
+        "maxWidth": "200px",
+        "minWidth": "200px",
+        "width": "200px",
+      }
+    }
+  >
+    <div
+      className="ant-layout-sider-children"
+    >
+      <div
+        className="sc-bdfBQB jBYduh"
+        onClick={[Function]}
+      >
+        <div
+          className="ant-space ant-space-horizontal ant-space-align-center"
+          style={Object {}}
+        >
+          <div
+            className="ant-space-item"
+            style={
+              Object {
+                "marginRight": 8,
+              }
+            }
+          >
+            <img
+              alt="Logo"
+              className="h-12"
+              src="https://res.cloudinary.com/emarat/image/upload/v1630505506/logo.svg"
+            />
+          </div>
+          <div
+            className="ant-space-item"
+            style={Object {}}
+          >
+            -MARAT
+          </div>
+        </div>
+      </div>
+      <ul
+        className="ant-menu ant-menu-root ant-menu-inline ant-menu-dark"
+        data-menu-list={true}
+        onKeyDown={[Function]}
+        role="menu"
+        tabIndex={0}
+      >
+        <li
+          className="ant-menu-item"
+          data-menu-id="rc-menu-uuid-test-socialFeeds"
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          role="menuitem"
+          style={
+            Object {
+              "paddingLeft": 24,
+            }
+          }
+          tabIndex={-1}
+        >
+          <svg
+            className="ant-menu-item-icon"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9 6a3 3 0 11-6 0 3 3 0 016 0zM17 6a3 3 0 11-6 0 3 3 0 016 0zM12.93 17c.046-.327.07-.66.07-1a6.97 6.97 0 00-1.5-4.33A5 5 0 0119 16v1h-6.07zM6 11a5 5 0 015 5v1H1v-1a5 5 0 015-5z"
+            />
+          </svg>
+          <span
+            className="ant-menu-title-content"
+          >
+            <a
+              href="/social-feed"
+              onClick={[Function]}
+            >
+              Social Feed
+            </a>
+          </span>
+        </li>
+        <li
+          className="ant-menu-item"
+          data-menu-id="rc-menu-uuid-test-amenities"
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          role="menuitem"
+          style={
+            Object {
+              "paddingLeft": 24,
+            }
+          }
+          tabIndex={-1}
+        >
+          <svg
+            className="ant-menu-item-icon"
+            fill="none"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M20.2739 9.86883L16.8325 4.95392L18.4708 3.80676L21.9122 8.72167L20.2739 9.86883Z"
+              fill="currentColor"
+            />
+            <path
+              d="M18.3901 12.4086L16.6694 9.95121L8.47783 15.687L10.1985 18.1444L8.56023 19.2916L3.97162 12.7383L5.60992 11.5912L7.33068 14.0487L15.5222 8.31291L13.8015 5.8554L15.4398 4.70825L20.0284 11.2615L18.3901 12.4086Z"
+              fill="currentColor"
+            />
+            <path
+              d="M20.7651 7.08331L22.4034 5.93616L21.2562 4.29785L19.6179 5.445L20.7651 7.08331Z"
+              fill="currentColor"
+            />
+            <path
+              d="M7.16753 19.046L3.72607 14.131L2.08777 15.2782L5.52923 20.1931L7.16753 19.046Z"
+              fill="currentColor"
+            />
+            <path
+              d="M4.38208 18.5549L2.74377 19.702L1.59662 18.0637L3.23492 16.9166L4.38208 18.5549Z"
+              fill="currentColor"
+            />
+          </svg>
+          <span
+            className="ant-menu-title-content"
+          >
+            <a
+              href="/amenities"
+              onClick={[Function]}
+            >
+              Amenities
+            </a>
+          </span>
+        </li>
+        <li
+          className="ant-menu-item"
+          data-menu-id="rc-menu-uuid-test-complaints"
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          role="menuitem"
+          style={
+            Object {
+              "paddingLeft": 24,
+            }
+          }
+          tabIndex={-1}
+        >
+          <svg
+            className="ant-menu-item-icon"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 14 16"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M7 2.3c3.14 0 5.7 2.56 5.7 5.7s-2.56 5.7-5.7 5.7A5.71 5.71 0 0 1 1.3 8c0-3.14 2.56-5.7 5.7-5.7zM7 1C3.14 1 0 4.14 0 8s3.14 7 7 7 7-3.14 7-7-3.14-7-7-7zm1 3H6v5h2V4zm0 6H6v2h2v-2z"
+              fillRule="evenodd"
+            />
+          </svg>
+          <span
+            className="ant-menu-title-content"
+          >
+            <a
+              href="/complaints"
+              onClick={[Function]}
+            >
+              Complaints
+            </a>
+          </span>
+        </li>
+        <li
+          className="ant-menu-item"
+          data-menu-id="rc-menu-uuid-test-payments"
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          role="menuitem"
+          style={
+            Object {
+              "paddingLeft": 24,
+            }
+          }
+          tabIndex={-1}
+        >
+          <svg
+            className="ant-menu-item-icon"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 20 20"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              clipRule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 5a1 1 0 100 2h1a2 2 0 011.732 1H7a1 1 0 100 2h2.732A2 2 0 018 11H7a1 1 0 00-.707 1.707l3 3a1 1 0 001.414-1.414l-1.483-1.484A4.008 4.008 0 0011.874 10H13a1 1 0 100-2h-1.126a3.976 3.976 0 00-.41-1H13a1 1 0 100-2H7z"
+              fillRule="evenodd"
+            />
+          </svg>
+          <span
+            className="ant-menu-title-content"
+          >
+            <a
+              href="/payments"
+              onClick={[Function]}
+            >
+              My Payments
+            </a>
+          </span>
+        </li>
+        <li
+          className="ant-menu-item"
+          data-menu-id="rc-menu-uuid-test-announcements"
+          onClick={[Function]}
+          onFocus={[Function]}
+          onKeyDown={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+          role="menuitem"
+          style={
+            Object {
+              "paddingLeft": 24,
+            }
+          }
+          tabIndex={-1}
+        >
+          <svg
+            className="ant-menu-item-icon"
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            strokeWidth="0"
+            style={
+              Object {
+                "color": undefined,
+              }
+            }
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g>
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+              <path
+                d="M4.929 2.929l1.414 1.414A7.975 7.975 0 0 0 4 10c0 2.21.895 4.21 2.343 5.657L4.93 17.07A9.969 9.969 0 0 1 2 10a9.969 9.969 0 0 1 2.929-7.071zm14.142 0A9.969 9.969 0 0 1 22 10a9.969 9.969 0 0 1-2.929 7.071l-1.414-1.414A7.975 7.975 0 0 0 20 10c0-2.21-.895-4.21-2.343-5.657L19.07 2.93zM7.757 5.757l1.415 1.415A3.987 3.987 0 0 0 8 10c0 1.105.448 2.105 1.172 2.828l-1.415 1.415A5.981 5.981 0 0 1 6 10c0-1.657.672-3.157 1.757-4.243zm8.486 0A5.981 5.981 0 0 1 18 10a5.981 5.981 0 0 1-1.757 4.243l-1.415-1.415A3.987 3.987 0 0 0 16 10a3.987 3.987 0 0 0-1.172-2.828l1.415-1.415zM12 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 2c.58 0 1.077.413 1.184.983L14.5 22h-5l1.316-7.017c.107-.57.604-.983 1.184-.983z"
+              />
+            </g>
+          </svg>
+          <span
+            className="ant-menu-title-content"
+          >
+            <a
+              href="/announcements"
+              onClick={[Function]}
+            >
+              Announcements
+            </a>
+          </span>
+        </li>
+      </ul>
+      <div
+        aria-hidden={true}
+        style={
+          Object {
+            "display": "none",
+          }
+        }
+      />
+    </div>
+    <div
+      className="ant-layout-sider-trigger"
+      onClick={[Function]}
+      style={
+        Object {
+          "width": "200px",
+        }
+      }
+    >
+      <span
+        aria-label="left"
+        className="anticon anticon-left"
+        role="img"
+      >
+        <svg
+          aria-hidden="true"
+          data-icon="left"
+          fill="currentColor"
+          focusable="false"
+          height="1em"
+          viewBox="64 64 896 896"
+          width="1em"
+        >
+          <path
+            d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+          />
+        </svg>
+      </span>
+    </div>
+  </aside>
+</section>
+`;

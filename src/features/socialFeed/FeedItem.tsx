@@ -1,4 +1,4 @@
-import { useState, Dispatch, SetStateAction } from 'react';
+import { useState, Dispatch, SetStateAction, useEffect } from 'react';
 import dayjs from 'dayjs';
 import tw from 'twin.macro';
 import styled from 'styled-components';
@@ -11,13 +11,24 @@ import likeIcon from 'features/socialFeed/assets/images/like.svg';
 import sadIcon from 'features/socialFeed/assets/images/sad.svg';
 import DeleteOverlay from 'features/socialFeed/DeleteOverlay';
 import { DATE_TIME_FORMAT } from 'lib/constants';
-import placeholderImg from 'assets/images/placeholder.svg';
-import useLongPress from 'features/socialFeed/hooks/useLongPress';
-import { ReactionType } from 'features/socialFeed/SocialFeedTypes';
-import { destroy } from 'features/socialFeed/firebase/posts';
-import { useSocialFeed } from 'config/hooks';
+import userPlaceholderImg from 'assets/images/user-placeholder.svg';
 import UserInfoPop from 'features/shared/components/UserInfoPop';
 import deleteConfirm from 'features/shared/components/deleteConfirm';
+import { useSocialFeed, useAuth } from 'config/hooks';
+import useLongPress from 'features/socialFeed/hooks/useLongPress';
+import {
+	ReactionType,
+	UserReactionListType,
+	TotalReactionsType,
+} from 'features/socialFeed/SocialFeedTypes';
+import { destroy } from 'features/socialFeed/firebase/posts';
+import {
+	store as storeReaction,
+	destroy as destroyReaction,
+} from 'features/socialFeed/firebase/reactions';
+
+import ReactionsModal from 'features/socialFeed/ReactionsModal';
+import AvatarImage from 'features/shared/components/image/AvatarImage';
 
 type PropsType = {
 	postId: string;
@@ -27,13 +38,44 @@ type PropsType = {
 export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 	const [reactionContainerVisible, setReactionContainerVisible] =
 		useState<boolean>(false);
-	const [reaction, setReaction] = useState<ReactionType | null>(null);
+	const [reactions, setReactions] = useState<
+		UserReactionListType | undefined
+	>();
+	const [reactedByVisible, setReactedByVisible] = useState<boolean>(false);
+
+	const totalReactionsInit = {
+		like: 0,
+		laugh: 0,
+		sad: 0,
+		congrats: 0,
+		sum: 0,
+	};
+
+	const [totalReactions, setTotalReactions] =
+		useState<TotalReactionsType>(totalReactionsInit);
+
+	const [uniqueReactionTypes, setUniqueReactionTypes] = useState<
+		ReactionType[]
+	>([]);
+	const { isAdmin, uniqueId } = useAuth();
 	const { posts, setPosts, users } = useSocialFeed();
 
-	dayjs.extend(relativeTime);
-
 	const post = posts[postId];
-	const { userId, text, picture: postPic, createdAt } = post;
+	const {
+		userId,
+		text,
+		picture: postPic,
+		reactions: dbReactions,
+		createdAt,
+		commentsCount = 0,
+	} = post;
+
+	useEffect(() => {
+		setReactions(dbReactions);
+		setGivenReactions(dbReactions);
+	}, []);
+
+	dayjs.extend(relativeTime);
 
 	const user = users[userId] || {};
 	const {
@@ -56,19 +98,11 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 	const onClick = (e: ClickOrTapEvent<HTMLButtonElement>) => {
 		if (reactionContainerVisible) {
 			setReactionContainerVisible(false);
-		} else if (reaction) {
-			setReaction(null);
+		} else if (uniqueId && reactions && reactions[uniqueId]) {
+			setPostReaction();
 		} else {
-			setReaction('like');
+			setPostReaction('like');
 		}
-
-		// const updatedPosts = posts;
-		// if (updatedPosts[key].reactions) {
-		// 	// updatedPosts[key].reactions.self = 'like';
-		// } else {
-		// 	updatedPosts[key].reactions = { self: 'like' };
-		// }
-		// setPosts(updatedPosts);
 	};
 
 	const deletePost = (key: string) => {
@@ -84,6 +118,62 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 		});
 	};
 
+	const addOrRemoveCurrentUsersReaction = (r?: ReactionType) => {
+		if (uniqueId) {
+			const newReactions = { ...reactions };
+
+			// Add reaction
+			if (r) {
+				newReactions[uniqueId] = {
+					reaction: r,
+					createdAt: Date.now(),
+				};
+			} else {
+				delete newReactions[uniqueId];
+			}
+
+			setReactions(newReactions);
+			return newReactions;
+		}
+		return undefined;
+	};
+
+	const setPostReaction = (r?: ReactionType) => {
+		const latestReactions = addOrRemoveCurrentUsersReaction(r);
+
+		if (r && uniqueId) {
+			storeReaction(postId, uniqueId, r);
+			// addToTotalReaction(r);
+			setGivenReactions(latestReactions);
+		} else if (uniqueId) {
+			destroyReaction(postId, uniqueId);
+			// addToTotalReaction(r, false);
+			setGivenReactions(latestReactions);
+		}
+	};
+
+	const setGivenReactions = (latestReactions?: UserReactionListType) => {
+		if (latestReactions) {
+			const totals = { ...totalReactionsInit };
+			const uniqueR: ReactionType[] = [];
+
+			Object.entries(latestReactions).forEach(([key, el]) => {
+				// Total reaction types are 4 and this array is supposed to be unique
+				if (el && el.reaction) {
+					totals.sum += 1;
+					totals[el.reaction] += 1;
+
+					if (uniqueR.length < 4 && !uniqueR.includes(el.reaction)) {
+						uniqueR.push(el.reaction);
+					}
+				}
+			});
+
+			setUniqueReactionTypes(uniqueR);
+			setTotalReactions(totals);
+		}
+	};
+
 	const longPressEvent = useLongPress<HTMLButtonElement>(
 		onLongPress,
 		onClick
@@ -91,15 +181,18 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 
 	const reactionClickHandler = (r: ReactionType) => {
 		setReactionContainerVisible(false);
-		if (r === reaction) {
-			setReaction(null);
+		if (uniqueId && reactions && r === reactions[uniqueId]?.reaction) {
+			setPostReaction();
 		} else {
-			setReaction(r);
+			setPostReaction(r);
 		}
 	};
 
 	const singleReaction = () => {
-		switch (reaction) {
+		const re =
+			reactions && uniqueId ? reactions[uniqueId]?.reaction : undefined;
+
+		switch (re) {
 			case 'like':
 				return (
 					<>
@@ -142,101 +235,154 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 	};
 
 	return (
-		<div className="shadow-lg rounded-3xl bg-white mb-5">
-			<div className="p-4">
-				<div className="flex justify-between items-center">
-					<div className="flex items-center mb-4">
-						<Image
-							className="rounded-full"
-							height={50}
-							width={50}
-							preview={false}
-							src={userPic || placeholderImg}
-							fallback={placeholderImg}
-						/>
-						<div className="ml-4">
-							<UserInfoPop flat={flat} phone={phone}>
-								<h3 className="font-semibold text-lg">{`${firstName} ${lastName}`}</h3>
-							</UserInfoPop>
+		<>
+			<div className="shadow-lg rounded-3xl bg-white mb-5">
+				<div className="p-4">
+					<div className="flex justify-between items-center">
+						<div className="flex items-center mb-4">
+							<AvatarImage userImg={userPic} />
+							<div className="ml-4">
+								<UserInfoPop flat={flat} phone={phone}>
+									<h3 className="font-semibold text-lg">{`${firstName} ${lastName}`}</h3>
+								</UserInfoPop>
 
-							<Tooltip
-								title={dayjs(createdAt).format(
-									DATE_TIME_FORMAT
-								)}
-							>
-								<div className="text-gray-500">
-									{dayjs(createdAt).fromNow()}
-								</div>
-							</Tooltip>
+								<Tooltip
+									title={dayjs(createdAt).format(
+										DATE_TIME_FORMAT
+									)}
+								>
+									<div className="text-gray-500">
+										{dayjs(createdAt).fromNow()}
+									</div>
+								</Tooltip>
+							</div>
 						</div>
+
+						{(isAdmin || uniqueId === userId) && (
+							<DeleteOverlay
+								itemKey={postId}
+								handleClick={deletePost}
+							/>
+						)}
+					</div>
+					<div className="text-center">
+						{postPic && (
+							<Image
+								width="100%"
+								src={postPic || userPlaceholderImg}
+								fallback={userPlaceholderImg}
+							/>
+						)}
 					</div>
 
-					<DeleteOverlay itemKey={postId} handleClick={deletePost} />
-				</div>
-				<div className="text-center">
-					{postPic && (
-						<Image
-							width="100%"
-							src={postPic || placeholderImg}
-							fallback={placeholderImg}
-						/>
-					)}
+					<p>{text}</p>
 				</div>
 
-				<p>{text}</p>
-			</div>
-
-			<div className="flex border-t border-gray-200 px-5">
-				<div className="flex-1 relative">
-					{reactionContainerVisible && (
-						<div className="absolute flex -top-10 left-2/4 transform -translate-x-2/4 bg-white shadow-lg rounded-lg px-3 py-2 border border-gray-200 w-max">
-							<Reaction
-								className="transform hover:scale-125"
-								src={congratsIcon}
-								alt="Congrats Icon"
-								onClick={() => reactionClickHandler('congrats')}
-							/>
-							<Reaction
-								className="transform hover:scale-125"
+				<div className="flex py-1 px-6 justify-between">
+					<button
+						type="button"
+						className="flex cursor-pointer"
+						onClick={() => setReactedByVisible(true)}
+					>
+						{uniqueReactionTypes.includes('like') && (
+							<ReactionCounter src={likeIcon} alt="Like Icon" />
+						)}
+						{uniqueReactionTypes.includes('laugh') && (
+							<ReactionCounter
 								src={laughIcon}
 								alt="Laughing Icon"
-								onClick={() => reactionClickHandler('laugh')}
 							/>
-							<Reaction
-								className="transform hover:scale-125"
-								src={likeIcon}
-								alt="Like Icon"
-								onClick={() => reactionClickHandler('like')}
+						)}
+						{uniqueReactionTypes.includes('sad') && (
+							<ReactionCounter src={sadIcon} alt="Sad Icon" />
+						)}
+						{uniqueReactionTypes.includes('congrats') && (
+							<ReactionCounter
+								src={congratsIcon}
+								alt="Congrats Icon"
 							/>
-							<Reaction
-								className="transform hover:scale-125"
-								src={sadIcon}
-								alt="Sad Icon"
-								onClick={() => reactionClickHandler('sad')}
-							/>
-						</div>
+						)}
+
+						<span className="ml-2">{totalReactions.sum || ''}</span>
+					</button>
+
+					{commentsCount > 0 && (
+						<button
+							type="button"
+							onClick={() => setCommentingOn(postId)}
+						>
+							{commentsCount} Comment{commentsCount > 1 && 's'}
+						</button>
 					)}
-					<FButton
-						type="button"
-						className="border-r"
-						data-key={postId}
-						{...longPressEvent}
-					>
-						{singleReaction()}
-					</FButton>
 				</div>
 
-				<div className="flex-1">
-					<FButton
-						type="button"
-						onClick={() => setCommentingOn(postId)}
-					>
-						<MessageOutlined className="text-2xl pr-2" />
-						Comment
-					</FButton>
+				<div className="flex border-t border-gray-200 px-5">
+					<div className="flex-1 relative">
+						{reactionContainerVisible && (
+							<div className="absolute flex -top-10 left-2/4 transform -translate-x-2/4 bg-white shadow-lg rounded-lg px-3 py-2 border border-gray-200 w-max">
+								<Reaction
+									className="transform hover:scale-125"
+									src={likeIcon}
+									alt="Like Icon"
+									onClick={() => reactionClickHandler('like')}
+								/>
+								<Reaction
+									className="transform hover:scale-125"
+									src={laughIcon}
+									alt="Laughing Icon"
+									onClick={() =>
+										reactionClickHandler('laugh')
+									}
+								/>
+								<Reaction
+									className="transform hover:scale-125"
+									src={sadIcon}
+									alt="Sad Icon"
+									onClick={() => reactionClickHandler('sad')}
+								/>
+								<Reaction
+									className="transform hover:scale-125"
+									src={congratsIcon}
+									alt="Congrats Icon"
+									onClick={() =>
+										reactionClickHandler('congrats')
+									}
+								/>
+							</div>
+						)}
+						<FButton
+							type="button"
+							className="border-r"
+							data-key={postId}
+							{...longPressEvent}
+						>
+							{singleReaction()}
+						</FButton>
+					</div>
+
+					<div className="flex-1">
+						<FButton
+							type="button"
+							onClick={() => setCommentingOn(postId)}
+						>
+							<MessageOutlined className="text-2xl pr-2" />
+							Comment
+						</FButton>
+					</div>
 				</div>
 			</div>
-		</div>
+
+			{reactedByVisible && (
+				<ReactionsModal
+					isVisible={reactedByVisible}
+					setIsVisible={setReactedByVisible}
+					postId={postId}
+					postOwner={firstName}
+					reactions={reactions}
+					totalReactions={totalReactions}
+				/>
+			)}
+		</>
 	);
 }
 
@@ -258,5 +404,12 @@ const Reaction = styled.img`
 		transition
 		duration-300
 		cursor-pointer
+	`}
+`;
+
+const ReactionCounter = styled.img`
+	${tw`
+		w-5
+		-mr-1
 	`}
 `;
