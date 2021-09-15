@@ -28,6 +28,7 @@ import {
 } from 'features/socialFeed/firebase/reactions';
 
 import ReactionsModal from 'features/socialFeed/ReactionsModal';
+import AvatarImage from 'features/shared/components/image/AvatarImage';
 
 type PropsType = {
 	postId: string;
@@ -240,14 +241,7 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 				<div className="p-4">
 					<div className="flex justify-between items-center">
 						<div className="flex items-center mb-4">
-							<Image
-								className="rounded-full"
-								height={50}
-								width={50}
-								preview={false}
-								src={userPic || userPlaceholderImg}
-								fallback={userPlaceholderImg}
-							/>
+							<AvatarImage userImg={userPic} />
 							<div className="ml-4">
 								<UserInfoPop flat={flat} phone={phone}>
 									<h3 className="font-semibold text-lg">{`${firstName} ${lastName}`}</h3>
