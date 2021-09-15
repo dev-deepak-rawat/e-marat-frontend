@@ -1,12 +1,11 @@
 import { useEffect, Dispatch, SetStateAction } from 'react';
-import { Modal, Image, Tabs } from 'antd';
+import { Modal, Tabs } from 'antd';
 import tw from 'twin.macro';
 import styled from 'styled-components';
 import congratsIcon from 'features/socialFeed/assets/images/congrats.svg';
 import laughIcon from 'features/socialFeed/assets/images/laughing.svg';
 import likeIcon from 'features/socialFeed/assets/images/like.svg';
 import sadIcon from 'features/socialFeed/assets/images/sad.svg';
-import userPlaceholderImg from 'assets/images/user-placeholder.svg';
 import {
 	ReactionType,
 	UserReactionListType,
@@ -14,6 +13,7 @@ import {
 } from 'features/socialFeed/SocialFeedTypes';
 import { useSocialFeed } from 'config/hooks';
 import { loadUsers } from 'features/socialFeed/firebase/reactions';
+import AvatarImage from 'features/shared/components/image/AvatarImage';
 
 type PropsType = {
 	isVisible: boolean;
@@ -56,15 +56,7 @@ export default function ReactionTabs({
 
 					return (
 						<div key={key} className="flex items-center py-2">
-							<Image
-								className="rounded-full"
-								height={35}
-								width={35}
-								preview={false}
-								src={picture || userPlaceholderImg}
-								fallback={userPlaceholderImg}
-								alt="User Avatar"
-							/>
+							<AvatarImage userImg={picture} size={35} />
 							<p className="ml-3">{`${firstName} ${lastName}`}</p>
 						</div>
 					);
