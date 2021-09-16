@@ -155,7 +155,7 @@ cd emarat-fe && npm install
 
 Deepak Singh Rawat - [GiHub](https://github.com/dev-deepak-rawat) - dev.deepak.rawat@gmail.com
 
-Haris Rahman - [GiHub](https://github.com/harisrahman) - itsharisrahman@gmail.com
+Haris Rahman - [GiHub](https://github.com/harisrahman) - hi@haris.tech
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
