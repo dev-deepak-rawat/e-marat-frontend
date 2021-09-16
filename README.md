@@ -47,21 +47,21 @@ society issues at one place. This will include payments tracking, complaints res
 public announcements system. We will also provide a Social space platform for residents to
 become acquainted with others by posting stories and sharing their thoughts.
 
-Mission:
+**Mission:**
 
 To empower cooperative society digitally by providing a platform to avail facilities easily and to connect.
 
-Vision:
+**Vision:**
 
 To make all the members of a society feel like a family and to resolve all the problems at one place.
 
-Goals:
+**Goals:**
 
 -  Simple solutions for the problems.
 - All solutions are in one place.
 - Bridge the communication gap within the society.
 
-Features:
+**Features:**
 
 - Social Feed with realtime comments.
 - Simple and consistent UI.
@@ -132,8 +132,8 @@ cd emarat-fe && npm install
 
 ### Credentials
 
-To login in the app as admin use no. 9999999999 and otp 123456  
-To login in the app as resident use no. 8888888888 and otp 123456  
+*To login in the app as admin use no. 9999999999 and otp 123456*  
+*To login in the app as resident use no. 8888888888 and otp 123456*  
 
 <!--Tools-->
 
