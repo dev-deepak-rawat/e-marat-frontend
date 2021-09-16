@@ -49,7 +49,7 @@ society issues at one place. This will include payments tracking, complaints res
 public announcements system. We will also provide a Social space platform for residents to
 become acquainted with others by posting stories and sharing their thoughts.
 
-## Artefacts
+### Artefacts
 
 <a href="https://drive.google.com/file/d/1GeWlJTQ7-VaQLpc-Se31_dH8Kf1n8kUa/view?usp=sharing">PRD</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -142,12 +142,12 @@ cd emarat-fe && npm install
    npm test
    ```
 
-### Credentials
+## Credentials
 
 *To login in the app as admin use no. 9999999999 and otp 123456*  
 *To login in the app as resident use no. 8888888888 and otp 123456*  
 
-### Other Available Scripts
+## Other Available Scripts
 
 **Linting**  
 To lint our entire project expect build folder, we can run  
@@ -172,7 +172,7 @@ We can also use `npm run cypress:headless` to run all the end to end test suits 
 
 <!--Tools-->
 
-### Tools and Libraries 
+## Tools and Libraries 
 
 - [Redux-Tool-Kit] - State Management
 - [Sentry] - Error Tracking
