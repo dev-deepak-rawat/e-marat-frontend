@@ -26,6 +26,12 @@ export const socialFeedSlice = createSlice({
 		setPostCommentsCount: (state, action: PayloadAction<PostCountType>) => {
 			state.posts[action.payload.id].commentsCount = action.payload.count;
 		},
+		// incrementPostComments: (state, action: PayloadAction<PostCountType>) => {
+		// 	state.posts[action.payload.id].commentsCount = action.payload.count;
+		// },
+		// decrementCommentsCount: (state, action: PayloadAction<PostCountType>) => {
+		// 	state.posts[action.payload.id].commentsCount = action.payload.count;
+		// },
 		addUser: (state, action: PayloadAction<UserList>) => {
 			state.users = { ...state.users, ...action.payload };
 		},
