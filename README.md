@@ -26,7 +26,8 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
-        <li><a href="#credentials">Credential</a></li>
+        <li><a href="#test credentials">Test Credentials</a></li>
+        <li><a href="#other available scripts">Other Available Scripts</a></li>
         <li><a href="#tools">Tools</a></li>
       </ul>
     </li>
@@ -135,11 +136,33 @@ cd emarat-fe && npm install
 *To login in the app as admin use no. 9999999999 and otp 123456*  
 *To login in the app as resident use no. 8888888888 and otp 123456*  
 
+### Other Available Scripts
+
+**Linting**
+To lint our entire project expect build folder, we can run  
+`npm run lint`
+we don't need to run the above commoand for every change in our file, VS code will automatically tell the places where ESLint rules are getting broke, thanks to `.eslintrc.js` which conatins all the standard rules for our project.
+
+**Pretty code**
+To make our coding practices standard with all our team members, we are using Prettier  
+`npm run format`
+
+**Pre-commit hook**
+In this project we are using `husky` to hook particular scripts to pre commit hook,
+whenever we do `git commit -m 'message'` husky will call the `pre-commit` hook, from the hook we will call our scripts in the order of
+`npm run lint`, `npm run format` if anyone of this script gets failed our commit will not happen, so this will give standard structure to our code base.
+
+**End-To-End Test**
+To do end to end testing, we are using cypress  
+whenever we do `npm run cypress` cypress window will open and we can run any test suite that is written.  
+We can also use `npm run cypress:headless` to run all the end to end test suits at once.
+
 <!--Tools-->
 
 ### Tools and Libraries 
 
-- [Redux Tool Kit] - State Management
+- [Redux-Tool-Kit] - State Management
+- [Sentry] - Error Tracking
 - [Cypress] - End to End testing
 - [Jest] - Unit testing
 - [React-testing-Library] - Integration testing
@@ -147,7 +170,7 @@ cd emarat-fe && npm install
 - [Eslint] - Linting
 - [Prettier] - Automatic code formatting
 - [Tailwind] - CSS styling classes
-- [Styled Components] Styling
+- [StyledComponents] - Styling
 
 <!-- Contributors -->
 
