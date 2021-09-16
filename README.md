@@ -189,9 +189,9 @@ We can also use `npm run cypress:headless` to run all the end to end test suits 
 
 ## Contributors
 
-Deepak Singh Rawat - [GiHub](https://github.com/dev-deepak-rawat) - dev.deepak.rawat@gmail.com
+Deepak Singh Rawat - [GiHub](https://github.com/dev-deepak-rawat) - [Email](dev.deepak.rawat@gmail.com)
 
-Haris Rahman - [GiHub](https://github.com/harisrahman) - hi@haris.tech
+Haris Rahman - [GiHub](https://github.com/harisrahman) - [Email](hi@haris.tech)
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
