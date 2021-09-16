@@ -20,7 +20,7 @@ export default function CommentsContainer({ postId, setPostId }: PropsType) {
 	const [comments, setComments] = useState<CommentList>({});
 	const [newComment, setNewComment] = useState('');
 	const [newCommentErr, setNewCommentErr] = useState('');
-	const { posts, users, addUser } = useSocialFeed();
+	const { posts, users, setPostCommentsCount, addUser } = useSocialFeed();
 	const { uniqueId } = useAuth();
 
 	const post = postId ? posts[postId] : undefined;
@@ -56,7 +56,10 @@ export default function CommentsContainer({ postId, setPostId }: PropsType) {
 
 		if (postId && uniqueId) {
 			const comment = await store(postId, uniqueId, newComment);
-			if (comment) setComments({ ...comments, ...comment });
+			if (comment) {
+				setComments({ ...comments, ...comment });
+				changeCommentsCount();
+			}
 		}
 
 		setNewComment('');
@@ -69,7 +72,17 @@ export default function CommentsContainer({ postId, setPostId }: PropsType) {
 			if (updatedComments[key]) {
 				delete updatedComments[key];
 				setComments(updatedComments);
+				changeCommentsCount(false);
 			}
+		}
+	};
+
+	const changeCommentsCount = (increment: boolean = true) => {
+		if (postId) {
+			setPostCommentsCount({
+				id: postId,
+				count: (post?.commentsCount || 0) + (increment ? 1 : -1),
+			});
 		}
 	};
 
