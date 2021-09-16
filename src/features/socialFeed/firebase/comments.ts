@@ -101,7 +101,7 @@ export const addCommentCount = (
 		const postId = data.key;
 		if (postId) {
 			const response = await get(`post-comments/${postId}`);
-			if (typeof response === 'object') {
+			if (response && typeof response === 'object') {
 				setCommentsCount({
 					id: postId,
 					count: Object.keys(response).length,
