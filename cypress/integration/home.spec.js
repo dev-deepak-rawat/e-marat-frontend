@@ -1,5 +1,7 @@
 describe('Home Page testing', () => {
 
+  indexedDB.deleteDatabase('firebaseLocalStorageDb');
+
     it('Landed on home page', () => {
       cy.visit('/');
       cy.findByText(/Connect together to build a smart society/i).should('be.visible');
