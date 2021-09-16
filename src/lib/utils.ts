@@ -49,6 +49,7 @@ export const transformCloudinaryImage = (
 	transformation: Transformation
 ): string => {
 	if (!img) return '';
+	if (img === 'undefined') return '';
 	const imgTransformation = CLOUDINARY_IMG_TRANSFORMATIONS[transformation];
 	const [origin, imgName] = img.split(CLOUDINARY_IMG_SPLITTER);
 	return `${origin}${CLOUDINARY_IMG_SPLITTER}${imgTransformation}${imgName}`;
