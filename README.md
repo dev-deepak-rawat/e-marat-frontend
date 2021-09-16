@@ -1,7 +1,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="https://hygenie.netlify.app/assets/logo.png" alt="Logo" width="200" >
+    <img src="https://res.cloudinary.com/emarat/image/upload/v1630505506/logo.svg" alt="Logo" width="200" >
 
   <p align="center">
     ·
@@ -26,6 +26,7 @@
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
+        <li><a href="#credentials">Credential</a></li>
         <li><a href="#tools">Tools</a></li>
       </ul>
     </li>
@@ -100,23 +101,23 @@ Following are the simple steps to run this project.
    git clone https://github.com/pesto-students/n6-emarat-fe-eta-6.git emarat-fe
    ```
 2. Set environment variables
-   ```sh
-REACT_APP_PROXY=https://e-marat.herokuapp.com
-REACT_APP_FIREBASE_API_KEY=
-REACT_APP_FIREBASE_AUTH_DOMAIN=
-REACT_APP_FIREBASE_DATABASE_URL=
-REACT_APP_FIREBASE_PROJECT_ID=
-REACT_APP_FIREBASE_STORAGE_BUCKET=
-REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
-REACT_APP_FIREBASE_APP_ID=
-REACT_APP_FIREBASE_MEASUREMENT_ID=
-REACT_APP_RAZORPAY_KEY_ID=
-REACT_APP_SENTRY_DSN=
-COUNTRY_CODE=+91
-   ```
+
+    REACT_APP_PROXY=https://e-marat.herokuapp.com\
+    REACT_APP_FIREBASE_API_KEY=\
+    REACT_APP_FIREBASE_AUTH_DOMAIN=\
+    REACT_APP_FIREBASE_DATABASE_URL=
+    REACT_APP_FIREBASE_PROJECT_ID=
+    REACT_APP_FIREBASE_STORAGE_BUCKET=
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
+    REACT_APP_FIREBASE_APP_ID=
+    REACT_APP_FIREBASE_MEASUREMENT_ID=
+    REACT_APP_RAZORPAY_KEY_ID=
+    REACT_APP_SENTRY_DSN=
+    COUNTRY_CODE=+91
+
 3. Install NPM packages
-   ```sh
-   cd emarat-fe && npm install
+```sh
+cd emarat-fe && npm install
    ```
 4. Run
    ```sh
@@ -129,9 +130,14 @@ COUNTRY_CODE=+91
    npm test
    ```
 
+### Credentials
+
+To login in the app as admin use no. 9999999999 and otp 123456
+To login in the app as resident use no. 8888888888 and otp 123456
+
 <!--Tools-->
 
-## Tools and Libraries 
+### Tools and Libraries 
 
 - [Redux Tool Kit] - State Management
 - [Cypress] - End to End testing
@@ -155,5 +161,3 @@ Haris Rahman - [GiHub](https://github.com/harisrahman) - itsharisrahman@gmail.co
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
 [product-screenshot]: https://res.cloudinary.com/emarat/image/upload/v1631793441/Emarat_desktop_dashboard_noa78v.png
-https://res.cloudinary.com/emarat/image/upload/v1631794366/Emarat_desktop_announcements_gegjlr.png
-https://res.cloudinary.com/emarat/image/upload/v1631794353/Emarat_desktop_amenities_idznjf.png
