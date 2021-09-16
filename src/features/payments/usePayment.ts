@@ -13,7 +13,7 @@ export const usePayment = () => {
 	const { data: paymentInfo, loading } = useApiCall({
 		apiUrl: 'getPayments',
 		initDataValue: {},
-		cond: fetchPayments,
+		refetch: fetchPayments,
 	});
 	const [orderId, setOrderId] = useState('');
 

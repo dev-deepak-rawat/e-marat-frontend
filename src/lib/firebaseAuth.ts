@@ -17,6 +17,9 @@ import { errorLogger } from 'lib/utils';
 
 const auth = getAuth(firebaseApp);
 
+/**
+ * Save Redux Auth state on browser local storage
+ */
 const saveAuthStateOnLocalStorage = () => {
 	store.subscribe(() => {
 		localStorage.setItem(
@@ -26,6 +29,10 @@ const saveAuthStateOnLocalStorage = () => {
 	});
 };
 
+/**
+ * To load auth state from browser local storage
+ * and save it to redux store
+ */
 const loadAuthStateFromLocalStorage = () => {
 	const persistedState = localStorage.getItem('authState');
 	if (persistedState) {
@@ -34,6 +41,11 @@ const loadAuthStateFromLocalStorage = () => {
 	}
 };
 
+/**
+ * Get auth info from firebase auth user
+ * and save that info to the store
+ * @param  {User|null} authUser
+ */
 const saveAuthUserOnStore = (authUser: User | null) => {
 	if (!authUser) {
 		store.dispatch(removeAuthUser());
@@ -53,6 +65,10 @@ const saveAuthUserOnStore = (authUser: User | null) => {
 	});
 };
 
+/**
+ * Listen for auth state
+ * if changed, update it to redux store
+ */
 export const listenUserAuthState = () => {
 	saveAuthStateOnLocalStorage();
 	loadAuthStateFromLocalStorage();
@@ -67,7 +83,12 @@ const invisibeRecaptcha = (elId: string) =>
 		},
 		auth
 	);
-
+/**
+ * send otp to number
+ * @param  {string} captchaElId
+ * @param  {string} phoneNumber
+ * @returns Promise
+ */
 export const sendOtp = async (
 	captchaElId: string,
 	phoneNumber: string
@@ -85,6 +106,12 @@ export const sendOtp = async (
 	}
 };
 
+/**
+ * Confirm Otp result
+ * @param  {ConfirmationResult} confirmationResult
+ * @param  {string} otp
+ * @returns Promise
+ */
 export const confirmOtp = async (
 	confirmationResult: ConfirmationResult,
 	otp: string
@@ -99,6 +126,10 @@ export const confirmOtp = async (
 	}
 };
 
+/**
+ * Get current auth user when authuser state changes
+ * @returns Promise
+ */
 const getCurrentUser = () =>
 	new Promise((resolve, reject) => {
 		const unsubscribe = auth.onAuthStateChanged((user: User | null) => {
@@ -107,11 +138,18 @@ const getCurrentUser = () =>
 		}, reject);
 	});
 
+/**
+ * @returns {string} authToken
+ */
 export const getAuthToken = async () => {
 	const authUser = await getCurrentUser();
 	return (authUser as User)?.getIdToken();
 };
 
+/**
+ * Sign in with token
+ * @param  {string} token
+ */
 export const signIn = async (token: string) => {
 	try {
 		await signInWithCustomToken(auth, token);
@@ -124,6 +162,9 @@ export const signIn = async (token: string) => {
 	return false;
 };
 
+/**
+ * Sign Out current auth user
+ */
 export const signOut = async () => {
 	try {
 		await firebaseSignOut(auth);

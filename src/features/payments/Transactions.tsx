@@ -30,7 +30,9 @@ export default function Transactions({ showTitle = true }: TransactionsProps) {
 
 	return (
 		<>
-			{showTitle && <PageTitle>Transactions</PageTitle>}
+			{showTitle && (
+				<PageTitle data-testid="pageTitle">Transactions</PageTitle>
+			)}
 			<ContainerCard size="xl">
 				<Table<TransactionType>
 					dataSource={data}

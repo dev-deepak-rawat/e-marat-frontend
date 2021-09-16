@@ -6,6 +6,10 @@ import {
 	CLOUDINARY_IMG_TRANSFORMATIONS,
 } from 'lib/constants';
 
+/**
+ * To Log error to sentry on production
+ * @param  {Error} error
+ */
 export const errorLogger = (error: Error) => {
 	try {
 		if (process.env.NODE_ENV && process.env.NODE_ENV !== 'development') {
@@ -20,9 +24,19 @@ export const errorLogger = (error: Error) => {
 	}
 };
 
+/**
+ * To remove non digits from a string
+ * @param  {string} val
+ * @returns {string}
+ */
 export const stripNonNumbers = (val: string) =>
 	val.length > 0 ? val.replace(/[^0-9]+/g, '') : val;
 
+/**
+ * To sort string of two objects by same key
+ * @param  {keyofT} prop
+ * @returns {function} sorter function
+ */
 export function sortStringByProperty<T extends GenericObject>(prop: keyof T) {
 	return (a: T, b: T) => {
 		if (!a[prop]) return 0;
@@ -31,6 +45,12 @@ export function sortStringByProperty<T extends GenericObject>(prop: keyof T) {
 	};
 }
 
+/**
+ * To sort numbers of two objects by the same key
+ * example - sorter({a: 32}, {b: 23}) returns 9
+ * @param  {keyofT} prop
+ * @returns {function} sorter function
+ */
 export function sortNumberByProperty<T extends GenericObject>(prop: keyof T) {
 	return (a: T, b: T) => a[prop] - b[prop];
 }
@@ -41,9 +61,12 @@ export function sortDateByProperty<T extends GenericObject>(prop: keyof T) {
 
 type Transformation = keyof typeof CLOUDINARY_IMG_TRANSFORMATIONS;
 
-/*
-/ Transform image url to support cloudinary optimizations
-*/
+/**
+ * Transform image url to support cloudinary optimizations
+ * @param  {string} img
+ * @param  {Transformation} transformation
+ * @returns {string} new url
+ */
 export const transformCloudinaryImage = (
 	img: string,
 	transformation: Transformation
@@ -54,11 +77,22 @@ export const transformCloudinaryImage = (
 	const [origin, imgName] = img.split(CLOUDINARY_IMG_SPLITTER);
 	return `${origin}${CLOUDINARY_IMG_SPLITTER}${imgTransformation}${imgName}`;
 };
-
+/**
+ * to check if a any value is empty or not
+ * {}, [], '' will be empty
+ * @param  {any} obj
+ * @returns {boolean}
+ */
 export const isEmpty = (obj: any) =>
 	[Object, Array].includes((obj || {}).constructor) &&
 	!Object.entries(obj || {}).length;
 
+/**
+ * To filter form fields from formData that are present in update values obj
+ * @param  {GenericObject} updateValues
+ * @param  {GenericFormDataType} formData
+ * @returns GenericObject
+ */
 export const filterUpdateFormValues = (
 	updateValues: GenericObject,
 	formData: GenericFormDataType
@@ -75,6 +109,10 @@ export const filterUpdateFormValues = (
 	return newUpdateValues;
 };
 
+/**
+ * To load a script into dom with the src given
+ * @param  {string} src
+ */
 export const loadScript = (src: string) =>
 	new Promise((resolve) => {
 		const script = document.createElement('script');

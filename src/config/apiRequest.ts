@@ -10,7 +10,10 @@ type BuildRequestDataType = {
 	data?: GenericObject;
 	appendToUrl?: string;
 };
-
+/**
+ * Build Request for axios with given options
+ * @returns axios request
+ */
 const buildRequestData = async (options: BuildRequestDataType) => {
 	const { apiUrl, headers = {}, data, appendToUrl } = options;
 	const { url, method } = API_CONFIG[apiUrl];
@@ -30,6 +33,11 @@ const buildRequestData = async (options: BuildRequestDataType) => {
 	};
 };
 
+/**
+ * handles APIs request and sanitizes response
+ * Also logs errors on the screen if errored response
+ * or something went wrong.
+ */
 export const apiRequest = async (options: BuildRequestDataType) => {
 	const reqData = await buildRequestData(options);
 	try {
@@ -65,6 +73,11 @@ export const apiRequest = async (options: BuildRequestDataType) => {
 	return { meta: { success: false } };
 };
 
+/**
+ * If received token in the response header
+ * then signin with the token
+ * @param  {string} token
+ */
 const handleAuthorization = async (token: string) => {
 	const success = await signIn(token);
 	if (!success) {

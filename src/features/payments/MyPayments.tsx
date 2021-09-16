@@ -5,7 +5,7 @@ import PaymentsComponent from 'features/payments/PaymentsComponent';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
 import { usePayment } from 'features/payments/usePayment';
 import Choice from 'features/shared/components/Choice';
-import Transactions from './Transactions';
+import Transactions from 'features/payments/Transactions';
 
 export default function MyPayments() {
 	const {

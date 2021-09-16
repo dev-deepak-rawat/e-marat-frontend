@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Dashboard dashboard snapshot on test data 1`] = `
+Array [
+  <div
+    className="sc-bdfBQB itvOLS"
+  >
+    Dashboard
+  </div>,
+  <div
+    className="bg-white mt-2 pl-2 pt-2 sm:mx-6 sm:mt-6"
+  >
+    <div
+      className="sc-hKgJUU eWQNKS"
+    >
+      <div
+        className="ant-spin ant-spin-spinning ant-spin-show-text"
+      >
+        <span
+          className="ant-spin-dot ant-spin-dot-spin"
+        >
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+        </span>
+        <div
+          className="ant-spin-text"
+        >
+          loading...
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;
