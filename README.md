@@ -18,6 +18,7 @@
     <li>
       <a href="#about-the-project">About The Project</a>
       <ul>
+        <li><a href="#artefacts">Artefacts</a></li>
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
@@ -47,6 +48,18 @@ lacks clarity and status tracking. With E-Marat, we are providing digital soluti
 society issues at one place. This will include payments tracking, complaints resolving, and
 public announcements system. We will also provide a Social space platform for residents to
 become acquainted with others by posting stories and sharing their thoughts.
+
+## Artefacts
+
+<p>
+	<a href="https://drive.google.com/file/d/1GeWlJTQ7-VaQLpc-Se31_dH8Kf1n8kUa/view?usp=sharing">PRD</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="https://drive.google.com/file/d/1wfXcbGgDDSTDIMjHo2rQlWlYX2FSgtwj/view?usp=sharing">HLD</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="https://drive.google.com/file/d/1YabDlAU6MeRzFvw3qotHrL2CxlqkCiEA/view?usp=sharing">One Pager</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="https://drive.google.com/file/d/1VhLwtQEiYDabaPfq7dHEWbr2DseD71Ce/view?usp=sharing">Wireframes</a>
+</p>
 
 **Mission:**
 
@@ -185,4 +198,4 @@ Haris Rahman - [GiHub](https://github.com/harisrahman) - hi@haris.tech
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[product-screenshot]: https://res.cloudinary.com/emarat/image/upload/v1631793441/Emarat_desktop_dashboard_noa78v.png
+[product-screenshot]: https://res.cloudinary.com/emarat/image/upload/v1631802213/homepage-screenshot_n2dxwk.png
