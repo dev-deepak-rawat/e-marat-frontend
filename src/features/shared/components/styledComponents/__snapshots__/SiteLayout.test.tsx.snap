@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SiteLayout styled 1`] = `
+<div
+  className="sc-bdfBQB fVssRp"
+/>
+`;
+
+exports[`SiteLayout styled 2`] = `
+<div
+  className="sc-bdfBQB eFjETN"
+/>
+`;

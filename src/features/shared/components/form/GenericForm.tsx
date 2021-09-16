@@ -161,6 +161,7 @@ export default function GenericForm(props: PropsType) {
 					type="primary"
 					loading={disable}
 					htmlType="submit"
+					data-testid="submitButton"
 				>
 					{submitLabel}
 				</Button>

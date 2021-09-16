@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Styled Title Snapshot 1`] = `
+<div
+  className="sc-bdfBQB DEPcs"
+/>
+`;

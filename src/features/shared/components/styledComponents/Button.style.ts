@@ -14,7 +14,7 @@ const Button = styled.button`
         ml-0
         rounded-sm
         uppercase
-        hover:bg-emarat-secondary
+        hover:bg-emarat-secondary-default
         hover:scale-125
     `}
 `;

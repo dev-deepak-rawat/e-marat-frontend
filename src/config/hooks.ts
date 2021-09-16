@@ -4,7 +4,6 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { useMediaQuery } from 'react-responsive';
 import { ROLES } from 'lib/constants';
 import type { RootState, AppDispatch } from 'config/store';
-import { setTitle } from 'features/shared/reducers/TopbarSlice';
 import {
 	setPosts,
 	setPostCommentsCount,
@@ -44,13 +43,6 @@ export const useAuth = () => {
 export const useOrientation = () => {
 	const isMobileSize = useMediaQuery({ query: '(max-width: 480px)' });
 	return { isMobileSize };
-};
-
-export const useTopbar = () => {
-	const { title } = useAppSelector((state) => state.topbar);
-	const dispatch = useAppDispatch();
-	const setUrlTitle = (ti: string) => dispatch(setTitle(ti));
-	return { title, setUrlTitle };
 };
 
 type UseApiCall = {

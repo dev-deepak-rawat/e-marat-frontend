@@ -49,7 +49,9 @@ export default function MyAmenities() {
 					justify="center"
 				>
 					{loading ? (
-						<AmenitySkeleton />
+						<div data-testid="amenitySkeleton">
+							<AmenitySkeleton />
+						</div>
 					) : (
 						<>
 							{amenities
