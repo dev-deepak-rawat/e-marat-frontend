@@ -6,6 +6,7 @@ export type ProtectedRouteProps = {
 	role?: string;
 } & RouteProps;
 
+// give access to routes based on role and auth state
 export default function ProtectedRoute({
 	role,
 	...routeProps

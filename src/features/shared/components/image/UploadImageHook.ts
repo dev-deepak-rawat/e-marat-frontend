@@ -8,6 +8,7 @@ import {
 } from 'features/shared/components/image/imageSlice';
 import { useAppDispatch, useAppSelector } from 'config/hooks';
 
+// Hook to handle uploading of images and errors
 export const useImage = () => {
 	const { imageUrl, isImageLoading, imageError } = useAppSelector(
 		(state) => state.image

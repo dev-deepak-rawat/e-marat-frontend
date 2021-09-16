@@ -20,6 +20,11 @@ import { apiRequest } from 'config/apiRequest';
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
 
+/**
+ * returns a function that filter an array of objects
+ * with key role to match the current auth user role.
+ * @param  {boolean} isAdmin
+ */
 const filterByRole = (isAdmin: boolean) => (option: { role?: string }) => {
 	const { role } = option;
 	const currRole = isAdmin ? ROLES.ADMIN : ROLES.RESIDENT;
@@ -27,6 +32,9 @@ const filterByRole = (isAdmin: boolean) => (option: { role?: string }) => {
 	return role === currRole;
 };
 
+/**
+ * return current auth user info
+ */
 export const useAuth = () => {
 	const authState = useAppSelector((state) => state.auth);
 
@@ -40,6 +48,9 @@ export const useAuth = () => {
 	};
 };
 
+/**
+ * returns isMobile Size
+ */
 export const useOrientation = () => {
 	const isMobileSize = useMediaQuery({ query: '(max-width: 480px)' });
 	return { isMobileSize };
@@ -50,12 +61,20 @@ type UseApiCall = {
 	reqData?: any;
 	initDataValue: any;
 	appendToUrl?: string;
-	cond?: number;
+	refetch?: number;
 	isSkip?: boolean;
 };
 
-export const useApiCall = (props: UseApiCall) => {
-	const { apiUrl, reqData, initDataValue, appendToUrl, cond, isSkip } = props;
+/**
+ * useApiCall hook to handles api request with ease
+ * configuarable by params initDataValue, appendToUrl, refetch,
+ * isSkip flag to handle paginations apis.
+ *
+ * @returns data - apiResponse data, loading flag and isFetchedOnce flag
+ */
+export const useApiCall = (params: UseApiCall) => {
+	const { apiUrl, reqData, initDataValue, appendToUrl, refetch, isSkip } =
+		params;
 	const [loading, setLoading] = useState(false);
 	const [data, setData] = useState(initDataValue);
 	const [isFetchedOnce, setIsFetchedOnce] = useState(false);
@@ -65,7 +84,7 @@ export const useApiCall = (props: UseApiCall) => {
 		const response = await apiRequest({
 			apiUrl,
 			data: reqData,
-			appendToUrl: isSkip ? `?skip=${cond}` : appendToUrl,
+			appendToUrl: isSkip ? `?skip=${refetch}` : appendToUrl,
 		});
 		const { data: resData = initDataValue } = response;
 		setData(resData);
@@ -75,7 +94,7 @@ export const useApiCall = (props: UseApiCall) => {
 
 	useEffect(() => {
 		fetchData();
-	}, [cond]);
+	}, [refetch]);
 
 	return { data, loading, isFetchedOnce };
 };
@@ -83,6 +102,11 @@ export const useApiCall = (props: UseApiCall) => {
 type UseInfiniteScrollApiCall = {
 	apiUrl: string;
 };
+
+/**
+ * Hooks to support infinite scroll
+ * with the pagination apis
+ */
 export const useInfiniteScrollApiCall = (props: UseInfiniteScrollApiCall) => {
 	const [skip, setSkip] = useState(0);
 	const [isNoMoreData, setIsNoMoreData] = useState(false);
@@ -91,7 +115,7 @@ export const useInfiniteScrollApiCall = (props: UseInfiniteScrollApiCall) => {
 	const { loading, data, isFetchedOnce } = useApiCall({
 		apiUrl: props.apiUrl,
 		initDataValue: [],
-		cond: skip,
+		refetch: skip,
 		isSkip: true,
 	});
 
@@ -106,6 +130,9 @@ export const useInfiniteScrollApiCall = (props: UseInfiniteScrollApiCall) => {
 	return { setSkip, isNoMoreData, loading, isFetchedOnce, list };
 };
 
+/**
+ * to easily get and dispatch users and posts in social feed
+ */
 export const useSocialFeed = () => {
 	const { posts, users } = useAppSelector((state) => state.socialFeed);
 
