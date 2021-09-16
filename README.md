@@ -128,8 +128,8 @@ Following are the simple steps to run this project.
     COUNTRY_CODE=+91  
 
 3. Install NPM packages
-```sh
-cd emarat-fe && npm install
+   ```sh
+   cd emarat-fe && npm install
    ```
 4. Run
    ```sh
