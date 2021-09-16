@@ -102,18 +102,18 @@ Following are the simple steps to run this project.
    ```
 2. Set environment variables
 
-    REACT_APP_PROXY=https://e-marat.herokuapp.com\
-    REACT_APP_FIREBASE_API_KEY=\
-    REACT_APP_FIREBASE_AUTH_DOMAIN=\
-    REACT_APP_FIREBASE_DATABASE_URL=
-    REACT_APP_FIREBASE_PROJECT_ID=
-    REACT_APP_FIREBASE_STORAGE_BUCKET=
-    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=
-    REACT_APP_FIREBASE_APP_ID=
-    REACT_APP_FIREBASE_MEASUREMENT_ID=
-    REACT_APP_RAZORPAY_KEY_ID=
-    REACT_APP_SENTRY_DSN=
-    COUNTRY_CODE=+91
+    REACT_APP_PROXY=https://e-marat.herokuapp.com  
+    REACT_APP_FIREBASE_API_KEY=  
+    REACT_APP_FIREBASE_AUTH_DOMAIN=  
+    REACT_APP_FIREBASE_DATABASE_URL=  
+    REACT_APP_FIREBASE_PROJECT_ID=  
+    REACT_APP_FIREBASE_STORAGE_BUCKET=  
+    REACT_APP_FIREBASE_MESSAGING_SENDER_ID=  
+    REACT_APP_FIREBASE_APP_ID=  
+    REACT_APP_FIREBASE_MEASUREMENT_ID=  
+    REACT_APP_RAZORPAY_KEY_ID=  
+    REACT_APP_SENTRY_DSN=  
+    COUNTRY_CODE=+91  
 
 3. Install NPM packages
 ```sh
@@ -132,8 +132,8 @@ cd emarat-fe && npm install
 
 ### Credentials
 
-To login in the app as admin use no. 9999999999 and otp 123456
-To login in the app as resident use no. 8888888888 and otp 123456
+To login in the app as admin use no. 9999999999 and otp 123456  
+To login in the app as resident use no. 8888888888 and otp 123456  
 
 <!--Tools-->
 
