@@ -51,15 +51,13 @@ become acquainted with others by posting stories and sharing their thoughts.
 
 ## Artefacts
 
-<p>
-	<a href="https://drive.google.com/file/d/1GeWlJTQ7-VaQLpc-Se31_dH8Kf1n8kUa/view?usp=sharing">PRD</a>
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="https://drive.google.com/file/d/1wfXcbGgDDSTDIMjHo2rQlWlYX2FSgtwj/view?usp=sharing">HLD</a>
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<a href="https://drive.google.com/file/d/1YabDlAU6MeRzFvw3qotHrL2CxlqkCiEA/view?usp=sharing">One Pager</a>
-	&nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="https://drive.google.com/file/d/1VhLwtQEiYDabaPfq7dHEWbr2DseD71Ce/view?usp=sharing">Wireframes</a>
-</p>
+<a href="https://drive.google.com/file/d/1GeWlJTQ7-VaQLpc-Se31_dH8Kf1n8kUa/view?usp=sharing">PRD</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://drive.google.com/file/d/1wfXcbGgDDSTDIMjHo2rQlWlYX2FSgtwj/view?usp=sharing">HLD</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://drive.google.com/file/d/1YabDlAU6MeRzFvw3qotHrL2CxlqkCiEA/view?usp=sharing">One Pager</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://drive.google.com/file/d/1VhLwtQEiYDabaPfq7dHEWbr2DseD71Ce/view?usp=sharing">Wireframes</a>
 
 **Mission:**
 
