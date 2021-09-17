@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Animate On Load 1`] = `
+<div
+  className="sc-bdfBQB bGzMiu transform opacity-0 translate-y-10"
+>
+  mock child
+</div>
+`;
