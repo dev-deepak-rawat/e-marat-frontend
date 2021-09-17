@@ -193,8 +193,8 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 			case 'like':
 				return (
 					<>
-						<AiFillLike className="text-2xl pr-2 text-blue-500" />
-						<span className="text-blue-500 self-end">Liked</span>
+						<AiFillLike className="text-4xl pr-2 text-blue-500" />
+						<span className="text-blue-500">Liked</span>
 					</>
 				);
 
@@ -224,8 +224,8 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 			default:
 				return (
 					<>
-						<AiOutlineLike className="text-2xl pr-2" />
-						<span className="self-end">Like</span>
+						<AiOutlineLike className="text-4xl pr-2" />
+						<span>Like</span>
 					</>
 				);
 		}
@@ -362,7 +362,7 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 							type="button"
 							onClick={() => setCommentingOn(postId)}
 						>
-							<AiOutlineMessage className="text-2xl pr-2" />
+							<AiOutlineMessage className="text-4xl pr-2" />
 							Comment
 						</FButton>
 					</div>

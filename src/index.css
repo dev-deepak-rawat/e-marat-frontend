@@ -31,3 +31,7 @@ code {
 .btn-warning {
 	@apply bg-yellow-400 border-yellow-400 hover:bg-yellow-300 hover:border-yellow-300 focus:bg-yellow-300 focus:border-yellow-300;
 }
+
+.flex-center {
+	@apply flex items-center justify-center;
+}

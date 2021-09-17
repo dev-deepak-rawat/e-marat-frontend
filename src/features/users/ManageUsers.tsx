@@ -118,15 +118,15 @@ export default function ManageUsers() {
 									<Button
 										type="primary"
 										shape="circle"
-										className="btn-warning"
-										icon={<AiFillEdit />}
+										className="btn-warning flex-center"
+										icon={<AiFillEdit size={18} />}
 										onClick={() => editUser(user)}
 									/>
-
 									<Button
 										type="primary"
 										shape="circle"
-										icon={<AiFillDelete />}
+										className="flex-center"
+										icon={<AiFillDelete size={18} />}
 										onClick={() =>
 											user._id &&
 											deleteItem<UserType[]>(

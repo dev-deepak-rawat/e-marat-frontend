@@ -177,8 +177,8 @@ export default function ManageComplaints({
 										<Button
 											type="primary"
 											shape="circle"
-											className="btn-warning"
-											icon={<AiFillEdit />}
+											className="btn-warning flex-center"
+											icon={<AiFillEdit size={18} />}
 											onClick={() =>
 												editComplaint(complaint)
 											}
@@ -187,7 +187,8 @@ export default function ManageComplaints({
 										<Button
 											type="primary"
 											shape="circle"
-											icon={<AiFillDelete />}
+											className="flex-center"
+											icon={<AiFillDelete size={18} />}
 											onClick={() =>
 												complaint._id &&
 												deleteItem<ComplaintType[]>(
