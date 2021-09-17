@@ -5,8 +5,7 @@ import dayjs from 'dayjs';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
 import { apiRequest } from 'config/apiRequest';
 import { sortStringByProperty, sortDateByProperty } from 'lib/utils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUserCog } from '@fortawesome/free-solid-svg-icons';
+import { FaUser, FaUserCog } from 'react-icons/fa';
 import { UserType } from 'features/users/Types';
 import searchColumnProps from 'features/shared/components/table/search';
 import deleteItem from 'features/shared/components/table/delete';
@@ -64,14 +63,13 @@ export default function ManageUsers() {
 					<Table.Column<UserType>
 						title=""
 						dataIndex="isAdmin"
-						render={(value, user) => (
-							<FontAwesomeIcon
-								icon={value ? faUserCog : faUser}
-								className={`text-xl ${
-									value ? 'text-green-500' : 'text-indigo-500'
-								}`}
-							/>
-						)}
+						render={(value, user) =>
+							value ? (
+								<FaUserCog className="text-2xl text-green-500" />
+							) : (
+								<FaUser className="text-xl text-indigo-500" />
+							)
+						}
 					/>
 					<Table.Column<UserType>
 						title="First Name"

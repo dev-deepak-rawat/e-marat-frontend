@@ -9,11 +9,8 @@ import {
 	TwitterOutlined,
 	InstagramOutlined,
 } from '@ant-design/icons';
-import {
-	faBuilding,
-	faHandshake,
-	faSwimmer,
-} from '@fortawesome/free-solid-svg-icons';
+import { FaBuilding, FaHandshake, FaSwimmer } from 'react-icons/fa';
+
 import { useAuth, useApiCall } from 'config/hooks';
 import { CLOUDINARY_IMAGES } from 'lib/constants';
 import TeamMember from 'features/home/components/TeamMember';
@@ -107,7 +104,7 @@ export default function Home() {
 										<Feature
 											title="Members Onboarded"
 											number={`${stats.residentsCount}+`}
-											icon={faBuilding}
+											icon={FaBuilding}
 										/>
 									</Col>
 									<Col
@@ -119,7 +116,7 @@ export default function Home() {
 										<Feature
 											title="Complaints Resolved"
 											number={`${stats.complaintsResolved}+`}
-											icon={faHandshake}
+											icon={FaHandshake}
 										/>
 									</Col>
 									<Col
@@ -131,7 +128,7 @@ export default function Home() {
 										<Feature
 											title="Amenities"
 											number={`${stats.amenitiesCount}+`}
-											icon={faSwimmer}
+											icon={FaSwimmer}
 										/>
 									</Col>
 								</Row>
