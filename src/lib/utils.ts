@@ -125,3 +125,34 @@ export const loadScript = (src: string) =>
 			resolve(false);
 		};
 	});
+
+const windowWidth = () =>
+	window.innerWidth ||
+	document.documentElement.clientWidth ||
+	document.body.clientWidth;
+
+const windowHeight = () =>
+	window.innerHeight ||
+	document.documentElement.clientHeight ||
+	document.body.clientHeight;
+
+/**
+ * Return true if element is in viewport
+ * @param  {HTMLElement} el
+ * @param  {halfway} el
+ */
+export const elInViewport = (el: HTMLElement, halfway: boolean = true) => {
+	const rect = el.getBoundingClientRect();
+	let { top } = rect;
+
+	if (halfway) {
+		top += rect.height / 2;
+	}
+
+	return (
+		rect.bottom >= 0 &&
+		rect.right >= 0 &&
+		top <= windowHeight() &&
+		rect.left <= windowWidth()
+	);
+};

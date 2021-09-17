@@ -22,6 +22,7 @@ export default styled.div<ContainerProps>(() => [
 		px-8
 		min-h-full
 		my-6
+		sm:rounded-md
 	`,
 	({ size = 'lg' }) => containerSizeVariants[size],
 ]);

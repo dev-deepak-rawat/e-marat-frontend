@@ -2,7 +2,7 @@
 
 exports[`Feature snapshot 1`] = `
 <div
-  className="bg-white shadow-around px-7 py-10 flex h-full"
+  className="bg-white shadow-around px-7 py-10 flex h-full rounded-md"
 >
   <svg
     aria-hidden="true"
