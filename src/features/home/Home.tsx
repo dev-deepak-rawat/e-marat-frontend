@@ -14,11 +14,12 @@ import {
 	faHandshake,
 	faSwimmer,
 } from '@fortawesome/free-solid-svg-icons';
+import { useAuth, useApiCall } from 'config/hooks';
+import { CLOUDINARY_IMAGES } from 'lib/constants';
 import TeamMember from 'features/home/components/TeamMember';
 import Feature from 'features/home/components/Feature';
 import LoginForm from 'features/home/components/LoginForm';
-import { useAuth, useApiCall } from 'config/hooks';
-import { CLOUDINARY_IMAGES } from 'lib/constants';
+import AnimateOnLoad from 'features/home/components/AnimateOnLoad';
 
 export default function Home() {
 	const { isLoggedIn, isAdmin } = useAuth();
@@ -46,16 +47,18 @@ export default function Home() {
 			<main>
 				<Container>
 					<nav>
-						<div className="inline-block p-4 bg-gray-100">
-							<img
-								className="w-20"
-								src={CLOUDINARY_IMAGES.LOGO}
-								alt="logo"
-							/>
-						</div>
+						<AnimateOnLoad startFrom="top" strength={24}>
+							<div className="inline-block p-4 bg-gray-100">
+								<img
+									className="h-24"
+									src={CLOUDINARY_IMAGES.LOGO}
+									alt="logo"
+								/>
+							</div>
+						</AnimateOnLoad>
 					</nav>
 				</Container>
-				<section className="pb-32">
+				<section className="pb-16 md:pb-32">
 					<Container className="pt-8">
 						<Row
 							gutter={[0, { xs: 48, sm: 48, md: 0 }]}
@@ -63,17 +66,17 @@ export default function Home() {
 						>
 							<Col md={{ span: 16, order: 1 }} order={2}>
 								<div className="flex">
-									<div>
+									<AnimateOnLoad startFrom="left">
 										<HeroText>
 											Connect together to build a smart
 											society
 										</HeroText>
 										<img
 											src={CLOUDINARY_IMAGES.APARTMENT}
-											className=""
+											className="md:h-96"
 											alt="society"
 										/>
-									</div>
+									</AnimateOnLoad>
 								</div>
 							</Col>
 							<Col
@@ -81,14 +84,16 @@ export default function Home() {
 								order={1}
 								className="flex items-center"
 							>
-								<LoginForm />
+								<AnimateOnLoad startFrom="right">
+									<LoginForm />
+								</AnimateOnLoad>
 							</Col>
 						</Row>
 					</Container>
 				</section>
 
 				<section className="bg-emarat-tertiary-default">
-					<Container className="py-32">
+					<Container className="py-16 md:py-32">
 						<div className="mt-0 md:-mt-52 mb-16">
 							<Row className="justify-center md:justify-between">
 								<Col
@@ -179,7 +184,7 @@ export default function Home() {
 				</section>
 
 				<section className="bg-gray-50">
-					<Container className="py-32">
+					<Container className="py-16 md:py-32">
 						<h2 className="text-5xl font-bold mb-8">Team</h2>
 						<Row justify="space-around">
 							<TeamMember

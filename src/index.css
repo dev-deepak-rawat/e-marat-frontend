@@ -14,6 +14,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	text-rendering: optimizeLegibility;
 	font-smooth: always;
+	overflow-x: hidden;
 }
 
 code {
