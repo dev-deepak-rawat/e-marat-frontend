@@ -9,7 +9,7 @@ export type PropsType = {
 
 export default function Feature({ title, number, icon }: PropsType) {
 	return (
-		<div className="bg-white shadow-around px-7 py-10 flex h-full">
+		<div className="bg-white shadow-around px-7 py-10 flex h-full rounded-md">
 			<FontAwesomeIcon icon={icon} className="text-5xl" />
 			<div className="pl-7">
 				<h4 className="font-bold text-4xl">{number}</h4>

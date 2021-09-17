@@ -22,7 +22,7 @@ export default function MyAmenityView(props: MyAmenityViewProps) {
 		type !== AMENITY_TYPES.BASIC;
 	return (
 		<Col xs={22} sm={11} lg={8} key={amenityId} className="w-full">
-			<Card>
+			<Card className="rounded-lg shadow-sm" style={{ minHeight: 200 }}>
 				<div className="flex items-center">
 					<Image
 						width={50}
