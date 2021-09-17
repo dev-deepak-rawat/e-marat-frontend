@@ -7,8 +7,8 @@ import { listenUserAuthState } from 'lib/firebaseAuth';
 
 if (process.env.NODE_ENV === 'development') {
 	// eslint-disable-next-line global-require
-	const { worker } = require('mocks/browser');
-	worker.start();
+	// const { worker } = require('mocks/browser');
+	// worker.start();
 } else {
 	initSentry();
 }
@@ -25,4 +25,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.register();
+serviceWorker.unregister();
