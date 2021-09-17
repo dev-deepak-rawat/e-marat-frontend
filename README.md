@@ -151,18 +151,26 @@ Following are the simple steps to run this project.
 
 **Linting**  
 To lint our entire project expect build folder, we can run  
-`npm run lint`    
+```sh
+npm run lint
+```   
 we don't need to run the above commoand for every change in our file, VS code will automatically tell the places where ESLint rules are getting broke, thanks to `.eslintrc.js` which conatins all the standard rules for our project.  
 
 **Pretty code**  
 To make our coding practices standard with all our team members, we are using Prettier  
-`npm run format`  
+```sh
+npm run format
+```
 
 **Pre-commit hook**  
 In this project we are using `husky` to hook particular scripts to pre commit hook,  
 whenever we do `git commit -m 'message'` husky will call the `pre-commit` hook, from the hook we will call our scripts in the order of  
-`npm run lint`,  
-`npm run format` 
+```sh
+npm run lint
+```
+```sh
+npm run format
+``` 
 if anyone of this script gets failed our commit will not happen, so this will give standard structure to our code base.  
 
 **End-To-End Test**  
