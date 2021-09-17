@@ -10,7 +10,6 @@ import {
 	InstagramOutlined,
 } from '@ant-design/icons';
 import { FaBuilding, FaHandshake, FaSwimmer } from 'react-icons/fa';
-
 import { useAuth, useApiCall } from 'config/hooks';
 import { CLOUDINARY_IMAGES } from 'lib/constants';
 import TeamMember from 'features/home/components/TeamMember';

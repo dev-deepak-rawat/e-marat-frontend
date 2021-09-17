@@ -1,23 +1,21 @@
-import { Typography, Space, Dropdown, Menu } from 'antd';
+import { Space, Dropdown, Menu } from 'antd';
 import { FaChevronDown } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { signOut } from 'lib/firebaseAuth';
 import { useAuth } from 'config/hooks';
 import AvatarImage from '../components/image/AvatarImage';
 
-const { Text } = Typography;
-
 const getMenu = (isAdmin: boolean) => (
 	<Menu>
-		<Menu.Item key="profile">
+		<Menu.Item key="profile" className="p-3 border-b text-center">
 			<Link to="/profile">My Profile</Link>
 		</Menu.Item>
 		{!isAdmin && (
-			<Menu.Item key="amenities">
+			<Menu.Item key="amenities" className="p-3 border-b text-center">
 				<Link to="/amenities">My Amenities</Link>
 			</Menu.Item>
 		)}
-		<Menu.Item key="signout">
+		<Menu.Item key="signout" className="p-3 text-center">
 			<button type="button" onClick={() => signOut()}>
 				Signout
 			</button>
@@ -39,7 +37,7 @@ export default function Topbar() {
 			>
 				<Space>
 					<AvatarImage userImg={`${picture}`} />
-					<Text>{firstName || 'User'}</Text>
+					<p>{firstName || 'User'}</p>
 					<FaChevronDown />
 				</Space>
 			</Dropdown>
