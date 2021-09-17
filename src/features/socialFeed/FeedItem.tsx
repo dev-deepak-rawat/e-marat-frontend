@@ -26,7 +26,6 @@ import {
 	store as storeReaction,
 	destroy as destroyReaction,
 } from 'features/socialFeed/firebase/reactions';
-
 import ReactionsModal from 'features/socialFeed/ReactionsModal';
 import AvatarImage from 'features/shared/components/image/AvatarImage';
 
@@ -60,7 +59,7 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 	const { isAdmin, uniqueId } = useAuth();
 	const { posts, setPosts, users } = useSocialFeed();
 
-	const post = posts[postId];
+	const post = posts[postId] || {};
 	const {
 		userId,
 		text,
@@ -143,11 +142,9 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 
 		if (r && uniqueId) {
 			storeReaction(postId, uniqueId, r);
-			// addToTotalReaction(r);
 			setGivenReactions(latestReactions);
 		} else if (uniqueId) {
 			destroyReaction(postId, uniqueId);
-			// addToTotalReaction(r, false);
 			setGivenReactions(latestReactions);
 		}
 	};

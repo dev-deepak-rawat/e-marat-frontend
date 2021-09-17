@@ -9,9 +9,10 @@ if (process.env.NODE_ENV === 'development') {
 	// eslint-disable-next-line global-require
 	const { worker } = require('mocks/browser');
 	worker.start();
+} else {
+	initSentry();
 }
 
-initSentry();
 listenUserAuthState();
 
 ReactDOM.render(
