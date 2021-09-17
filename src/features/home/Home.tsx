@@ -14,11 +14,13 @@ import {
 	faHandshake,
 	faSwimmer,
 } from '@fortawesome/free-solid-svg-icons';
+import { useAuth, useApiCall } from 'config/hooks';
+import { CLOUDINARY_IMAGES } from 'lib/constants';
 import TeamMember from 'features/home/components/TeamMember';
 import Feature from 'features/home/components/Feature';
 import LoginForm from 'features/home/components/LoginForm';
-import { useAuth, useApiCall } from 'config/hooks';
-import { CLOUDINARY_IMAGES } from 'lib/constants';
+import AnimateOnLoad from 'features/home/components/AnimateOnLoad';
+import AnimateOnScroll from 'features/home/components/AnimateOnScroll';
 
 export default function Home() {
 	const { isLoggedIn, isAdmin } = useAuth();
@@ -46,16 +48,18 @@ export default function Home() {
 			<main>
 				<Container>
 					<nav>
-						<div className="inline-block p-4 bg-gray-100">
-							<img
-								className="w-20"
-								src={CLOUDINARY_IMAGES.LOGO}
-								alt="logo"
-							/>
-						</div>
+						<AnimateOnLoad startFrom="top" strength={24}>
+							<div className="inline-block p-4 bg-gray-100">
+								<img
+									className="h-24"
+									src={CLOUDINARY_IMAGES.LOGO}
+									alt="logo"
+								/>
+							</div>
+						</AnimateOnLoad>
 					</nav>
 				</Container>
-				<section className="pb-32">
+				<section className="pb-16 md:pb-32">
 					<Container className="pt-8">
 						<Row
 							gutter={[0, { xs: 48, sm: 48, md: 0 }]}
@@ -63,17 +67,17 @@ export default function Home() {
 						>
 							<Col md={{ span: 16, order: 1 }} order={2}>
 								<div className="flex">
-									<div>
+									<AnimateOnLoad startFrom="left">
 										<HeroText>
 											Connect together to build a smart
 											society
 										</HeroText>
 										<img
 											src={CLOUDINARY_IMAGES.APARTMENT}
-											className=""
+											className="md:h-96"
 											alt="society"
 										/>
-									</div>
+									</AnimateOnLoad>
 								</div>
 							</Col>
 							<Col
@@ -81,61 +85,67 @@ export default function Home() {
 								order={1}
 								className="flex items-center"
 							>
-								<LoginForm />
+								<AnimateOnLoad startFrom="right">
+									<LoginForm />
+								</AnimateOnLoad>
 							</Col>
 						</Row>
 					</Container>
 				</section>
 
 				<section className="bg-emarat-tertiary-default">
-					<Container className="py-32">
-						<div className="mt-0 md:-mt-52 mb-16">
-							<Row className="justify-center md:justify-between">
-								<Col
-									lg={7}
-									md={8}
-									sm={20}
-									className="pr-0 md:pr-4 w-full"
-								>
-									<Feature
-										title="Members Onboarded"
-										number={`${stats.residentsCount}+`}
-										icon={faBuilding}
-									/>
-								</Col>
-								<Col
-									lg={7}
-									md={8}
-									sm={20}
-									className="pr-0 md:pr-4 mt-8 md:mt-0 w-full"
-								>
-									<Feature
-										title="Complaints Resolved"
-										number={`${stats.complaintsResolved}+`}
-										icon={faHandshake}
-									/>
-								</Col>
-								<Col
-									lg={7}
-									md={8}
-									sm={20}
-									className="mt-8 md:mt-0 w-full"
-								>
-									<Feature
-										title="Amenities"
-										number={`${stats.amenitiesCount}+`}
-										icon={faSwimmer}
-									/>
-								</Col>
-							</Row>
-						</div>
+					<Container className="py-16 md:py-32">
+						<AnimateOnScroll>
+							<div className="mt-0 md:-mt-52 mb-16">
+								<Row className="justify-center md:justify-between">
+									<Col
+										lg={7}
+										md={8}
+										sm={20}
+										className="pr-0 md:pr-4 w-full"
+									>
+										<Feature
+											title="Members Onboarded"
+											number={`${stats.residentsCount}+`}
+											icon={faBuilding}
+										/>
+									</Col>
+									<Col
+										lg={7}
+										md={8}
+										sm={20}
+										className="pr-0 md:pr-4 mt-8 md:mt-0 w-full"
+									>
+										<Feature
+											title="Complaints Resolved"
+											number={`${stats.complaintsResolved}+`}
+											icon={faHandshake}
+										/>
+									</Col>
+									<Col
+										lg={7}
+										md={8}
+										sm={20}
+										className="mt-8 md:mt-0 w-full"
+									>
+										<Feature
+											title="Amenities"
+											number={`${stats.amenitiesCount}+`}
+											icon={faSwimmer}
+										/>
+									</Col>
+								</Row>
+							</div>
+						</AnimateOnScroll>
 						<Row align="middle" className="text-white">
 							<Col md={{ span: 12 }}>
-								<img
-									src={CLOUDINARY_IMAGES.SOCIETY}
-									className="rounded-5xl"
-									alt="apartment"
-								/>
+								<AnimateOnScroll animationStartClasses="scale-50 opacity-0">
+									<img
+										src={CLOUDINARY_IMAGES.SOCIETY}
+										className="rounded-5xl"
+										alt="apartment"
+									/>
+								</AnimateOnScroll>
 							</Col>
 							<Col
 								md={{ span: 12 }}
@@ -179,24 +189,26 @@ export default function Home() {
 				</section>
 
 				<section className="bg-gray-50">
-					<Container className="py-32">
+					<Container className="py-16 md:py-32">
 						<h2 className="text-5xl font-bold mb-8">Team</h2>
-						<Row justify="space-around">
-							<TeamMember
-								name="Haris Rahman"
-								img={CLOUDINARY_IMAGES.HARIS}
-								github="#"
-								linkedin="#"
-								twitter="#"
-							/>
-							<TeamMember
-								name="Deepak Rawat"
-								img={CLOUDINARY_IMAGES.DEEPAK}
-								github="#"
-								linkedin="#"
-								twitter="#"
-							/>
-						</Row>
+						<AnimateOnScroll animationStartClasses="opacity-0 translate-y-32">
+							<Row justify="space-around">
+								<TeamMember
+									name="Haris Rahman"
+									img={CLOUDINARY_IMAGES.HARIS}
+									github="#"
+									linkedin="#"
+									twitter="#"
+								/>
+								<TeamMember
+									name="Deepak Rawat"
+									img={CLOUDINARY_IMAGES.DEEPAK}
+									github="#"
+									linkedin="#"
+									twitter="#"
+								/>
+							</Row>
+						</AnimateOnScroll>
 					</Container>
 				</section>
 			</main>

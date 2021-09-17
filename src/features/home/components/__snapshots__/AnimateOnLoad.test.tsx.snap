@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Animate On Load 1`] = `
+<div
+  className="transform transition-transform delay-100 ease-in duration-500 -translate-x-60"
+>
+  mock child
+</div>
+`;
