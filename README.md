@@ -1,16 +1,14 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="https://res.cloudinary.com/emarat/image/upload/v1630505506/logo.svg" alt="Logo" width="200" >
-
-  <p align="center">
-    ·
-    <a href="https://e-marat.netlify.app/">Live URL</a>
-    ·
-    <a href="https://drive.google.com/file/d/12OUZ-CbCPyCLsFsE6NtTT_dQ_WuRAIev/view?usp=sharing">Documentation</a>
-  </p>
+    <img src="https://res.cloudinary.com/emarat/image/upload/v1630505506/logo.svg" alt="Logo" width="120" >
 </p>
 
+<h1 align="center">Emarat Frontend</h1>
+<h3 align="center">
+	<a href="https://e-marat.netlify.app/">Live URL</a>
+</h3>
+  
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
