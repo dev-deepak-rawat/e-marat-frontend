@@ -20,6 +20,7 @@ import TeamMember from 'features/home/components/TeamMember';
 import Feature from 'features/home/components/Feature';
 import LoginForm from 'features/home/components/LoginForm';
 import AnimateOnLoad from 'features/home/components/AnimateOnLoad';
+import AnimateOnScroll from 'features/home/components/AnimateOnScroll';
 
 export default function Home() {
 	const { isLoggedIn, isAdmin } = useAuth();
@@ -94,53 +95,57 @@ export default function Home() {
 
 				<section className="bg-emarat-tertiary-default">
 					<Container className="py-16 md:py-32">
-						<div className="mt-0 md:-mt-52 mb-16">
-							<Row className="justify-center md:justify-between">
-								<Col
-									lg={7}
-									md={8}
-									sm={20}
-									className="pr-0 md:pr-4 w-full"
-								>
-									<Feature
-										title="Members Onboarded"
-										number={`${stats.residentsCount}+`}
-										icon={faBuilding}
-									/>
-								</Col>
-								<Col
-									lg={7}
-									md={8}
-									sm={20}
-									className="pr-0 md:pr-4 mt-8 md:mt-0 w-full"
-								>
-									<Feature
-										title="Complaints Resolved"
-										number={`${stats.complaintsResolved}+`}
-										icon={faHandshake}
-									/>
-								</Col>
-								<Col
-									lg={7}
-									md={8}
-									sm={20}
-									className="mt-8 md:mt-0 w-full"
-								>
-									<Feature
-										title="Amenities"
-										number={`${stats.amenitiesCount}+`}
-										icon={faSwimmer}
-									/>
-								</Col>
-							</Row>
-						</div>
+						<AnimateOnScroll>
+							<div className="mt-0 md:-mt-52 mb-16">
+								<Row className="justify-center md:justify-between">
+									<Col
+										lg={7}
+										md={8}
+										sm={20}
+										className="pr-0 md:pr-4 w-full"
+									>
+										<Feature
+											title="Members Onboarded"
+											number={`${stats.residentsCount}+`}
+											icon={faBuilding}
+										/>
+									</Col>
+									<Col
+										lg={7}
+										md={8}
+										sm={20}
+										className="pr-0 md:pr-4 mt-8 md:mt-0 w-full"
+									>
+										<Feature
+											title="Complaints Resolved"
+											number={`${stats.complaintsResolved}+`}
+											icon={faHandshake}
+										/>
+									</Col>
+									<Col
+										lg={7}
+										md={8}
+										sm={20}
+										className="mt-8 md:mt-0 w-full"
+									>
+										<Feature
+											title="Amenities"
+											number={`${stats.amenitiesCount}+`}
+											icon={faSwimmer}
+										/>
+									</Col>
+								</Row>
+							</div>
+						</AnimateOnScroll>
 						<Row align="middle" className="text-white">
 							<Col md={{ span: 12 }}>
-								<img
-									src={CLOUDINARY_IMAGES.SOCIETY}
-									className="rounded-5xl"
-									alt="apartment"
-								/>
+								<AnimateOnScroll animationStartClasses="scale-50 opacity-0">
+									<img
+										src={CLOUDINARY_IMAGES.SOCIETY}
+										className="rounded-5xl"
+										alt="apartment"
+									/>
+								</AnimateOnScroll>
 							</Col>
 							<Col
 								md={{ span: 12 }}
@@ -186,22 +191,24 @@ export default function Home() {
 				<section className="bg-gray-50">
 					<Container className="py-16 md:py-32">
 						<h2 className="text-5xl font-bold mb-8">Team</h2>
-						<Row justify="space-around">
-							<TeamMember
-								name="Haris Rahman"
-								img={CLOUDINARY_IMAGES.HARIS}
-								github="#"
-								linkedin="#"
-								twitter="#"
-							/>
-							<TeamMember
-								name="Deepak Rawat"
-								img={CLOUDINARY_IMAGES.DEEPAK}
-								github="#"
-								linkedin="#"
-								twitter="#"
-							/>
-						</Row>
+						<AnimateOnScroll animationStartClasses="opacity-0 translate-y-32">
+							<Row justify="space-around">
+								<TeamMember
+									name="Haris Rahman"
+									img={CLOUDINARY_IMAGES.HARIS}
+									github="#"
+									linkedin="#"
+									twitter="#"
+								/>
+								<TeamMember
+									name="Deepak Rawat"
+									img={CLOUDINARY_IMAGES.DEEPAK}
+									github="#"
+									linkedin="#"
+									twitter="#"
+								/>
+							</Row>
+						</AnimateOnScroll>
 					</Container>
 				</section>
 			</main>
