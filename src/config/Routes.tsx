@@ -9,10 +9,14 @@ const Profile = lazy(() => import('features/profile/Profile'));
 const Home = lazy(() => import('features/home/Home'));
 const ManageUsers = lazy(() => import('features/users/ManageUsers'));
 const MyAmenities = lazy(() => import('features/amenities/MyAmenities'));
-const ManageAmenities = lazy(() => import('features/amenities/ManageAmenities'));
+const ManageAmenities = lazy(
+	() => import('features/amenities/ManageAmenities')
+);
 const Transactions = lazy(() => import('features/payments/Transactions'));
 const MyComplaints = lazy(() => import('features/complaints/MyComplaints'));
-const ManageComplaints = lazy(() => import('features/complaints/ManageComplaints'));
+const ManageComplaints = lazy(
+	() => import('features/complaints/ManageComplaints')
+);
 const Broadcasts = lazy(() => import('features/broadcasts/Broadcasts'));
 const MyPayments = lazy(() => import('features/payments/MyPayments'));
 const Dashboard = lazy(() => import('features/dashboard/Dashboard'));

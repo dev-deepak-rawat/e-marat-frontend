@@ -1,4 +1,4 @@
-import { faSwimmer } from '@fortawesome/free-solid-svg-icons';
+import { FaSwimmer } from 'react-icons/fa';
 import Feature from 'features/home/components/Feature';
 import renderer from 'react-test-renderer';
 
@@ -8,7 +8,7 @@ it('Feature snapshot', () => {
 			<Feature
 				title="compalints resolved"
 				number="400"
-				icon={faSwimmer}
+				icon={FaSwimmer}
 			/>
 		)
 		.toJSON();
