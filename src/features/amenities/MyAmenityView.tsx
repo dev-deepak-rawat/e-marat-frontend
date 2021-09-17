@@ -1,5 +1,5 @@
 import { Card, Col, Image, Button } from 'antd';
-import { PlusOutlined } from '@ant-design/icons';
+import { AiOutlinePlus } from 'react-icons/ai';
 import { transformCloudinaryImage } from 'lib/utils';
 import { AmenityType } from 'features/amenities/Types';
 import placeholderImg from 'assets/images/placeholder.svg';
@@ -48,7 +48,7 @@ export default function MyAmenityView(props: MyAmenityViewProps) {
 									type="ghost"
 									onClick={() => addAmenity(amenityId, name)}
 									shape="circle"
-									icon={<PlusOutlined />}
+									icon={<AiOutlinePlus />}
 									data-testid="addButton"
 								/>
 							)}

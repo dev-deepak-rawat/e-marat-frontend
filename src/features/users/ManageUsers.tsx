@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button, Table, Space } from 'antd';
-import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 import dayjs from 'dayjs';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
 import { apiRequest } from 'config/apiRequest';
@@ -119,14 +119,14 @@ export default function ManageUsers() {
 										type="primary"
 										shape="circle"
 										className="btn-warning"
-										icon={<EditFilled />}
+										icon={<AiFillEdit />}
 										onClick={() => editUser(user)}
 									/>
 
 									<Button
 										type="primary"
 										shape="circle"
-										icon={<DeleteFilled />}
+										icon={<AiFillDelete />}
 										onClick={() =>
 											user._id &&
 											deleteItem<UserType[]>(

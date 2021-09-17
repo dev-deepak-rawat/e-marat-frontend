@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Button, Table, Space, Image, Popover } from 'antd';
-import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 import dayjs from 'dayjs';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
 import { apiRequest } from 'config/apiRequest';
@@ -178,7 +178,7 @@ export default function ManageComplaints({
 											type="primary"
 											shape="circle"
 											className="btn-warning"
-											icon={<EditFilled />}
+											icon={<AiFillEdit />}
 											onClick={() =>
 												editComplaint(complaint)
 											}
@@ -187,7 +187,7 @@ export default function ManageComplaints({
 										<Button
 											type="primary"
 											shape="circle"
-											icon={<DeleteFilled />}
+											icon={<AiFillDelete />}
 											onClick={() =>
 												complaint._id &&
 												deleteItem<ComplaintType[]>(

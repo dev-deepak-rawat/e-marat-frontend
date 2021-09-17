@@ -1,5 +1,7 @@
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
+import { Spin } from 'antd';
+import SpinContainer from 'features/shared/components/styledComponents/SpinContainer';
 import ProtectedRoute from 'config/ProtectedRoute';
 import { ROLES } from 'lib/constants';
 import { useAuth } from 'config/hooks';
@@ -27,7 +29,13 @@ export default function Routes() {
 	const { isAdmin } = useAuth();
 
 	return (
-		<Suspense fallback={<div>loading...</div>}>
+		<Suspense
+			fallback={
+				<SpinContainer className="mt-12">
+					<Spin tip="loading..." />
+				</SpinContainer>
+			}
+		>
 			<Switch>
 				<Route path="/" exact>
 					<Home />
