@@ -1,0 +1,101 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`My Payments payments snapshot 1`] = `
+Array [
+  <div
+    className="sc-eCstlR eRKYhY bg-transparent"
+  >
+    <div
+      className="ant-radio-group ant-radio-group-solid title-font"
+    >
+      <label
+        className="ant-radio-button-wrapper ant-radio-button-wrapper-checked"
+      >
+        <span
+          className="ant-radio-button ant-radio-button-checked"
+          style={Object {}}
+        >
+          <input
+            checked={true}
+            className="ant-radio-button-input"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyPress={[Function]}
+            onKeyUp={[Function]}
+            type="radio"
+            value={0}
+          />
+          <span
+            className="ant-radio-button-inner"
+          />
+        </span>
+        <span>
+          My Payments
+        </span>
+      </label>
+      <label
+        className="ant-radio-button-wrapper"
+      >
+        <span
+          className="ant-radio-button"
+          style={Object {}}
+        >
+          <input
+            checked={false}
+            className="ant-radio-button-input"
+            onBlur={[Function]}
+            onChange={[Function]}
+            onFocus={[Function]}
+            onKeyDown={[Function]}
+            onKeyPress={[Function]}
+            onKeyUp={[Function]}
+            type="radio"
+            value={1}
+          />
+          <span
+            className="ant-radio-button-inner"
+          />
+        </span>
+        <span>
+          Transactions
+        </span>
+      </label>
+    </div>
+  </div>,
+  <div
+    className="sc-bdfBQB kixMzN"
+  >
+    <div
+      className="sc-hKgJUU eWQNKS"
+    >
+      <div
+        className="ant-spin ant-spin-spinning ant-spin-show-text"
+      >
+        <span
+          className="ant-spin-dot ant-spin-dot-spin"
+        >
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+          <i
+            className="ant-spin-dot-item"
+          />
+        </span>
+        <div
+          className="ant-spin-text"
+        >
+          loading...
+        </div>
+      </div>
+    </div>
+  </div>,
+]
+`;

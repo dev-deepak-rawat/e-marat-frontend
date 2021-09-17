@@ -1,14 +1,27 @@
 import renderer from 'react-test-renderer';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import MyPayments from 'features/payments/MyPayments';
+import { Provider } from 'react-redux';
+import { store } from 'config/store';
 
-it('My Payments', () => {
-	const tree = renderer.create(<MyPayments />).toJSON();
-	expect(tree).toMatchSnapshot();
+describe('My Payments', () => {
+	it('payments snapshot', () => {
+		const tree = renderer
+			.create(
+				<Provider store={store}>
+					<MyPayments />
+				</Provider>
+			)
+			.toJSON();
+		expect(tree).toMatchSnapshot();
+	});
 
-	const btn = screen.getByRole('radio', { name: /transactions/i });
-	btn.click();
-
-	const { getByText } = render(<MyPayments />);
-	expect(getByText(/loading.../i)).toBeInTheDocument();
+	it('My payments is loading at start', () => {
+		const { getByText } = render(
+			<Provider store={store}>
+				<MyPayments />
+			</Provider>
+		);
+		expect(getByText(/loading.../i)).toBeInTheDocument();
+	});
 });
