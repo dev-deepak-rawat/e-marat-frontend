@@ -86,10 +86,30 @@ To make all the members of a society feel like a family and to resolve all the p
 
 ### Built With
 
-- [Typescript](https://www.typescriptlang.org/)
-- [React Js](https://reactjs.org/)
-- [Firebase](https://firebase.google.com/)
-- [Netlify](https://www.netlify.com/)
+<p align="center">
+	<a href="https://www.typescriptlang.org/">
+		<img src="https://res.cloudinary.com/emarat/image/upload/h_150/v1631867519/typescript-logo_z0knsm.png" height="100">
+	</a>
+	<a href="https://reactjs.org/">
+		<img src="https://res.cloudinary.com/emarat/image/upload/h_150/v1631867520/react-logo_aiqchy.png" height="100">
+	</a>
+	<a href="https://redux.js.org/">
+		<img src="https://res.cloudinary.com/emarat/image/upload/h_150/v1631867520/redux-logo_g2vd7e.png" height="100">
+	</a>
+	<a href="https://firebase.google.com/">
+		<img src="https://res.cloudinary.com/emarat/image/upload/h_150/v1631803785/firebase-logo_v8dzdj.png" height="100">
+	</a>
+	<a href="https://github.com/features/actions">
+		<img src="https://res.cloudinary.com/emarat/image/upload/h_150/v1631867519/github-action-logo_yamrxz.png" height="100">
+	</a>
+	&nbsp;&nbsp;&nbsp;&nbsp;
+	<a href="https://razorpay.com/">
+		<img src="https://res.cloudinary.com/emarat/image/upload/h_150/v1631811211/Razorpay-logo_bzojzt.png" height="100">
+	</a>
+	<a href="https://www.netlify.com/">
+		<img src="https://res.cloudinary.com/emarat/image/upload/h_150/v1631867519/netlify-logo_i6ye1g.png" height="80">
+	</a>
+</p>
 
 <!-- GETTING STARTED -->
 
