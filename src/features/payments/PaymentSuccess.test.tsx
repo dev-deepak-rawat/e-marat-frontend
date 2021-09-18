@@ -21,7 +21,7 @@ describe('Payment success component', () => {
 	it('On click button, TEST_ORDER should not be in the dom', () => {
 		const { getByText, queryByText } = render(<PaymentSuccessTest />);
 		act(() => {
-			const backButton = getByText(/Back To Screen/i);
+			const backButton = getByText(/Go to Transactions/i);
 			fireEvent.click(backButton);
 		});
 		expect(queryByText(/TEST_ORDER/i)).toBe(null);

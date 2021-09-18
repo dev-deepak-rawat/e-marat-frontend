@@ -3,7 +3,11 @@ import renderer from 'react-test-renderer';
 
 it('Animate On Load', () => {
 	const tree = renderer
-		.create(<AnimateOnLoad startFrom="left">mock child</AnimateOnLoad>)
+		.create(
+			<AnimateOnLoad animationStartClasses="opacity-0">
+				mock child
+			</AnimateOnLoad>
+		)
 		.toJSON();
 	expect(tree).toMatchSnapshot();
 });

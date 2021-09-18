@@ -2,7 +2,7 @@
 
 exports[`Animate On Load 1`] = `
 <div
-  className="transform transition-transform delay-100 ease-in duration-500 -translate-x-60"
+  className="sc-bdfBQB gTatkM transform opacity-0"
 >
   mock child
 </div>

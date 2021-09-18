@@ -8,7 +8,7 @@ Array [
     Dashboard
   </div>,
   <div
-    className="bg-white mt-2 pl-2 pt-2 sm:mx-6 sm:mt-6"
+    className="bg-white mt-2 pl-2 pt-2 lg:mx-6 lg:mt-6"
   >
     <div
       className="sc-hKgJUU eWQNKS"
