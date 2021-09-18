@@ -17,7 +17,7 @@ export default function PaymentSuccess(props: PaymentSuccessProps) {
 					key="confirm"
 					onClick={props.handleSuccessClick}
 				>
-					Back To Screen
+					Go to Transactions
 				</Button>,
 			]}
 		/>

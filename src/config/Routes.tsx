@@ -23,7 +23,9 @@ const Broadcasts = lazy(() => import('features/broadcasts/Broadcasts'));
 const MyPayments = lazy(() => import('features/payments/MyPayments'));
 const Dashboard = lazy(() => import('features/dashboard/Dashboard'));
 const SocialFeed = lazy(() => import('features/socialFeed/SocialFeed'));
-const Announcements = lazy(() => import('features/payments/MyPayments'));
+const Announcements = lazy(
+	() => import('features/announcements/Announcements')
+);
 
 export default function Routes() {
 	const { isAdmin } = useAuth();

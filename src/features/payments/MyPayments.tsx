@@ -18,6 +18,11 @@ export default function MyPayments() {
 
 	const [choice, setChoice] = useState(0);
 
+	const redirectToTransactions = () => {
+		handleSuccessClick();
+		setChoice(1);
+	};
+
 	return (
 		<>
 			<PageTitle className="bg-transparent">
@@ -34,7 +39,12 @@ export default function MyPayments() {
 			) : (
 				<ContainerCard>
 					{orderId ? (
-						<PaymentSuccess {...{ handleSuccessClick, orderId }} />
+						<PaymentSuccess
+							{...{
+								handleSuccessClick: redirectToTransactions,
+								orderId,
+							}}
+						/>
 					) : (
 						<PaymentsComponent
 							{...{ paymentInfo, loading, displayRazorpay }}
