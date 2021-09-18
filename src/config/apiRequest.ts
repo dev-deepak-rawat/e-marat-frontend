@@ -51,10 +51,12 @@ export const apiRequest = async (options: BuildRequestDataType) => {
 			await handleAuthorization(authorization);
 		}
 		if (success && msg) {
+			toast.dismiss();
 			toast.success(msg);
 		}
 		return jsonResponse;
 	} catch (err) {
+		toast.dismiss();
 		if (axios.isAxiosError(err)) {
 			const { response: errResponse } = err;
 			if (errResponse) {
@@ -81,6 +83,7 @@ export const apiRequest = async (options: BuildRequestDataType) => {
 const handleAuthorization = async (token: string) => {
 	const success = await signIn(token);
 	if (!success) {
+		toast.dismiss();
 		toast.error('Error while Loggin In');
 	}
 };
