@@ -5,10 +5,10 @@ import SpinContainer from 'features/shared/components/styledComponents/SpinConta
 import ProtectedRoute from 'config/ProtectedRoute';
 import { ROLES } from 'lib/constants';
 import { useAuth } from 'config/hooks';
+import Home from 'features/home/Home';
+import PageNotFound from 'features/errorPages/404';
+import Profile from 'features/profile/Profile';
 
-const PageNotFound = lazy(() => import('features/errorPages/404'));
-const Profile = lazy(() => import('features/profile/Profile'));
-const Home = lazy(() => import('features/home/Home'));
 const ManageUsers = lazy(() => import('features/users/ManageUsers'));
 const MyAmenities = lazy(() => import('features/amenities/MyAmenities'));
 const ManageAmenities = lazy(
