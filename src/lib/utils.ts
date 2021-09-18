@@ -156,3 +156,5 @@ export const elInViewport = (el: HTMLElement, halfway: boolean = true) => {
 		rect.left <= windowWidth()
 	);
 };
+
+export const reloadWindow = () => window.location.reload();
