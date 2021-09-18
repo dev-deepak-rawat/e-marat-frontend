@@ -18,7 +18,6 @@ export default function App() {
 				<ThemeProvider theme={STYLE_COMPONENT_THEME}>
 					<ErrorBoundary>
 						<ToastContainer autoClose={3000} />
-						<div id="recaptcha-container" />
 						<BrowserRouter>
 							<MasterLayout>
 								<Routes />
