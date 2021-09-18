@@ -1,12 +1,12 @@
-import { Comment, Image, Tooltip } from 'antd';
+import { Comment, Tooltip } from 'antd';
 import { useSocialFeed, useAuth } from 'config/hooks';
 import dayjs from 'dayjs';
-import userPlaceholderImg from 'assets/images/user-placeholder.svg';
 import { DATE_FORMAT } from 'lib/constants';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import UserInfoPop from 'features/shared/components/UserInfoPop';
 import DeleteOverlay from 'features/socialFeed/DeleteOverlay';
 import type { CommentType } from 'features/socialFeed/SocialFeedTypes';
+import AvatarImage from 'features/shared/components/image/AvatarImage';
 
 type PropsType = {
 	comment: CommentType;
@@ -36,13 +36,7 @@ export default function Comments({
 						{`${firstName} ${lastName}`}
 					</UserInfoPop>
 				}
-				avatar={
-					<Image
-						width="100%"
-						src={picture || userPlaceholderImg}
-						fallback={userPlaceholderImg}
-					/>
-				}
+				avatar={<AvatarImage userImg={picture} size={32} />}
 				content={text}
 				datetime={
 					<Tooltip title={dayjs(createdAt).format(DATE_FORMAT)}>
