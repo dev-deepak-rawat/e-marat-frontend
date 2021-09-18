@@ -42,6 +42,7 @@ export default function Home() {
 	return (
 		<>
 			<main>
+				<div id="recaptcha-container" />
 				<Container>
 					<nav>
 						<AnimateOnLoad startFrom="top" strength={24}>

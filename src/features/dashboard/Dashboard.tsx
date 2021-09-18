@@ -19,14 +19,14 @@ const Divider = styled.div`
 
 const ChartContainer = styled.div`
 	${tw`
-        sm:w-2/5
+        lg:w-2/5
     `}
 `;
 
 const ChartRowContainer = styled.div`
 	${tw`
-        sm:flex
-        sm:justify-evenly
+        lg:flex
+        lg:justify-evenly
     `}
 `;
 
@@ -53,7 +53,7 @@ export default function Dashboard() {
 		<>
 			<PageTitle>Dashboard</PageTitle>
 
-			<div className="bg-white mt-2 pl-2 pt-2 sm:mx-6 sm:mt-6">
+			<div className="bg-white mt-2 pl-2 pt-2 lg:mx-6 lg:mt-6">
 				{loading ? (
 					<SpinContainer>
 						<Spin tip="loading..." />
@@ -68,7 +68,7 @@ export default function Dashboard() {
 									title="Overall Complaints Status"
 								/>
 							</ChartContainer>
-							<Divider className="sm:border-r-2" />
+							<Divider className="lg:border-r-2" />
 							<ChartContainer>
 								<LineChartComponent complaintMetas={byMonth} />
 							</ChartContainer>
@@ -83,7 +83,7 @@ export default function Dashboard() {
 									color="#F5A962"
 								/>
 							</ChartContainer>
-							<Divider className="sm:border-r-2" />
+							<Divider className="lg:border-r-2" />
 							<ChartContainer>
 								<AreaChart data={revenues} />
 							</ChartContainer>
