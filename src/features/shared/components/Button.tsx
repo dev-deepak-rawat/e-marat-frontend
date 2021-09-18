@@ -1,5 +1,5 @@
 import React from 'react';
-import { Loading3QuartersOutlined } from '@ant-design/icons';
+import { AiOutlineLoading3Quarters } from 'react-icons/ai';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { ColorType, ColorMap } from 'lib/types';
@@ -45,7 +45,9 @@ export default function Button({
 			onClick={onClick}
 		>
 			{children}
-			{loading && <Loading3QuartersOutlined className="ml-3" spin />}
+			{loading && (
+				<AiOutlineLoading3Quarters className="ml-3 animate-spin" />
+			)}
 		</TButton>
 	);
 }

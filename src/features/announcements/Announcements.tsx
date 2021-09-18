@@ -1,4 +1,6 @@
-import { Empty, Image, Skeleton, Space, Spin, Tooltip, Typography } from 'antd';
+import styled from 'styled-components';
+import tw from 'twin.macro';
+import { Empty, Image, Skeleton, Space, Spin, Tooltip } from 'antd';
 import { AiFillClockCircle } from 'react-icons/ai';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { useInfiniteScrollApiCall, useOrientation } from 'config/hooks';
@@ -10,7 +12,6 @@ import PageTitle from 'features/shared/components/styledComponents/PageTitle';
 import SpinContainer from 'features/shared/components/styledComponents/SpinContainer';
 import AvatarImage from 'features/shared/components/image/AvatarImage';
 
-const { Text } = Typography;
 dayjs.extend(relativeTime);
 
 export default function Announcements({
@@ -92,7 +93,9 @@ export default function Announcements({
 											<AvatarImage
 												userImg={userPicture}
 											/>
-											<Text type="secondary">{user}</Text>
+											<SecondaryText>
+												{user}
+											</SecondaryText>
 										</Space>
 										<Tooltip
 											title={createdTime.format(
@@ -100,25 +103,22 @@ export default function Announcements({
 											)}
 										>
 											<div className="flex ml-2 items-center">
-												<Text type="secondary">
+												<SecondaryText>
 													<AiFillClockCircle />
-												</Text>
-												<Text
-													type="secondary"
-													className="ml-1"
-												>
+												</SecondaryText>
+												<SecondaryText className="ml-1">
 													{createdTime.fromNow()}
-												</Text>
+												</SecondaryText>
 											</div>
 										</Tooltip>
 									</div>
 								)}
-								<Text className="block text-xl capitalize my-3 font-bold text-gray-700">
+								<p className="block text-xl capitalize my-3 font-bold text-gray-700">
 									{title}
-								</Text>
-								<Text type="secondary" className="text-lg">
+								</p>
+								<SecondaryText className="text-lg">
 									{announcement}
-								</Text>
+								</SecondaryText>
 							</div>
 						</div>
 					);
@@ -157,3 +157,7 @@ export default function Announcements({
 		</>
 	);
 }
+
+const SecondaryText = styled.p`
+	${tw`text-gray-500`};
+`;

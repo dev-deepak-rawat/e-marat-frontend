@@ -187,10 +187,10 @@ export const MONTHS_SHORT = [
 ];
 export const CLOUDINARY_IMAGES = {
 	LOGO: 'https://res.cloudinary.com/emarat/image/upload/v1630505506/logo.svg',
-	HARIS: 'https://res.cloudinary.com/emarat/image/upload/v1630606578/haris_vtcfch.jpg',
-	DEEPAK: 'https://res.cloudinary.com/emarat/image/upload/v1630606542/deepak_bbpokm.jpg',
+	HARIS: 'https://res.cloudinary.com/emarat/image/upload/w_350/v1630606578/haris_vtcfch.jpg',
+	DEEPAK: 'https://res.cloudinary.com/emarat/image/upload/w_350/v1630606542/deepak_bbpokm.jpg',
 	SOCIETY:
-		'https://res.cloudinary.com/emarat/image/upload/v1630606579/society_dxlslg.jpg',
+		'https://res.cloudinary.com/emarat/image/upload/w_650/v1630606579/society_dxlslg.jpg',
 	APARTMENT:
 		'https://res.cloudinary.com/emarat/image/upload/v1630606579/apartment_limxbz.svg',
 };
@@ -221,8 +221,7 @@ export const STATUS_COLOR_MAPPER = {
 export const DATE_FORMAT = 'DD MMM YYYY';
 export const DATE_TIME_FORMAT = 'DD MMM h:mm:ss A';
 
-export const SENTRY_DSN =
-	'https://1ef6e7d163ff41eeb401880603c323da@o960298.ingest.sentry.io/5912682';
+export const SENTRY_DSN = process.env.REACT_APP_SENTRY_DSN;
 
 export const AMENITY_TYPES = {
 	BASIC: 'basic',

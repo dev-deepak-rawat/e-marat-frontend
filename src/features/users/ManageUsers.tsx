@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Button, Table, Space } from 'antd';
-import { EditFilled, DeleteFilled } from '@ant-design/icons';
+import { AiFillEdit, AiFillDelete } from 'react-icons/ai';
 import dayjs from 'dayjs';
 import ContainerCard from 'features/shared/components/styledComponents/ContainerCard';
 import { apiRequest } from 'config/apiRequest';
 import { sortStringByProperty, sortDateByProperty } from 'lib/utils';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faUserCog } from '@fortawesome/free-solid-svg-icons';
+import { FaUser, FaUserCog } from 'react-icons/fa';
 import { UserType } from 'features/users/Types';
 import searchColumnProps from 'features/shared/components/table/search';
 import deleteItem from 'features/shared/components/table/delete';
@@ -64,14 +63,13 @@ export default function ManageUsers() {
 					<Table.Column<UserType>
 						title=""
 						dataIndex="isAdmin"
-						render={(value, user) => (
-							<FontAwesomeIcon
-								icon={value ? faUserCog : faUser}
-								className={`text-xl ${
-									value ? 'text-green-500' : 'text-indigo-500'
-								}`}
-							/>
-						)}
+						render={(value, user) =>
+							value ? (
+								<FaUserCog className="text-2xl text-green-500" />
+							) : (
+								<FaUser className="text-xl text-indigo-500" />
+							)
+						}
 					/>
 					<Table.Column<UserType>
 						title="First Name"
@@ -120,15 +118,15 @@ export default function ManageUsers() {
 									<Button
 										type="primary"
 										shape="circle"
-										className="btn-warning"
-										icon={<EditFilled />}
+										className="btn-warning flex-center"
+										icon={<AiFillEdit size={18} />}
 										onClick={() => editUser(user)}
 									/>
-
 									<Button
 										type="primary"
 										shape="circle"
-										icon={<DeleteFilled />}
+										className="flex-center"
+										icon={<AiFillDelete size={18} />}
 										onClick={() =>
 											user._id &&
 											deleteItem<UserType[]>(

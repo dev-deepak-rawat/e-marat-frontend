@@ -1,11 +1,7 @@
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import { Col } from 'antd';
-import {
-	GithubFilled,
-	LinkedinFilled,
-	TwitterOutlined,
-} from '@ant-design/icons';
+import { AiFillGithub, AiFillLinkedin, AiOutlineTwitter } from 'react-icons/ai';
 
 type PropsType = {
 	name: string;
@@ -42,13 +38,13 @@ export default function TeamMember({
 				<p>Full Stack Developer</p>
 				<div className="flex justify-center text-xl">
 					<a href={github} className="pr-3">
-						<GithubFilled className="text-gray-600 hover:text-black" />
+						<AiFillGithub className="text-gray-600 hover:text-black" />
 					</a>
 					<a href={linkedin} className="pr-3">
-						<LinkedinFilled className="text-gray-600 hover:text-brands-linkedin" />
+						<AiFillLinkedin className="text-gray-600 hover:text-brands-linkedin" />
 					</a>
 					<a href={twitter} className="pr-3">
-						<TwitterOutlined className="text-gray-600 hover:text-brands-twitter" />
+						<AiOutlineTwitter className="text-gray-600 hover:text-brands-twitter" />
 					</a>
 				</div>
 			</div>

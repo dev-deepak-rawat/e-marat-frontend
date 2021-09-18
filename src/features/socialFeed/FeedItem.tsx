@@ -4,7 +4,7 @@ import tw from 'twin.macro';
 import styled from 'styled-components';
 import relativeTime from 'dayjs/plugin/relativeTime';
 import { Image, Tooltip } from 'antd';
-import { LikeFilled, LikeOutlined, MessageOutlined } from '@ant-design/icons';
+import { AiFillLike, AiOutlineLike, AiOutlineMessage } from 'react-icons/ai';
 import congratsIcon from 'features/socialFeed/assets/images/congrats.svg';
 import laughIcon from 'features/socialFeed/assets/images/laughing.svg';
 import likeIcon from 'features/socialFeed/assets/images/like.svg';
@@ -193,8 +193,8 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 			case 'like':
 				return (
 					<>
-						<LikeFilled className="text-2xl pr-2 text-blue-500" />
-						<span className="text-blue-500 self-end">Liked</span>
+						<AiFillLike className="text-4xl pr-2 text-blue-500" />
+						<span className="text-blue-500">Liked</span>
 					</>
 				);
 
@@ -224,8 +224,8 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 			default:
 				return (
 					<>
-						<LikeOutlined className="text-2xl pr-2" />
-						<span className="self-end">Like</span>
+						<AiOutlineLike className="text-4xl pr-2" />
+						<span>Like</span>
 					</>
 				);
 		}
@@ -362,7 +362,7 @@ export default function FeedItem({ postId, setCommentingOn }: PropsType) {
 							type="button"
 							onClick={() => setCommentingOn(postId)}
 						>
-							<MessageOutlined className="text-2xl pr-2" />
+							<AiOutlineMessage className="text-4xl pr-2" />
 							Comment
 						</FButton>
 					</div>

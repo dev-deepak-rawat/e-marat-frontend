@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Button, Modal } from 'antd';
-import { EditOutlined } from '@ant-design/icons';
+import { AiOutlineEdit } from 'react-icons/ai';
 import GenericForm from 'features/shared/components/form/GenericForm';
 import { postStoryFormData } from 'features/socialFeed/postStoryFormData';
 import { PostType } from 'features/socialFeed/SocialFeedTypes';
@@ -42,7 +42,7 @@ export default function WritePost() {
 				size="large"
 				shape="circle"
 				onClick={() => setVisible(true)}
-				icon={<EditOutlined className="!text-4xl" />}
+				icon={<AiOutlineEdit className="!text-4xl" />}
 			/>
 		</>
 	);
