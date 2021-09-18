@@ -1,47 +1,32 @@
 import styled from 'styled-components';
-import { TailwindClassesNumbers } from 'lib/types';
 import { useState, useEffect } from 'react';
 
 export type PropsType = {
-	startFrom: 'top' | 'left' | 'right';
-	strength?: TailwindClassesNumbers;
+	animationStartClasses: string;
 	children: React.ReactNode;
 };
 
 export default function AnimateOnLoad({
-	startFrom,
-	strength = 60,
+	animationStartClasses,
 	children,
 }: PropsType) {
-	const animationVariants = {
-		top: `-translate-y-${strength}`,
-		left: `-translate-x-${strength}`,
-		right: `translate-x-${strength}`,
-	};
-	const initialAnimationClasses = `opacity-0 ${animationVariants[startFrom]}`;
-
 	const [animationClasses, setAnimationClasses] = useState<string>(
-		initialAnimationClasses
+		animationStartClasses
 	);
 
 	useEffect(() => {
 		setAnimationClasses('');
 
 		return () => {
-			setAnimationClasses(initialAnimationClasses);
+			setAnimationClasses(animationStartClasses);
 		};
 	}, []);
 
-	return (
-		<Root
-			className={`transform delay-100 ease-in duration-500 ${animationClasses}`}
-		>
-			{children}
-		</Root>
-	);
+	return <Root className={`transform ${animationClasses}`}>{children}</Root>;
 }
 
 const Root = styled.div`
-	transition: transform 2s cubic-bezier(0, 1, 0.3, 1), opacity 0.7s ease-out;
+	transition: transform 2s cubic-bezier(0, 1, 0.3, 1) 0.1s,
+		opacity 0.7s ease-out 0.1s;
 	will-change: transform, opacity;
 `;

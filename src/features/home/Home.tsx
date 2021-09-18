@@ -45,7 +45,7 @@ export default function Home() {
 				<div id="recaptcha-container" />
 				<Container>
 					<nav>
-						<AnimateOnLoad startFrom="top" strength={24}>
+						<AnimateOnLoad animationStartClasses="-translate-y-24 opacity-0">
 							<div className="inline-block p-4 bg-gray-100">
 								<img
 									className="h-24"
@@ -64,7 +64,7 @@ export default function Home() {
 						>
 							<Col md={{ span: 16, order: 1 }} order={2}>
 								<div className="flex">
-									<AnimateOnLoad startFrom="left">
+									<AnimateOnLoad animationStartClasses="-translate-x-60 opacity-0">
 										<HeroText>
 											Connect together to build a smart
 											society
@@ -82,7 +82,7 @@ export default function Home() {
 								order={1}
 								className="flex items-center"
 							>
-								<AnimateOnLoad startFrom="right">
+								<AnimateOnLoad animationStartClasses="translate-x-60 opacity-0">
 									<LoginForm />
 								</AnimateOnLoad>
 							</Col>
