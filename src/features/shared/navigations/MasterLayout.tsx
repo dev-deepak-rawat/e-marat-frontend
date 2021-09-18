@@ -16,21 +16,19 @@ export default function MasterLayout(props: PropsWithChildren<{}>) {
 	const location = useLocation();
 	if (['/', '/404'].includes(location.pathname)) return <>{props.children}</>;
 
-	useEffect(() => {
-		const networkChangeEvent = () => {
-			if (navigator.onLine) {
-				setIsOnline(true);
-				toast.dismiss();
-				toast.success('Back Online!');
-			} else {
-				setIsOnline(false);
-				toast.dismiss();
-				toast.error("You're Offline!");
-			}
-		};
-		window.addEventListener('online', networkChangeEvent);
-		window.addEventListener('offline', networkChangeEvent);
-	}, []);
+	const networkChangeEvent = () => {
+		if (navigator.onLine) {
+			setIsOnline(true);
+			toast.dismiss();
+			toast.success('Back Online!');
+		} else {
+			setIsOnline(false);
+			toast.dismiss();
+			toast.error("You're Offline!");
+		}
+	};
+	window.addEventListener('online', networkChangeEvent);
+	window.addEventListener('offline', networkChangeEvent);
 
 	return (
 		<Layout className="min-h-screen">
