@@ -225,7 +225,7 @@ export default function Home() {
 						<a href="https://www.google.com/">Privacy Policy</a>
 					</div>
 
-					<div>
+					<div className="flex">
 						<a
 							href="https://www.google.com/"
 							className="pr-3 text-xl"
