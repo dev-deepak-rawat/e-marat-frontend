@@ -12,6 +12,7 @@ import searchColumnProps from 'features/shared/components/table/search';
 import { DATE_FORMAT, STATUS_COLOR_MAPPER } from 'lib/constants';
 import PageTitle from 'features/shared/components/styledComponents/PageTitle';
 import AvatarImage from 'features/shared/components/image/AvatarImage';
+import UserInfoPop from 'features/shared/components/UserInfoPop';
 
 type TransactionsProps = {
 	showTitle?: boolean;
@@ -58,6 +59,16 @@ export default function Transactions({ showTitle = true }: TransactionsProps) {
 									'name'
 								)}
 								{...getColumnSearchProps('name')}
+								render={(name, transaction) => (
+									<UserInfoPop
+										flat={transaction.flat}
+										phone={transaction.phone}
+									>
+										<span className="cursor-pointer">
+											{name}
+										</span>
+									</UserInfoPop>
+								)}
 							/>
 						</>
 					)}
@@ -97,13 +108,6 @@ export default function Transactions({ showTitle = true }: TransactionsProps) {
 								{value}
 							</span>
 						)}
-					/>
-
-					<Table.Column<TransactionType>
-						title="Phone"
-						dataIndex="phone"
-						sorter={sortStringByProperty<TransactionType>('phone')}
-						{...getColumnSearchProps('phone')}
 					/>
 
 					<Table.Column<TransactionType>
