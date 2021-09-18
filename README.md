@@ -100,7 +100,7 @@ To make all the members of a society feel like a family and to resolve all the p
 		<img src="https://res.cloudinary.com/emarat/image/upload/h_150/v1631803785/firebase-logo_v8dzdj.png" title="Firebase" height="100">
 	</a>
 	<a href="https://github.com/features/actions">
-		<img src="https://res.cloudinary.com/emarat/image/upload/h_150/v1631867519/github-action-logo_yamrxz.png" title="Github Action" height="100">
+		<img src="https://res.cloudinary.com/emarat/image/upload/h_150/v1631867519/github-action-logo_yamrxz.png" title="Github Actions" height="100">
 	</a>
 	&nbsp;&nbsp;&nbsp;&nbsp;
 	<a href="https://razorpay.com/">
