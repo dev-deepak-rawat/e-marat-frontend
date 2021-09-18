@@ -44,7 +44,7 @@ export default function MyAmenityView(props: MyAmenityViewProps) {
 							<h4 className="text-2xl font-semibold">₹ {fee}</h4>
 							{showAddButton && (
 								<Button
-									className="text-white bg-green-500 hover:text-green-500 hover:border-green-500"
+									className="flex-center text-white bg-green-500 hover:text-green-500 hover:border-green-500"
 									type="ghost"
 									onClick={() => addAmenity(amenityId, name)}
 									shape="circle"

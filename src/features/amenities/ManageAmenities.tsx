@@ -55,7 +55,7 @@ export default function ManageAmenities() {
 		<>
 			<PageTitle>Manage Amenities</PageTitle>
 			<ContainerCard size="xl">
-				<div className="text-right ">
+				<div className="text-right">
 					<Button type="primary" onClick={() => editAmenity(null)}>
 						Create
 					</Button>
