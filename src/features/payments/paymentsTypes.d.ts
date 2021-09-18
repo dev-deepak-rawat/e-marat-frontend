@@ -8,6 +8,7 @@ export type TransactionType = {
 	processedAt: string;
 	name: string;
 	phone: string;
+	flat: string;
 	picture: string;
 	createdAt?: string;
 };
