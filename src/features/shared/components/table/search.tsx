@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ColumnType, FilterConfirmProps } from 'antd/lib/table/interface';
 import Highlighter from 'react-highlight-words';
-import { SearchOutlined } from '@ant-design/icons';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { Input, Button, Space } from 'antd';
 
 export default function searchColumnProps<T>(dataIndex: string): ColumnType<T> {
@@ -61,7 +61,7 @@ export default function searchColumnProps<T>(dataIndex: string): ColumnType<T> {
 								dataIndex as keyof T
 							)
 						}
-						icon={<SearchOutlined />}
+						icon={<AiOutlineSearch />}
 						size="small"
 					>
 						Search
@@ -77,7 +77,7 @@ export default function searchColumnProps<T>(dataIndex: string): ColumnType<T> {
 			</div>
 		),
 		filterIcon: (filtered: boolean) => (
-			<SearchOutlined
+			<AiOutlineSearch
 				style={{ color: filtered ? '#1890ff' : undefined }}
 			/>
 		),
