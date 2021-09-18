@@ -57,6 +57,8 @@ become acquainted with others by posting stories and sharing their thoughts.
 <a href="https://drive.google.com/file/d/1YabDlAU6MeRzFvw3qotHrL2CxlqkCiEA/view?usp=sharing">One Pager</a>
 &nbsp;&nbsp;&nbsp;&nbsp;
 <a href="https://drive.google.com/file/d/1VhLwtQEiYDabaPfq7dHEWbr2DseD71Ce/view?usp=sharing">Wireframes</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="https://drive.google.com/file/d/1rL3K0NTI91a6QQmy0J6BE9FFQSvwDgVY/view?usp=sharing">Coding Practices</a>
 
 ### Backend Repo
 
