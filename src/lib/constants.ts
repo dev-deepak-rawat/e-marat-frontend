@@ -103,6 +103,10 @@ export const API_CONFIG: ApiConfigType = {
 		url: '',
 		method: 'GET',
 	},
+	isRegisteredUser: {
+		url: '/isRegistered/',
+		method: 'POST',
+	},
 };
 
 export const PATTERNS = {

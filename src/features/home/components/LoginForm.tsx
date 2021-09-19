@@ -44,6 +44,17 @@ export default function LoginForm() {
 		setSumbitBtnText('Sending OTP');
 		setOtpInProgress(true);
 
+		const isRegisterdUser = await apiRequest({
+			apiUrl: 'isRegisteredUser',
+			data: { phone: mobile },
+		});
+		const { meta = {} } = isRegisterdUser;
+		if (!meta.success) {
+			setOtpInProgress(false);
+			setSumbitBtnText('Send OTP');
+			return;
+		}
+
 		const otpSentResultResult = await sendOtp(
 			'recaptcha-container',
 			`+91${mobile}`
